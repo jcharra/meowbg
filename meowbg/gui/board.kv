@@ -1,0 +1,79 @@
+#:kivy 1.3.0
+#:import win kivy.core.window
+
+<MatchWidget>:
+    board: board
+    size: self.size
+
+    Image:
+        source: 'wood_texture.jpg'
+        size: self.size
+        pos: self.parent.x, self.parent.y
+        allow_stretch: True
+        keep_ratio: False
+
+    BoardWidget:
+        id: board
+        size: self.size
+        pos: self.parent.x, self.parent.y
+
+<ButtonPanel>:
+    orientation: 'horizontal'
+
+    Button:
+        text: 'New game'
+
+    Button:
+        text: 'New AI game'
+        on_press: self.parent.fire_new_game_event()
+
+<IndexRow>:
+    Label:
+        text: str(self.parent.idx_start)
+    Label:
+        text: str(self.parent.idx_start + self.parent.idx_direction * 1)
+    Label:
+        text: str(self.parent.idx_start + self.parent.idx_direction * 2)
+    Label:
+        text: str(self.parent.idx_start + self.parent.idx_direction * 3)
+    Label:
+        text: str(self.parent.idx_start + self.parent.idx_direction * 4)
+    Label:
+        text: str(self.parent.idx_start + self.parent.idx_direction * 5)
+
+<Spike>:
+    pos: self.pos
+    size: self.size
+    orientation: 'tb-lr'
+
+    canvas:
+        Color:
+            rgba: (self.activated or self.highlighted) and (.2, .2, .2, .5) or (0, 0, 0, 0)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        Color:
+            rgba: self.board_idx % 2 and (.4, .2, 0, 0.8) or (1, .8, .6, 0.8)
+        Triangle:
+            points: self.board_idx < 12 and (self.x, self.y, self.x + self.width/2, self.y + self.height, self.x + self.width, self.y) or (self.x, self.y + self.height, self.x + self.width/2, self.y, self.x + self.width, self.y + self.height)
+
+<Checker>:
+    size: self.size
+    pos: self.pos
+
+    canvas:
+        Color:
+            rgb: self.color
+        Ellipse:
+            pos: self.pos
+            size: self.size
+        Color:
+            rgb: self.color[0] * 0.6, self.color[1] * 0.6, self.color[2] * 0.6
+        Ellipse:
+            pos: self.pos[0] + 2, self.pos[1] + 2
+            size: self.size[0] - 4, self.size[1] - 4
+        Color:
+            rgb: self.color
+        Ellipse:
+            pos: self.pos[0] + 4, self.pos[1] + 4
+            size: self.size[0] - 8, self.size[1] - 8
