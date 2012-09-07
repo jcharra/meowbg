@@ -11,7 +11,7 @@ class Match(object):
         As lean as possible ... if later we "feed" the instance with an actual
         match standing, everything done here would be rendered useless anyway.
         """
-        self.player_names = ["You"]
+        self.player_names = []
         self.length = 1
         self.score = [0, 0]
         self.turn = None
@@ -56,6 +56,13 @@ class Match(object):
                 and self.player_may_double
                 and self.turn == self.players_color)
 
+    def switch_turn(self):
+        if self.turn == self.players_color:
+            self.turn = self.opponents_color
+        elif self.turn == self.opponents_color:
+            self.turn = self.players_color
+        else:
+            raise ValueError("Noone's turn ... cannot switch")
 
     def __str__(self):
         return ("Dice player (%s): %s, dice opponent (%s): %s, turn: %s"

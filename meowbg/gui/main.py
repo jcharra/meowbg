@@ -101,6 +101,63 @@ class GameWidget(GridLayout):
         else:
             raise Logger.error("Cannot handle type %s" % event)
 
+
+class MatchWidget(FloatLayout):
+    board = ObjectProperty(None)
+
+    def __init__(self, **kwargs):
+        FloatLayout.__init__(self, **kwargs)
+
+        self.listeners = []
+
+        self.busy = False
+        self.event_queue = Queue.Queue()
+        Clock.schedule_interval(self.process_queue, .1)
+
+    def process_queue(self, dt):
+        if not self.event_queue.empty() and not self.busy:
+            event = self.event_queue.get()
+            Logger.info("Processing event %s" % event)
+            self._interpret_event(event)
+            self.event_queue.task_done()
+
+    def add_listener(self, listener):
+        self.listeners.append(listener)
+
+    def notify(self, event):
+        Logger.info("Event %s fired" % event)
+        for s in self.listeners:
+            s(event)
+
+    def handle(self, event):
+        if isinstance(event, MoveEvent):
+            # A full move event is first split into several single move events
+            for m in event.moves:
+                self.event_queue.put(SingleMoveEvent(PartialMove(m.origin, m.target)))
+        else:
+            self.event_queue.put(event)
+
+    def release(self):
+        self.busy = False
+
+    def execute_move(self, move):
+        self.busy = True
+        self.board.move_by_indexes(move.origin, move.target, self.release)
+
+    def show_dice_roll(self, dice, color):
+        self.busy = True
+        self.board.show_dice(dice, color, self.release)
+
+    def _interpret_event(self, event):
+        if isinstance(event, MatchEvent):
+            self.board.synchronize(event.match)
+        elif isinstance(event, SingleMoveEvent):
+            self.execute_move(event.move)
+        elif isinstance(event, DiceEvent):
+            self.show_dice_roll(event.dice, event.color)
+        else:
+            Logger.error("Cannot interpret event %s" % event)
+
 class PlayerListWidget(ScrollView):
     def __init__(self, **kwargs):
         ScrollView.__init__(self, **kwargs)
@@ -153,61 +210,6 @@ class LobbyWidget(GridLayout):
 
     def send_command(self, cmd):
         self.notify(MessageEvent(cmd))
-
-class MatchWidget(FloatLayout):
-    board = ObjectProperty(None)
-
-    def __init__(self, **kwargs):
-        FloatLayout.__init__(self, **kwargs)
-
-        self.listeners = []
-
-        self.busy = False
-        self.event_queue = Queue.Queue()
-        Clock.schedule_interval(self.process_queue, 0.1)
-
-    def process_queue(self, dt):
-        if not self.event_queue.empty() and not self.busy:
-            event = self.event_queue.get()
-            Logger.info("Processing event %s" % event)
-            self._interpret_event(event)
-            self.event_queue.task_done()
-
-    def add_listener(self, listener):
-        self.listeners.append(listener)
-
-    def notify(self, event):
-        Logger.info("Event %s fired" % event)
-        for s in self.listeners:
-            s(event)
-
-    def handle(self, event):
-        self.event_queue.put(event)
-
-    def release(self):
-        self.busy = False
-
-    def execute_move(self, move):
-        self.busy = True
-        self.board.move_by_indexes(move.origin, move.target, self.release)
-
-    def show_dice_roll(self, dice, color):
-        self.busy = True
-        self.board.show_dice(dice, color, self.release)
-
-    def _interpret_event(self, event):
-        if isinstance(event, MatchEvent):
-            self.board.synchronize(event.match)
-        elif isinstance(event, MoveEvent):
-            # A full move event is split into several single move events
-            for m in event.moves:
-                self.event_queue.put(SingleMoveEvent(PartialMove(m.origin, m.target)))
-        elif isinstance(event, SingleMoveEvent):
-            self.execute_move(event.move)
-        elif isinstance(event, DiceEvent):
-            self.show_dice_roll(event.dice, event.color)
-        else:
-            Logger.error("Cannot interpret event %s" % event)
 
 class BoardApp(App):
     def build(self):

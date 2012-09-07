@@ -1,11 +1,11 @@
-import kivy.resources
 from kivy.graphics.context_instructions import Color
 from kivy.graphics.vertex_instructions import Rectangle
 from kivy.logger import Logger
 from kivy.properties import ListProperty, NumericProperty, BooleanProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
-from kivy.core.image import Image
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.image import Image
 from kivy.uix.widget import Widget
 from meowbg.core.board import Board
 from meowbg.core.match import Match
@@ -102,21 +102,17 @@ class ButtonPanel(BoxLayout):
         self.notify(e)
 
     def notify(self, event):
-        Logger.info("Notifying %s listeners of event %s, " % (len(self.listeners), event))
+        Logger.info("ButtonPanel: Notifying %s of event %s, " % (self.listeners, event))
         for li in self.listeners:
             li(event)
 
-class DicePanel(FloatLayout):
+class DicePanel(GridLayout):
     def __init__(self, **kwargs):
-        FloatLayout.__init__(self, **kwargs)
+        kwargs.update({'cols': 8})
+        GridLayout.__init__(self, **kwargs)
 
-    def show(self, dice):
-        with self.canvas:
-            Color(0.9, 0.9, 0.9)
-            for idx, die in enumerate(dice):
-                die_width = self.height * 0.9
-                xstart = self.x + self.width/2.0 - (die_width + 3) * len(dice)/2
-                xpos = xstart + (die_width + 3) * idx
-                ypos = self.y
-                size = die_width, die_width
-                Rectangle(source="die%i.png" % die, pos=(xpos, ypos), size=size)
+    def show_dice(self, dice):
+        self.add_widget(Widget(size_hint=(4-len(dice)/2, 1))) # spacer
+        for idx, die in enumerate(dice):
+            self.add_widget(Image(source="die%i.png" % die))
+        self.add_widget(Widget(size_hint=(4-len(dice)/2, 1))) # spacer

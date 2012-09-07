@@ -7,6 +7,8 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.widget import Widget
 from kivy.vector import Vector
 from meowbg.core.board import WHITE
+from meowbg.core.match import Match
+from meowbg.core.move import PartialMove
 from meowbg.gui.basicparts import IndexRow, SpikePanel, DicePanel
 
 
@@ -39,11 +41,11 @@ class BoardWidget(GridLayout):
         self.add_widget(Widget(size_hint=(1/17.5, 1)))
 
         self.add_widget(Widget(size_hint=(1/17.5, 1)))
-        self.white_dice_area = DicePanel(size_hint=(5/17.5, 1))
-        self.add_widget(self.white_dice_area)
+        self.opponents_dice_area = DicePanel(size_hint=(5/17.5, 1))
+        self.add_widget(self.opponents_dice_area)
         self.add_widget(Widget(size_hint=(1.5/17.5, 1)))
-        self.black_dice_area = DicePanel(size_hint=(5/17.5, 1))
-        self.add_widget(self.black_dice_area)
+        self.players_dice_area = DicePanel(size_hint=(5/17.5, 1))
+        self.add_widget(self.players_dice_area)
 
         self.add_widget(Widget(size_hint=(1/17.5, 1)))
         self.add_widget(Widget(size_hint=(1/17.5, 1)))
@@ -127,6 +129,8 @@ class BoardWidget(GridLayout):
 
     def synchronize(self, match):
         self.match = match
+        Logger.info("Sync with %s" % self.match)
+
         self.clear_board() # ugly, causes flickering
 
         on_field = match.board.checkers_on_field
@@ -138,13 +142,13 @@ class BoardWidget(GridLayout):
                 self.add_checkers(idx, col, amount)
 
     def show_dice(self, dice, color, on_finish):
-        self.white_dice_area.clear_widgets()
-        self.black_dice_area.clear_widgets()
+        self.opponents_dice_area.clear_widgets()
+        self.players_dice_area.clear_widgets()
 
-        if color == WHITE:
-            self.white_dice_area.show(dice)
+        if color == self.match.opponents_color:
+            self.opponents_dice_area.show_dice(dice)
         else:
-            self.black_dice_area.show(dice)
+            self.players_dice_area.show_dice(dice)
         on_finish()
 
     def spikes(self):
@@ -190,6 +194,8 @@ class BoardWidget(GridLayout):
     def move_by_indexes(self, idx1, idx2, on_finish=None):
         origin, target = map(self._get_spike_by_index, (idx1, idx2))
         self.move(origin, target, on_finish=on_finish)
+        # keep match's board in sync
+        self.match.board.make_partial_move(PartialMove(idx1, idx2))
 
     def _get_spike_by_index(self, idx):
         # TODO: make "bar" and "off" translate to spikes as well

@@ -2,16 +2,12 @@ import random
 from kivy.logger import Logger
 from meowbg.core.dice import Dice
 from meowbg.core.match import Match
-from meowbg.network.events import MatchEvent, MoveEvent, RolloutEvent, DiceEvent
+from meowbg.network.events import MatchEvent, MoveEvent, RolloutEvent, DiceEvent, SingleMoveEvent
 
 class Bot(object):
     def __init__(self):
         self.dice = Dice()
-        self.match = Match()
         self.callback = None
-        self.name = random.choice(["Albert", "Klaus", "Antje"])
-
-        self.match.player_names.append(self.name)
 
     def handle(self, event):
         if isinstance(event, MatchEvent):
@@ -31,38 +27,37 @@ class Bot(object):
         else:
             print "Event %s went unnoticed ..." % event
 
+    def pick_move(self):
+        moves = self.match.board.get_possible_moves(self.match.opponents_dice,
+                                                    self.match.opponents_color)
+        mymove = random.choice(moves)
+        self.notify(MoveEvent(mymove))
+        self.match.opponents_dice = []
+
     def react(self):
-        if self.match.turn is None:
-            d1, d2 = self.dice.rollout()
+        if self.match.turn == self.match.opponents_color:
 
-            self.notify(RolloutEvent(d1, d2))
-
-            if d2 > d1:
-                self.match.turn = self.match.players_color
-                self.match.players_dice = [d1, d2]
-                self.match.players_remaining_dice = [d1, d2]
-                Logger.info("You win the rollout, match is %s" % self.match)
-            else:
-                self.match.turn = self.match.opponents_color
-                self.match.opponents_dice = [d1, d2]
-                Logger.info("I win the rollout, match is %s" % self.match)
-
-            self.notify(MatchEvent(self.match))
+            self.match.opponents_dice = self.dice.roll()
+            self.notify(DiceEvent(self.match.opponents_dice, self.match.opponents_color))
+            self.pick_move()
+            self.match.switch_turn()
             self.react()
-        elif self.match.turn == self.match.opponents_color:
-            Logger.info("My turn, let's see ... match is %s" % self.match)
-            moves = self.match.board.get_possible_moves(self.match.opponents_dice,
-                                                        self.match.opponents_color)
-            mymove = random.choice(moves)
-            self.notify(MoveEvent(mymove))
 
-            self.match.opponents_dice = []
+        elif self.match.turn == self.match.players_color:
+
             self.match.players_remaining_dice = self.dice.roll()
             self.notify(DiceEvent(self.match.players_remaining_dice, self.match.players_color))
 
-            self.match.turn = self.match.players_color
-
-            self.notify(MatchEvent(self.match))
         else:
-            print "It's not my turn"
+            # initially we need to "echo" the match back
+            self.notify(MatchEvent(self.match))
+            d1, d2 = self.dice.rollout()
+            self.notify(RolloutEvent(d1, d2))
 
+            if d1 > d2:
+                self.match.turn = self.match.players_color
+                self.match.players_remaining_dice = [d1, d2]
+                self.notify(DiceEvent([d1, d2], self.match.players_color))
+            else:
+                self.match.turn = self.match.opponents_color
+                self.react()
