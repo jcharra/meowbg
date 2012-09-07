@@ -58,7 +58,7 @@ class Bot(object):
 
             self.match.opponents_dice = []
             self.match.players_remaining_dice = self.dice.roll()
-            self.notify(DiceEvent(self.match.players_remaining_dice))
+            self.notify(DiceEvent(self.match.players_remaining_dice, self.match.players_color))
 
             self.match.turn = self.match.players_color
 

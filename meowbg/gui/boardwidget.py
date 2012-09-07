@@ -1,9 +1,14 @@
 from kivy.animation import Animation
+from kivy.graphics.context_instructions import Color
+from kivy.graphics.vertex_instructions import Rectangle
 from kivy.logger import Logger
+from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.widget import Widget
 from kivy.vector import Vector
-from meowbg.gui.basicparts import IndexRow, SpikePanel
+from meowbg.core.board import WHITE
+from meowbg.gui.basicparts import IndexRow, SpikePanel, DicePanel
+
 
 class BoardWidget(GridLayout):
     def __init__(self, **kwargs):
@@ -34,9 +39,11 @@ class BoardWidget(GridLayout):
         self.add_widget(Widget(size_hint=(1/17.5, 1)))
 
         self.add_widget(Widget(size_hint=(1/17.5, 1)))
-        self.add_widget(Widget(size_hint=(5/17.5, 1)))
+        self.white_dice_area = DicePanel(size_hint=(5/17.5, 1))
+        self.add_widget(self.white_dice_area)
         self.add_widget(Widget(size_hint=(1.5/17.5, 1)))
-        self.add_widget(Widget(size_hint=(5/17.5, 1)))
+        self.black_dice_area = DicePanel(size_hint=(5/17.5, 1))
+        self.add_widget(self.black_dice_area)
 
         self.add_widget(Widget(size_hint=(1/17.5, 1)))
         self.add_widget(Widget(size_hint=(1/17.5, 1)))
@@ -129,6 +136,16 @@ class BoardWidget(GridLayout):
             if amount:
                 col = self.color_map[checkers[0]]
                 self.add_checkers(idx, col, amount)
+
+    def show_dice(self, dice, color, on_finish):
+        self.white_dice_area.clear_widgets()
+        self.black_dice_area.clear_widgets()
+
+        if color == WHITE:
+            self.white_dice_area.show(dice)
+        else:
+            self.black_dice_area.show(dice)
+        on_finish()
 
     def spikes(self):
         """

@@ -15,7 +15,6 @@ from kivy.uix.textinput import TextInput
 from kivy.factory import Factory
 from kivy.logger import Logger
 from kivy.resources import resource_add_path
-import time
 from meowbg.core.move import PartialMove
 from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel
 from meowbg.gui.boardwidget import BoardWidget
@@ -192,11 +191,9 @@ class MatchWidget(FloatLayout):
         self.busy = True
         self.board.move_by_indexes(move.origin, move.target, self.release)
 
-    def show_dice_roll(self, dice):
+    def show_dice_roll(self, dice, color):
         self.busy = True
-        with self.canvas:
-            for idx, die in enumerate(dice):
-                Rectangle(source="die%i.png" % die, pos=(100, 100 + idx * 60), size=(50, 50))
+        self.board.show_dice(dice, color, self.release)
 
     def _interpret_event(self, event):
         if isinstance(event, MatchEvent):
@@ -208,7 +205,7 @@ class MatchWidget(FloatLayout):
         elif isinstance(event, SingleMoveEvent):
             self.execute_move(event.move)
         elif isinstance(event, DiceEvent):
-            self.show_dice_roll(event.dice)
+            self.show_dice_roll(event.dice, event.color)
         else:
             Logger.error("Cannot interpret event %s" % event)
 

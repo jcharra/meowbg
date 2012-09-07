@@ -4,8 +4,8 @@ class MatchEvent(object):
         self.match = match
 
 class DiceEvent(object):
-    def __init__(self, dice):
-        self.dice = dice
+    def __init__(self, dice, color):
+        self.dice, self.color = dice, color
 
 class CubeEvent(object):
     def __init__(self, cube_number):

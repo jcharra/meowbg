@@ -106,3 +106,17 @@ class ButtonPanel(BoxLayout):
         for li in self.listeners:
             li(event)
 
+class DicePanel(FloatLayout):
+    def __init__(self, **kwargs):
+        FloatLayout.__init__(self, **kwargs)
+
+    def show(self, dice):
+        with self.canvas:
+            Color(0.9, 0.9, 0.9)
+            for idx, die in enumerate(dice):
+                die_width = self.height * 0.9
+                xstart = self.x + self.width/2.0 - (die_width + 3) * len(dice)/2
+                xpos = xstart + (die_width + 3) * idx
+                ypos = self.y
+                size = die_width, die_width
+                Rectangle(source="die%i.png" % die, pos=(xpos, ypos), size=size)
