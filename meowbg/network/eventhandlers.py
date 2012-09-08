@@ -6,7 +6,7 @@ import time
 from meowbg.core.board import Board, BLACK, WHITE
 from meowbg.core.match import Match
 from meowbg.core.move import PartialMove
-from meowbg.network.events import InvitationEvent, MoveEvent, MatchEvent, PlayerStatusEvent
+from meowbg.core.events import InvitationEvent, MoveEvent, MatchEvent, PlayerStatusEvent
 
 logger = logging.getLogger("EventParser")
 logger.addHandler(logging.StreamHandler())
@@ -44,7 +44,7 @@ class GameEventHandler(object):
     """
     def __init__(self, opponent_interface):
         self.opponent_interface = opponent_interface
-        self.listeners = []
+        self.observers = []
 
     def handle(self, event):
         """
@@ -52,11 +52,11 @@ class GameEventHandler(object):
         """
         raise NotImplementedError
 
-    def add_listener(self, callback):
-        self.listeners.append(callback)
+    def add_observer(self, callback):
+        self.observers.append(callback)
 
     def notify(self, event):
-        for sc in self.listeners:
+        for sc in self.observers:
             sc(event)
 
     def connect(self):

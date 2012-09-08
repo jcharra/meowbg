@@ -1,26 +1,29 @@
 import os
 import Queue
-from threading import Thread
 
 from kivy.app import App
 from kivy.clock import Clock
-from kivy.graphics.vertex_instructions import Rectangle
 from kivy.properties import ObjectProperty
 from kivy.uix.accordion import Accordion, AccordionItem
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.gridlayout import GridLayout
+from kivy.uix.image import Image
 from kivy.uix.label import Label
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.textinput import TextInput
 from kivy.factory import Factory
 from kivy.logger import Logger
 from kivy.resources import resource_add_path
+from meowbg.core.board import BLACK
+from meowbg.core.exceptions import MoveNotPossible
+from meowbg.core.match import Match
 from meowbg.core.move import PartialMove
 from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel
 from meowbg.gui.boardwidget import BoardWidget
+from meowbg.gui.guievents import NewMatchEvent, CommitEvent, MoveAttempt
 from meowbg.network.bot import Bot
-from meowbg.network.eventhandlers import FIBSEventHandler, AIEventHandler
-from meowbg.network.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, MessageEvent, DiceEvent
+from meowbg.network.eventhandlers import  AIEventHandler
+from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, MessageEvent, DiceEvent
 
 resource_add_path(os.path.dirname(__file__) + "/resources")
 
@@ -45,18 +48,18 @@ class MainWidget(GridLayout):
         self.add_widget(accordion)
 
         #self.game_event_handler = FIBSEventHandler(TelnetClient())
-        self.game_event_handler = AIEventHandler(Bot())
+        self.game_event_handler = AIEventHandler(Bot(BLACK))
 
         # 'Incoming' events from the game event handler are dealt with
         # by an instance method for further distribution.
-        self.game_event_handler.add_listener(self.notify_external_event)
+        self.game_event_handler.add_observer(self.notify_external_event)
         self.game_event_handler.connect()
 
         # 'Outgoing' events from the game widget need to be propagated
         # to the game event handler. They may originate from the game
         # or lobby widget.
-        self.game_widget.add_listener(self.game_event_handler.handle)
-        self.lobby_widget.add_listener(self.game_event_handler.handle)
+        self.game_widget.add_observer(self.game_event_handler.handle)
+        self.lobby_widget.add_observer(self.game_event_handler.handle)
 
     def notify_external_event(self, event):
         """
@@ -83,32 +86,40 @@ class GameWidget(GridLayout):
         self.add_widget(self.match_widget)
         self.add_widget(button_panel)
 
-        self.match_widget.add_listener(self.notify)
-        button_panel.add_listener(self.notify)
+        self.match_widget.add_observer(self.handle)
+        button_panel.add_observer(self.handle)
 
-        self.listeners = []
+        self.observers = []
 
-    def add_listener(self, listener):
-        self.listeners.append(listener)
+    def add_observer(self, observer):
+        self.observers.append(observer)
 
     def notify(self, event):
-        for li in self.listeners:
+        for li in self.observers:
             li(event)
 
     def handle(self, event):
-        if isinstance(event, (MatchEvent, MoveEvent, DiceEvent)):
+        if isinstance(event, (MatchEvent, MoveEvent, DiceEvent, NewMatchEvent, CommitEvent)):
             self.match_widget.handle(event)
         else:
             raise Logger.error("Cannot handle type %s" % event)
 
 
-class MatchWidget(FloatLayout):
-    board = ObjectProperty(None)
+class MatchWidget(GridLayout):
 
     def __init__(self, **kwargs):
-        FloatLayout.__init__(self, **kwargs)
+        kwargs.update({"cols": 1})
+        GridLayout.__init__(self, **kwargs)
 
-        self.listeners = []
+        #self.add_widget(Image(source='wood_texture.jpg', pos=(self.x, self.y),
+        #                      allow_stretch=True, keep_ratio=False))
+        self.board = BoardWidget(pos=(self.x, self.y))
+        self.add_widget(self.board)
+
+        self.board.add_observer(self.handle)
+
+        self.observers = []
+        self.match = None
 
         self.busy = False
         self.event_queue = Queue.Queue()
@@ -121,15 +132,16 @@ class MatchWidget(FloatLayout):
             self._interpret_event(event)
             self.event_queue.task_done()
 
-    def add_listener(self, listener):
-        self.listeners.append(listener)
+    def add_observer(self, observer):
+        self.observers.append(observer)
 
     def notify(self, event):
         Logger.info("Event %s fired" % event)
-        for s in self.listeners:
+        for s in self.observers:
             s(event)
 
     def handle(self, event):
+        Logger.info("Handling %s" % event)
         if isinstance(event, MoveEvent):
             # A full move event is first split into several single move events
             for m in event.moves:
@@ -148,6 +160,18 @@ class MatchWidget(FloatLayout):
         self.busy = True
         self.board.show_dice(dice, color, self.release)
 
+    def initialize_new_match(self, length):
+        self.match = Match()
+        self.match.length = length
+        self.match.add_observer(self.handle)
+        self.match.new_game()
+
+    def attempt_move(self, origin, target):
+        try:
+            self.match.make_temporary_move(origin, target, self.match.turn)
+        except MoveNotPossible, msg:
+            Logger.error("Not possible: %s" % msg)
+
     def _interpret_event(self, event):
         if isinstance(event, MatchEvent):
             self.board.synchronize(event.match)
@@ -155,6 +179,12 @@ class MatchWidget(FloatLayout):
             self.execute_move(event.move)
         elif isinstance(event, DiceEvent):
             self.show_dice_roll(event.dice, event.color)
+        elif isinstance(event, NewMatchEvent):
+            self.initialize_new_match(event.length)
+        elif isinstance(event, CommitEvent):
+            self.match.commit(self.match.turn)
+        elif isinstance(event, MoveAttempt):
+            self.attempt_move(event.origin, event.target)
         else:
             Logger.error("Cannot interpret event %s" % event)
 
@@ -192,7 +222,7 @@ class LobbyWidget(GridLayout):
                                on_text_validate=self.send_command)
         self.add_widget(text_input)
 
-        self.listeners = []
+        self.observers = []
 
     def handle(self, event):
         if isinstance(event, PlayerStatusEvent):
@@ -200,12 +230,12 @@ class LobbyWidget(GridLayout):
         else:
             Logger.error("Cannot handle type %s" % event)
 
-    def add_listener(self, listener):
-        self.listeners.append(listener)
+    def add_observer(self, observer):
+        self.observers.append(observer)
 
     def notify(self, event):
-        Logger.debug("Notifying %s listeners of event %s" % (len(self.listeners), event))
-        for li in self.listeners:
+        Logger.debug("Notifying %s observers of event %s" % (len(self.observers), event))
+        for li in self.observers:
             li(event)
 
     def send_command(self, cmd):

@@ -1,7 +1,9 @@
 
+
 class MatchEvent(object):
     def __init__(self, match):
         self.match = match
+
 
 class DiceEvent(object):
     def __init__(self, dice, color):
@@ -35,6 +37,15 @@ class AcceptEvent(object):
 
 class RejectEvent(object):
     pass
+
+class GameEndEvent(object):
+    def __init__(self, winner, points):
+        self.winner, self.points = winner, points
+
+class MatchEndEvent(object):
+    def __init__(self, winner, score):
+        self.winner, self.score = winner, score
+
 
 # Events outside a match
 

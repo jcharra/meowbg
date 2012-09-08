@@ -10,6 +10,7 @@ from meowbg.core.board import WHITE
 from meowbg.core.match import Match
 from meowbg.core.move import PartialMove
 from meowbg.gui.basicparts import IndexRow, SpikePanel, DicePanel
+from meowbg.gui.guievents import MoveAttempt
 
 
 class BoardWidget(GridLayout):
@@ -80,6 +81,14 @@ class BoardWidget(GridLayout):
         for s in self.spikes():
             self.spike_for_index[s.board_idx] = s
 
+        self.observers = []
+
+    def add_observer(self, observer):
+        self.observers.append(observer)
+
+    def notify(self, event):
+        for ob in self.observers:
+            ob(event)
 
     def on_touch_down(self, touch):
         if self.busy:
@@ -103,16 +112,20 @@ class BoardWidget(GridLayout):
             spike.activated = True
             self.show_possible_moves(spike.board_idx)
         else:
-            self.move(self.active_spike, spike, self.release)
+            self.notify(MoveAttempt(self.active_spike.board_idx, spike.board_idx))
             self.active_spike.activated = False
             self.active_spike = None
 
     def show_possible_moves(self, from_index):
-        if not self.match or not self.match.players_remaining_dice:
+        if not self.match:
             return
 
-        dice = self.match.players_remaining_dice
-        color = self.match.players_color
+        checkers_at_index = self.match.board.checkers_on_field[from_index]
+        if not checkers_at_index:
+            return
+
+        color = checkers_at_index[0]
+        dice = self.match.remaining_dice
         moves = self.match.board.get_possible_moves(dice, color)
 
         target_indexes = set([m[0].target for m in moves
@@ -194,8 +207,6 @@ class BoardWidget(GridLayout):
     def move_by_indexes(self, idx1, idx2, on_finish=None):
         origin, target = map(self._get_spike_by_index, (idx1, idx2))
         self.move(origin, target, on_finish=on_finish)
-        # keep match's board in sync
-        self.match.board.make_partial_move(PartialMove(idx1, idx2))
 
     def _get_spike_by_index(self, idx):
         # TODO: make "bar" and "off" translate to spikes as well

@@ -6,9 +6,10 @@ from operator import lt, gt
 
 BLACK = 1
 WHITE = 2
-EMPTY = '_'
+COLOR_NAMES = {WHITE: "White", BLACK: "Black"}
 BAR_INDEX = {BLACK: 24, WHITE: -1}
 OFF_INDEX = {BLACK: -1, WHITE: 24}
+DIRECTION = {BLACK: -1, WHITE: 1}
 HOME_INDICES = {WHITE: range(18, 24), BLACK: range(0, 6)}
 OUTSIDE_INDICES = {WHITE: range(0, 18), BLACK: range(6, 24)}
 OPPONENT = {BLACK: WHITE, WHITE: BLACK}
@@ -28,6 +29,9 @@ class Board(object):
 
     # TODO introduce position class and make function accept a single argument
     def __init__(self, on_field=None, on_bar=None, borne_off=None):
+        self.init_empty(on_field, on_bar, borne_off)
+
+    def init_empty(self, on_field=None, on_bar=None, borne_off=None):
         self.checkers_on_field = on_field or defaultdict(list)
         self.checkers_on_bar = on_bar or []
         self.borne_off = borne_off or []
@@ -82,6 +86,7 @@ class Board(object):
         self.move_stack = []
 
     def initialize_board(self):
+        self.init_empty()
         self.initialize_checkers(BLACK)
         self.initialize_checkers(WHITE)
 
@@ -277,7 +282,7 @@ class Board(object):
                         return col, 2
                 else:
                     return col, 1
-        return ()
+        return 0, 0
 
 
     def check_board_state(self):
@@ -328,7 +333,7 @@ class Board(object):
         for i in range(5):
             line = []
             for j in range(12, 24):
-                ch = self.checkers_on_field[j][0] if len(self.checkers_on_field[j]) > i else EMPTY
+                ch = self.checkers_on_field[j][0] if len(self.checkers_on_field[j]) > i else "_"
                 line.append(ch)
             upper_half.append("".join([str(i) for i in line]))
 
@@ -336,7 +341,7 @@ class Board(object):
         for i in range(4, -1, -1):
             line = []
             for j in range(11, -1, -1):
-                ch = self.checkers_on_field[j][0] if len(self.checkers_on_field[j]) > i else EMPTY
+                ch = self.checkers_on_field[j][0] if len(self.checkers_on_field[j]) > i else "_"
                 line.append(ch)
             lower_half.append("".join([str(i) for i in line]))
 

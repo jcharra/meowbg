@@ -1,5 +1,3 @@
-from kivy.graphics.context_instructions import Color
-from kivy.graphics.vertex_instructions import Rectangle
 from kivy.logger import Logger
 from kivy.properties import ListProperty, NumericProperty, BooleanProperty
 from kivy.uix.boxlayout import BoxLayout
@@ -9,7 +7,8 @@ from kivy.uix.image import Image
 from kivy.uix.widget import Widget
 from meowbg.core.board import Board
 from meowbg.core.match import Match
-from meowbg.network.events import MatchEvent
+from meowbg.core.events import MatchEvent
+from meowbg.gui.guievents import NewMatchEvent, CommitEvent
 
 class Checker(Widget):
     color = ListProperty([1, 1, 1])
@@ -89,21 +88,20 @@ class SpikePanel(BoxLayout):
 class ButtonPanel(BoxLayout):
     def __init__(self, **kwargs):
         BoxLayout.__init__(self, **kwargs)
-        self.listeners = []
+        self.observers = []
 
-    def add_listener(self, listener):
-        self.listeners.append(listener)
+    def add_observer(self, observer):
+        self.observers.append(observer)
 
     def fire_new_game_event(self):
-        m = Match()
-        m.board = Board()
-        m.board.initialize_board()
-        e = MatchEvent(m)
-        self.notify(e)
+        self.notify(NewMatchEvent(1))
+
+    def commit_move(self):
+        self.notify(CommitEvent())
 
     def notify(self, event):
-        Logger.info("ButtonPanel: Notifying %s of event %s, " % (self.listeners, event))
-        for li in self.listeners:
+        Logger.info("ButtonPanel: Notifying %s of event %s, " % (self.observers, event))
+        for li in self.observers:
             li(event)
 
 class DicePanel(GridLayout):
