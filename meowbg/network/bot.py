@@ -1,30 +1,21 @@
 import random
-from kivy.logger import Logger
-from meowbg.core.events import MatchEvent, MoveEvent, DiceEvent
+from meowbg.core.events import MatchEvent, MoveEvent, CommitEvent
+from meowbg.core.messaging import register, broadcast
 
 class Bot(object):
     def __init__(self, color):
         self.color = color
         self.callback = None
+        register(self.react, MatchEvent)
 
-    def handle(self, event):
-        if isinstance(event, MatchEvent):
-            self.react(event.match)
-        else:
-            Logger.info("Cryptic event: %s" % event)
-
-    def notify(self, event):
-        if self.callback:
-            self.callback(event)
-        else:
-            print "Event %s went unnoticed ..." % event
-
-    def react(self, match):
+    def react(self, match_event):
+        match = match_event.match
         if match.turn == self.color:
-            moves = match.board.get_possible_moves(match.opponents_dice,
-                                                   match.opponents_color)
+            moves = match.board.get_possible_moves(match.remaining_dice,
+                                                   self.color)
             mymove = random.choice(moves)
-            self.notify(MoveEvent(mymove))
+            broadcast(MoveEvent(mymove))
+            broadcast(CommitEvent())
         else:
             print "Not my turn!"
 

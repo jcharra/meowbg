@@ -44,20 +44,12 @@ class GameEventHandler(object):
     """
     def __init__(self, opponent_interface):
         self.opponent_interface = opponent_interface
-        self.observers = []
 
     def handle(self, event):
         """
         Handle incoming events
         """
         raise NotImplementedError
-
-    def add_observer(self, callback):
-        self.observers.append(callback)
-
-    def notify(self, event):
-        for sc in self.observers:
-            sc(event)
 
     def connect(self):
         """
@@ -79,14 +71,9 @@ class AIEventHandler(GameEventHandler):
 
     def __init__(self, opponent_interface):
         GameEventHandler.__init__(self, opponent_interface)
-        # Just tell the AI to call our notify method
-        self.opponent_interface.callback = self.notify
 
     def connect(self):
         pass
-
-    def handle(self, event):
-        self.opponent_interface.handle(event)
 
 
 class FIBSEventHandler(GameEventHandler):

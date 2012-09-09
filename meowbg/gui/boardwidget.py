@@ -6,8 +6,9 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.widget import Widget
 from kivy.vector import Vector
-from meowbg.core.board import WHITE
+from meowbg.core.board import WHITE, BLACK
 from meowbg.core.match import Match
+from meowbg.core.messaging import broadcast
 from meowbg.core.move import PartialMove
 from meowbg.gui.basicparts import IndexRow, SpikePanel, DicePanel
 from meowbg.gui.guievents import MoveAttempt
@@ -81,15 +82,6 @@ class BoardWidget(GridLayout):
         for s in self.spikes():
             self.spike_for_index[s.board_idx] = s
 
-        self.observers = []
-
-    def add_observer(self, observer):
-        self.observers.append(observer)
-
-    def notify(self, event):
-        for ob in self.observers:
-            ob(event)
-
     def on_touch_down(self, touch):
         if self.busy:
             return
@@ -112,7 +104,7 @@ class BoardWidget(GridLayout):
             spike.activated = True
             self.show_possible_moves(spike.board_idx)
         else:
-            self.notify(MoveAttempt(self.active_spike.board_idx, spike.board_idx))
+            broadcast(MoveAttempt(self.active_spike.board_idx, spike.board_idx))
             self.active_spike.activated = False
             self.active_spike = None
 
@@ -158,7 +150,7 @@ class BoardWidget(GridLayout):
         self.opponents_dice_area.clear_widgets()
         self.players_dice_area.clear_widgets()
 
-        if color == self.match.opponents_color:
+        if color == BLACK:
             self.opponents_dice_area.show_dice(dice)
         else:
             self.players_dice_area.show_dice(dice)

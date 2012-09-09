@@ -14,16 +14,17 @@ from kivy.uix.textinput import TextInput
 from kivy.factory import Factory
 from kivy.logger import Logger
 from kivy.resources import resource_add_path
-from meowbg.core.board import BLACK
+from meowbg.core.board import BLACK, WHITE
 from meowbg.core.exceptions import MoveNotPossible
 from meowbg.core.match import Match
 from meowbg.core.move import PartialMove
 from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel
 from meowbg.gui.boardwidget import BoardWidget
-from meowbg.gui.guievents import NewMatchEvent, CommitEvent, MoveAttempt
+from meowbg.gui.guievents import NewMatchEvent, MoveAttempt
 from meowbg.network.bot import Bot
 from meowbg.network.eventhandlers import  AIEventHandler
-from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, MessageEvent, DiceEvent
+from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, MessageEvent, DiceEvent, CommitEvent
+from meowbg.core.messaging import register, broadcast
 
 resource_add_path(os.path.dirname(__file__) + "/resources")
 
@@ -47,19 +48,7 @@ class MainWidget(GridLayout):
 
         self.add_widget(accordion)
 
-        #self.game_event_handler = FIBSEventHandler(TelnetClient())
         self.game_event_handler = AIEventHandler(Bot(BLACK))
-
-        # 'Incoming' events from the game event handler are dealt with
-        # by an instance method for further distribution.
-        self.game_event_handler.add_observer(self.notify_external_event)
-        self.game_event_handler.connect()
-
-        # 'Outgoing' events from the game widget need to be propagated
-        # to the game event handler. They may originate from the game
-        # or lobby widget.
-        self.game_widget.add_observer(self.game_event_handler.handle)
-        self.lobby_widget.add_observer(self.game_event_handler.handle)
 
     def notify_external_event(self, event):
         """
@@ -71,6 +60,7 @@ class MainWidget(GridLayout):
         if isinstance(event, PlayerStatusEvent):
             self.lobby_widget.handle(event)
         elif isinstance(event, (MatchEvent, MoveEvent, DiceEvent)):
+            Logger.info("Propagating %s to game widget" % event)
             self.game_widget.handle(event)
         else:
             Logger.error("Cannot handle type %s" % event)
@@ -86,24 +76,6 @@ class GameWidget(GridLayout):
         self.add_widget(self.match_widget)
         self.add_widget(button_panel)
 
-        self.match_widget.add_observer(self.handle)
-        button_panel.add_observer(self.handle)
-
-        self.observers = []
-
-    def add_observer(self, observer):
-        self.observers.append(observer)
-
-    def notify(self, event):
-        for li in self.observers:
-            li(event)
-
-    def handle(self, event):
-        if isinstance(event, (MatchEvent, MoveEvent, DiceEvent, NewMatchEvent, CommitEvent)):
-            self.match_widget.handle(event)
-        else:
-            raise Logger.error("Cannot handle type %s" % event)
-
 
 class MatchWidget(GridLayout):
 
@@ -115,33 +87,30 @@ class MatchWidget(GridLayout):
         #                      allow_stretch=True, keep_ratio=False))
         self.board = BoardWidget(pos=(self.x, self.y))
         self.add_widget(self.board)
-
-        self.board.add_observer(self.handle)
-
-        self.observers = []
         self.match = None
-
-        self.busy = False
+        self.blocking_event = None
         self.event_queue = Queue.Queue()
         Clock.schedule_interval(self.process_queue, .1)
 
+        # TODO: implement bulk registration
+        register(self.handle, NewMatchEvent)
+        register(self.handle, MatchEvent)
+        register(self.handle, MoveAttempt)
+        register(self.handle, DiceEvent)
+        register(self.handle, SingleMoveEvent)
+        register(self.handle, MoveEvent)
+        register(self.handle, CommitEvent)
+
     def process_queue(self, dt):
-        if not self.event_queue.empty() and not self.busy:
+        if not self.event_queue.empty() and not self.blocking_event:
             event = self.event_queue.get()
             Logger.info("Processing event %s" % event)
             self._interpret_event(event)
             self.event_queue.task_done()
-
-    def add_observer(self, observer):
-        self.observers.append(observer)
-
-    def notify(self, event):
-        Logger.info("Event %s fired" % event)
-        for s in self.observers:
-            s(event)
+        else:
+            Logger.info("Empty: %s Blocking event: %s" % (self.event_queue.empty(), self.blocking_event))
 
     def handle(self, event):
-        Logger.info("Handling %s" % event)
         if isinstance(event, MoveEvent):
             # A full move event is first split into several single move events
             for m in event.moves:
@@ -150,20 +119,23 @@ class MatchWidget(GridLayout):
             self.event_queue.put(event)
 
     def release(self):
-        self.busy = False
+        self.blocking_event = None
 
+    # TODO: remove callback passing for blocking stuff,
+    # use broadcast instead
     def execute_move(self, move):
-        self.busy = True
+        self.blocking_event = "Move"
         self.board.move_by_indexes(move.origin, move.target, self.release)
 
     def show_dice_roll(self, dice, color):
-        self.busy = True
+        self.blocking_event = "Diceroll"
         self.board.show_dice(dice, color, self.release)
 
     def initialize_new_match(self, length):
         self.match = Match()
         self.match.length = length
-        self.match.add_observer(self.handle)
+        self.match.player_names[WHITE] = "Player"
+        self.match.player_names[BLACK] = "Bot"
         self.match.new_game()
 
     def attempt_move(self, origin, target):
@@ -222,21 +194,11 @@ class LobbyWidget(GridLayout):
                                on_text_validate=self.send_command)
         self.add_widget(text_input)
 
-        self.observers = []
-
     def handle(self, event):
         if isinstance(event, PlayerStatusEvent):
             self.player_list.update_display(event.status_dicts)
         else:
             Logger.error("Cannot handle type %s" % event)
-
-    def add_observer(self, observer):
-        self.observers.append(observer)
-
-    def notify(self, event):
-        Logger.debug("Notifying %s observers of event %s" % (len(self.observers), event))
-        for li in self.observers:
-            li(event)
 
     def send_command(self, cmd):
         self.notify(MessageEvent(cmd))

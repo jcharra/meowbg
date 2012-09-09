@@ -28,6 +28,9 @@ class SingleMoveEvent(object):
     def __init__(self, move):
         self.move = move
 
+class CommitEvent(object):
+    pass
+
 class ResignEvent(object):
     def __init__(self, points):
         self.points = points

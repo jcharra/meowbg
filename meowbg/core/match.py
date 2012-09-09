@@ -1,7 +1,8 @@
 import logging
 from meowbg.core.board import Board, WHITE, BLACK, COLOR_NAMES
 from meowbg.core.dice import Dice
-from meowbg.core.events import MatchEndEvent, GameEndEvent, RolloutEvent, MatchEvent, SingleMoveEvent
+from meowbg.core.events import MatchEndEvent, GameEndEvent, RolloutEvent, MatchEvent, SingleMoveEvent, DiceEvent
+from meowbg.core.messaging import broadcast
 from move import PartialMove
 from board import DIRECTION
 
@@ -29,7 +30,6 @@ class Match(object):
 
         self.dice = Dice()
         self.board = Board()
-        self.observers = []
 
     def make_temporary_move(self, origin, target, color):
         if self.turn != color:
@@ -46,7 +46,7 @@ class Match(object):
         if die in self.remaining_dice:
             self.remaining_dice.remove(die)
 
-        self.notify(SingleMoveEvent(move))
+        broadcast(SingleMoveEvent(move))
 
     def _commit_possible(self, color):
         if self.turn != color:
@@ -60,10 +60,10 @@ class Match(object):
         if self._commit_possible(color):
             winner, points = self.board.get_winner()
             if winner:
-                self.notify(GameEndEvent(winner, points))
+                broadcast(GameEndEvent(winner, points))
                 self.score[winner] += points * self.cube
                 if self.score[winner] >= self.length:
-                    self.notify(MatchEndEvent(winner, self.score))
+                    broadcast(MatchEndEvent(winner, self.score))
                 else:
                     self.new_game()
             else:
@@ -87,24 +87,18 @@ class Match(object):
         else:
             self.turn = BLACK
 
-        self.notify(RolloutEvent(d1, d2))
+        broadcast(RolloutEvent(d1, d2))
 
         self.remaining_dice = [d1, d2]
         self.initial_dice = [d1, d2]
+
+        broadcast(DiceEvent(self.remaining_dice, self.turn))
+
         self.initially_possible_moves = self.board.find_possible_moves(self.initial_dice, self.turn)
 
         self.board.initialize_board()
 
-        self.notify(MatchEvent(self))
-
-    def notify(self, event):
-        logger.warn("Notifying %s" % self.observers)
-        for ob in self.observers:
-            ob(event)
-
-    def add_observer(self, observer):
-        logger.warn("Adding %s" % observer)
-        self.observers.append(observer)
+        broadcast(MatchEvent(self))
 
     def doubling_possible(self, color):
         return (self.remaining_dice == self.initial_dice
@@ -122,8 +116,10 @@ class Match(object):
         else:
             raise ValueError("Noone's turn ... cannot switch")
 
+        broadcast(MatchEvent(self))
+
     def __str__(self):
-        return ("Turn: %s (white: %s, black: %s), board:\n%s"
+        return ("It is the turn of %s (white: %s, black: %s), board:\n%s"
                 % (COLOR_NAMES[self.turn],
                    self.player_names[WHITE],
                    self.player_names[BLACK],
