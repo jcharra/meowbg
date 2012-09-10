@@ -50,7 +50,8 @@ class Board(object):
         """
 
         checkers_on_origin = self.checkers_on_field[move.origin]
-        if (checkers_on_origin
+        if (die in range(1, 7)
+            and checkers_on_origin
             and move in self._find_legal_moves_for_die(die, checkers_on_origin[0])):
             self.make_partial_move(move)
         else:

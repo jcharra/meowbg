@@ -20,7 +20,7 @@ from meowbg.core.match import Match
 from meowbg.core.move import PartialMove
 from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel
 from meowbg.gui.boardwidget import BoardWidget
-from meowbg.gui.guievents import NewMatchEvent, MoveAttempt
+from meowbg.gui.guievents import NewMatchEvent, MoveAttempt, AnimationFinishedEvent
 from meowbg.network.bot import Bot
 from meowbg.network.eventhandlers import  AIEventHandler
 from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, MessageEvent, DiceEvent, CommitEvent
@@ -100,6 +100,7 @@ class MatchWidget(GridLayout):
         register(self.handle, SingleMoveEvent)
         register(self.handle, MoveEvent)
         register(self.handle, CommitEvent)
+        register(self.release, AnimationFinishedEvent)
 
     def process_queue(self, dt):
         if not self.event_queue.empty() and not self.blocking_event:
@@ -118,18 +119,16 @@ class MatchWidget(GridLayout):
         else:
             self.event_queue.put(event)
 
-    def release(self):
+    def release(self, e):
         self.blocking_event = None
 
-    # TODO: remove callback passing for blocking stuff,
-    # use broadcast instead
     def execute_move(self, move):
-        self.blocking_event = "Move"
-        self.board.move_by_indexes(move.origin, move.target, self.release)
+        self.blocking_event = move
+        self.board.move_by_indexes(move.origin, move.target)
 
     def show_dice_roll(self, dice, color):
-        self.blocking_event = "Diceroll"
-        self.board.show_dice(dice, color, self.release)
+        self.blocking_event = "diceroll"
+        self.board.show_dice(dice, color)
 
     def initialize_new_match(self, length):
         self.match = Match()

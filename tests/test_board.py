@@ -100,6 +100,7 @@ class BoardTestCase(unittest.TestCase):
         legal_moves = self.board._find_legal_moves_for_die(6, WHITE)
         self.assertEquals(len(legal_moves), 1)
 
+
     def test_all_checkers_home(self):
         # positive case 1
         self.board.checkers_on_field.update({4: [BLACK], 3: [BLACK]})
@@ -217,7 +218,7 @@ class BoardTestCase(unittest.TestCase):
         self.assertEqual(self.board.get_winner(), (BLACK, 1))
 
         self.board.checkers_on_field.update({1: [BLACK]})
-        self.assertEqual(self.board.get_winner(), ())
+        self.assertEqual(self.board.get_winner(), (0, 0))
 
     def test_try_illegal_moves(self):
         self.board.checkers_on_field.update({6: [BLACK], 4: [BLACK],

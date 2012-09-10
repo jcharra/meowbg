@@ -116,7 +116,7 @@ class Match(object):
         else:
             raise ValueError("Noone's turn ... cannot switch")
 
-        broadcast(MatchEvent(self))
+        broadcast(DiceEvent(self.remaining_dice, self.turn))
 
     def __str__(self):
         return ("It is the turn of %s (white: %s, black: %s), board:\n%s"

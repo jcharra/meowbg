@@ -11,10 +11,12 @@ class Bot(object):
     def react(self, match_event):
         match = match_event.match
         if match.turn == self.color:
+            print "MY TURN"
             moves = match.board.get_possible_moves(match.remaining_dice,
                                                    self.color)
             mymove = random.choice(moves)
-            broadcast(MoveEvent(mymove))
+            for m in mymove:
+                match.make_temporary_move(m.origin, m.target, self.color)
             broadcast(CommitEvent())
         else:
             print "Not my turn!"

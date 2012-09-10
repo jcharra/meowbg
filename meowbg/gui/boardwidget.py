@@ -11,7 +11,7 @@ from meowbg.core.match import Match
 from meowbg.core.messaging import broadcast
 from meowbg.core.move import PartialMove
 from meowbg.gui.basicparts import IndexRow, SpikePanel, DicePanel
-from meowbg.gui.guievents import MoveAttempt
+from meowbg.gui.guievents import MoveAttempt, AnimationFinishedEvent
 
 
 class BoardWidget(GridLayout):
@@ -146,7 +146,7 @@ class BoardWidget(GridLayout):
                 col = self.color_map[checkers[0]]
                 self.add_checkers(idx, col, amount)
 
-    def show_dice(self, dice, color, on_finish):
+    def show_dice(self, dice, color):
         self.opponents_dice_area.clear_widgets()
         self.players_dice_area.clear_widgets()
 
@@ -154,7 +154,7 @@ class BoardWidget(GridLayout):
             self.opponents_dice_area.show_dice(dice)
         else:
             self.players_dice_area.show_dice(dice)
-        on_finish()
+        broadcast(AnimationFinishedEvent())
 
     def spikes(self):
         """
@@ -173,7 +173,7 @@ class BoardWidget(GridLayout):
             if s.activated:
                 return s
 
-    def move(self, spike_origin, spike_target, on_finish):
+    def move(self, spike_origin, spike_target):
         """
         Moves a checker from the origin to the target.
         As soon as the animation is finished, the callback
@@ -189,16 +189,17 @@ class BoardWidget(GridLayout):
 
         def move_finished(e):
             self.transfer_checker(topmost, spike_origin, spike_target)
-            if on_finish: on_finish()
+            Logger.info("Finishing move")
+            broadcast(AnimationFinishedEvent())
 
         duration = Vector(topmost.pos).distance(target_pos)/1000.0
         animation = Animation(pos=target_pos, duration=duration)
         animation.on_complete = move_finished
         animation.start(topmost)
 
-    def move_by_indexes(self, idx1, idx2, on_finish=None):
+    def move_by_indexes(self, idx1, idx2):
         origin, target = map(self._get_spike_by_index, (idx1, idx2))
-        self.move(origin, target, on_finish=on_finish)
+        self.move(origin, target)
 
     def _get_spike_by_index(self, idx):
         # TODO: make "bar" and "off" translate to spikes as well
