@@ -108,8 +108,8 @@ class MatchWidget(GridLayout):
             Logger.info("Processing event %s" % event)
             self._interpret_event(event)
             self.event_queue.task_done()
-        else:
-            Logger.info("Empty: %s Blocking event: %s" % (self.event_queue.empty(), self.blocking_event))
+        #else:
+        #    Logger.info("Empty: %s Blocking event: %s" % (self.event_queue.empty(), self.blocking_event))
 
     def handle(self, event):
         if isinstance(event, MoveEvent):
@@ -153,7 +153,8 @@ class MatchWidget(GridLayout):
         elif isinstance(event, NewMatchEvent):
             self.initialize_new_match(event.length)
         elif isinstance(event, CommitEvent):
-            self.match.commit(self.match.turn)
+            # XXX: Commit event may have color None => default to player's color :(
+            self.match.commit(event.color or WHITE)
         elif isinstance(event, MoveAttempt):
             self.attempt_move(event.origin, event.target)
         else:
