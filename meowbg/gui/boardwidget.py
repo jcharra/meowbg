@@ -100,7 +100,6 @@ class BoardWidget(GridLayout):
 
         if self.active_spike is None:
             self.active_spike = spike
-            Logger.info("Activated spike with index %s" % self.active_spike.board_idx)
             spike.activated = True
             self.show_possible_moves(spike.board_idx)
         else:
@@ -112,18 +111,10 @@ class BoardWidget(GridLayout):
         if not self.match:
             return
 
-        checkers_at_index = self.match.board.checkers_on_field[from_index]
-        if not checkers_at_index:
-            return
-
-        color = checkers_at_index[0]
-        dice = self.match.remaining_dice
-        moves = self.match.board.get_possible_moves(dice, color)
+        moves = self.match.board.get_remaining_possible_moves()
 
         target_indexes = set([m[0].target for m in moves
                               if m[0].origin == from_index])
-
-        Logger.info("Found target indexes %s for origin %s and remaining dice %s" % (target_indexes, from_index, dice))
 
         for ti in target_indexes:
             spike = self.spike_for_index[ti]

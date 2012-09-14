@@ -38,15 +38,18 @@ class Match(object):
 
         move = PartialMove(origin, target)
 
-        # TODO: check this! Bugs may reside here ... :)
-        # For moves off the board, this may be wrong
-        die = abs(target - origin)
-        self.board.digest_move(move, die)
-
-        if die in self.remaining_dice:
-            self.remaining_dice.remove(die)
+        self.board.digest_move(move)
+        self.remaining_dice.remove(self.get_die_for_move(origin, target))
 
         broadcast(SingleMoveEvent(move))
+
+    def get_die_for_move(self, origin, target):
+        die = abs(target - origin)
+        for d in range(die, 7):
+            if d in self.remaining_dice:
+                return d
+        raise ValueError("Cannot find a matching die for %s->%s among %s"
+                         % (origin, target, self.remaining_dice))
 
     def _commit_possible(self, color):
         if self.turn != color:
@@ -54,7 +57,7 @@ class Match(object):
         elif not self.remaining_dice:
             return True
         else:
-            return self.board.commit_possible(self.initially_possible_moves)
+            return self.board.commit_possible()
 
     def commit(self, color):
         if self._commit_possible(color):
@@ -94,9 +97,8 @@ class Match(object):
 
         broadcast(DiceEvent(self.remaining_dice, self.turn))
 
-        self.initially_possible_moves = self.board.find_possible_moves(self.initial_dice, self.turn)
-
         self.board.initialize_board()
+        self.board.store_initial_possibilities(self.initial_dice, self.turn)
 
         broadcast(MatchEvent(self))
 
@@ -116,11 +118,15 @@ class Match(object):
         else:
             raise ValueError("Noone's turn ... cannot switch")
 
+        self.board.store_initial_possibilities(self.initial_dice, self.turn)
+
         broadcast(DiceEvent(self.remaining_dice, self.turn))
+        broadcast(MatchEvent(self))
 
     def __str__(self):
-        return ("It is the turn of %s (white: %s, black: %s), board:\n%s"
+        return ("It is the turn of %s (white: %s, black: %s), dice: %s, board:\n%s"
                 % (COLOR_NAMES[self.turn],
                    self.player_names[WHITE],
                    self.player_names[BLACK],
+                   self.remaining_dice,
                    self.board))

@@ -24,8 +24,13 @@ def home_indices_behind(color, idx):
     cmp_func = gt if color == BLACK else lt
     return [i for i in HOME_INDICES[color] if cmp_func(i, idx)]
 
+logger = logging.getLogger("Board")
+handler = logging.StreamHandler()
+handler.setLevel(logging.DEBUG)
+logger.addHandler(handler)
+logger.setLevel(logging.DEBUG)
+
 class Board(object):
-    logger = logging.getLogger("Board")
 
     # TODO introduce position class and make function accept a single argument
     def __init__(self, on_field=None, on_bar=None, borne_off=None):
@@ -36,37 +41,58 @@ class Board(object):
         self.checkers_on_bar = on_bar or []
         self.borne_off = borne_off or []
 
-        # The call to the find_possible_moves method is performed only
-        # once between two subsequent moves, and its result is cached here
-        self.move_cache = []
-
         # temporary moves already made but not yet committed
         self.move_stack = []
 
-    def digest_move(self, move, die):
+        # This is recalculated at the beginning of every new move
+        self.possible_full_moves_with_initial_dice = []
+
+    def digest_move(self, move):
         """
         Method to be invoked from clients wanting to perform moves.
         May raise exceptions if any legal violations are detected.
         """
 
-        checkers_on_origin = self.checkers_on_field[move.origin]
-        if (die in range(1, 7)
-            and checkers_on_origin
-            and move in self._find_legal_moves_for_die(die, checkers_on_origin[0])):
+        if self.is_legal_partial_move(move):
             self.make_partial_move(move)
         else:
             raise MoveNotPossible("Illegal move: %s" % move)
 
-    def get_possible_moves(self, dice, color):
+    def store_initial_possibilities(self, dice, color):
         """
-        This will return values from the recent move cache
-        or freshly computed values.
+        Calculate the moves that are possible with the given dice and
+        color. Empty the move stack first, since this method must be
+        invoked only at the beginning of a move.
         """
-        if not self.move_cache:
-            self.move_cache = self.find_possible_moves(dice, color)
-        return self.move_cache
+        self.move_stack = []
+        self.possible_full_moves_with_initial_dice = self.find_possible_moves(dice, color)
+        logger.warn("Calculated moves for %s with dice %s: %s" % (color, dice, self.possible_full_moves_with_initial_dice))
 
-    def commit_possible(self, init_possible_moves):
+    def get_remaining_possible_moves(self):
+        already_made = [m[0] for m in self.move_stack]
+        possible = set([])
+        for fm in self.possible_full_moves_with_initial_dice:
+            if fm[:len(already_made)] == already_made and len(already_made) != len(fm):
+                possible.add(tuple(fm[len(already_made):]))
+        return possible
+
+    def is_legal_partial_move(self, partial_move):
+        """
+        Checks whether a partial move is legal by checking whether
+        the current move stack plus the given candidate move yields
+        a prefix of a legal full move, i.e. one given in
+        self.currently_possible_full_moves.
+        """
+        candidate_move_stack = [m[0] for m in self.move_stack] + [partial_move]
+        for fm in self.possible_full_moves_with_initial_dice:
+            if fm[:len(candidate_move_stack)] == candidate_move_stack:
+                return True
+
+        logger.error("Move %s would result in move_stack %s, which is not the prefix of any of %s"
+                     % (partial_move, candidate_move_stack, self.possible_full_moves_with_initial_dice))
+        return False
+
+    def commit_possible(self):
         """
         Checks whether the temporary moves stored in the board
         would already be a legal move (even though there may be
@@ -74,17 +100,13 @@ class Board(object):
         """
 
         moves_from_stack = [m[0] for m in self.move_stack]
-        return moves_from_stack in init_possible_moves
+        return moves_from_stack in self.possible_full_moves_with_initial_dice
 
     def _check_possibility(self, move, dice):
-        for full_move in self.get_possible_moves(dice, move.color):
+        for full_move in self.find_possible_moves(dice, move.color):
             if move in full_move:
                 return True
         return False
-
-    def _clear_temp_data(self):
-        self.move_cache = []
-        self.move_stack = []
 
     def initialize_board(self):
         self.init_empty()

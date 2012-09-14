@@ -223,15 +223,26 @@ class BoardTestCase(unittest.TestCase):
     def test_try_illegal_moves(self):
         self.board.checkers_on_field.update({6: [BLACK], 4: [BLACK],
                                         3: [WHITE, WHITE], 0: [WHITE, WHITE]})
-        die = 3
         illegal_move = PartialMove(6, 3)
         try:
-            self.board.digest_move(illegal_move, die)
+            self.board.digest_move(illegal_move)
             assert False, "Move %s should be impossible" % illegal_move
         except MoveNotPossible:
             # An exception is the desired result here
             pass
 
+    def test_fill_initial_possibilities(self):
+        self.board.checkers_on_field.update({10: [BLACK, BLACK], 20: [WHITE]})
+        self.board.store_initial_possibilities([5, 6], BLACK)
+        expected = [PartialMove(10, 5), PartialMove(10, 4)]
+        self.assertEqual([expected, expected[::-1]], self.board.possible_full_moves_with_initial_dice)
+
+        self.board.store_initial_possibilities([5, 6], WHITE)
+        self.assertEqual([], self.board.possible_full_moves_with_initial_dice)
+
+    def test_digest_move(self):
+        self.board.checkers_on_field.update({10: [BLACK, BLACK]})
+        m = PartialMove(10, 4)
 
 if __name__ == '__main__':
     unittest.main()

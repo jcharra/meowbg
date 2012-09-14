@@ -50,21 +50,6 @@ class MainWidget(GridLayout):
 
         self.game_event_handler = AIEventHandler(Bot(BLACK))
 
-    def notify_external_event(self, event):
-        """
-        Notification about meowbg (non-kivy) events coming from external,
-        i.e. from the game event handler.
-        """
-        Logger.info("Received event %s" % event)
-
-        if isinstance(event, PlayerStatusEvent):
-            self.lobby_widget.handle(event)
-        elif isinstance(event, (MatchEvent, MoveEvent, DiceEvent)):
-            Logger.info("Propagating %s to game widget" % event)
-            self.game_widget.handle(event)
-        else:
-            Logger.error("Cannot handle type %s" % event)
-
 
 class GameWidget(GridLayout):
     def __init__(self, **kwargs):
