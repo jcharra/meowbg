@@ -4,10 +4,15 @@ class MatchEvent(object):
     def __init__(self, match):
         self.match = match
 
+    def __repr__(self):
+        return "MatchEvent: %s" % self.match
 
 class DiceEvent(object):
     def __init__(self, dice, color):
         self.dice, self.color = dice, color
+
+    def __repr__(self):
+        return "DiceEvent: %s for %s" % (self.dice, self.color)
 
 class CubeEvent(object):
     def __init__(self, cube_number):

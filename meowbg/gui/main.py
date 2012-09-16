@@ -3,11 +3,8 @@ import Queue
 
 from kivy.app import App
 from kivy.clock import Clock
-from kivy.properties import ObjectProperty
 from kivy.uix.accordion import Accordion, AccordionItem
-from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.gridlayout import GridLayout
-from kivy.uix.image import Image
 from kivy.uix.label import Label
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.textinput import TextInput
@@ -18,9 +15,9 @@ from meowbg.core.board import BLACK, WHITE
 from meowbg.core.exceptions import MoveNotPossible
 from meowbg.core.match import Match
 from meowbg.core.move import PartialMove
-from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel
+from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel, BarPanel, BearoffPanel
 from meowbg.gui.boardwidget import BoardWidget
-from meowbg.gui.guievents import NewMatchEvent, MoveAttempt, AnimationFinishedEvent
+from meowbg.gui.guievents import NewMatchEvent, MoveAttempt, AnimationFinishedEvent, AnimationStartedEvent
 from meowbg.network.bot import Bot
 from meowbg.network.eventhandlers import  AIEventHandler
 from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, MessageEvent, DiceEvent, CommitEvent
@@ -73,7 +70,7 @@ class MatchWidget(GridLayout):
         self.board = BoardWidget(pos=(self.x, self.y))
         self.add_widget(self.board)
         self.match = None
-        self.blocking_event = None
+        self.blocking_events = []
         self.event_queue = Queue.Queue()
         Clock.schedule_interval(self.process_queue, .1)
 
@@ -86,15 +83,16 @@ class MatchWidget(GridLayout):
         register(self.handle, MoveEvent)
         register(self.handle, CommitEvent)
         register(self.release, AnimationFinishedEvent)
+        register(self.block, AnimationStartedEvent)
 
     def process_queue(self, dt):
-        if not self.event_queue.empty() and not self.blocking_event:
+        if not self.event_queue.empty() and not self.blocking_events:
             event = self.event_queue.get()
             Logger.info("Processing event %s" % event)
             self._interpret_event(event)
             self.event_queue.task_done()
         #else:
-        #    Logger.info("Empty: %s Blocking event: %s" % (self.event_queue.empty(), self.blocking_event))
+        #    Logger.info("Empty: %s Blocking event: %s" % (self.event_queue.empty(), self.blocking_events))
 
     def handle(self, event):
         if isinstance(event, MoveEvent):
@@ -104,15 +102,16 @@ class MatchWidget(GridLayout):
         else:
             self.event_queue.put(event)
 
-    def release(self, e):
-        self.blocking_event = None
+    def release(self, release_event):
+        self.blocking_events.remove(release_event.data)
+
+    def block(self, block_event):
+        self.blocking_events.append(block_event.data)
 
     def execute_move(self, move):
-        self.blocking_event = move
         self.board.move_by_indexes(move.origin, move.target)
 
     def show_dice_roll(self, dice, color):
-        self.blocking_event = "diceroll"
         self.board.show_dice(dice, color)
 
     def initialize_new_match(self, length):
@@ -199,6 +198,8 @@ Factory.register("GameWidget", GameWidget)
 Factory.register("ButtonPanel", ButtonPanel)
 Factory.register("BoardWidget", BoardWidget)
 Factory.register("Spike", Spike)
+Factory.register("BarPanel", BarPanel)
+Factory.register("BearoffPanel", BearoffPanel)
 Factory.register("SpikePanel", SpikePanel)
 Factory.register("IndexRow", IndexRow)
 

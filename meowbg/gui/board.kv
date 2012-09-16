@@ -45,6 +45,22 @@
         Triangle:
             points: self.board_idx < 12 and (self.x, self.y, self.x + self.width/2, self.y + self.height, self.x + self.width, self.y) or (self.x, self.y + self.height, self.x + self.width/2, self.y, self.x + self.width, self.y + self.height)
 
+<BarPanel>:
+    canvas:
+        Color:
+            rgb: (0.0, 0.0, 0.0)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<BearoffPanel>:
+    canvas:
+        Color:
+            rgb: (0.1, 0.1, 0.1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
 <Checker>:
     size: self.size
     pos: self.pos

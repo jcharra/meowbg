@@ -6,12 +6,12 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.widget import Widget
 from kivy.vector import Vector
-from meowbg.core.board import WHITE, BLACK
+from meowbg.core.board import WHITE, BLACK, BAR_INDEX, OFF_INDEX
 from meowbg.core.match import Match
 from meowbg.core.messaging import broadcast
 from meowbg.core.move import PartialMove
-from meowbg.gui.basicparts import IndexRow, SpikePanel, DicePanel
-from meowbg.gui.guievents import MoveAttempt, AnimationFinishedEvent
+from meowbg.gui.basicparts import IndexRow, SpikePanel, DicePanel, BarPanel, BearoffPanel
+from meowbg.gui.guievents import MoveAttempt, AnimationFinishedEvent, AnimationStartedEvent
 
 
 class BoardWidget(GridLayout):
@@ -31,16 +31,18 @@ class BoardWidget(GridLayout):
         self.add_widget(Widget(size_hint=(1/17.5, 1))) # border above bearoff
         self.add_widget(Widget(size_hint=(1/17.5, 1))) # border etc. ... 
 
-        self.add_widget(Widget(size_hint=(1/17.5, 1)))
+        self.add_widget(Widget(size_hint=(1/17.5, 5)))
         self.upper_left_quad = SpikePanel(start_index=12, size_hint=(5/17.5, 5))
         self.add_widget(self.upper_left_quad)
-        self.add_widget(Widget(size_hint=(1/17.5, 1)))
+        self.upper_bar = BarPanel(size_hint=(1/17.5, 5))
+        self.add_widget(self.upper_bar)
         self.upper_right_quad = SpikePanel(start_index=18, size_hint=(5/17.5, 5))
         self.add_widget(self.upper_right_quad)
 
-        self.add_widget(Widget(size_hint=(1/17.5, 1)))
-        self.add_widget(Widget(size_hint=(1/17.5, 1)))
-        self.add_widget(Widget(size_hint=(1/17.5, 1)))
+        self.add_widget(Widget(size_hint=(1/17.5, 5)))
+        self.upper_bearoff = BearoffPanel(size_hint=(1/17.5, 5))
+        self.add_widget(self.upper_bearoff)
+        self.add_widget(Widget(size_hint=(1/17.5, 5)))
 
         self.add_widget(Widget(size_hint=(1/17.5, 1)))
         self.opponents_dice_area = DicePanel(size_hint=(5/17.5, 1))
@@ -56,12 +58,16 @@ class BoardWidget(GridLayout):
         self.add_widget(Widget(size_hint=(1/17.5, 1)))
         self.lower_left_quad = SpikePanel(start_index=11, size_hint=(5/17.5, 5))
         self.add_widget(self.lower_left_quad)
-        self.add_widget(Widget(size_hint=(1/17.5, 1)))
+
+        self.lower_bar = BarPanel(size_hint=(1/17.5, 5))
+        self.add_widget(self.lower_bar)
+
         self.lower_right_quad = SpikePanel(start_index=5, size_hint=(5/17.5, 5))
         self.add_widget(self.lower_right_quad)
 
         self.add_widget(Widget(size_hint=(1/17.5, 1)))
-        self.add_widget(Widget(size_hint=(1/17.5, 1)))
+        self.lower_bearoff = BearoffPanel(size_hint=(1/17.5, 5))
+        self.add_widget(self.lower_bearoff)
         self.add_widget(Widget(size_hint=(1/17.5, 1)))
 
         self.add_widget(Widget(size_hint=(1/17.5, 1)))
@@ -145,7 +151,6 @@ class BoardWidget(GridLayout):
             self.opponents_dice_area.show_dice(dice)
         else:
             self.players_dice_area.show_dice(dice)
-        broadcast(AnimationFinishedEvent())
 
     def spikes(self):
         """
@@ -167,33 +172,45 @@ class BoardWidget(GridLayout):
     def move(self, spike_origin, spike_target):
         """
         Moves a checker from the origin to the target.
-        As soon as the animation is finished, the callback
-        'on_finish' is called.
         """
 
-        if not spike_origin.children or spike_origin == spike_target:
-            return
+        if not spike_origin.children:
+            raise ValueError("method 'move' called with empty origin")
 
-        topmost = spike_origin.children[0]
-        topmost.pos_hint = {} # needed to make animation work ... ?
+        moving_checker = spike_origin.children[0]
+        moving_checker.pos_hint = {} # needed to make animation work ... ?
         target_pos = spike_target.get_next_checker_position()
 
         def move_finished(e):
-            self.transfer_checker(topmost, spike_origin, spike_target)
-            Logger.info("Finishing move")
-            broadcast(AnimationFinishedEvent())
+            self.transfer_checker(moving_checker, spike_origin, spike_target)
+            broadcast(AnimationFinishedEvent(moving_checker))
 
-        duration = Vector(topmost.pos).distance(target_pos)/1000.0
+        duration = Vector(moving_checker.pos).distance(target_pos)/1000.0
         animation = Animation(pos=target_pos, duration=duration)
         animation.on_complete = move_finished
-        animation.start(topmost)
 
-    def move_by_indexes(self, idx1, idx2):
-        origin, target = map(self._get_spike_by_index, (idx1, idx2))
+        broadcast(AnimationStartedEvent(moving_checker))
+        animation.start(moving_checker)
+
+    def move_by_indexes(self, origin_idx, target_idx):
+        """
+        Performs a move from origin index to target index, potentially
+        hitting a checker on the target field.
+        """
+        move_direction = target_idx - origin_idx
+        origin = target = None
+
+        if origin_idx in BAR_INDEX.values():
+            origin = self.upper_bar if move_direction > 0 else self.lower_bar
+        elif target_idx in OFF_INDEX.values():
+            target = self.upper_bearoff if move_direction < 0 else self.lower_bearoff
+
+        origin = origin or self._get_spike_by_index(origin_idx)
+        target = target or self._get_spike_by_index(target_idx)
+
         self.move(origin, target)
 
     def _get_spike_by_index(self, idx):
-        # TODO: make "bar" and "off" translate to spikes as well
         quadrant = {0: self.lower_right_quad,
                     1: self.lower_left_quad,
                     2: self.upper_left_quad,

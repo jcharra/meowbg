@@ -106,3 +106,13 @@ class DicePanel(GridLayout):
         for idx, die in enumerate(dice):
             self.add_widget(Image(source="die%i.png" % die))
         self.add_widget(Widget(size_hint=(4-len(dice)/2, 1))) # spacer
+
+class BarPanel(Spike):
+    def __init__(self, **kwargs):
+        kwargs.update({'cols': 1})
+        Spike.__init__(self, **kwargs)
+
+class BearoffPanel(Spike):
+    def __init__(self, **kwargs):
+        kwargs.update({'cols': 1})
+        Spike.__init__(self, **kwargs)
