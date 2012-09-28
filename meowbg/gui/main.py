@@ -71,7 +71,7 @@ class MatchWidget(GridLayout):
         self.add_widget(self.board)
         self.match = None
         self.blocking_events = []
-        self.event_queue = Queue.Queue()
+        self.event_queue = Queue.PriorityQueue()
         Clock.schedule_interval(self.process_queue, .1)
 
         # TODO: implement bulk registration

@@ -225,6 +225,8 @@ class BoardWidget(GridLayout):
 
     def add_checkers(self, field_idx, color, amount=1):
         spike = self._get_spike_by_index(field_idx)
+        if spike.has_opponents_checker(color):
+            broadcast(HitEvent(spike))
         spike.add_checkers(color, amount)
 
     def clear_board(self):
