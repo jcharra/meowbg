@@ -17,3 +17,6 @@ class AnimationFinishedEvent(object):
     def __init__(self, data):
         self.data = data
 
+class HitEvent(object):
+    def __init__(self, field_idx, hitting_color):
+        self.field_idx, self.hitting_color = field_idx, hitting_color

@@ -11,13 +11,13 @@ from kivy.uix.textinput import TextInput
 from kivy.factory import Factory
 from kivy.logger import Logger
 from kivy.resources import resource_add_path
-from meowbg.core.board import BLACK, WHITE
+from meowbg.core.board import BLACK, WHITE, OPPONENT
 from meowbg.core.exceptions import MoveNotPossible
 from meowbg.core.match import Match
 from meowbg.core.move import PartialMove
 from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel, BarPanel, BearoffPanel
 from meowbg.gui.boardwidget import BoardWidget
-from meowbg.gui.guievents import NewMatchEvent, MoveAttempt, AnimationFinishedEvent, AnimationStartedEvent
+from meowbg.gui.guievents import NewMatchEvent, MoveAttempt, AnimationFinishedEvent, AnimationStartedEvent, HitEvent
 from meowbg.network.bot import Bot
 from meowbg.network.eventhandlers import  AIEventHandler
 from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, MessageEvent, DiceEvent, CommitEvent
@@ -60,7 +60,6 @@ class GameWidget(GridLayout):
 
 
 class MatchWidget(GridLayout):
-
     def __init__(self, **kwargs):
         kwargs.update({"cols": 1})
         GridLayout.__init__(self, **kwargs)
@@ -71,7 +70,7 @@ class MatchWidget(GridLayout):
         self.add_widget(self.board)
         self.match = None
         self.blocking_events = []
-        self.event_queue = Queue.PriorityQueue()
+        self.event_queue = Queue.Queue()
         Clock.schedule_interval(self.process_queue, .1)
 
         # TODO: implement bulk registration
@@ -82,17 +81,18 @@ class MatchWidget(GridLayout):
         register(self.handle, SingleMoveEvent)
         register(self.handle, MoveEvent)
         register(self.handle, CommitEvent)
+        register(self.handle, HitEvent)
         register(self.release, AnimationFinishedEvent)
         register(self.block, AnimationStartedEvent)
 
     def process_queue(self, dt):
         if not self.event_queue.empty() and not self.blocking_events:
             event = self.event_queue.get()
-            Logger.info("Processing event %s" % event)
+            Logger.info("============= Processing event %s" % event)
             self._interpret_event(event)
             self.event_queue.task_done()
-        #else:
-        #    Logger.info("Empty: %s Blocking event: %s" % (self.event_queue.empty(), self.blocking_events))
+        elif not self.event_queue.empty():
+            Logger.info("Blocking events: %s" % self.blocking_events)
 
     def handle(self, event):
         if isinstance(event, MoveEvent):
@@ -123,7 +123,7 @@ class MatchWidget(GridLayout):
 
     def attempt_move(self, origin, target):
         try:
-            self.match.make_temporary_move(origin, target, self.match.turn)
+            self.match.make_temporary_move(origin, target, self.match.color_to_move_next)
         except MoveNotPossible, msg:
             Logger.error("Not possible: %s" % msg)
 
@@ -137,10 +137,12 @@ class MatchWidget(GridLayout):
         elif isinstance(event, NewMatchEvent):
             self.initialize_new_match(event.length)
         elif isinstance(event, CommitEvent):
-            # XXX: Commit event may have color None => default to player's color :(
+            # XXX: Commit event may have color None => default to WHITE :(
             self.match.commit(event.color or WHITE)
         elif isinstance(event, MoveAttempt):
             self.attempt_move(event.origin, event.target)
+        elif isinstance(event, HitEvent):
+            self.board.animate_hit(event.field_idx, event.hitting_color)
         else:
             Logger.error("Cannot interpret event %s" % event)
 

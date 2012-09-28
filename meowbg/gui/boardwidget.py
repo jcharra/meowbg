@@ -11,7 +11,7 @@ from meowbg.core.match import Match
 from meowbg.core.messaging import broadcast
 from meowbg.core.move import PartialMove
 from meowbg.gui.basicparts import IndexRow, SpikePanel, DicePanel, BarPanel, BearoffPanel
-from meowbg.gui.guievents import MoveAttempt, AnimationFinishedEvent, AnimationStartedEvent
+from meowbg.gui.guievents import MoveAttempt, AnimationFinishedEvent, AnimationStartedEvent, HitEvent
 
 
 class BoardWidget(GridLayout):
@@ -81,9 +81,6 @@ class BoardWidget(GridLayout):
         self.quads = (self.upper_left_quad, self.upper_right_quad,
                       self.lower_left_quad, self.lower_right_quad)
 
-        # checker colors
-        self.color_map = {1: (.3, .1, 0), 2: (.8, .6, .4)}
-
         self.spike_for_index = {}
         for s in self.spikes():
             self.spike_for_index[s.board_idx] = s
@@ -103,25 +100,28 @@ class BoardWidget(GridLayout):
 
     def activate_spike(self, spike):
         self.deactivate_all_spikes()
+        if not self.match:
+            return
 
         if self.active_spike is None:
-            self.active_spike = spike
-            spike.activated = True
-            self.show_possible_moves(spike.board_idx)
+            moves = self.match.board.get_remaining_possible_moves()
+            target_indexes = list(set([m[0].target for m in moves
+                                       if m[0].origin == spike.board_idx]))
+
+            if len(target_indexes) == 1:
+                # only one possibility => move immediately
+                broadcast(MoveAttempt(spike.board_idx, target_indexes[0]))
+            else:
+                # highlight clicked spike and show possibilities
+                self.active_spike = spike
+                spike.activated = True
+                self.highlight_possible_targets(target_indexes)
         else:
             broadcast(MoveAttempt(self.active_spike.board_idx, spike.board_idx))
             self.active_spike.activated = False
             self.active_spike = None
 
-    def show_possible_moves(self, from_index):
-        if not self.match:
-            return
-
-        moves = self.match.board.get_remaining_possible_moves()
-
-        target_indexes = set([m[0].target for m in moves
-                              if m[0].origin == from_index])
-
+    def highlight_possible_targets(self, target_indexes):
         for ti in target_indexes:
             spike = self.spike_for_index[ti]
             spike.highlighted = True
@@ -140,7 +140,7 @@ class BoardWidget(GridLayout):
         for idx, checkers in on_field.items():
             amount = len(checkers)
             if amount:
-                col = self.color_map[checkers[0]]
+                col = checkers[0]
                 self.add_checkers(idx, col, amount)
 
     def show_dice(self, dice, color):
@@ -170,14 +170,16 @@ class BoardWidget(GridLayout):
                 return s
 
     def move(self, spike_origin, spike_target):
-        """
-        Moves a checker from the origin to the target.
-        """
-
         if not spike_origin.children:
             raise ValueError("method 'move' called with empty origin")
 
         moving_checker = spike_origin.children[0]
+        self.move_checker(moving_checker, spike_origin, spike_target)
+
+    def move_checker(self, moving_checker, spike_origin, spike_target):
+        """
+        Moves a checker from the origin to the target.
+        """
         moving_checker.pos_hint = {} # needed to make animation work ... ?
         target_pos = spike_target.get_next_checker_position()
 
@@ -221,13 +223,21 @@ class BoardWidget(GridLayout):
 
     def transfer_checker(self, checker, origin, target):
         origin.remove_widget(checker)
-        target.add_checkers(checker.color, 1)
+        target.add_checkers(checker.model_color, 1)
 
     def add_checkers(self, field_idx, color, amount=1):
         spike = self._get_spike_by_index(field_idx)
-        if spike.has_opponents_checker(color):
-            broadcast(HitEvent(spike))
         spike.add_checkers(color, amount)
+
+    def animate_hit(self, field_idx, hitting_color):
+        spike = self._get_spike_by_index(field_idx)
+        for c in spike.children:
+            if c.model_color != hitting_color:
+                target = self.lower_bar if c.model_color == BLACK else self.upper_bar
+                self.move_checker(c, spike, target)
+                return
+        raise ValueError("No conflicting colors for %s on spike %s: %s"
+                         % (hitting_color, spike, [c.model_color for c in spike.children]))
 
     def clear_board(self):
         for sp in self.quads:

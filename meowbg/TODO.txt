@@ -4,7 +4,6 @@ BUGS:
 
 high:
 checkers move below some spikes
-flickering when refreshing board (due to clear board)
 
 low:
 
@@ -12,6 +11,8 @@ low:
 TODOs:
 ------
 
+Trigger move immediately on click if only one possibility
+Make bar/bearoff clickable origin/target
 Buttons for user input and fake events
 Refactor Bot to replace AIEventHandler instead of depending on it
 Checkout "settings panel" for global settings

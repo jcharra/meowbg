@@ -233,11 +233,11 @@ class FIBSEventHandler(GameEventHandler):
         board_str = parts[6:32]
 
         if parts[32] > 0:
-            match.turn = BLACK
+            match.color_to_move_next = BLACK
         elif parts[32] < 0:
-            match.turn = WHITE
+            match.color_to_move_next = WHITE
         else:
-            match.turn = None
+            match.color_to_move_next = None
 
         match.players_dice = list(parts[33:35])
         match.players_remaining_dice = list(match.players_dice)

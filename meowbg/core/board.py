@@ -99,6 +99,10 @@ class Board(object):
         dice remaining ...)
         """
 
+        if not self.possible_full_moves_with_initial_dice:
+            # Dancing ... with tears in my eyes
+            return True
+
         moves_from_stack = [m[0] for m in self.move_stack]
         return moves_from_stack in self.possible_full_moves_with_initial_dice
 

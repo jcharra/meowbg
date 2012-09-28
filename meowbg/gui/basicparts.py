@@ -5,14 +5,19 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.image import Image
 from kivy.uix.widget import Widget
-from meowbg.core.board import Board
+from meowbg.core.board import WHITE, BLACK
 from meowbg.core.match import Match
 from meowbg.core.events import MatchEvent, CommitEvent
 from meowbg.core.messaging import broadcast
 from meowbg.gui.guievents import NewMatchEvent
 
 class Checker(Widget):
-    color = ListProperty([1, 1, 1])
+    COLOR_MAP = {WHITE: (.3, .1, 0), BLACK: (.8, .6, .4)}
+
+    def __init__(self, model_color, **kwargs):
+        self.model_color = model_color
+        self.color = self.COLOR_MAP[model_color]
+        Widget.__init__(self, **kwargs)
 
 class IndexRow(BoxLayout):
     idx_start = NumericProperty(0)
@@ -38,9 +43,8 @@ class Spike(FloatLayout):
             top_hint = self.CHECKER_PERCENTAGE * (self._get_y_displacement(len(self.children)) + 1)
         else:
             top_hint = 1 - self.CHECKER_PERCENTAGE * self._get_y_displacement(len(self.children))
-        c = Checker(size_hint_y=self.CHECKER_PERCENTAGE, pos=next_pos,
+        c = Checker(color, size_hint_y=self.CHECKER_PERCENTAGE, pos=next_pos,
             pos_hint={'center_x': 0.5, 'top': top_hint})
-        c.color = color
         self.add_widget(c)
 
     def _get_y_displacement(self, num):
@@ -77,6 +81,19 @@ class Spike(FloatLayout):
                 pos_y = self.height - checker_height * (self._get_y_displacement(num_children) + 1)
 
         return self.pos[0], self.pos[1] + pos_y
+
+    def has_different_coloured_checker(self, hitting_checkers_color):
+        """
+        Checks whether there is a checker of a color different
+        from the given color at index 0.
+        """
+        for c in self.children:
+            if c.model_color != hitting_checkers_color:
+                Logger.warn("Found enemy checker with color %s != %s" %
+                            (c.model_color, hitting_checkers_color))
+                return True
+        return False
+
 
 class SpikePanel(BoxLayout):
     def __init__(self, start_index, **kwargs):
