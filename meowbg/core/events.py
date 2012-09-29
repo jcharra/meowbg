@@ -4,8 +4,8 @@ class MatchEvent(object):
     def __init__(self, match):
         self.match = match
 
-    def __repr__(self):
-        return "MatchEvent: %s" % self.match
+    #def __repr__(self):
+    #    return "MatchEvent: %s" % self.match
 
 class DiceEvent(object):
     def __init__(self, dice, color):

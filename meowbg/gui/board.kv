@@ -69,15 +69,15 @@
         Color:
             rgb: self.color
         Ellipse:
-            pos: self.pos
-            size: self.size
+            pos: self.center_x - self.height/2, self.y
+            size: self.height, self.height
         Color:
             rgb: self.color[0] * 0.6, self.color[1] * 0.6, self.color[2] * 0.6
         Ellipse:
-            pos: self.pos[0] + 2, self.pos[1] + 2
-            size: self.size[0] - 4, self.size[1] - 4
+            pos: self.center_x - self.height/2 + 2, self.y + 2
+            size: self.height - 4, self.height - 4
         Color:
             rgb: self.color
         Ellipse:
-            pos: self.pos[0] + 4, self.pos[1] + 4
-            size: self.size[0] - 8, self.size[1] - 8
+            pos: self.center_x - self.height/2 + 4, self.y + 4
+            size: self.height - 8, self.height - 8

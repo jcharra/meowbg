@@ -16,6 +16,7 @@ from meowbg.core.bot import Bot
 from meowbg.core.exceptions import MoveNotPossible
 from meowbg.core.match import Match
 from meowbg.core.move import PartialMove
+from meowbg.core.player import HumanPlayer
 from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel, BarPanel, BearoffPanel
 from meowbg.gui.boardwidget import BoardWidget
 from meowbg.gui.guievents import NewMatchEvent, MoveAttempt, AnimationFinishedEvent, AnimationStartedEvent, HitEvent
@@ -117,6 +118,7 @@ class MatchWidget(GridLayout):
         self.match.length = length
         self.match.register_player(Bot("Morten", BLACK), BLACK)
         self.match.register_player(Bot("Hille", WHITE), WHITE)
+        #self.match.register_player(HumanPlayer("Johannes", WHITE), WHITE)
         self.match.new_game()
 
     def attempt_move(self, origin, target):

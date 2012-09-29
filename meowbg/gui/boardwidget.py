@@ -81,8 +81,8 @@ class BoardWidget(GridLayout):
         self.quads = (self.upper_left_quad, self.upper_right_quad,
                       self.lower_left_quad, self.lower_right_quad)
 
-        self.lower_bar.board_idx = self.lower_bearoff.board_idx = 24
-        self.upper_bar.board_idx = self.upper_bearoff.board_idx = -1
+        self.lower_bar.board_idx = self.upper_bearoff.board_idx = 24
+        self.upper_bar.board_idx = self.lower_bearoff.board_idx = -1
 
         # Mapping from spikes to indexes - not including the bars
         self.spike_for_target_index = {}
@@ -192,7 +192,7 @@ class BoardWidget(GridLayout):
             self.transfer_checker(moving_checker, spike_origin, spike_target)
             broadcast(AnimationFinishedEvent(moving_checker))
 
-        duration = Vector(moving_checker.pos).distance(target_pos)/2000.0
+        duration = Vector(moving_checker.pos).distance(target_pos)/5000.0
         animation = Animation(pos=target_pos, duration=duration)
         animation.on_complete = move_finished
 
@@ -208,9 +208,9 @@ class BoardWidget(GridLayout):
         origin = target = None
 
         if origin_idx in BAR_INDEX.values():
-            origin = self.upper_bar if move_direction > 0 else self.lower_bar
+            origin = self.lower_bar if move_direction > 0 else self.upper_bar
         elif target_idx in OFF_INDEX.values():
-            target = self.upper_bearoff if move_direction < 0 else self.lower_bearoff
+            target = self.upper_bearoff if move_direction > 0 else self.lower_bearoff
 
         origin = origin or self._get_spike_by_index(origin_idx)
         target = target or self._get_spike_by_index(target_idx)
@@ -238,7 +238,7 @@ class BoardWidget(GridLayout):
         spike = self._get_spike_by_index(field_idx)
         for c in spike.children:
             if c.model_color != hitting_color:
-                target = self.lower_bar if c.model_color == BLACK else self.upper_bar
+                target = self.upper_bar if c.model_color == BLACK else self.lower_bar
                 self.move_checker(c, spike, target)
                 return
         raise ValueError("No conflicting colors for %s on spike %s: %s"
