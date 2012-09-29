@@ -81,9 +81,13 @@ class BoardWidget(GridLayout):
         self.quads = (self.upper_left_quad, self.upper_right_quad,
                       self.lower_left_quad, self.lower_right_quad)
 
-        self.spike_for_index = {}
+        self.lower_bar.board_idx = self.lower_bearoff.board_idx = 24
+        self.upper_bar.board_idx = self.upper_bearoff.board_idx = -1
+
+        # Mapping from spikes to indexes - not including the bars
+        self.spike_for_target_index = {}
         for s in self.spikes():
-            self.spike_for_index[s.board_idx] = s
+            self.spike_for_target_index[s.board_idx] = s
 
     def on_touch_down(self, touch):
         if self.busy:
@@ -123,7 +127,7 @@ class BoardWidget(GridLayout):
 
     def highlight_possible_targets(self, target_indexes):
         for ti in target_indexes:
-            spike = self.spike_for_index[ti]
+            spike = self.spike_for_target_index[ti]
             spike.highlighted = True
 
     def release(self):
@@ -154,11 +158,12 @@ class BoardWidget(GridLayout):
 
     def spikes(self):
         """
-        Generator yielding all spikes
+        Helper function to get all spikes, including both bars and bearoffs
         """
+        s = [self.lower_bar, self.upper_bar, self.lower_bearoff, self.upper_bearoff]
         for q in self.quads:
-            for s in q.children:
-                yield s
+            s.extend(q.children)
+        return s
 
     def get_activated_spike(self):
         """
