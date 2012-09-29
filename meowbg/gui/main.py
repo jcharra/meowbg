@@ -11,17 +11,16 @@ from kivy.uix.textinput import TextInput
 from kivy.factory import Factory
 from kivy.logger import Logger
 from kivy.resources import resource_add_path
-from meowbg.core.board import BLACK, WHITE, OPPONENT
+from meowbg.core.board import BLACK, WHITE
+from meowbg.core.bot import Bot
 from meowbg.core.exceptions import MoveNotPossible
 from meowbg.core.match import Match
 from meowbg.core.move import PartialMove
 from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel, BarPanel, BearoffPanel
 from meowbg.gui.boardwidget import BoardWidget
 from meowbg.gui.guievents import NewMatchEvent, MoveAttempt, AnimationFinishedEvent, AnimationStartedEvent, HitEvent
-from meowbg.network.bot import Bot
-from meowbg.network.eventhandlers import  AIEventHandler
 from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, MessageEvent, DiceEvent, CommitEvent
-from meowbg.core.messaging import register, broadcast
+from meowbg.core.messaging import register
 
 resource_add_path(os.path.dirname(__file__) + "/resources")
 
@@ -44,8 +43,6 @@ class MainWidget(GridLayout):
         accordion.add_widget(self.lobby_accordion)
 
         self.add_widget(accordion)
-
-        self.game_event_handler = AIEventHandler(Bot(BLACK))
 
 
 class GameWidget(GridLayout):
@@ -85,6 +82,7 @@ class MatchWidget(GridLayout):
         register(self.release, AnimationFinishedEvent)
         register(self.block, AnimationStartedEvent)
 
+
     def process_queue(self, dt):
         if not self.event_queue.empty() and not self.blocking_events:
             event = self.event_queue.get()
@@ -117,8 +115,8 @@ class MatchWidget(GridLayout):
     def initialize_new_match(self, length):
         self.match = Match()
         self.match.length = length
-        self.match.player_names[WHITE] = "Player"
-        self.match.player_names[BLACK] = "Bot"
+        self.match.register_player(Bot("Morten", BLACK), BLACK)
+        self.match.register_player(Bot("Hille", WHITE), WHITE)
         self.match.new_game()
 
     def attempt_move(self, origin, target):

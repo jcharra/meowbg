@@ -24,7 +24,7 @@ class Match(object):
         self.remaining_dice = []
         self.cube = 1
         self.may_double = {WHITE: True, BLACK: True}
-        self.player_names = {WHITE: "", BLACK: ""}
+        self.players = {WHITE: None, BLACK: None}
         self.was_doubled = 0
         self.move_possibilities = []
         self.initially_possible_moves = []
@@ -136,10 +136,16 @@ class Match(object):
         broadcast(DiceEvent(self.remaining_dice, self.color_to_move_next))
         broadcast(MatchEvent(self))
 
+    def register_player(self, player, color):
+        """
+        Register a player to control the pieces of the given color
+        """
+        self.players[color] = player
+
     def __str__(self):
         return ("It is the turn of %s (white: %s, black: %s), dice: %s, board:\n%s"
                 % (COLOR_NAMES[self.color_to_move_next],
-                   self.player_names[WHITE],
-                   self.player_names[BLACK],
+                   self.players[WHITE],
+                   self.players[BLACK],
                    self.remaining_dice,
                    self.board))

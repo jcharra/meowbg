@@ -192,7 +192,7 @@ class BoardWidget(GridLayout):
             self.transfer_checker(moving_checker, spike_origin, spike_target)
             broadcast(AnimationFinishedEvent(moving_checker))
 
-        duration = Vector(moving_checker.pos).distance(target_pos)/1000.0
+        duration = Vector(moving_checker.pos).distance(target_pos)/2000.0
         animation = Animation(pos=target_pos, duration=duration)
         animation.on_complete = move_finished
 

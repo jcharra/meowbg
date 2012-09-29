@@ -1,6 +1,6 @@
 
 import unittest
-from meowbg.network.eventhandlers import FIBSEventHandler, translate_move_to_indexes, translate_indexes_to_move
+from meowbg.network.translation import FIBSEventHandler, translate_move_to_indexes, translate_indexes_to_move
 
 TESTLINE_STATUS_1 = ("5 someplayer evil_guy - 0 0 1418.61 23 1914 1041272421 192.168.40.3 "
                      "meowBG someplayer@somewhere.com")

@@ -38,80 +38,18 @@ def translate_indexes_to_move(orig_idx, target_idx):
 
     return "%s-%s" % (origin, target)
 
-class GameEventHandler(object):
-    """
-    Abstract base class for game event handlers.
-    """
-    def __init__(self, opponent_interface):
-        self.opponent_interface = opponent_interface
 
-    def handle(self, event):
-        """
-        Handle incoming events
-        """
-        raise NotImplementedError
-
-    def connect(self):
-        """
-        Connect this handler to its event source, which will make
-        calls to the 'notify' method.
-        """
-        raise NotImplementedError
-
-    def send_raw(self, text):
-        self.opponent_interface.send_msg(text)
-
-
-class AIEventHandler(GameEventHandler):
-    """
-    An event handler for responses from an AI.
-    Will just pass any incoming events through to
-    a connected AI instance.
-    """
-
-    def __init__(self, opponent_interface):
-        GameEventHandler.__init__(self, opponent_interface)
-
-    def connect(self):
-        pass
-
-
-class FIBSEventHandler(GameEventHandler):
+class FIBSTranslator(object):
     """
     A class for parsing Telnet output complying with the
     format given at http://www.fibs.com/fibs_interface.html
+    as well as translating meowBG events into FIBS events.
     """
 
     PLAYER_STATUS_EVENT = 5
 
-    def __init__(self, opponent_interface):
-        GameEventHandler.__init__(self, opponent_interface=opponent_interface)
-        self.listening = False
 
-    def connect(self):
-        """
-        Gives the parser a connection to periodically ask for
-        new input to parse. Starts a separate thread for this.
-        """
-        self.listening = True
-        self.read_thread = threading.Thread(target=self.read_data)
-        self.read_thread.start()
-
-    def read_data(self):
-        while self.opponent_interface and self.listening:
-            if self.opponent_interface.connected:
-                data = self.opponent_interface.read()
-                events = self.parse_events(data)
-                for e in events:
-                    self.notify(e)
-
-            time.sleep(1)
-
-    def send_raw(self, text):
-        if self.listening:
-            GameEventHandler.send_raw(self, text)
-
-    def handle(self, event):
+    def translate(self, event):
         """
         TODO: Translate the various kinds of events to FIBS messages and send them.
         """
@@ -186,7 +124,6 @@ class FIBSEventHandler(GameEventHandler):
                 partial_moves = []
                 for m in moves:
                     origin, target = translate_move_to_indexes(m)
-                    # TODO: make PartialMove class be color-independent
                     partial_moves.append(PartialMove(origin, target))
                 found_events.append(MoveEvent(partial_moves))
 

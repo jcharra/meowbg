@@ -1,14 +1,10 @@
 import random
-from meowbg.core.events import MatchEvent, MoveEvent, CommitEvent
-from meowbg.core.messaging import register, broadcast
+from meowbg.core.events import MatchEvent, CommitEvent
+from meowbg.core.messaging import register, broadcast, unregister
+from meowbg.core.player import AbstractPlayer
 from meowbg.gui.guievents import MoveAttempt
 
-class Bot(object):
-    def __init__(self, color):
-        self.color = color
-        self.callback = None
-        register(self.react, MatchEvent)
-
+class Bot(AbstractPlayer):
     def react(self, match_event):
         match = match_event.match
         if match.color_to_move_next == self.color:
