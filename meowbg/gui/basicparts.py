@@ -38,13 +38,19 @@ class Spike(FloatLayout):
             self.add_checker(color)
 
     def add_checker(self, color):
-        next_pos = self.get_next_checker_position()
         if self.direction == 1:
-            top_hint = self.CHECKER_PERCENTAGE * (self._get_y_displacement(len(self.children)) + 1)
+            if not self.children or self.children[0].model_color != color:
+                amount = 1
+            else:
+                amount = self._get_y_displacement(len(self.children)) + 1
+            top_hint = self.CHECKER_PERCENTAGE * amount
         else:
-            top_hint = 1 - self.CHECKER_PERCENTAGE * self._get_y_displacement(len(self.children))
-        c = Checker(color, size_hint_y=self.CHECKER_PERCENTAGE, pos=next_pos,
-            pos_hint={'center_x': 0.5, 'top': top_hint})
+            if not self.children or self.children[0].model_color != color:
+                amount = 0
+            else:
+                amount = self._get_y_displacement(len(self.children))
+            top_hint = 1 - self.CHECKER_PERCENTAGE * amount
+        c = Checker(color, size_hint_y=self.CHECKER_PERCENTAGE, pos_hint={'center_x': 0.5, 'top': top_hint})
         self.add_widget(c)
 
     def _get_y_displacement(self, num):
@@ -65,14 +71,15 @@ class Spike(FloatLayout):
         else:
             return 2
 
-    def get_next_checker_position(self):
+    def get_next_checker_position(self, color):
         """
-        Returns the target position for an additional checker
+        Returns the target position for an additional
+        checker of the given color.
         """
         num_children = len(self.children)
         checker_height = self.height * self.CHECKER_PERCENTAGE
 
-        if not num_children:
+        if not num_children or self.children[0].color != color:
             pos_y = 0 if self.direction == 1 else self.height * 0.8
         else:
             if self.direction == 1:

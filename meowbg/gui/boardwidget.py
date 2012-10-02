@@ -181,18 +181,18 @@ class BoardWidget(GridLayout):
         moving_checker = spike_origin.children[0]
         self.move_checker(moving_checker, spike_origin, spike_target)
 
-    def move_checker(self, moving_checker, spike_origin, spike_target):
+    def move_checker(self, moving_checker, spike_origin, spike_target, speedup=1):
         """
         Moves a checker from the origin to the target.
         """
         moving_checker.pos_hint = {} # needed to make animation work ... ?
-        target_pos = spike_target.get_next_checker_position()
+        target_pos = spike_target.get_next_checker_position(moving_checker.color)
 
         def move_finished(e):
             self.transfer_checker(moving_checker, spike_origin, spike_target)
             broadcast(AnimationFinishedEvent(moving_checker))
 
-        duration = Vector(moving_checker.pos).distance(target_pos)/5000.0
+        duration = Vector(moving_checker.pos).distance(target_pos)/(speedup*1000.0)
         animation = Animation(pos=target_pos, duration=duration)
         animation.on_complete = move_finished
 
@@ -235,14 +235,19 @@ class BoardWidget(GridLayout):
         spike.add_checkers(color, amount)
 
     def animate_hit(self, field_idx, hitting_color):
+        """
+        Animate a checker being hit by another checker
+        of color 'hitting_color'.
+        """
         spike = self._get_spike_by_index(field_idx)
+        if len(spike.children) != 2:
+            raise ValueError("Hit on a spike with %i children" % spike.children)
+
+        target = self.upper_bar if hitting_color == WHITE else self.lower_bar
         for c in spike.children:
             if c.model_color != hitting_color:
-                target = self.upper_bar if c.model_color == BLACK else self.lower_bar
-                self.move_checker(c, spike, target)
-                return
-        raise ValueError("No conflicting colors for %s on spike %s: %s"
-                         % (hitting_color, spike, [c.model_color for c in spike.children]))
+                self.move_checker(c, spike, target, speedup=2)
+                break
 
     def clear_board(self):
         for sp in self.quads:

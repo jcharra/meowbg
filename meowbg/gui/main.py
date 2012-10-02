@@ -4,6 +4,7 @@ import Queue
 from kivy.app import App
 from kivy.clock import Clock
 from kivy.uix.accordion import Accordion, AccordionItem
+from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.scrollview import ScrollView
@@ -46,12 +47,14 @@ class MainWidget(GridLayout):
         self.add_widget(accordion)
 
 
-class GameWidget(GridLayout):
+class GameWidget(FloatLayout):
     def __init__(self, **kwargs):
-        GridLayout.__init__(self, orientation='vertical', cols=1, **kwargs)
+        FloatLayout.__init__(self, **kwargs)
 
-        self.match_widget = MatchWidget(size_hint=(1, 10))
-        button_panel = ButtonPanel(size_hint=(1, 1))
+        self.match_widget = MatchWidget(size_hint_y=.9,
+            pos_hint={'x': 0, 'y': 0.1})
+        button_panel = ButtonPanel(size_hint_y=.1,
+            pos_hint={'x': 0, 'y': 0})
 
         self.add_widget(self.match_widget)
         self.add_widget(button_panel)

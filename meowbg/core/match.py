@@ -44,14 +44,12 @@ class Match(object):
         move = PartialMove(origin, target)
         self.board.digest_move(move)
 
-        # Move was legal, so broadcast hit event now
-        if hit_event:
-            broadcast(hit_event)
-
         die = self.get_die_for_move(origin, target)
         self.remaining_dice.remove(die)
 
         broadcast(SingleMoveEvent(move))
+        if hit_event:
+            broadcast(hit_event)
 
     def get_die_for_move(self, origin, target):
         die = abs(target - origin)
