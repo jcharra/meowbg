@@ -34,7 +34,7 @@ class BoardWidget(GridLayout):
         self.add_widget(Widget(size_hint=(1/17.5, 5)))
         self.upper_left_quad = SpikePanel(start_index=12, size_hint=(5/17.5, 5))
         self.add_widget(self.upper_left_quad)
-        self.upper_bar = BarPanel(size_hint=(1/17.5, 5))
+        self.upper_bar = BarPanel(size_hint=(1/17.5, 5), direction=1)
         self.add_widget(self.upper_bar)
         self.upper_right_quad = SpikePanel(start_index=18, size_hint=(5/17.5, 5))
         self.add_widget(self.upper_right_quad)
@@ -59,7 +59,7 @@ class BoardWidget(GridLayout):
         self.lower_left_quad = SpikePanel(start_index=11, size_hint=(5/17.5, 5))
         self.add_widget(self.lower_left_quad)
 
-        self.lower_bar = BarPanel(size_hint=(1/17.5, 5))
+        self.lower_bar = BarPanel(size_hint=(1/17.5, 5), direction=-1)
         self.add_widget(self.lower_bar)
 
         self.lower_right_quad = SpikePanel(start_index=5, size_hint=(5/17.5, 5))
