@@ -3,6 +3,7 @@ import Queue
 
 from kivy.app import App
 from kivy.clock import Clock
+from kivy.uix.image import Image
 from kivy.uix.accordion import Accordion, AccordionItem
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.gridlayout import GridLayout
@@ -60,14 +61,13 @@ class GameWidget(FloatLayout):
         self.add_widget(button_panel)
 
 
-class MatchWidget(GridLayout):
+class MatchWidget(FloatLayout):
     def __init__(self, **kwargs):
-        kwargs.update({"cols": 1})
-        GridLayout.__init__(self, **kwargs)
+        FloatLayout.__init__(self, **kwargs)
 
-        #self.add_widget(Image(source='wood_texture.jpg', pos=(self.x, self.y),
-        #                      allow_stretch=True, keep_ratio=False))
-        self.board = BoardWidget(pos=(self.x, self.y))
+        self.add_widget(Image(source='wood_texture.jpg', pos_hint={'x': 0, 'y': 0},
+                              allow_stretch=True, keep_ratio=False))
+        self.board = BoardWidget(pos_hint={'x': 0, 'y': 0})
         self.add_widget(self.board)
         self.match = None
         self.blocking_events = []

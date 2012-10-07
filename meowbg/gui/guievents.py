@@ -9,6 +9,10 @@ class MoveAttempt(object):
     def __repr__(self):
         return "MoveEvent: %s->%s" % (self.origin, self.target)
 
+class MoveAnimationEvent(object):
+    def __init__(self, moving_checker, target_pos):
+        self.moving_checker, self.target_pos = moving_checker, target_pos
+
 class AnimationStartedEvent(object):
     def __init__(self, data):
         self.data = data
