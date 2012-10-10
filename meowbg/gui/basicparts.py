@@ -79,7 +79,7 @@ class Spike(FloatLayout):
         num_children = len(self.children)
         checker_height = self.height * self.CHECKER_PERCENTAGE
 
-        if not num_children or self.children[0].color != color:
+        if not num_children or self.children[0].model_color != color:
             pos_y = 0 if self.direction == 1 else self.height * 0.8
         else:
             if self.direction == 1:

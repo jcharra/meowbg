@@ -179,25 +179,14 @@ class BoardWidget(GridLayout):
             raise ValueError("method 'move' called with empty origin")
 
         moving_checker = spike_origin.children[0]
-        self.move_checker(moving_checker, spike_origin, spike_target)
+        self.move_checker(moving_checker, spike_target)
 
-    def move_checker(self, moving_checker, spike_origin, spike_target, speedup=1):
+    def move_checker(self, moving_checker, spike_target):
         """
         Moves a checker from the origin to the target.
         """
         moving_checker.pos_hint = {} # needed to make animation work ... ?
-        target_pos = spike_target.get_next_checker_position(moving_checker.color)
-
-        def move_finished(e):
-            self.transfer_checker(moving_checker, spike_origin, spike_target)
-            broadcast(AnimationFinishedEvent(moving_checker))
-
-        duration = Vector(moving_checker.pos).distance(target_pos)/(speedup*200.0)
-        animation = Animation(pos=target_pos, duration=duration)
-        animation.on_complete = move_finished
-
-        broadcast(AnimationStartedEvent(moving_checker))
-        animation.start(moving_checker)
+        broadcast(AnimationStartedEvent(moving_checker, spike_target))
 
     def move_by_indexes(self, origin_idx, target_idx):
         """
@@ -226,10 +215,6 @@ class BoardWidget(GridLayout):
         child_idx = idx % 6 if spike_panel.index_direction == -1 else 5 - idx % 6
         return spike_panel.children[child_idx]
 
-    def transfer_checker(self, checker, origin, target):
-        origin.remove_widget(checker)
-        target.add_checkers(checker.model_color, 1)
-
     def add_checkers(self, field_idx, color, amount=1):
         spike = self._get_spike_by_index(field_idx)
         spike.add_checkers(color, amount)
@@ -246,7 +231,7 @@ class BoardWidget(GridLayout):
         target = self.upper_bar if hitting_color == WHITE else self.lower_bar
         for c in spike.children:
             if c.model_color != hitting_color:
-                self.move_checker(c, spike, target, speedup=2)
+                self.move_checker(c, target)
                 break
 
     def clear_board(self):

@@ -1,5 +1,6 @@
 import os
 import Queue
+from kivy.animation import Animation
 
 from kivy.app import App
 from kivy.clock import Clock
@@ -13,13 +14,14 @@ from kivy.uix.textinput import TextInput
 from kivy.factory import Factory
 from kivy.logger import Logger
 from kivy.resources import resource_add_path
+from kivy.vector import Vector
 from meowbg.core.board import BLACK, WHITE
 from meowbg.core.bot import Bot
 from meowbg.core.exceptions import MoveNotPossible
 from meowbg.core.match import Match
 from meowbg.core.move import PartialMove
 from meowbg.core.player import HumanPlayer
-from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel, BarPanel, BearoffPanel
+from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel, BarPanel, BearoffPanel, Checker
 from meowbg.gui.boardwidget import BoardWidget
 from meowbg.gui.guievents import NewMatchEvent, MoveAttempt, AnimationFinishedEvent, AnimationStartedEvent, HitEvent
 from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, MessageEvent, DiceEvent, CommitEvent
@@ -65,8 +67,8 @@ class MatchWidget(FloatLayout):
     def __init__(self, **kwargs):
         FloatLayout.__init__(self, **kwargs)
 
-        self.add_widget(Image(source='wood_texture.jpg', pos_hint={'x': 0, 'y': 0},
-                              allow_stretch=True, keep_ratio=False))
+        #self.add_widget(Image(source='wood_texture.jpg', pos_hint={'x': 0, 'y': 0},
+        #                      allow_stretch=True, keep_ratio=False))
         self.board = BoardWidget(pos_hint={'x': 0, 'y': 0})
         self.add_widget(self.board)
         self.match = None
@@ -84,8 +86,7 @@ class MatchWidget(FloatLayout):
         register(self.handle, CommitEvent)
         register(self.handle, HitEvent)
         register(self.release, AnimationFinishedEvent)
-        register(self.block, AnimationStartedEvent)
-
+        register(self.animate_move, AnimationStartedEvent)
 
     def process_queue(self, dt):
         if not self.event_queue.empty() and not self.blocking_events:
@@ -105,13 +106,38 @@ class MatchWidget(FloatLayout):
             self.event_queue.put(event)
 
     def release(self, release_event):
-        self.blocking_events.remove(release_event.data)
+        self.blocking_events.remove(release_event)
 
     def block(self, block_event):
-        self.blocking_events.append(block_event.data)
+        self.blocking_events.append(block_event)
 
     def execute_move(self, move):
         self.board.move_by_indexes(move.origin, move.target)
+
+    def animate_move(self, ae):
+        """
+        Interpret an AnimationStartedEvent appropriately
+        """
+        self.block(ae)
+        origin_checker = ae.moving_checker
+        target_spike = ae.target_spike
+        target_pos = target_spike.get_next_checker_position(origin_checker.model_color)
+        size = origin_checker.size
+        origin_checker.parent.remove_widget(origin_checker)
+        new_checker = Checker(origin_checker.model_color,
+                              size=size, size_hint=(None, None),
+                              pos=origin_checker.pos, pos_hint={})
+        self.add_widget(new_checker)
+
+        def on_finish(e):
+            target_spike.add_checker(origin_checker.model_color)
+            self.remove_widget(new_checker)
+            self.release(ae)
+
+        duration = Vector(origin_checker.pos).distance(target_pos)/(ae.speedup*1000.0)
+        animation = Animation(pos=target_pos, duration=duration)
+        animation.on_complete = on_finish
+        animation.start(new_checker)
 
     def show_dice_roll(self, dice, color):
         self.board.show_dice(dice, color)
@@ -119,9 +145,10 @@ class MatchWidget(FloatLayout):
     def initialize_new_match(self, length):
         self.match = Match()
         self.match.length = length
-        self.match.register_player(Bot("Morten", BLACK), BLACK)
-        self.match.register_player(Bot("Hille", WHITE), WHITE)
-        #self.match.register_player(HumanPlayer("Johannes", WHITE), WHITE)
+        #self.match.register_player(Bot("Morten", BLACK), BLACK)
+        #self.match.register_player(Bot("Hille", WHITE), WHITE)
+        self.match.register_player(HumanPlayer("Johannes", WHITE), WHITE)
+        self.match.register_player(HumanPlayer("Annette", BLACK), BLACK)
         self.match.new_game()
 
     def attempt_move(self, origin, target):
@@ -148,6 +175,7 @@ class MatchWidget(FloatLayout):
             self.board.animate_hit(event.field_idx, event.hitting_color)
         else:
             Logger.error("Cannot interpret event %s" % event)
+
 
 class PlayerListWidget(ScrollView):
     def __init__(self, **kwargs):
@@ -191,6 +219,7 @@ class LobbyWidget(GridLayout):
 
     def send_command(self, cmd):
         self.notify(MessageEvent(cmd))
+
 
 class BoardApp(App):
     def build(self):
