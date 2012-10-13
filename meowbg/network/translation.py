@@ -48,10 +48,9 @@ class FIBSTranslator(object):
 
     PLAYER_STATUS_EVENT = 5
 
-
     def translate(self, event):
         """
-        TODO: Translate the various kinds of events to FIBS messages and send them.
+        TODO: Translate the various kinds of events to FIBS messages.
         """
         logger.info("I just received an event %s" % event)
 
@@ -161,12 +160,13 @@ class FIBSTranslator(object):
             self.logger.error("Illegal board state: %s" % match_str)
             return
 
-        match.player_names = parts[1], parts[2]
+        match.register_player(parts[1], BLACK)
+        match.register_player(parts[2], WHITE)
 
         parts[3:] = map(int, parts[3:])
 
         match.length = parts[3]
-        match.score = parts[4], parts[5]
+        match.score = {BLACK: parts[4], WHITE: parts[5]}
         board_str = parts[6:32]
 
         if parts[32] > 0:
@@ -176,23 +176,30 @@ class FIBSTranslator(object):
         else:
             match.color_to_move_next = None
 
-        match.players_dice = list(parts[33:35])
-        match.players_remaining_dice = list(match.players_dice)
-        if match.players_dice[0] == match.players_dice[1]:
-            match.players_remaining_dice.extend(match.players_dice)
-            match.players_dice.extend(match.players_dice)
+        # Pick the dice that contain non-zero values
+        whites_dice = parts[33], parts[34]
+        blacks_dice = parts[35], parts[36]
+        if whites_dice[0]:
+            match.initial_dice = list(whites_dice)
+        elif blacks_dice[0]:
+            match.initial_dice = list(blacks_dice)
+        else:
+            # no dice given, so don't set anything
+            pass
 
-        match.opponents_dice = parts[35], parts[36]
+        match.remaining_dice = list(match.initial_dice)
+        if match.initial_dice and match.initial_dice[0] == match.initial_dice[1]:
+            match.initial_dice.extend(match.initial_dice)
+            match.remaining_dice.extend(match.remaining_dice)
+
         match.cube = parts[37]
-        match.player_may_double = parts[38]
-        match.opponent_may_double = parts[39]
+        match.may_double = {BLACK: parts[38], WHITE: parts[39]}
         match.was_doubled = parts[40]
-        match.players_color = BLACK if parts[41] == 1 else WHITE
-        match.players_direction = parts[42]
-        match.move_possibilities = parts[49]
 
         on_field, on_bar = self.parse_board_str(board_str)
         match.board = Board(on_field=on_field, on_bar=on_bar)
+        if match.initial_dice:
+            match.board.store_initial_possibilities(match.initial_dice, match.color_to_move_next)
 
         return match
 

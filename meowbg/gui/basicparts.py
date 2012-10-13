@@ -12,7 +12,7 @@ from meowbg.core.messaging import broadcast
 from meowbg.gui.guievents import NewMatchEvent
 
 class Checker(Widget):
-    COLOR_MAP = {WHITE: (.3, .1, 0), BLACK: (.8, .6, .4)}
+    COLOR_MAP = {BLACK: (.3, .1, 0), WHITE: (.8, .6, .4)}
 
     def __init__(self, model_color, **kwargs):
         self.model_color = model_color
@@ -115,7 +115,9 @@ class ButtonPanel(BoxLayout):
         BoxLayout.__init__(self, **kwargs)
 
     def fire_new_game_event(self):
-        broadcast(NewMatchEvent(1))
+        match = Match()
+        match.length = 1
+        broadcast(NewMatchEvent(match))
 
     def commit_move(self):
         broadcast(CommitEvent())

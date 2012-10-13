@@ -1,6 +1,6 @@
 class NewMatchEvent(object):
-    def __init__(self, length):
-        self.length = length
+    def __init__(self, match):
+        self.match = match
 
 class MoveAttempt(object):
     def __init__(self, origin, target):

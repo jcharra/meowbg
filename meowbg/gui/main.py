@@ -142,13 +142,12 @@ class MatchWidget(FloatLayout):
     def show_dice_roll(self, dice, color):
         self.board.show_dice(dice, color)
 
-    def initialize_new_match(self, length):
-        self.match = Match()
-        self.match.length = length
+    def initialize_new_match(self, match):
+        self.match = match
         #self.match.register_player(Bot("Morten", BLACK), BLACK)
         #self.match.register_player(Bot("Hille", WHITE), WHITE)
-        self.match.register_player(HumanPlayer("Johannes", WHITE), WHITE)
-        self.match.register_player(HumanPlayer("Annette", BLACK), BLACK)
+        #self.match.register_player(HumanPlayer("Johannes", WHITE), WHITE)
+        #self.match.register_player(HumanPlayer("Annette", BLACK), BLACK)
         self.match.new_game()
 
     def attempt_move(self, origin, target):
@@ -159,13 +158,14 @@ class MatchWidget(FloatLayout):
 
     def _interpret_event(self, event):
         if isinstance(event, MatchEvent):
+            self.match = event.match
             self.board.synchronize(event.match)
         elif isinstance(event, SingleMoveEvent):
             self.execute_move(event.move)
         elif isinstance(event, DiceEvent):
             self.show_dice_roll(event.dice, event.color)
         elif isinstance(event, NewMatchEvent):
-            self.initialize_new_match(event.length)
+            self.initialize_new_match(event.match)
         elif isinstance(event, CommitEvent):
             # XXX: Commit event may have color None => default to WHITE :(
             self.match.commit(event.color or WHITE)
