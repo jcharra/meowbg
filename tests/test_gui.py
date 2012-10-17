@@ -11,7 +11,6 @@ from meowbg.gui.main import MatchWidget, GameWidget, LobbyWidget, BoardApp
 from meowbg.network.translation import FIBSTranslator
 
 APP = BoardApp()
-MATCH = Match()
 parse = FIBSTranslator().parse_match
 
 def test_hit():
@@ -31,12 +30,9 @@ def test_hit():
     broadcast(DiceEvent(match.initial_dice, BLACK))
     broadcast(MoveAttempt(17, 11))
     broadcast(MoveAttempt(11, 9))
-    broadcast(CommitEvent(BLACK))
+    broadcast(CommitEvent())
 
 def execute_script():
-    time.sleep(1)
-    MATCH.length = 1
-    broadcast(NewMatchEvent(MATCH))
     time.sleep(1)
     test_hit()
 

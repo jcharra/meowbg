@@ -81,8 +81,8 @@ class BoardWidget(GridLayout):
         self.quads = (self.upper_left_quad, self.upper_right_quad,
                       self.lower_left_quad, self.lower_right_quad)
 
-        self.lower_bar.board_idx = self.upper_bearoff.board_idx = 24
-        self.upper_bar.board_idx = self.lower_bearoff.board_idx = -1
+        self.upper_bar.board_idx = self.upper_bearoff.board_idx = 24
+        self.lower_bar.board_idx = self.lower_bearoff.board_idx = -1
 
         # Mapping from spikes to indexes - not including the bars
         self.spike_for_target_index = {}
@@ -115,11 +115,13 @@ class BoardWidget(GridLayout):
             if len(target_indexes) == 1:
                 # only one possibility => move immediately
                 broadcast(MoveAttempt(spike.board_idx, target_indexes[0]))
-            else:
+            elif len(target_indexes) > 0:
                 # highlight clicked spike and show possibilities
                 self.active_spike = spike
                 spike.activated = True
                 self.highlight_possible_targets(target_indexes)
+            else:
+                Logger.info("No possible moves from %s" % spike.board_idx)
         else:
             broadcast(MoveAttempt(self.active_spike.board_idx, spike.board_idx))
             self.active_spike.activated = False

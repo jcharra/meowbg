@@ -34,8 +34,7 @@ class SingleMoveEvent(object):
         self.move = move
 
 class CommitEvent(object):
-    def __init__(self, color=None):
-        self.color = color
+    pass
 
 class ResignEvent(object):
     def __init__(self, points):

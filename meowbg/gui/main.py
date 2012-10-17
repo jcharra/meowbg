@@ -15,6 +15,7 @@ from kivy.factory import Factory
 from kivy.logger import Logger
 from kivy.resources import resource_add_path
 from kivy.vector import Vector
+import time
 from meowbg.core.board import BLACK, WHITE
 from meowbg.core.bot import Bot
 from meowbg.core.exceptions import MoveNotPossible
@@ -23,7 +24,7 @@ from meowbg.core.move import PartialMove
 from meowbg.core.player import HumanPlayer
 from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel, BarPanel, BearoffPanel, Checker
 from meowbg.gui.boardwidget import BoardWidget
-from meowbg.gui.guievents import NewMatchEvent, MoveAttempt, AnimationFinishedEvent, AnimationStartedEvent, HitEvent
+from meowbg.gui.guievents import NewMatchEvent, MoveAttempt, AnimationFinishedEvent, AnimationStartedEvent, HitEvent, PauseEvent
 from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, MessageEvent, DiceEvent, CommitEvent
 from meowbg.core.messaging import register
 
@@ -85,8 +86,11 @@ class MatchWidget(FloatLayout):
         register(self.handle, MoveEvent)
         register(self.handle, CommitEvent)
         register(self.handle, HitEvent)
+        register(self.handle, PauseEvent)
+
         register(self.release, AnimationFinishedEvent)
         register(self.animate_move, AnimationStartedEvent)
+
 
     def process_queue(self, dt):
         if not self.event_queue.empty() and not self.blocking_events:
@@ -102,10 +106,19 @@ class MatchWidget(FloatLayout):
             # A full move event is first split into several single move events
             for m in event.moves:
                 self.event_queue.put(SingleMoveEvent(PartialMove(m.origin, m.target)))
-        else:
-            self.event_queue.put(event)
+                self.event_queue.put(PauseEvent(300))
+            return
+        elif isinstance(event, SingleMoveEvent):
+            self.event_queue.put(PauseEvent(50))
+
+        self.event_queue.put(event)
+
+    def pause(self, pe):
+        self.block(pe)
+        Clock.schedule_once(lambda e: self.release(pe), pe.ms/1000.0)
 
     def release(self, release_event):
+        Logger.warn("Releasing %s" % release_event)
         self.blocking_events.remove(release_event)
 
     def block(self, block_event):
@@ -123,10 +136,10 @@ class MatchWidget(FloatLayout):
         target_spike = ae.target_spike
         target_pos = target_spike.get_next_checker_position(origin_checker.model_color)
         size = origin_checker.size
-        origin_checker.parent.remove_widget(origin_checker)
         new_checker = Checker(origin_checker.model_color,
                               size=size, size_hint=(None, None),
                               pos=origin_checker.pos, pos_hint={})
+        origin_checker.parent.remove_widget(origin_checker)
         self.add_widget(new_checker)
 
         def on_finish(e):
@@ -167,12 +180,13 @@ class MatchWidget(FloatLayout):
         elif isinstance(event, NewMatchEvent):
             self.initialize_new_match(event.match)
         elif isinstance(event, CommitEvent):
-            # XXX: Commit event may have color None => default to WHITE :(
-            self.match.commit(event.color or WHITE)
+            self.match.commit()
         elif isinstance(event, MoveAttempt):
             self.attempt_move(event.origin, event.target)
         elif isinstance(event, HitEvent):
             self.board.animate_hit(event.field_idx, event.hitting_color)
+        elif isinstance(event, PauseEvent):
+            self.pause(event)
         else:
             Logger.error("Cannot interpret event %s" % event)
 

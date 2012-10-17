@@ -58,19 +58,15 @@ class Match(object):
         raise ValueError("Cannot find a matching die for %s->%s among %s"
                          % (origin, target, self.remaining_dice))
 
-    def _commit_possible(self, color):
-        if self.color_to_move_next != color:
-            logger.warn("Cannot commit for %s when it's %s's turn" %
-                        (COLOR_NAMES[color], COLOR_NAMES[self.color_to_move_next]))
-            return False
-        elif not self.remaining_dice:
+    def _commit_possible(self):
+        if not self.remaining_dice:
             return True
-        else:
-            logger.warn("Dice remaining: %s ... ask board if it's ok" % self.remaining_dice)
-            return self.board.commit_possible()
 
-    def commit(self, color):
-        if self._commit_possible(color):
+        logger.warn("Dice remaining: %s ... ask board if it's ok" % self.remaining_dice)
+        return self.board.commit_possible()
+
+    def commit(self):
+        if self._commit_possible():
             winner, points = self.board.get_winner()
             if winner:
                 broadcast(GameEndEvent(winner, points))
