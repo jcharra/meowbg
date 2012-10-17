@@ -23,10 +23,8 @@ class IndexRow(BoxLayout):
     idx_start = NumericProperty(0)
     idx_direction = NumericProperty(1)
 
-class Spike(FloatLayout):
+class CheckerContainer(FloatLayout):
     CHECKER_PERCENTAGE = 0.19
-    activated = BooleanProperty(False)
-    highlighted = BooleanProperty(False)
     board_idx = NumericProperty(0)
 
     def __init__(self, **kwargs):
@@ -101,6 +99,10 @@ class Spike(FloatLayout):
                 return True
         return False
 
+class Spike(CheckerContainer):
+    activated = BooleanProperty(False)
+    highlighted = BooleanProperty(False)
+
 
 class SpikePanel(BoxLayout):
     def __init__(self, start_index, **kwargs):
@@ -133,12 +135,12 @@ class DicePanel(GridLayout):
             self.add_widget(Image(source="die%i.png" % die))
         self.add_widget(Widget(size_hint=(4-len(dice)/2, 1))) # spacer
 
-class BarPanel(Spike):
+class BarPanel(CheckerContainer):
     def __init__(self, **kwargs):
         kwargs.update({'cols': 1})
-        Spike.__init__(self, **kwargs)
+        CheckerContainer.__init__(self, **kwargs)
 
-class BearoffPanel(Spike):
+class BearoffPanel(CheckerContainer):
     def __init__(self, **kwargs):
         kwargs.update({'cols': 1})
-        Spike.__init__(self, **kwargs)
+        CheckerContainer.__init__(self, **kwargs)

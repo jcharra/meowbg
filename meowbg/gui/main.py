@@ -68,8 +68,8 @@ class MatchWidget(FloatLayout):
     def __init__(self, **kwargs):
         FloatLayout.__init__(self, **kwargs)
 
-        #self.add_widget(Image(source='wood_texture.jpg', pos_hint={'x': 0, 'y': 0},
-        #                      allow_stretch=True, keep_ratio=False))
+        self.add_widget(Image(source='wood_texture.jpg', pos_hint={'x': 0, 'y': 0},
+                              allow_stretch=True, keep_ratio=False))
         self.board = BoardWidget(pos_hint={'x': 0, 'y': 0})
         self.add_widget(self.board)
         self.match = None
