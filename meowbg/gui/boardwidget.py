@@ -149,6 +149,18 @@ class BoardWidget(GridLayout):
                 col = checkers[0]
                 self.add_checkers(idx, col, amount)
 
+        on_bar = match.board.checkers_on_bar
+        for col, target in ((WHITE, self.lower_bar), (BLACK, self.upper_bar)):
+            col_on_bar = on_bar.count(col)
+            if col_on_bar:
+                target.add_checkers(col, col_on_bar)
+
+        borne_off = match.board.borne_off
+        for col, target in ((WHITE, self.upper_bearoff), (BLACK, self.lower_bearoff)):
+            col_borne_off = borne_off.count(col)
+            if col_borne_off :
+                target.add_checkers(col, col_borne_off)
+
     def show_dice(self, dice, color):
         self.opponents_dice_area.clear_widgets()
         self.players_dice_area.clear_widgets()
@@ -237,7 +249,5 @@ class BoardWidget(GridLayout):
                 break
 
     def clear_board(self):
-        for sp in self.quads:
-            for spike in sp.children:
-                spike.clear_widgets()
-
+        for spike in self.spikes():
+            spike.clear_widgets()

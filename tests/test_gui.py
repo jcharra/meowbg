@@ -32,9 +32,17 @@ def test_hit():
     broadcast(MoveAttempt(11, 9))
     broadcast(CommitEvent())
 
+def test_new_game():
+    match = Match()
+    match.new_game()
+    broadcast(MatchEvent(match))
+    #broadcast(DiceEvent([6, 2], match.color_to_move_next))
+
 def execute_script():
     time.sleep(1)
     test_hit()
+    time.sleep(1)
+    test_new_game()
 
 
 if __name__ == '__main__':
