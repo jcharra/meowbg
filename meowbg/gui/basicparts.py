@@ -7,7 +7,7 @@ from kivy.uix.image import Image
 from kivy.uix.widget import Widget
 from meowbg.core.board import WHITE, BLACK
 from meowbg.core.match import Match
-from meowbg.core.events import MatchEvent, CommitEvent
+from meowbg.core.events import MatchEvent, CommitEvent, UndoEvent
 from meowbg.core.messaging import broadcast
 from meowbg.gui.guievents import NewMatchEvent
 
@@ -123,6 +123,9 @@ class ButtonPanel(BoxLayout):
 
     def commit_move(self):
         broadcast(CommitEvent())
+
+    def undo_move(self):
+        broadcast(UndoEvent())
 
 class DicePanel(GridLayout):
     def __init__(self, **kwargs):

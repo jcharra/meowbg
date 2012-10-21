@@ -75,8 +75,7 @@ class Match(object):
 
 
     def is_crawford(self):
-        return (self.score[WHITE] == self.length - 1 and self.score[BLACK] != self.length - 1
-             or self.score[BLACK] == self.length - 1 and self.score[WHITE] != self.length - 1)
+        return self.score[WHITE] != self.score[BLACK] and self.length - 1 in self.score.values()
 
     def new_game(self):
         logger.warn("New game starting")
@@ -84,10 +83,7 @@ class Match(object):
         self.may_double = {WHITE: not self.is_crawford(), BLACK: not self.is_crawford()}
 
         d1, d2 = self.dice.rollout()
-        if d1 > d2:
-            self.color_to_move_next = WHITE
-        else:
-            self.color_to_move_next = BLACK
+        self.color_to_move_next = WHITE if d1 > d2 else BLACK
 
         broadcast(RolloutEvent(d1, d2))
 

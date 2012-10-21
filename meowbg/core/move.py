@@ -16,5 +16,8 @@ class PartialMove(object):
             logger.warn("Inappropriate object passed for comparison: %s" % obj)
             return False
 
+    def __hash__(self):
+        return hash((self.origin, self.target))
+
     def __repr__(self):
         return "'%s/%s'" % (self.origin, self.target)

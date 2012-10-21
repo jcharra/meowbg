@@ -36,6 +36,9 @@ class SingleMoveEvent(object):
 class CommitEvent(object):
     pass
 
+class UndoEvent(object):
+    pass
+
 class ResignEvent(object):
     def __init__(self, points):
         self.points = points

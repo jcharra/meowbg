@@ -12,6 +12,10 @@
         on_press: self.parent.fire_new_game_event()
 
     Button:
+        text: 'Undo move'
+        on_press: self.parent.undo_move()
+
+    Button:
         text: 'Commit move'
         on_press: self.parent.commit_move()
 

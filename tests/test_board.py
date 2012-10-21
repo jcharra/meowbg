@@ -169,7 +169,7 @@ class BoardTestCase(unittest.TestCase):
         self.assertEqual(self.board.checkers_on_field[4], [BLACK])
         self.assertEqual(self.board.checkers_on_bar, [WHITE])
 
-        self.board.undo_partial_move(move)
+        self.board.undo_partial_move()
 
         # hit checker should be off the bar and back on board
         self.assertEqual(self.board.checkers_on_field[5], [BLACK, BLACK, BLACK, BLACK, BLACK])
@@ -184,7 +184,7 @@ class BoardTestCase(unittest.TestCase):
         self.assertEqual(self.board.checkers_on_field[4], [])
         self.assertEqual(self.board.borne_off, [BLACK])
 
-        self.board.undo_partial_move(move)
+        self.board.undo_partial_move()
 
         self.assertEqual(self.board.checkers_on_field[4], [BLACK])
         self.assertEqual(self.board.borne_off, [])
@@ -198,7 +198,7 @@ class BoardTestCase(unittest.TestCase):
         self.assertEqual(self.board.checkers_on_field[20], [BLACK])
         self.assertEqual(self.board.checkers_on_bar, [WHITE])
 
-        self.board.undo_partial_move(move)
+        self.board.undo_partial_move()
 
         self.assertEqual(self.board.checkers_on_field[20], [WHITE])
         self.assertEqual(self.board.checkers_on_bar, [BLACK])
@@ -238,7 +238,7 @@ class BoardTestCase(unittest.TestCase):
         self.assertEqual([expected, expected[::-1]], self.board.possible_full_moves_with_initial_dice)
 
         self.board.store_initial_possibilities([5, 6], WHITE)
-        self.assertEqual([], self.board.possible_full_moves_with_initial_dice)
+        self.assertEqual([[PartialMove(20, 24)]], self.board.possible_full_moves_with_initial_dice)
 
     def test_digest_move(self):
         self.board.checkers_on_field.update({10: [BLACK, BLACK]})

@@ -147,7 +147,9 @@ class Board(object):
             moves.extend(self._find_moves_for_dice(initial_dice, color))
 
         if moves:
-            return self.filter_too_short_moves(moves, color)
+            moves = self.filter_duplicates(moves)
+            moves = self.filter_too_short_moves(moves, color)
+            return moves
         else:
             return []
 
@@ -172,7 +174,7 @@ class Board(object):
             else:
                 all_moves.append([sub])
 
-            self.undo_partial_move(sub)
+            self.undo_partial_move()
 
         return all_moves
 
@@ -264,7 +266,7 @@ class Board(object):
 
         self.move_stack.append((move, hit))
 
-    def undo_partial_move(self, move):
+    def undo_partial_move(self):
         """
         Undoes a move, reinserting a hit piece if necessary.
         """
@@ -272,10 +274,6 @@ class Board(object):
             raise Exception("No moves to undo")
 
         last_move, hitting = self.move_stack.pop()
-
-        if move != last_move:
-            raise Exception("Trying to undo move %s while last move was %s"
-                            % (move, last_move))
 
         # pop it off the target again ...
         if last_move.target in OFF_INDEX.values():
@@ -338,6 +336,10 @@ class Board(object):
         """
         on_bar = self.checkers_on_bar.count(color)
         return on_bar + sum([val.count(color) for val in self.checkers_on_field.values()])
+
+    def filter_duplicates(self, moves):
+        tuples = [tuple(m) for m in moves]
+        return [list(m) for m in set(tuples)]
 
     def filter_too_short_moves(self, moves, color):
         """

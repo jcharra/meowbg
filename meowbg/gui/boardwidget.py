@@ -4,6 +4,7 @@ from kivy.graphics.vertex_instructions import Rectangle
 from kivy.logger import Logger
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.gridlayout import GridLayout
+from kivy.uix.label import Label
 from kivy.uix.widget import Widget
 from kivy.vector import Vector
 from meowbg.core.board import WHITE, BLACK, BAR_INDEX, OFF_INDEX
@@ -23,7 +24,8 @@ class BoardWidget(GridLayout):
         self.match = None
 
         # plug together all that shit ...
-        self.add_widget(Widget(size_hint=(1/17.5, 1))) # border
+        self.upper_cube_container = Widget(size_hint=(1/17.5, 1))
+        self.add_widget(self.upper_cube_container)
         self.add_widget(IndexRow(idx_start=13, size_hint=(5/17.5, 1)))
         self.add_widget(Widget(size_hint=(1/17.5, 1))) # border at bar
         self.add_widget(IndexRow(idx_start=19, size_hint=(5/17.5, 1)))
@@ -44,7 +46,8 @@ class BoardWidget(GridLayout):
         self.add_widget(self.upper_bearoff)
         self.add_widget(Widget(size_hint=(1/17.5, 5)))
 
-        self.add_widget(Widget(size_hint=(1/17.5, 1)))
+        self.middle_cube_container = Widget(size_hint=(1/17.5, 1))
+        self.add_widget(self.middle_cube_container)
         self.opponents_dice_area = DicePanel(size_hint=(5/17.5, 1))
         self.add_widget(self.opponents_dice_area)
         self.add_widget(Widget(size_hint=(1.5/17.5, 1)))
@@ -70,7 +73,8 @@ class BoardWidget(GridLayout):
         self.add_widget(self.lower_bearoff)
         self.add_widget(Widget(size_hint=(1/17.5, 1)))
 
-        self.add_widget(Widget(size_hint=(1/17.5, 1)))
+        self.lower_cube_container = Widget(size_hint=(1/17.5, 1))
+        self.add_widget(self.lower_cube_container)
         self.add_widget(IndexRow(idx_start=12, idx_direction=-1, size_hint=(5/17.5, 1)))
         self.add_widget(Widget(size_hint=(1/17.5, 1)))
         self.add_widget(IndexRow(idx_start=6, idx_direction=-1, size_hint=(5/17.5, 1)))
@@ -160,6 +164,20 @@ class BoardWidget(GridLayout):
             col_borne_off = borne_off.count(col)
             if col_borne_off :
                 target.add_checkers(col, col_borne_off)
+
+        if self.match.may_double[WHITE] and not self.match.may_double[BLACK]:
+            self.draw_cube(self.upper_cube_container, 1)
+        elif self.match.may_double[BLACK] and not self.match.may_double[WHITE]:
+            self.draw_cube(self.lower_cube_container, 1)
+        else:
+            self.draw_cube(self.middle_cube_container, 1)
+
+
+    def draw_cube(self, target, cube):
+        with self.canvas:
+            Color(0, 1, 0)
+            Rectangle(pos=target.pos, size=target.size)
+            Label(text=str(cube), center=target.center)
 
     def show_dice(self, dice, color):
         self.opponents_dice_area.clear_widgets()
