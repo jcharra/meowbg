@@ -250,7 +250,7 @@ class Board(object):
         else:
             color = self.checkers_on_field[move.origin].pop()
 
-        hit = False
+        hit = None
         if move.target == OFF_INDEX[color]:
             self.borne_off.append(color)
         else:
@@ -259,8 +259,9 @@ class Board(object):
                 raise Exception("Move %s is blocked" % move)
             elif enemy_count == 1:
                 # pop the hit checker off the target field and append to bar
-                self.checkers_on_bar.append(self.checkers_on_field[move.target].pop())
-                hit = True
+                hit = self.checkers_on_field[move.target].pop()
+                self.checkers_on_bar.append(hit)
+
 
             self.checkers_on_field[move.target].append(color)
 
@@ -273,7 +274,7 @@ class Board(object):
         if not self.move_stack:
             raise Exception("No moves to undo")
 
-        last_move, hitting = self.move_stack.pop()
+        last_move, hit_checker = self.move_stack.pop()
 
         # pop it off the target again ...
         if last_move.target in OFF_INDEX.values():
@@ -289,10 +290,11 @@ class Board(object):
             self.checkers_on_field[last_move.origin].append(color)
 
         # ... and reinsert a hit checker, if any
-        if hitting:
+        if hit_checker:
             self.checkers_on_bar.remove(OPPONENT[color])
             self.checkers_on_field[last_move.target].append(OPPONENT[color])
 
+        return last_move, hit_checker
 
     def get_winner(self):
         for col in (WHITE, BLACK):

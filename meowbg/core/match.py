@@ -3,7 +3,7 @@ from meowbg.core.board import Board, WHITE, BLACK, COLOR_NAMES, OPPONENT
 from meowbg.core.dice import Dice
 from meowbg.core.events import MatchEndEvent, GameEndEvent, RolloutEvent, MatchEvent, SingleMoveEvent, DiceEvent
 from meowbg.core.messaging import broadcast
-from meowbg.gui.guievents import HitEvent
+from meowbg.gui.guievents import HitEvent, UnhitEvent
 from move import PartialMove
 from board import DIRECTION
 
@@ -50,10 +50,26 @@ class Match(object):
         if hit_event:
             broadcast(hit_event)
 
-    def get_die_for_move(self, origin, target):
+    def undo(self):
+        try:
+            move, hit_checker = self.board.undo_partial_move()
+        except Exception, msg:
+            logger.warn("Undo not possible: %s" % msg)
+            return
+
+        die = self.get_die_for_move(move.origin, move.target, undo=True)
+        self.remaining_dice.append(die)
+
+        broadcast(SingleMoveEvent(PartialMove(move.target, move.origin)))
+
+        if hit_checker:
+            broadcast(UnhitEvent(move.target, hit_checker))
+
+    def get_die_for_move(self, origin, target, undo=False):
+        dice = self.remaining_dice if not undo else self.initial_dice
         die = abs(target - origin)
         for d in range(die, 7):
-            if d in self.remaining_dice:
+            if d in dice:
                 return d
         raise ValueError("Cannot find a matching die for %s->%s among %s"
                          % (origin, target, self.remaining_dice))

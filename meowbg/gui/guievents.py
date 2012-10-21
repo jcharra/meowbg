@@ -22,6 +22,10 @@ class HitEvent(object):
     def __init__(self, field_idx, hitting_color):
         self.field_idx, self.hitting_color = field_idx, hitting_color
 
+class UnhitEvent(object):
+    def __init__(self, field_idx, hit_color):
+        self.field_idx, self.hit_color = field_idx, hit_color
+
 class PauseEvent(object):
     def __init__(self, ms):
         self.ms = ms

@@ -24,7 +24,7 @@ from meowbg.core.move import PartialMove
 from meowbg.core.player import HumanPlayer
 from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel, BarPanel, BearoffPanel, Checker
 from meowbg.gui.boardwidget import BoardWidget
-from meowbg.gui.guievents import NewMatchEvent, MoveAttempt, AnimationFinishedEvent, AnimationStartedEvent, HitEvent, PauseEvent
+from meowbg.gui.guievents import NewMatchEvent, MoveAttempt, AnimationFinishedEvent, AnimationStartedEvent, HitEvent, PauseEvent, UnhitEvent
 from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, MessageEvent, DiceEvent, CommitEvent, UndoEvent
 from meowbg.core.messaging import register
 
@@ -87,6 +87,7 @@ class MatchWidget(FloatLayout):
         register(self.handle, CommitEvent)
         register(self.handle, UndoEvent)
         register(self.handle, HitEvent)
+        register(self.handle, UnhitEvent)
         register(self.handle, PauseEvent)
 
         register(self.release, AnimationFinishedEvent)
@@ -185,11 +186,13 @@ class MatchWidget(FloatLayout):
                 self.match.commit()
         elif isinstance(event, UndoEvent):
             if self.match:
-                self.match.und()
+                self.match.undo()
         elif isinstance(event, MoveAttempt):
             self.attempt_move(event.origin, event.target)
         elif isinstance(event, HitEvent):
             self.board.animate_hit(event.field_idx, event.hitting_color)
+        elif isinstance(event, UnhitEvent):
+            self.board.animate_unhit(event.field_idx, event.hit_color)
         elif isinstance(event, PauseEvent):
             self.pause(event)
         else:

@@ -266,6 +266,15 @@ class BoardWidget(GridLayout):
                 self.move_checker(c, target)
                 break
 
+    def animate_unhit(self, field_idx, hit_color):
+        """
+        Animate undoing of a hit at index `field_idx` of color `hit_color`
+        """
+        target = self._get_spike_by_index(field_idx)
+        origin = self.lower_bar if hit_color == WHITE else self.upper_bar
+        checker = origin.children[0]
+        self.move_checker(checker, target)
+
     def clear_board(self):
         for spike in self.spikes():
             spike.clear_widgets()
