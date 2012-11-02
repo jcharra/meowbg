@@ -18,7 +18,7 @@ class Bot(AbstractPlayer):
                 for m in mymove:
                     broadcast(MoveAttempt(m.origin, m.target))
 
-            broadcast(CommitEvent(self.color))
+            broadcast(CommitEvent())
         else:
             print "Not my turn!"
 

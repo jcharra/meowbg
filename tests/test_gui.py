@@ -17,7 +17,7 @@ def test_hit():
     match = parse("board:player1:player2"
                   ":1"       # match length
                   ":0:0"     # score
-                  ":0"       # bar player 1
+                  ":-1"       # bar player 1
                   ":0:0:0:0:0:0:0:0:-1:-1:0:0:0:0:0:0:0:2:0:0:0:0:0:0" # board
                   ":0"       # bar player 2
                   ":1"       # turn
@@ -42,7 +42,7 @@ def execute_script():
     time.sleep(1)
     test_hit()
     time.sleep(1)
-    test_new_game()
+    #test_new_game()
 
 
 if __name__ == '__main__':

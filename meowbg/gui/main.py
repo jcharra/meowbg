@@ -4,6 +4,7 @@ from kivy.animation import Animation
 
 from kivy.app import App
 from kivy.clock import Clock
+from kivy.uix.button import Button
 from kivy.uix.image import Image
 from kivy.uix.accordion import Accordion, AccordionItem
 from kivy.uix.floatlayout import FloatLayout
@@ -25,8 +26,11 @@ from meowbg.core.player import HumanPlayer
 from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel, BarPanel, BearoffPanel, Checker
 from meowbg.gui.boardwidget import BoardWidget
 from meowbg.gui.guievents import NewMatchEvent, MoveAttempt, AnimationFinishedEvent, AnimationStartedEvent, HitEvent, PauseEvent, UnhitEvent
-from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, MessageEvent, DiceEvent, CommitEvent, UndoEvent
-from meowbg.core.messaging import register
+from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, MessageEvent, DiceEvent, CommitEvent, UndoEvent, CommandEvent
+from meowbg.core.messaging import register, broadcast
+from meowbg.network.connectionpool import ConnectionPool
+from meowbg.network.telnetconn import TelnetConnection
+from meowbg.network.translation import FIBSTranslator
 
 resource_add_path(os.path.dirname(__file__) + "/resources")
 
@@ -101,7 +105,8 @@ class MatchWidget(FloatLayout):
             self._interpret_event(event)
             self.event_queue.task_done()
         elif not self.event_queue.empty():
-            Logger.info("Blocking events: %s" % self.blocking_events)
+            #Logger.info("Blocking events: %s" % self.blocking_events)
+            pass
 
     def handle(self, event):
         if isinstance(event, MoveEvent):
@@ -111,7 +116,10 @@ class MatchWidget(FloatLayout):
                 self.event_queue.put(PauseEvent(300))
             return
         elif isinstance(event, SingleMoveEvent):
-            self.event_queue.put(PauseEvent(50))
+            # A single move event is prepended with a tiny
+            # pause in order to prevent moving further from a
+            # "still empty" field
+            self.event_queue.put(PauseEvent(30))
 
         self.event_queue.put(event)
 
@@ -120,7 +128,7 @@ class MatchWidget(FloatLayout):
         Clock.schedule_once(lambda e: self.release(pe), pe.ms/1000.0)
 
     def release(self, release_event):
-        Logger.warn("Releasing %s" % release_event)
+        #Logger.warn("Releasing %s" % release_event)
         self.blocking_events.remove(release_event)
 
     def block(self, block_event):
@@ -161,8 +169,8 @@ class MatchWidget(FloatLayout):
         self.match = match
         #self.match.register_player(Bot("Morten", BLACK), BLACK)
         #self.match.register_player(Bot("Hille", WHITE), WHITE)
-        #self.match.register_player(HumanPlayer("Johannes", WHITE), WHITE)
-        #self.match.register_player(HumanPlayer("Annette", BLACK), BLACK)
+        self.match.register_player(HumanPlayer("Johannes", WHITE), WHITE)
+        self.match.register_player(HumanPlayer("Annette", BLACK), BLACK)
         self.match.new_game()
 
     def attempt_move(self, origin, target):
@@ -227,11 +235,17 @@ class LobbyWidget(GridLayout):
         self.player_list = PlayerListWidget(size_hint=(1, 15))
         self.add_widget(self.player_list)
 
-        text_input = TextInput(text="invite tigergammon_bot_III",
-                               multiline=False,
-                               size_hint=(1, 1),
-                               on_text_validate=self.send_command)
-        self.add_widget(text_input)
+        connect_button = Button(text="Connect", size_hint=(1, 1))
+        connect_button.bind(on_press=self.connect)
+        self.add_widget(connect_button)
+
+        self.raw_text_input = TextInput(text="invite expertBotI",
+                                        multiline=False,
+                                        size_hint=(1, 1))
+        self.raw_text_input.bind(on_text_validate=self.send_command)
+        self.add_widget(self.raw_text_input)
+        self.connection = None
+        self.connection_pool = ConnectionPool()
 
     def handle(self, event):
         if isinstance(event, PlayerStatusEvent):
@@ -239,8 +253,24 @@ class LobbyWidget(GridLayout):
         else:
             Logger.error("Cannot handle type %s" % event)
 
-    def send_command(self, cmd):
-        self.notify(MessageEvent(cmd))
+    def connect(self, e):
+        self.connection = TelnetConnection("Tigergammon")
+        self.connection_pool.share_connection("Tigergammon", self.connection)
+
+        self.connection.connect(self.handle_input)
+        self.parser = FIBSTranslator()
+
+    def handle_input(self, data):
+        Logger.warn(data)
+        events = self.parser.parse_events(data)
+        for e in events:
+            broadcast(e)
+
+    def send_command(self, *args):
+        cmd = self.raw_text_input.text
+        if cmd:
+            Logger.warn("Sending raw command %s" % cmd)
+            self.connection.send(cmd)
 
 
 class BoardApp(App):

@@ -6,7 +6,8 @@ import time
 from meowbg.core.board import Board, BLACK, WHITE
 from meowbg.core.match import Match
 from meowbg.core.move import PartialMove
-from meowbg.core.events import InvitationEvent, MoveEvent, MatchEvent, PlayerStatusEvent
+from meowbg.core.events import InvitationEvent, MoveEvent, MatchEvent, PlayerStatusEvent, DiceEvent
+from meowbg.core.player import HumanPlayer, OnlinePlayerProxy
 
 logger = logging.getLogger("EventParser")
 logger.addHandler(logging.StreamHandler())
@@ -48,11 +49,14 @@ class FIBSTranslator(object):
 
     PLAYER_STATUS_EVENT = 5
 
-    def translate(self, event):
+    def encode(self, event):
         """
         TODO: Translate the various kinds of events to FIBS messages.
         """
-        logger.info("I just received an event %s" % event)
+        logger.warn("I just received an event %s" % event)
+        if isinstance(event, MoveEvent):
+            return " ".join(translate_indexes_to_move(m.origin, m.target) for m in event.moves)
+        return ""
 
     def parse_events(self, text):
         lines = filter(bool, [li.strip(" >") for li in text.split("\r\n")])
@@ -115,6 +119,9 @@ class FIBSTranslator(object):
             elif line.startswith("19 "):
                 # you kibitz
                 pass
+            elif re.search("^\S+ rolls? [1-6] and [1-6]", line):
+                player_name, die1, die2 = re.search("^(\S+) rolls? ([1-6]) and ([1-6])", line).groups()
+                found_events.append(DiceEvent([die1, die2]))
             elif re.search("^[a-zA-Z0-9_]+ moves ", line):
 
                 # move event
@@ -160,8 +167,12 @@ class FIBSTranslator(object):
             self.logger.error("Illegal board state: %s" % match_str)
             return
 
-        match.register_player(parts[1], BLACK)
-        match.register_player(parts[2], WHITE)
+        if parts[1].lower() == "you":
+            match.register_player(HumanPlayer(parts[1], BLACK), BLACK)
+            match.register_player(OnlinePlayerProxy(parts[2], WHITE, self), WHITE)
+        else:
+            match.register_player(HumanPlayer(parts[2], BLACK), BLACK)
+            match.register_player(OnlinePlayerProxy(parts[1], WHITE, self), WHITE)
 
         parts[3:] = map(int, parts[3:])
 

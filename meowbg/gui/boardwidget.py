@@ -48,11 +48,11 @@ class BoardWidget(GridLayout):
 
         self.middle_cube_container = Widget(size_hint=(1/17.5, 1))
         self.add_widget(self.middle_cube_container)
-        self.opponents_dice_area = DicePanel(size_hint=(5/17.5, 1))
-        self.add_widget(self.opponents_dice_area)
+        self.blacks_dice_area = DicePanel(size_hint=(5/17.5, 1))
+        self.add_widget(self.blacks_dice_area)
         self.add_widget(Widget(size_hint=(1.5/17.5, 1)))
-        self.players_dice_area = DicePanel(size_hint=(5/17.5, 1))
-        self.add_widget(self.players_dice_area)
+        self.whites_dice_area = DicePanel(size_hint=(5/17.5, 1))
+        self.add_widget(self.whites_dice_area)
 
         self.add_widget(Widget(size_hint=(1/17.5, 1)))
         self.add_widget(Widget(size_hint=(1/17.5, 1)))
@@ -179,14 +179,15 @@ class BoardWidget(GridLayout):
             Rectangle(pos=target.pos, size=target.size)
             Label(text=str(cube), center=target.center)
 
-    def show_dice(self, dice, color):
-        self.opponents_dice_area.clear_widgets()
-        self.players_dice_area.clear_widgets()
+    def show_dice(self, dice):
+        self.blacks_dice_area.clear_widgets()
+        self.whites_dice_area.clear_widgets()
 
+        color = self.match.color_to_move_next
         if color == BLACK:
-            self.opponents_dice_area.show_dice(dice)
+            self.blacks_dice_area.show_dice(dice)
         else:
-            self.players_dice_area.show_dice(dice)
+            self.whites_dice_area.show_dice(dice)
 
     def spikes(self):
         """

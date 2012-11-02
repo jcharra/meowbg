@@ -13,10 +13,6 @@ logger.addHandler(logging.StreamHandler())
 class Match(object):
 
     def __init__(self):
-        """
-        As lean as possible ... if later we "feed" the instance with an actual
-        match standing, everything done here would be rendered useless anyway.
-        """
         self.length = 1
         self.score = {WHITE: 0, BLACK: 0}
         self.color_to_move_next = None
@@ -28,8 +24,10 @@ class Match(object):
         self.was_doubled = 0
         self.move_possibilities = []
 
-        self.dice = Dice()
         self.board = Board()
+        # Dice are only for offline games, otherwise
+        # they are defined by the server
+        self.dice = None
 
     def make_temporary_move(self, origin, target, color):
         if self.color_to_move_next != color:
@@ -96,6 +94,8 @@ class Match(object):
     def new_game(self):
         logger.warn("New game starting")
         self.cube = 1
+        self.dice = Dice()
+
         self.may_double = {WHITE: not self.is_crawford(), BLACK: not self.is_crawford()}
 
         d1, d2 = self.dice.rollout()
@@ -106,7 +106,7 @@ class Match(object):
         self.remaining_dice = [d1, d2]
         self.initial_dice = [d1, d2]
 
-        broadcast(DiceEvent(self.remaining_dice, self.color_to_move_next))
+        broadcast(DiceEvent(self.remaining_dice))
 
         self.board.initialize_board()
         self.board.store_initial_possibilities(self.initial_dice, self.color_to_move_next)
@@ -119,9 +119,6 @@ class Match(object):
                 and self.color_to_move_next == color)
 
     def switch_turn(self):
-        self.initial_dice = self.dice.roll()
-        self.remaining_dice = self.initial_dice[:]
-
         if self.color_to_move_next == WHITE:
             self.color_to_move_next = BLACK
         elif self.color_to_move_next == BLACK:
@@ -129,17 +126,20 @@ class Match(object):
         else:
             raise ValueError("Noone's turn ... cannot switch")
 
-        self.board.store_initial_possibilities(self.initial_dice, self.color_to_move_next)
+        if self.dice:
+            self.initial_dice = self.dice.roll()
+            self.remaining_dice = self.initial_dice[:]
+            self.board.store_initial_possibilities(self.initial_dice, self.color_to_move_next)
+            broadcast(DiceEvent(self.remaining_dice))
 
-        broadcast(DiceEvent(self.remaining_dice, self.color_to_move_next))
         broadcast(MatchEvent(self))
 
-    def register_player(self, name, color):
+    def register_player(self, player, color):
         """
-        Register a player with the given name to control the pieces
+        Register a player to control the pieces
         of the given color
         """
-        self.players[color] = name
+        self.players[color] = player
 
     def __str__(self):
         return ("It is the turn of %s (white: %s, black: %s), dice: %s, board:\n%s"

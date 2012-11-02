@@ -3,14 +3,15 @@
 import telnetlib
 import logging
 import time
+import threading
 
 logger = logging.getLogger("TelnetClient")
 logger.addHandler(logging.FileHandler('telnet.log'))
 logger.addHandler(logging.StreamHandler())
 logger.setLevel(logging.INFO)
 
-class TelnetClient(object):
-    HOSTS = {'Tigergammon': ('tigergammon.dyndns-home.com', 4321),
+class TelnetConnection(object):
+    HOSTS = {'Tigergammon': ('tigergammon.com', 4321),
              'FIBS': ('fibs.com', 4321)}
 
     logger = logging.getLogger("Telnet")
@@ -21,24 +22,29 @@ class TelnetClient(object):
         #self.password = (password or u'qwertz').encode('utf-8')
         self.username, self.password = 'meowbg_joe', 'qwertz'
         self.tn_conn = None
-        self.connected = False
-        self._establish_connection()
+        self.reading_thread = None
 
-    def _establish_connection(self):
+    def connect(self, callback_func):
         """
         Being logged in is currently considered part of the connection
         """
         logger.info("Establishing connection to %s:%s" % (self.host, self.port))
-        if not self.tn_conn:
-            self.tn_conn = telnetlib.Telnet(self.host, self.port, timeout=3)
-        else:
-            self.tn_conn.close()
-            self.tn_conn.open(self.host, self.port, timeout=3)
+        self.tn_conn = telnetlib.Telnet(self.host, self.port, timeout=3)
 
         self.tn_conn.read_until('login: ')
         self.tn_conn.write("login meowBG 1008 %s %s\r\n" % (self.username, self.password))
         self.tn_conn.write("set boardstyle 3\r\n")
-        self.connected = True
+
+        self.callback = callback_func
+        self.reading_thread = threading.Thread(target=self.read_forever)
+        self.reading_thread.start()
+
+    def read_forever(self):
+        while True:
+            data = self.read()
+            if data:
+                self.callback(data)
+            time.sleep(0.5)
 
     def read(self):
         try:
@@ -48,16 +54,11 @@ class TelnetClient(object):
             return text
         except Exception, msg:
             logger.info("Read response failed: %s" % msg)
-            self._establish_connection()
             return ""
 
-    def write(self, msg):
-        self.tn_conn.write(msg)
-
-    def send_msg(self, msg):
+    def send(self, msg):
         msg = msg.encode('ascii')
         self.tn_conn.write(msg + "\r\n")
-        return self.read()
 
 
 class Autoresponder(object):
@@ -84,7 +85,7 @@ class Autoresponder(object):
         pass
 
 if __name__ == '__main__':
-    tc = TelnetClient()
+    tc = TelnetConnection()
 
     # Comment remains here in honour of Dr. Houseman
     # I'll sleep for some time to have a chance to get some asynchronous

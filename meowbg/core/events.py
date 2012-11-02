@@ -8,11 +8,11 @@ class MatchEvent(object):
     #    return "MatchEvent: %s" % self.match
 
 class DiceEvent(object):
-    def __init__(self, dice, color):
-        self.dice, self.color = dice, color
+    def __init__(self, dice):
+        self.dice = dice
 
     def __repr__(self):
-        return "DiceEvent: %s for %s" % (self.dice, self.color)
+        return "DiceEvent: %s" % self.dice
 
 class CubeEvent(object):
     def __init__(self, cube_number):
@@ -28,6 +28,9 @@ class MoveEvent(object):
         Contains a list  of 1-4 partial moves
         """
         self.moves = moves
+
+    def __repr__(self):
+        return " ".join(str(m) for m in self.moves)
 
 class SingleMoveEvent(object):
     def __init__(self, move):
@@ -57,6 +60,9 @@ class MatchEndEvent(object):
     def __init__(self, winner, score):
         self.winner, self.score = winner, score
 
+class CommandEvent(object):
+    def __init__(self, command):
+        self.command = command
 
 # Events outside a match
 
@@ -81,3 +87,7 @@ class LoginEvent(object):
     """
     Use this to require a user login - currently unused
     """
+
+class ConnectionRequest(object):
+    def __init__(self, key, callback):
+        self.key, self.callback = key, callback
