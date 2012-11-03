@@ -26,7 +26,7 @@ from meowbg.core.player import HumanPlayer
 from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel, BarPanel, BearoffPanel, Checker
 from meowbg.gui.boardwidget import BoardWidget
 from meowbg.gui.guievents import NewMatchEvent, MoveAttempt, AnimationFinishedEvent, AnimationStartedEvent, HitEvent, PauseEvent, UnhitEvent
-from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, MessageEvent, DiceEvent, CommitEvent, UndoEvent, CommandEvent
+from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, MessageEvent, DiceEvent, CommitAttemptEvent, UndoEvent, CommandEvent, CommitEvent
 from meowbg.core.messaging import register, broadcast
 from meowbg.network.connectionpool import ConnectionPool
 from meowbg.network.telnetconn import TelnetConnection
@@ -88,7 +88,7 @@ class MatchWidget(FloatLayout):
         register(self.handle, DiceEvent)
         register(self.handle, SingleMoveEvent)
         register(self.handle, MoveEvent)
-        register(self.handle, CommitEvent)
+        register(self.handle, CommitAttemptEvent)
         register(self.handle, UndoEvent)
         register(self.handle, HitEvent)
         register(self.handle, UnhitEvent)
@@ -162,8 +162,8 @@ class MatchWidget(FloatLayout):
         animation.on_complete = on_finish
         animation.start(new_checker)
 
-    def show_dice_roll(self, dice, color):
-        self.board.show_dice(dice, color)
+    def show_dice_roll(self, dice):
+        self.board.show_dice(dice)
 
     def initialize_new_match(self, match):
         self.match = match
@@ -179,6 +179,15 @@ class MatchWidget(FloatLayout):
         except MoveNotPossible, msg:
             Logger.error("Not possible: %s" % msg)
 
+    def attempt_commit(self):
+        if not self.match:
+            return
+
+        try:
+            self.match.commit()
+        except ValueError, msg:
+            Logger.warn(msg)
+
     def _interpret_event(self, event):
         if isinstance(event, MatchEvent):
             self.match = event.match
@@ -186,12 +195,11 @@ class MatchWidget(FloatLayout):
         elif isinstance(event, SingleMoveEvent):
             self.execute_move(event.move)
         elif isinstance(event, DiceEvent):
-            self.show_dice_roll(event.dice, event.color)
+            self.show_dice_roll(event.dice)
         elif isinstance(event, NewMatchEvent):
             self.initialize_new_match(event.match)
-        elif isinstance(event, CommitEvent):
-            if self.match:
-                self.match.commit()
+        elif isinstance(event, CommitAttemptEvent):
+            self.attempt_commit()
         elif isinstance(event, UndoEvent):
             if self.match:
                 self.match.undo()

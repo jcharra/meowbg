@@ -7,7 +7,7 @@ from kivy.uix.image import Image
 from kivy.uix.widget import Widget
 from meowbg.core.board import WHITE, BLACK
 from meowbg.core.match import Match
-from meowbg.core.events import MatchEvent, CommitEvent, UndoEvent
+from meowbg.core.events import MatchEvent, CommitAttemptEvent, UndoEvent
 from meowbg.core.messaging import broadcast
 from meowbg.gui.guievents import NewMatchEvent
 
@@ -122,7 +122,7 @@ class ButtonPanel(BoxLayout):
         broadcast(NewMatchEvent(match))
 
     def commit_move(self):
-        broadcast(CommitEvent())
+        broadcast(CommitAttemptEvent())
 
     def undo_move(self):
         broadcast(UndoEvent())
@@ -135,7 +135,7 @@ class DicePanel(GridLayout):
     def show_dice(self, dice):
         self.add_widget(Widget(size_hint=(4-len(dice)/2, 1))) # spacer
         for idx, die in enumerate(dice):
-            self.add_widget(Image(source="die%i.png" % die))
+            self.add_widget(Image(source="die%s.png" % die))
         self.add_widget(Widget(size_hint=(4-len(dice)/2, 1))) # spacer
 
 class BarPanel(CheckerContainer):

@@ -36,8 +36,12 @@ class SingleMoveEvent(object):
     def __init__(self, move):
         self.move = move
 
-class CommitEvent(object):
+class CommitAttemptEvent(object):
     pass
+
+class CommitEvent(object):
+    def __init__(self, moves):
+        self.moves = moves
 
 class UndoEvent(object):
     pass

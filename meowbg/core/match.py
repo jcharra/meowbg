@@ -1,7 +1,7 @@
 import logging
 from meowbg.core.board import Board, WHITE, BLACK, COLOR_NAMES, OPPONENT
 from meowbg.core.dice import Dice
-from meowbg.core.events import MatchEndEvent, GameEndEvent, RolloutEvent, MatchEvent, SingleMoveEvent, DiceEvent
+from meowbg.core.events import MatchEndEvent, GameEndEvent, RolloutEvent, MatchEvent, SingleMoveEvent, DiceEvent, CommitEvent
 from meowbg.core.messaging import broadcast
 from meowbg.gui.guievents import HitEvent, UnhitEvent
 from move import PartialMove
@@ -74,6 +74,8 @@ class Match(object):
 
     def commit(self):
         if not self.remaining_dice or self.board.commit_possible():
+            broadcast(CommitEvent([m[0] for m in self.board.move_stack]))
+
             winner, points = self.board.get_winner()
             if winner:
                 broadcast(GameEndEvent(winner, points))
@@ -85,7 +87,7 @@ class Match(object):
             else:
                 self.switch_turn()
         else:
-            logger.warn("Invalid commit attempted")
+            raise ValueError("Invalid commit attempted")
 
 
     def is_crawford(self):

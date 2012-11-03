@@ -1,5 +1,5 @@
 import random
-from meowbg.core.events import MatchEvent, CommitEvent
+from meowbg.core.events import MatchEvent, CommitAttemptEvent
 from meowbg.core.messaging import register, broadcast, unregister
 from meowbg.core.player import AbstractPlayer
 from meowbg.gui.guievents import MoveAttempt
@@ -18,7 +18,7 @@ class Bot(AbstractPlayer):
                 for m in mymove:
                     broadcast(MoveAttempt(m.origin, m.target))
 
-            broadcast(CommitEvent())
+            broadcast(CommitAttemptEvent())
         else:
             print "Not my turn!"
 

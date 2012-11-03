@@ -1,7 +1,7 @@
 import threading
 import time
 from meowbg.core.board import BLACK, WHITE
-from meowbg.core.events import MatchEvent, SingleMoveEvent, DiceEvent, CommitEvent
+from meowbg.core.events import MatchEvent, SingleMoveEvent, DiceEvent, CommitAttemptEvent
 from meowbg.core.match import Match
 from meowbg.core.messaging import broadcast
 from meowbg.core.move import PartialMove
@@ -30,7 +30,7 @@ def test_hit():
     broadcast(DiceEvent(match.initial_dice, BLACK))
     broadcast(MoveAttempt(17, 11))
     broadcast(MoveAttempt(11, 9))
-    broadcast(CommitEvent())
+    broadcast(CommitAttemptEvent())
 
 def test_new_game():
     match = Match()
