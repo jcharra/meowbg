@@ -1,5 +1,6 @@
 from meowbg.core.events import MatchEvent, SingleMoveEvent, CommitAttemptEvent, UndoEvent, MoveEvent, ConnectionRequest, CommitEvent
 from meowbg.core.messaging import register, unregister, broadcast
+from meowbg.network.connectionpool import get_connection
 
 class AbstractPlayer(object):
     def __init__(self, name, color):
@@ -30,16 +31,8 @@ class OnlinePlayerProxy(object):
 
         register(self.on_commit, CommitEvent)
 
-        broadcast(ConnectionRequest("Tigergammon", self.set_connection))
-
-    def set_connection(self, conn):
-        print "Connection set to %s" % conn
-        self.connection = conn
+        self.connection = get_connection("Tigergammon")
 
     def on_commit(self, ce):
         fibs_full_move = self.event_translator.encode(MoveEvent(ce.moves))
-        print "Committing move %s" % fibs_full_move
         self.connection.send(fibs_full_move)
-
-    def listen_to_connection(self, conn):
-        self.connection = conn

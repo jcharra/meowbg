@@ -93,5 +93,10 @@ class LoginEvent(object):
     """
 
 class ConnectionRequest(object):
+    """
+    This can be broadcasted to request a connection of a certain
+    type, which is given as a key. Cf. the connectionpool module
+    for further reference.
+    """
     def __init__(self, key, callback):
         self.key, self.callback = key, callback

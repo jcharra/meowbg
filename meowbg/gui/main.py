@@ -16,19 +16,16 @@ from kivy.factory import Factory
 from kivy.logger import Logger
 from kivy.resources import resource_add_path
 from kivy.vector import Vector
-import time
 from meowbg.core.board import BLACK, WHITE
-from meowbg.core.bot import Bot
 from meowbg.core.exceptions import MoveNotPossible
-from meowbg.core.match import Match
 from meowbg.core.move import PartialMove
 from meowbg.core.player import HumanPlayer
 from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel, BarPanel, BearoffPanel, Checker
 from meowbg.gui.boardwidget import BoardWidget
 from meowbg.gui.guievents import NewMatchEvent, MoveAttempt, AnimationFinishedEvent, AnimationStartedEvent, HitEvent, PauseEvent, UnhitEvent
-from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, MessageEvent, DiceEvent, CommitAttemptEvent, UndoEvent, CommandEvent, CommitEvent
+from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, DiceEvent, CommitAttemptEvent, UndoEvent, CommandEvent, CommitEvent
 from meowbg.core.messaging import register, broadcast
-from meowbg.network.connectionpool import ConnectionPool
+from meowbg.network.connectionpool import share_connection
 from meowbg.network.telnetconn import TelnetConnection
 from meowbg.network.translation import FIBSTranslator
 
@@ -253,7 +250,6 @@ class LobbyWidget(GridLayout):
         self.raw_text_input.bind(on_text_validate=self.send_command)
         self.add_widget(self.raw_text_input)
         self.connection = None
-        self.connection_pool = ConnectionPool()
 
     def handle(self, event):
         if isinstance(event, PlayerStatusEvent):
@@ -263,7 +259,7 @@ class LobbyWidget(GridLayout):
 
     def connect(self, e):
         self.connection = TelnetConnection("Tigergammon")
-        self.connection_pool.share_connection("Tigergammon", self.connection)
+        share_connection("Tigergammon", self.connection)
 
         self.connection.connect(self.handle_input)
         self.parser = FIBSTranslator()

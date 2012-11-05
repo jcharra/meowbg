@@ -55,7 +55,7 @@ class FIBSTranslator(object):
         """
         logger.warn("I just received an event %s" % event)
         if isinstance(event, MoveEvent):
-            return " ".join(translate_indexes_to_move(m.origin, m.target) for m in event.moves)
+            return "move " + " ".join(translate_indexes_to_move(m.origin, m.target) for m in event.moves)
         logger.error("Cannot encode event type %s" % event)
         return ""
 

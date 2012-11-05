@@ -1,13 +1,15 @@
 import threading
 import time
 from meowbg.core.board import BLACK, WHITE
+from meowbg.core.dice import FakeDice
 from meowbg.core.events import MatchEvent, SingleMoveEvent, DiceEvent, CommitAttemptEvent
 from meowbg.core.match import Match
 from meowbg.core.messaging import broadcast
 from meowbg.core.move import PartialMove
 from meowbg.core.player import HumanPlayer
 from meowbg.gui.guievents import NewMatchEvent, MoveAttempt
-from meowbg.gui.main import MatchWidget, GameWidget, LobbyWidget, BoardApp
+from meowbg.gui.main import BoardApp
+from meowbg.network.connectionpool import DummyConnection, share_connection
 from meowbg.network.translation import FIBSTranslator
 
 APP = BoardApp()
@@ -27,16 +29,18 @@ def test_hit():
                   ":0:1:-1:0:25:0:0:0:0:2:0:0:0" # cruft
     )
     broadcast(MatchEvent(match))
-    broadcast(DiceEvent(match.initial_dice, BLACK))
+    broadcast(DiceEvent(match.initial_dice))
     broadcast(MoveAttempt(17, 11))
     broadcast(MoveAttempt(11, 9))
+    match.dice = FakeDice()
+    match.dice.set_next_dice(4, 3)
     broadcast(CommitAttemptEvent())
 
-def test_new_game():
-    match = Match()
-    match.new_game()
-    broadcast(MatchEvent(match))
-    #broadcast(DiceEvent([6, 2], match.color_to_move_next))
+    time.sleep(3)
+    broadcast(DiceEvent(match.initial_dice))
+    broadcast(MoveAttempt(-1, 3))
+    broadcast(MoveAttempt(-1, 2))
+    broadcast(CommitAttemptEvent())
 
 def execute_script():
     time.sleep(1)
@@ -44,8 +48,8 @@ def execute_script():
     time.sleep(1)
     #test_new_game()
 
-
 if __name__ == '__main__':
+    share_connection("Tigergammon", DummyConnection())
     action_thread = threading.Thread(target=execute_script)
     action_thread.start()
     APP.run()
