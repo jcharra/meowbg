@@ -5,7 +5,12 @@
     orientation: 'horizontal'
 
     Button:
-        text: 'New game'
+        text: 'Roll dice'
+        on_press: self.parent.roll_attempted()
+
+    Button:
+        text: 'Double'
+        on_press: self.parent.double_attempted()
 
     Button:
         text: 'New AI game'

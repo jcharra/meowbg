@@ -1,7 +1,7 @@
 import logging
 from meowbg.core.board import Board, WHITE, BLACK, COLOR_NAMES, OPPONENT
 from meowbg.core.dice import Dice
-from meowbg.core.events import MatchEndEvent, GameEndEvent, RolloutEvent, MatchEvent, SingleMoveEvent, DiceEvent, CommitEvent
+from meowbg.core.events import MatchEndEvent, GameEndEvent, RolloutEvent, MatchEvent, SingleMoveEvent, DiceEvent, CommitEvent, RollRequest
 from meowbg.core.messaging import broadcast
 from meowbg.gui.guievents import HitEvent, UnhitEvent
 from move import PartialMove
@@ -28,6 +28,18 @@ class Match(object):
         # Dice are only for offline games, otherwise
         # they are defined by the server
         self.dice = None
+
+    def roll(self):
+        """
+        Must be called only if
+        """
+        if self.dice:
+            self.initial_dice = self.dice.roll()
+            self.remaining_dice = self.initial_dice[:]
+            self.board.store_initial_possibilities(self.initial_dice, self.color_to_move_next)
+            broadcast(DiceEvent(self.remaining_dice))
+        else:
+            broadcast(RollRequest())
 
     def make_temporary_move(self, origin, target, color):
         if self.color_to_move_next != color:
@@ -127,12 +139,6 @@ class Match(object):
             self.color_to_move_next = WHITE
         else:
             raise ValueError("Noone's turn ... cannot switch")
-
-        if self.dice:
-            self.initial_dice = self.dice.roll()
-            self.remaining_dice = self.initial_dice[:]
-            self.board.store_initial_possibilities(self.initial_dice, self.color_to_move_next)
-            broadcast(DiceEvent(self.remaining_dice))
 
         broadcast(MatchEvent(self))
 

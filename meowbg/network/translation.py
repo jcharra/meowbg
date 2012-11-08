@@ -6,7 +6,7 @@ import time
 from meowbg.core.board import Board, BLACK, WHITE
 from meowbg.core.match import Match
 from meowbg.core.move import PartialMove
-from meowbg.core.events import InvitationEvent, MoveEvent, MatchEvent, PlayerStatusEvent, DiceEvent
+from meowbg.core.events import InvitationEvent, MoveEvent, MatchEvent, PlayerStatusEvent, DiceEvent, RollRequest
 from meowbg.core.player import HumanPlayer, OnlinePlayerProxy
 
 logger = logging.getLogger("EventParser")
@@ -56,6 +56,8 @@ class FIBSTranslator(object):
         logger.warn("I just received an event %s" % event)
         if isinstance(event, MoveEvent):
             return "move " + " ".join(translate_indexes_to_move(m.origin, m.target) for m in event.moves)
+        elif isinstance(event, RollRequest):
+            return "roll"
         logger.error("Cannot encode event type %s" % event)
         return ""
 

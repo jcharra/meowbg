@@ -7,7 +7,7 @@ from kivy.uix.image import Image
 from kivy.uix.widget import Widget
 from meowbg.core.board import WHITE, BLACK
 from meowbg.core.match import Match
-from meowbg.core.events import MatchEvent, CommitAttemptEvent, UndoEvent
+from meowbg.core.events import MatchEvent, CommitAttemptEvent, UndoEvent, RollAttemptEvent, DoubleAttemptEvent
 from meowbg.core.messaging import broadcast
 from meowbg.gui.guievents import NewMatchEvent
 
@@ -126,6 +126,12 @@ class ButtonPanel(BoxLayout):
 
     def undo_move(self):
         broadcast(UndoEvent())
+
+    def roll_attempted(self):
+        broadcast(RollAttemptEvent())
+
+    def double_attempted(self):
+        broadcast(DoubleAttemptEvent())
 
 class DicePanel(GridLayout):
     def __init__(self, **kwargs):

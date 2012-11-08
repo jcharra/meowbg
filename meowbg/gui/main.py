@@ -22,8 +22,8 @@ from meowbg.core.move import PartialMove
 from meowbg.core.player import HumanPlayer
 from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel, BarPanel, BearoffPanel, Checker
 from meowbg.gui.boardwidget import BoardWidget
-from meowbg.gui.guievents import NewMatchEvent, MoveAttempt, AnimationFinishedEvent, AnimationStartedEvent, HitEvent, PauseEvent, UnhitEvent
-from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, DiceEvent, CommitAttemptEvent, UndoEvent, CommandEvent, CommitEvent
+from meowbg.gui.guievents import NewMatchEvent, MoveAttempt, AnimationFinishedEvent, AnimationStartedEvent, HitEvent, PauseEvent, UnhitEvent, MatchFocusEvent
+from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, DiceEvent, CommitAttemptEvent, UndoEvent, RollAttemptEvent, DoubleAttemptEvent
 from meowbg.core.messaging import register, broadcast
 from meowbg.network.connectionpool import share_connection
 from meowbg.network.telnetconn import TelnetConnection
@@ -37,19 +37,24 @@ class MainWidget(GridLayout):
 
     def __init__(self, **kwargs):
         GridLayout.__init__(self, cols=1, **kwargs)
-        accordion = Accordion(orientation='vertical', size_hint=(1, 10))
+        self.accordion = Accordion(orientation='vertical', size_hint=(1, 10))
 
         self.game_accordion = AccordionItem(title='game')
         self.game_widget = GameWidget()
         self.game_accordion.add_widget(self.game_widget)
-        accordion.add_widget(self.game_accordion)
+        self.accordion.add_widget(self.game_accordion)
 
         self.lobby_accordion = AccordionItem(title='network')
-        self.lobby_widget = LobbyWidget()
+        self.lobby_widget = NetworkWidget()
         self.lobby_accordion.add_widget(self.lobby_widget)
-        accordion.add_widget(self.lobby_accordion)
+        self.accordion.add_widget(self.lobby_accordion)
 
-        self.add_widget(accordion)
+        self.add_widget(self.accordion)
+        register(self.focus_game, MatchFocusEvent)
+
+    def focus_game(self, e):
+        self.game_accordion.collapse = False
+        self.accordion.select(self.game_accordion)
 
 
 class GameWidget(FloatLayout):
@@ -90,6 +95,8 @@ class MatchWidget(FloatLayout):
         register(self.handle, HitEvent)
         register(self.handle, UnhitEvent)
         register(self.handle, PauseEvent)
+        register(self.handle, RollAttemptEvent)
+        register(self.handle, DoubleAttemptEvent)
 
         register(self.release, AnimationFinishedEvent)
         register(self.animate_move, AnimationStartedEvent)
@@ -189,10 +196,13 @@ class MatchWidget(FloatLayout):
         if isinstance(event, MatchEvent):
             self.match = event.match
             self.board.synchronize(event.match)
+            broadcast(MatchFocusEvent())
         elif isinstance(event, SingleMoveEvent):
             self.execute_move(event.move)
         elif isinstance(event, DiceEvent):
             self.show_dice_roll(event.dice)
+        elif isinstance(event, RollAttemptEvent):
+            self.match.roll()
         elif isinstance(event, NewMatchEvent):
             self.initialize_new_match(event.match)
         elif isinstance(event, CommitAttemptEvent):
@@ -232,7 +242,7 @@ class PlayerListWidget(ScrollView):
                 size_hint=(None, None)))
 
 
-class LobbyWidget(GridLayout):
+class NetworkWidget(GridLayout):
     def __init__(self, **kwargs):
         kwargs.update({"cols": 1})
         GridLayout.__init__(self, **kwargs)
@@ -258,11 +268,14 @@ class LobbyWidget(GridLayout):
             Logger.error("Cannot handle type %s" % event)
 
     def connect(self, e):
-        self.connection = TelnetConnection("Tigergammon")
-        share_connection("Tigergammon", self.connection)
+        if not self.connection:
+            self.connection = TelnetConnection("Tigergammon")
+            share_connection("Tigergammon", self.connection)
 
-        self.connection.connect(self.handle_input)
-        self.parser = FIBSTranslator()
+            self.connection.connect(self.handle_input)
+            self.parser = FIBSTranslator()
+        else:
+            Logger.info("Already connected to %s" % self.connection)
 
     def handle_input(self, data):
         Logger.warn(data)
@@ -282,7 +295,7 @@ class BoardApp(App):
         parent = MainWidget()
         return parent
 
-Factory.register("LobbyWidget", LobbyWidget)
+Factory.register("LobbyWidget", NetworkWidget)
 Factory.register("MatchWidget", MatchWidget)
 Factory.register("GameWidget", GameWidget)
 Factory.register("ButtonPanel", ButtonPanel)

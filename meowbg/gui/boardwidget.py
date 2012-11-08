@@ -140,6 +140,9 @@ class BoardWidget(GridLayout):
         self.busy = False
 
     def synchronize(self, match):
+        """
+        Update display according to what's in the given match
+        """
         self.match = match
         Logger.info("Sync with %s" % self.match)
 
@@ -164,6 +167,10 @@ class BoardWidget(GridLayout):
             col_borne_off = borne_off.count(col)
             if col_borne_off :
                 target.add_checkers(col, col_borne_off)
+
+        dice = self.match.remaining_dice
+        if dice:
+            self.show_dice(dice)
 
         if self.match.may_double[WHITE] and not self.match.may_double[BLACK]:
             self.draw_cube(self.upper_cube_container, 1)

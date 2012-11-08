@@ -4,8 +4,14 @@ class MatchEvent(object):
     def __init__(self, match):
         self.match = match
 
-    #def __repr__(self):
-    #    return "MatchEvent: %s" % self.match
+class RollAttemptEvent(object):
+    pass
+
+class RollRequest(object):
+    pass
+
+class DoubleAttemptEvent(object):
+    pass
 
 class DiceEvent(object):
     def __init__(self, dice):

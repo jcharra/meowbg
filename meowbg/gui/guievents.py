@@ -29,3 +29,6 @@ class UnhitEvent(object):
 class PauseEvent(object):
     def __init__(self, ms):
         self.ms = ms
+
+class MatchFocusEvent(object):
+    pass

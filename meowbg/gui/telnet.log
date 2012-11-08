@@ -8736,3 +8736,2461 @@ Please move 4 pieces.
 ** Unknown command: 'bar-24'
 ** Unknown command: 'bar-24'
 
+Establishing connection to tigergammon.com:4321
+
+1 meowbg_joe 1352144919 frbg-5f733f2e.pool.mediaWays.net
+2 meowbg_joe 1 1 0 0 0 0 1 1 0 0 0 0 1 1500.00 0 1 0 1 0 UTC
+3
++--------------------------------------------------------------------+
+|                ___.           __                                   |
+|                \_ |__   _____/  |______                            |
+|                 | __ \_/ __ \   __\__  \                           |
+|                 | \_\ \  ___/|  |  / __ \_                         |
+|                 |___  /\___  >__| (____  /                         |
+|                     \/     \/          \/                          |
+|                                                                    |
+|                                                                    |
+|                  WELCOME TO OUR NEW HOME!!                         |
+|                                                                    |
+|         WATCH ANNOUNCEMENTS ON http://tigergammon.com              |
+|           Also see http://twitter.com/tigergammon                  |
+|                                                                    |
+|         Enjoy the bots. Their name denotes their playing           |
+|         skill according to gnubg naming conventions.               |
+|                                                                    |
+|           New version 0.8.6 released on Nov. 3 2012                |
+|           -----------------------------------------                |
+|         Don't forget to check the news (command 'news')            |
+|                                                                    |
++--------------------------------------------------------------------+
+4
+
+5 beginnerBotI - - 1 0 796.60 3184 273 1352326930 95-90-47-47-dynip.superkabel. - -
+5 beginnerBotII - - 1 0 816.61 3209 273 1352326944 95-90-47-47-dynip.superkabel. - -
+5 beginnerBotIII - - 1 0 763.02 3379 273 1352326958 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotI - - 1 0 939.70 3491 273 1352326972 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotII - - 1 0 936.55 3259 273 1352326986 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotIII - - 1 0 925.38 3402 273 1352327000 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotI - - 1 0 1113.66 2921 273 1352327014 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotII - - 1 0 1095.61 3158 273 1352327028 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotIII - - 1 0 1106.64 3184 267 1352327043 95-90-47-47-dynip.superkabel. - -
+5 advancedBotI - - 1 0 1828.57 3621 273 1352327057 95-90-47-47-dynip.superkabel. - -
+5 advancedBotII - - 1 0 1850.88 3165 273 1352327071 95-90-47-47-dynip.superkabel. - -
+5 advancedBotIII - - 1 0 1857.53 3307 273 1352327085 95-90-47-47-dynip.superkabel. - -
+5 expertBotI - - 1 0 2110.43 3348 273 1352327099 95-90-47-47-dynip.superkabel. - -
+5 expertBotII - - 1 0 2098.42 2974 273 1352327113 95-90-47-47-dynip.superkabel. - -
+5 expertBotIII - - 1 0 2102.08 3168 273 1352327127 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotI - - 1 0 2130.43 3425 273 1352327141 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotII - - 1 0 2114.95 3245 273 1352327155 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotIII - - 1 0 2087.11 3240 273 1352327169 95-90-47-47-dynip.superkabel. - -
+5 SinnerSaint - - 1 0 1444.75 4415 145 1352403697 208.169.68.75 ?NT________________! gvemmanuel@candw.ag
+5 meowbg_joe - - 1 0 1500.00 0 0 1352403843 93.132.251.129 meowBG -
+6
+
+Value of 'boardstyle' set to 3.
+
+** You invited expertBotII to resume a saved match.
+expertBotII has joined you. Your running match was loaded.
+meowbg_joe and expertBotII are resuming their 1 point match..
+turn: meowbg_joe.
+match length: 1
+points for meowbg_joe: 0
+points for expertBotII: 0
+board:You:expertBotII:1:0:0:0:3:-2:3:3:0:3:0:0:0:-1:0:0:0:0:0:0:-2:-2:-2:-2:-2:-2:2:0:1:1:1:1:0:0:1:1:1:0:1:-1:0:25:0:0:1:0:4:0:0:0
+5 expertBotII meowbg_joe - 1 0 2098.42 2974 0 1352327113 95-90-47-47-dynip.superkabel. - -
+6
+5 meowbg_joe expertBotII - 1 0 1500.00 0 0 1352403843 frbg-5d84fb81.pool.mediaWays. meowBG -
+6
+
+12 expertBotII Hello! Enjoy this match. Good luck.
+Please move 4 pieces.
+
+board:You:expertBotII:1:0:0:0:3:-2:3:4:0:2:0:0:0:-1:0:0:0:0:0:0:-2:-2:-2:-2:-2:-2:3:0:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:4:0:0:0
+expertBotII rolls 5 and 1.
+board:You:expertBotII:1:0:0:0:3:-2:3:4:0:2:0:0:0:-1:0:0:0:0:0:0:-2:-2:-2:-2:-2:-2:3:0:0:-1:0:0:5:1:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+expertBotII moves 2-7 7-8 .
+board:You:expertBotII:1:0:0:0:3:-1:3:4:0:2:0:-1:0:-1:0:0:0:0:0:0:-2:-2:-2:-2:-2:-2:3:0:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+You roll 3 and 4.
+board:You:expertBotII:1:0:0:0:3:-1:3:4:0:2:0:-1:0:-1:0:0:0:0:0:0:-2:-2:-2:-2:-2:-2:3:0:0:1:3:4:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+Please move 2 pieces.
+
+board:You:expertBotII:1:0:0:-1:3:1:4:4:0:0:0:-1:0:-1:0:0:0:0:0:0:-2:-2:-2:-2:-2:-2:3:0:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:1:2:0:0:0
+expertBotII rolls 5 and 3.
+board:You:expertBotII:1:0:0:-1:3:1:4:4:0:0:0:-1:0:-1:0:0:0:0:0:0:-2:-2:-2:-2:-2:-2:3:0:0:-1:0:0:5:3:1:1:1:0:1:-1:0:25:0:0:0:1:2:0:0:0
+
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotII moves 0-5 10-13 .
+board:You:expertBotII:1:0:0:0:3:1:4:4:-1:0:0:-1:0:0:0:0:-1:0:0:0:-2:-2:-2:-2:-2:-2:3:0:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+You roll 1 and 1.
+board:You:expertBotII:1:0:0:0:3:1:4:4:-1:0:0:-1:0:0:0:0:-1:0:0:0:-2:-2:-2:-2:-2:-2:3:0:0:1:1:1:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:4:0:0:0
+Please move 4 pieces.
+
+SinnerSaint and worldclassBotII start a 11 point match..
+5 worldclassBotII SinnerSaint - 1 0 2114.95 3245 0 1352327155 95-90-47-47-dynip.superkabel. - -
+6
+5 SinnerSaint worldclassBotII - 1 0 1444.75 4415 0 1352403697 208.169.68.75 ?NT________________! gvemmanuel@candw.ag
+6
+
+board:You:expertBotII:1:0:0:0:3:3:4:2:-1:0:0:-1:0:0:0:0:-1:0:0:0:-2:-2:-2:-2:-2:-2:3:0:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:4:0:0:0
+expertBotII rolls 4 and 2.
+board:You:expertBotII:1:0:0:0:3:3:4:2:-1:0:0:-1:0:0:0:0:-1:0:0:0:-2:-2:-2:-2:-2:-2:3:0:0:-1:0:0:4:2:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotII moves 13-17 17-19 .
+board:You:expertBotII:1:0:0:0:3:3:4:2:-1:0:0:-1:0:0:0:0:0:0:0:0:-2:-2:-3:-2:-2:-2:3:0:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+You roll 2 and 1.
+board:You:expertBotII:1:0:0:0:3:3:4:2:-1:0:0:-1:0:0:0:0:0:0:0:0:-2:-2:-3:-2:-2:-2:3:0:0:1:2:1:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+Please move 2 pieces.
+
+board:You:expertBotII:1:0:0:0:3:4:5:0:-1:0:0:-1:0:0:0:0:0:0:0:0:-2:-2:-3:-2:-2:-2:3:0:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+expertBotII rolls 1 and 3.
+board:You:expertBotII:1:0:0:0:3:4:5:0:-1:0:0:-1:0:0:0:0:0:0:0:0:-2:-2:-3:-2:-2:-2:3:0:0:-1:0:0:1:3:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotII moves 8-9 9-12 .
+board:You:expertBotII:1:0:0:0:3:4:5:0:-1:0:0:0:0:0:0:-1:0:0:0:0:-2:-2:-3:-2:-2:-2:3:0:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+You roll 4 and 2.
+board:You:expertBotII:1:0:0:0:3:4:5:0:-1:0:0:0:0:0:0:-1:0:0:0:0:-2:-2:-3:-2:-2:-2:3:0:0:1:4:2:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:1:0:0:0
+The only possible move is 3-1 .
+board:You:expertBotII:1:0:0:0:4:4:4:0:-1:0:0:0:0:0:0:-1:0:0:0:0:-2:-2:-3:-2:-2:-2:3:0:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:1:0:0:0
+expertBotII rolls 6 and 5.
+board:You:expertBotII:1:0:0:0:4:4:4:0:-1:0:0:0:0:0:0:-1:0:0:0:0:-2:-2:-3:-2:-2:-2:3:0:0:-1:0:0:6:5:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+expertBotII moves 12-18 19-24 .
+board:You:expertBotII:1:0:0:0:4:4:4:0:-1:0:0:0:0:0:0:0:0:0:0:0:-2:-3:-2:-2:-2:-2:3:-1:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+You roll 1 and 1.
+board:You:expertBotII:1:0:0:0:4:4:4:0:-1:0:0:0:0:0:0:0:0:0:0:0:-2:-3:-2:-2:-2:-2:3:-1:0:1:1:1:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:4:0:0:0
+Please move 4 pieces.
+
+board:You:expertBotII:1:0:0:0:4:8:0:0:-1:0:0:0:0:0:0:0:0:0:0:0:-2:-3:-2:-2:-2:-2:3:-1:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:4:0:0:0
+expertBotII rolls 3 and 2.
+board:You:expertBotII:1:0:0:0:4:8:0:0:-1:0:0:0:0:0:0:0:0:0:0:0:-2:-3:-2:-2:-2:-2:3:-1:0:-1:0:0:3:2:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+
+expertBotII moves 5-8 18-20 .
+board:You:expertBotII:1:0:0:0:4:8:0:0:0:0:0:-1:0:0:0:0:0:0:0:0:-2:-2:-2:-3:-2:-2:3:-1:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+You roll 3 and 6.
+board:You:expertBotII:1:0:0:0:4:8:0:0:0:0:0:-1:0:0:0:0:0:0:0:0:-2:-2:-2:-3:-2:-2:3:-1:0:1:3:6:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:0:0:0:0
+
+You can't move.
+board:You:expertBotII:1:0:0:0:4:8:0:0:0:0:0:-1:0:0:0:0:0:0:0:0:-2:-2:-2:-3:-2:-2:3:-1:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:0:0:0:0
+expertBotII rolls 2 and 5.
+board:You:expertBotII:1:0:0:0:4:8:0:0:0:0:0:-1:0:0:0:0:0:0:0:0:-2:-2:-2:-3:-2:-2:3:-1:0:-1:0:0:2:5:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+expertBotII moves 8-10 10-15 .
+board:You:expertBotII:1:0:0:0:4:8:0:0:0:0:0:0:0:0:0:0:0:0:-1:0:-2:-2:-2:-3:-2:-2:3:-1:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+You roll 6 and 6.
+board:You:expertBotII:1:0:0:0:4:8:0:0:0:0:0:0:0:0:0:0:0:0:-1:0:-2:-2:-2:-3:-2:-2:3:-1:0:1:6:6:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:0:0:0:0
+You can't move.
+board:You:expertBotII:1:0:0:0:4:8:0:0:0:0:0:0:0:0:0:0:0:0:-1:0:-2:-2:-2:-3:-2:-2:3:-1:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:0:0:0:0
+expertBotII rolls 3 and 4.
+board:You:expertBotII:1:0:0:0:4:8:0:0:0:0:0:0:0:0:0:0:0:0:-1:0:-2:-2:-2:-3:-2:-2:3:-1:0:-1:0:0:3:4:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+expertBotII moves 15-18 18-22 .
+board:You:expertBotII:1:0:0:0:4:8:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-2:-2:-2:-3:-2:-3:3:-1:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+You roll 6 and 3.
+board:You:expertBotII:1:0:0:0:4:8:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-2:-2:-2:-3:-2:-3:3:-1:0:1:6:3:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:0:0:0:0
+
+You can't move.
+board:You:expertBotII:1:0:0:0:4:8:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-2:-2:-2:-3:-2:-3:3:-1:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:0:0:0:0
+expertBotII rolls 1 and 4.
+board:You:expertBotII:1:0:0:0:4:8:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-2:-2:-2:-3:-2:-3:3:-1:0:-1:0:0:1:4:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+expertBotII moves 17-18 17-21 .
+board:You:expertBotII:1:0:0:0:4:8:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-3:-2:-3:-3:-3:3:-1:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+You roll 5 and 6.
+board:You:expertBotII:1:0:0:0:4:8:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-3:-2:-3:-3:-3:3:-1:0:1:5:6:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+The only possible move is 23-17 17-12 .
+board:You:expertBotII:1:0:0:0:4:8:0:0:0:0:0:0:0:0:0:1:0:0:0:0:0:-3:-2:-3:-3:-3:2:-1:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+expertBotII rolls 2 and 2.
+board:You:expertBotII:1:0:0:0:4:8:0:0:0:0:0:0:0:0:0:1:0:0:0:0:0:-3:-2:-3:-3:-3:2:-1:0:-1:0:0:2:2:1:1:1:0:1:-1:0:25:0:0:0:0:4:0:0:0
+
+expertBotII moves 18-20 18-20 18-20 20-22 .
+board:You:expertBotII:1:0:0:0:4:8:0:0:0:0:0:0:0:0:0:1:0:0:0:0:0:0:-2:-5:-3:-4:2:-1:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:4:0:0:0
+You roll 1 and 1.
+board:You:expertBotII:1:0:0:0:4:8:0:0:0:0:0:0:0:0:0:1:0:0:0:0:0:0:-2:-5:-3:-4:2:-1:0:1:1:1:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:4:0:0:0
+
+Please move 4 pieces.
+
+board:You:expertBotII:1:0:0:0:4:8:0:0:0:0:0:1:0:0:0:0:0:0:0:0:0:0:-2:-5:-3:-4:2:-1:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:4:0:0:0
+expertBotII rolls 4 and 2.
+board:You:expertBotII:1:0:0:0:4:8:0:0:0:0:0:1:0:0:0:0:0:0:0:0:0:0:-2:-5:-3:-4:2:-1:0:-1:0:0:4:2:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotII moves 20-22 21-25 .
+board:You:expertBotII:1:0:0:0:4:8:0:0:0:0:0:1:0:0:0:0:0:0:0:0:0:0:-2:-4:-2:-5:2:-1:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:1:0:0:2:0:0:0
+You roll 3 and 2.
+board:You:expertBotII:1:0:0:0:4:8:0:0:0:0:0:1:0:0:0:0:0:0:0:0:0:0:-2:-4:-2:-5:2:-1:0:1:3:2:0:0:1:1:1:0:1:-1:0:25:0:1:0:0:2:0:0:0
+Please move 2 pieces.
+
+board:You:expertBotII:1:0:0:0:4:8:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-2:-4:-2:-5:2:-1:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:0:1:0:0:2:0:0:0
+expertBotII rolls 5 and 4.
+board:You:expertBotII:1:0:0:0:4:8:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-2:-4:-2:-5:2:-1:0:-1:0:0:5:4:1:1:1:0:1:-1:0:25:0:1:0:0:2:0:0:0
+
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotII moves 20-25 20-24 .
+board:You:expertBotII:1:0:0:0:4:8:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-2:-2:-2:-5:2:-2:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:2:0:0:2:0:0:0
+You roll 6 and 6.
+board:You:expertBotII:1:0:0:0:4:8:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-2:-2:-2:-5:2:-2:0:1:6:6:0:0:1:1:1:0:1:-1:0:25:0:2:0:0:4:0:0:0
+Please move 4 pieces.
+
+board:You:expertBotII:1:0:0:0:4:8:1:0:0:0:0:0:0:0:2:0:0:0:0:0:0:0:-2:-2:-2:-5:0:-2:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:0:2:0:0:4:0:0:0
+expertBotII rolls 2 and 4.
+board:You:expertBotII:1:0:0:0:4:8:1:0:0:0:0:0:0:0:2:0:0:0:0:0:0:0:-2:-2:-2:-5:0:-2:0:-1:0:0:2:4:1:1:1:0:1:-1:0:25:0:2:0:0:2:0:0:0
+
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+
+expertBotII moves 19-21 21-25 .
+board:You:expertBotII:1:0:0:0:4:8:1:0:0:0:0:0:0:0:2:0:0:0:0:0:0:0:-1:-2:-2:-5:0:-2:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:3:0:0:2:0:0:0
+You roll 2 and 1.
+board:You:expertBotII:1:0:0:0:4:8:1:0:0:0:0:0:0:0:2:0:0:0:0:0:0:0:-1:-2:-2:-5:0:-2:0:1:2:1:0:0:1:1:1:0:1:-1:0:25:0:3:0:0:2:0:0:0
+Please move 2 pieces.
+
+board:You:expertBotII:1:0:0:0:4:8:1:0:0:0:0:1:0:0:1:0:0:0:0:0:0:0:-1:-2:-2:-5:0:-2:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:0:3:0:0:2:0:0:0
+expertBotII rolls 1 and 2.
+board:You:expertBotII:1:0:0:0:4:8:1:0:0:0:0:1:0:0:1:0:0:0:0:0:0:0:-1:-2:-2:-5:0:-2:0:-1:0:0:1:2:1:1:1:0:1:-1:0:25:0:3:0:0:2:0:0:0
+
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotII moves 22-23 23-25 .
+board:You:expertBotII:1:0:0:0:4:8:1:0:0:0:0:1:0:0:1:0:0:0:0:0:0:0:-1:-2:-2:-4:0:-2:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:4:0:0:2:0:0:0
+You roll 2 and 5.
+board:You:expertBotII:1:0:0:0:4:8:1:0:0:0:0:1:0:0:1:0:0:0:0:0:0:0:-1:-2:-2:-4:0:-2:0:1:2:5:0:0:1:1:1:0:1:-1:0:25:0:4:0:0:2:0:0:0
+Please move 2 pieces.
+
+board:You:expertBotII:1:0:0:0:4:8:1:0:0:2:0:0:0:0:0:0:0:0:0:0:0:0:-1:-2:-2:-4:0:-2:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:0:4:0:0:2:0:0:0
+expertBotII rolls 3 and 1.
+board:You:expertBotII:1:0:0:0:4:8:1:0:0:2:0:0:0:0:0:0:0:0:0:0:0:0:-1:-2:-2:-4:0:-2:0:-1:0:0:3:1:1:1:1:0:1:-1:0:25:0:4:0:0:2:0:0:0
+
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotII moves 22-25 24-25 .
+board:You:expertBotII:1:0:0:0:4:8:1:0:0:2:0:0:0:0:0:0:0:0:0:0:0:0:-1:-2:-2:-3:0:-1:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:6:0:0:2:0:0:0
+You roll 4 and 3.
+board:You:expertBotII:1:0:0:0:4:8:1:0:0:2:0:0:0:0:0:0:0:0:0:0:0:0:-1:-2:-2:-3:0:-1:0:1:4:3:0:0:1:1:1:0:1:-1:0:25:0:6:0:0:2:0:0:0
+
+Please move 2 pieces.
+
+board:You:expertBotII:1:0:0:0:4:9:0:0:0:1:0:0:0:0:0:0:0:0:0:0:0:0:-1:-2:-2:-3:0:-1:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:1:6:0:0:2:0:0:0
+expertBotII rolls 5 and 4.
+board:You:expertBotII:1:0:0:0:4:9:0:0:0:1:0:0:0:0:0:0:0:0:0:0:0:0:-1:-2:-2:-3:0:-1:0:-1:0:0:5:4:1:1:1:0:1:-1:0:25:1:6:0:0:2:0:0:0
+
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotII moves 20-25 21-25 .
+board:You:expertBotII:1:0:0:0:4:9:0:0:0:1:0:0:0:0:0:0:0:0:0:0:0:0:-1:-1:-1:-3:0:-1:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:1:8:0:0:2:0:0:0
+You roll 1 and 1.
+board:You:expertBotII:1:0:0:0:4:9:0:0:0:1:0:0:0:0:0:0:0:0:0:0:0:0:-1:-1:-1:-3:0:-1:0:1:1:1:0:0:1:1:1:0:1:-1:0:25:1:8:0:0:4:0:0:0
+
+Please move 4 pieces.
+
+board:You:expertBotII:1:0:0:0:0:9:0:0:0:1:0:0:0:0:0:0:0:0:0:0:0:0:-1:-1:-1:-3:0:-1:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:5:8:0:0:4:0:0:0
+expertBotII rolls 4 and 1.
+board:You:expertBotII:1:0:0:0:0:9:0:0:0:1:0:0:0:0:0:0:0:0:0:0:0:0:-1:-1:-1:-3:0:-1:0:-1:0:0:4:1:1:1:1:0:1:-1:0:25:5:8:0:0:2:0:0:0
+
+expertBotII moves 21-25 24-25 .
+board:You:expertBotII:1:0:0:0:0:9:0:0:0:1:0:0:0:0:0:0:0:0:0:0:0:0:-1:-1:0:-3:0:0:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:5:10:0:0:2:0:0:0
+You roll 4 and 4.
+board:You:expertBotII:1:0:0:0:0:9:0:0:0:1:0:0:0:0:0:0:0:0:0:0:0:0:-1:-1:0:-3:0:0:0:1:4:4:0:0:1:1:1:0:1:-1:0:25:5:10:0:0:4:0:0:0
+
+The only possible move is 6-2 2-off 2-off 2-off .
+board:You:expertBotII:1:0:0:0:0:7:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1:-1:0:-3:0:0:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:8:10:0:0:4:0:0:0
+expertBotII rolls 5 and 3.
+board:You:expertBotII:1:0:0:0:0:7:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1:-1:0:-3:0:0:0:-1:0:0:5:3:1:1:1:0:1:-1:0:25:8:10:0:0:2:0:0:0
+expertBotII moves 20-25 22-25 .
+board:You:expertBotII:1:0:0:0:0:7:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1:0:0:-2:0:0:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:8:12:0:0:2:0:0:0
+You roll 2 and 4.
+board:You:expertBotII:1:0:0:0:0:7:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1:0:0:-2:0:0:0:1:2:4:0:0:1:1:1:0:1:-1:0:25:8:12:0:0:2:0:0:0
+
+The only possible move is 2-off 2-off .
+board:You:expertBotII:1:0:0:0:0:5:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1:0:0:-2:0:0:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:10:12:0:0:2:0:0:0
+expertBotII rolls 6 and 2.
+board:You:expertBotII:1:0:0:0:0:5:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1:0:0:-2:0:0:0:-1:0:0:6:2:1:1:1:0:1:-1:0:25:10:12:0:0:2:0:0:0
+expertBotII moves 19-25 22-24 .
+board:You:expertBotII:1:0:0:0:0:5:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1:0:-1:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:10:13:0:0:2:0:0:0
+You roll 4 and 4.
+board:You:expertBotII:1:0:0:0:0:5:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1:0:-1:0:1:4:4:0:0:1:1:1:0:1:-1:0:25:10:13:0:0:4:0:0:0
+The only possible move is 2-off 2-off 2-off 2-off .
+board:You:expertBotII:1:0:0:0:0:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1:0:-1:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:14:13:0:0:4:0:0:0
+expertBotII rolls 5 and 3.
+board:You:expertBotII:1:0:0:0:0:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1:0:-1:0:-1:0:0:5:3:1:1:1:0:1:-1:0:25:14:13:0:0:2:0:0:0
+
+The only possible move is 22-off 24-off .
+expertBotII wins the game and gets 1 point. Sorry.
+expertBotII wins the 1 point match 1-0 .
+expertBotII wins a 1 point match against meowbg_joe  1-0 .
+5 meowbg_joe - - 1 0 1493.33 1 2 1352403843 frbg-5d84fb81.pool.mediaWays. meowBG -
+6
+5 expertBotII - - 1 0 2099.76 2975 0 1352327113 95-90-47-47-dynip.superkabel. - -
+6
+
+12 expertBotII Thanks for playing this match :).
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+** You're not playing.
+
+Establishing connection to tigergammon.com:4321
+
+1 meowbg_joe 1352403843 frbg-5d84fb81.pool.mediaWays.net
+2 meowbg_joe 1 1 0 0 0 0 1 1 1 0 0 0 1 1493.33 0 1 0 1 0 UTC
+3
++--------------------------------------------------------------------+
+|                ___.           __                                   |
+|                \_ |__   _____/  |______                            |
+|                 | __ \_/ __ \   __\__  \                           |
+|                 | \_\ \  ___/|  |  / __ \_                         |
+|                 |___  /\___  >__| (____  /                         |
+|                     \/     \/          \/                          |
+|                                                                    |
+|                                                                    |
+|                  WELCOME TO OUR NEW HOME!!                         |
+|                                                                    |
+|         WATCH ANNOUNCEMENTS ON http://tigergammon.com              |
+|           Also see http://twitter.com/tigergammon                  |
+|                                                                    |
+|         Enjoy the bots. Their name denotes their playing           |
+|         skill according to gnubg naming conventions.               |
+|                                                                    |
+|           New version 0.8.6 released on Nov. 3 2012                |
+|           -----------------------------------------                |
+|         Don't forget to check the news (command 'news')            |
+|                                                                    |
++--------------------------------------------------------------------+
+4
+
+5 SinnerSaint - - 1 0 1444.75 4415 321 1352404835 208.169.68.75 ?NT________________! gvemmanuel@candw.ag
+5 hannes - - 0 0 1450.46 11 1 1352404890 95-90-47-47-dynip.superkabel. - helper@tigergammon.com
+5 tigergammon_bot_II - - 1 0 1897.11 57928 368 1352404912 95-90-47-47-dynip.superkabel. 3DFiBs2.2.39 -
+5 beginnerBotI - - 1 0 796.60 3184 299 1352404986 95-90-47-47-dynip.superkabel. - -
+5 beginnerBotII - - 1 0 816.61 3209 285 1352405000 95-90-47-47-dynip.superkabel. - -
+5 beginnerBotIII - - 1 0 763.02 3379 271 1352405014 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotI - - 1 0 939.70 3491 257 1352405028 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotII - - 1 0 936.55 3259 243 1352405042 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotIII - - 1 0 925.38 3402 229 1352405056 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotI - - 1 0 1113.66 2921 215 1352405070 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotII - - 1 0 1095.61 3158 201 1352405084 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotIII - - 1 0 1106.64 3184 187 1352405099 95-90-47-47-dynip.superkabel. - -
+5 advancedBotI - - 1 0 1828.57 3621 172 1352405113 95-90-47-47-dynip.superkabel. - -
+5 advancedBotII - - 1 0 1850.88 3165 158 1352405127 95-90-47-47-dynip.superkabel. - -
+5 advancedBotIII - - 1 0 1857.53 3307 144 1352405141 95-90-47-47-dynip.superkabel. - -
+5 expertBotI - - 1 0 2110.43 3348 130 1352405155 95-90-47-47-dynip.superkabel. - -
+5 expertBotII - - 1 0 2099.76 2975 116 1352405169 95-90-47-47-dynip.superkabel. - -
+5 expertBotIII - - 1 0 2102.08 3168 102 1352405183 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotI - - 1 0 2130.43 3425 88 1352405197 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotII - - 1 0 2114.95 3245 74 1352405211 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotIII - - 1 0 2087.11 3240 60 1352405225 95-90-47-47-dynip.superkabel. - -
+5 meowbg_joe - - 1 0 1493.33 1 0 1352405286 93.132.251.129 meowBG -
+6
+
+Value of 'boardstyle' set to 3.
+
+Establishing connection to tigergammon.com:4321
+** You are disconnected.
+
+** Warning: You are already logged in.
+
+1 meowbg_joe 1352405286 frbg-5d84fb81.pool.mediaWays.net
+2 meowbg_joe 1 1 0 0 0 0 1 1 1 0 0 0 1 1493.33 0 1 0 1 0 UTC
+3
++--------------------------------------------------------------------+
+|                ___.           __                                   |
+|                \_ |__   _____/  |______                            |
+|                 | __ \_/ __ \   __\__  \                           |
+|                 | \_\ \  ___/|  |  / __ \_                         |
+|                 |___  /\___  >__| (____  /                         |
+|                     \/     \/          \/                          |
+|                                                                    |
+|                                                                    |
+|                  WELCOME TO OUR NEW HOME!!                         |
+|                                                                    |
+|         WATCH ANNOUNCEMENTS ON http://tigergammon.com              |
+|           Also see http://twitter.com/tigergammon                  |
+|                                                                    |
+|         Enjoy the bots. Their name denotes their playing           |
+|         skill according to gnubg naming conventions.               |
+|                                                                    |
+|           New version 0.8.6 released on Nov. 3 2012                |
+|           -----------------------------------------                |
+|         Don't forget to check the news (command 'news')            |
+|                                                                    |
++--------------------------------------------------------------------+
+4
+
+5 SinnerSaint - - 1 0 1444.75 4415 325 1352404835 208.169.68.75 ?NT________________! gvemmanuel@candw.ag
+5 hannes - - 0 0 1450.46 11 1 1352404890 95-90-47-47-dynip.superkabel. - helper@tigergammon.com
+5 tigergammon_bot_II - - 1 0 1897.11 57928 372 1352404912 95-90-47-47-dynip.superkabel. 3DFiBs2.2.39 -
+5 beginnerBotI - - 1 0 796.60 3184 303 1352404986 95-90-47-47-dynip.superkabel. - -
+5 beginnerBotII - - 1 0 816.61 3209 289 1352405000 95-90-47-47-dynip.superkabel. - -
+5 beginnerBotIII - - 1 0 763.02 3379 275 1352405014 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotI - - 1 0 939.70 3491 261 1352405028 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotII - - 1 0 936.55 3259 247 1352405042 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotIII - - 1 0 925.38 3402 233 1352405056 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotI - - 1 0 1113.66 2921 219 1352405070 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotII - - 1 0 1095.61 3158 205 1352405084 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotIII - - 1 0 1106.64 3184 190 1352405099 95-90-47-47-dynip.superkabel. - -
+5 advancedBotI - - 1 0 1828.57 3621 176 1352405113 95-90-47-47-dynip.superkabel. - -
+5 advancedBotII - - 1 0 1850.88 3165 162 1352405127 95-90-47-47-dynip.superkabel. - -
+5 advancedBotIII - - 1 0 1857.53 3307 148 1352405141 95-90-47-47-dynip.superkabel. - -
+5 expertBotI - - 1 0 2110.43 3348 134 1352405155 95-90-47-47-dynip.superkabel. - -
+5 expertBotII - - 1 0 2099.76 2975 120 1352405169 95-90-47-47-dynip.superkabel. - -
+5 expertBotIII - - 1 0 2102.08 3168 106 1352405183 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotI - - 1 0 2130.43 3425 92 1352405197 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotII - - 1 0 2114.95 3245 78 1352405211 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotIII - - 1 0 2087.11 3240 64 1352405225 95-90-47-47-dynip.superkabel. - -
+5 meowbg_joe - - 1 0 1493.33 1 0 1352405290 93.132.251.129 meowBG -
+6
+
+Value of 'boardstyle' set to 3.
+
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+13 SinnerSaint thanx man
+
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Establishing connection to tigergammon.com:4321
+Read response failed: telnet connection closed
+** Warning: You are already logged in.
+login: login: 
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Establishing connection to tigergammon.com:4321
+Read response failed: telnet connection closed
+** You are disconnected.
+
+Read response failed: telnet connection closed
+** Warning: You are already logged in.
+
+1 meowbg_joe 1352405290 frbg-5d84fb81.pool.mediaWays.net
+2 meowbg_joe 1 1 0 0 0 0 1 1 1 0 0 0 1 1493.33 0 1 0 1 0 UTC
+3
++--------------------------------------------------------------------+
+|                ___.           __                                   |
+|                \_ |__   _____/  |______                            |
+|                 | __ \_/ __ \   __\__  \                           |
+|                 | \_\ \  ___/|  |  / __ \_                         |
+|                 |___  /\___  >__| (____  /                         |
+|                     \/     \/          \/                          |
+|                                                                    |
+|                                                                    |
+|                  WELCOME TO OUR NEW HOME!!                         |
+|                                                                    |
+|         WATCH ANNOUNCEMENTS ON http://tigergammon.com              |
+|           Also see http://twitter.com/tigergammon                  |
+|                                                                    |
+|         Enjoy the bots. Their name denotes their playing           |
+|         skill according to gnubg naming conventions.               |
+|                                                                    |
+|           New version 0.8.6 released on Nov. 3 2012                |
+|           -----------------------------------------                |
+|         Don't forget to check the news (command 'news')            |
+|                                                                    |
++--------------------------------------------------------------------+
+4
+
+5 SinnerSaint - - 1 0 1444.75 4415 7 1352404835 208.169.68.75 ?NT________________! gvemmanuel@candw.ag
+5 hannes - - 0 0 1450.46 11 10 1352404890 95-90-47-47-dynip.superkabel. - helper@tigergammon.com
+5 tigergammon_bot_II - - 1 0 1897.11 57928 381 1352404912 95-90-47-47-dynip.superkabel. 3DFiBs2.2.39 -
+5 beginnerBotI - - 1 0 796.60 3184 312 1352404986 95-90-47-47-dynip.superkabel. - -
+5 beginnerBotII - - 1 0 816.61 3209 298 1352405000 95-90-47-47-dynip.superkabel. - -
+5 beginnerBotIII - - 1 0 763.02 3379 284 1352405014 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotI - - 1 0 939.70 3491 270 1352405028 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotII - - 1 0 936.55 3259 256 1352405042 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotIII - - 1 0 925.38 3402 242 1352405056 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotI - - 1 0 1113.66 2921 228 1352405070 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotII - - 1 0 1095.61 3158 214 1352405084 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotIII - - 1 0 1106.64 3184 200 1352405099 95-90-47-47-dynip.superkabel. - -
+5 advancedBotI - - 1 0 1828.57 3621 186 1352405113 95-90-47-47-dynip.superkabel. - -
+5 advancedBotII - - 1 0 1850.88 3165 171 1352405127 95-90-47-47-dynip.superkabel. - -
+5 advancedBotIII - - 1 0 1857.53 3307 157 1352405141 95-90-47-47-dynip.superkabel. - -
+5 expertBotI - - 1 0 2110.43 3348 143 1352405155 95-90-47-47-dynip.superkabel. - -
+5 expertBotII - - 1 0 2099.76 2975 129 1352405169 95-90-47-47-dynip.superkabel. - -
+5 expertBotIII - - 1 0 2102.08 3168 115 1352405183 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotI - - 1 0 2130.43 3425 101 1352405197 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotII - - 1 0 2114.95 3245 87 1352405211 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotIII - - 1 0 2087.11 3240 73 1352405225 95-90-47-47-dynip.superkabel. - -
+5 meowbg_joe - - 1 0 1493.33 1 0 1352405299 93.132.251.129 meowBG -
+6
+
+Value of 'boardstyle' set to 3.
+
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Establishing connection to tigergammon.com:4321
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+** Warning: You are already logged in.
+login: login: 
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Establishing connection to tigergammon.com:4321
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+** You are disconnected.
+
+** Warning: You are already logged in.
+
+1 meowbg_joe 1352405299 frbg-5d84fb81.pool.mediaWays.net
+2 meowbg_joe 1 1 0 0 0 0 1 1 1 0 0 0 1 1493.33 0 1 0 1 0 UTC
+3
++--------------------------------------------------------------------+
+|                ___.           __                                   |
+|                \_ |__   _____/  |______                            |
+|                 | __ \_/ __ \   __\__  \                           |
+|                 | \_\ \  ___/|  |  / __ \_                         |
+|                 |___  /\___  >__| (____  /                         |
+|                     \/     \/          \/                          |
+|                                                                    |
+|                                                                    |
+|                  WELCOME TO OUR NEW HOME!!                         |
+|                                                                    |
+|         WATCH ANNOUNCEMENTS ON http://tigergammon.com              |
+|           Also see http://twitter.com/tigergammon                  |
+|                                                                    |
+|         Enjoy the bots. Their name denotes their playing           |
+|         skill according to gnubg naming conventions.               |
+|                                                                    |
+|           New version 0.8.6 released on Nov. 3 2012                |
+|           -----------------------------------------                |
+|         Don't forget to check the news (command 'news')            |
+|                                                                    |
++--------------------------------------------------------------------+
+4
+
+5 SinnerSaint - - 1 0 1444.75 4415 12 1352404835 208.169.68.75 ?NT________________! gvemmanuel@candw.ag
+5 hannes - - 0 0 1450.46 11 16 1352404890 95-90-47-47-dynip.superkabel. - helper@tigergammon.com
+5 tigergammon_bot_II - - 1 0 1897.11 57928 387 1352404912 95-90-47-47-dynip.superkabel. 3DFiBs2.2.39 -
+5 beginnerBotI - - 1 0 796.60 3184 318 1352404986 95-90-47-47-dynip.superkabel. - -
+5 beginnerBotII - - 1 0 816.61 3209 303 1352405000 95-90-47-47-dynip.superkabel. - -
+5 beginnerBotIII - - 1 0 763.02 3379 289 1352405014 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotI - - 1 0 939.70 3491 275 1352405028 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotII - - 1 0 936.55 3259 261 1352405042 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotIII - - 1 0 925.38 3402 247 1352405056 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotI - - 1 0 1113.66 2921 233 1352405070 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotII - - 1 0 1095.61 3158 219 1352405084 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotIII - - 1 0 1106.64 3184 205 1352405099 95-90-47-47-dynip.superkabel. - -
+5 advancedBotI - - 1 0 1828.57 3621 191 1352405113 95-90-47-47-dynip.superkabel. - -
+5 advancedBotII - - 1 0 1850.88 3165 177 1352405127 95-90-47-47-dynip.superkabel. - -
+5 advancedBotIII - - 1 0 1857.53 3307 163 1352405141 95-90-47-47-dynip.superkabel. - -
+5 expertBotI - - 1 0 2110.43 3348 148 1352405155 95-90-47-47-dynip.superkabel. - -
+5 expertBotII - - 1 0 2099.76 2975 135 1352405169 95-90-47-47-dynip.superkabel. - -
+5 expertBotIII - - 1 0 2102.08 3168 120 1352405183 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotI - - 1 0 2130.43 3425 106 1352405197 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotII - - 1 0 2114.95 3245 92 1352405211 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotIII - - 1 0 2087.11 3240 78 1352405225 95-90-47-47-dynip.superkabel. - -
+5 meowbg_joe - - 1 0 1493.33 1 0 1352405304 93.132.251.129 meowBG -
+6
+
+Value of 'boardstyle' set to 3.
+
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Establishing connection to tigergammon.com:4321
+
+1 meowbg_joe 1352405304 frbg-5d84fb81.pool.mediaWays.net
+2 meowbg_joe 1 1 0 0 0 0 1 1 1 0 0 0 1 1493.33 0 1 0 1 0 UTC
+3
++--------------------------------------------------------------------+
+|                ___.           __                                   |
+|                \_ |__   _____/  |______                            |
+|                 | __ \_/ __ \   __\__  \                           |
+|                 | \_\ \  ___/|  |  / __ \_                         |
+|                 |___  /\___  >__| (____  /                         |
+|                     \/     \/          \/                          |
+|                                                                    |
+|                                                                    |
+|                  WELCOME TO OUR NEW HOME!!                         |
+|                                                                    |
+|         WATCH ANNOUNCEMENTS ON http://tigergammon.com              |
+|           Also see http://twitter.com/tigergammon                  |
+|                                                                    |
+|         Enjoy the bots. Their name denotes their playing           |
+|         skill according to gnubg naming conventions.               |
+|                                                                    |
+|           New version 0.8.6 released on Nov. 3 2012                |
+|           -----------------------------------------                |
+|         Don't forget to check the news (command 'news')            |
+|                                                                    |
++--------------------------------------------------------------------+
+4
+
+5 SinnerSaint - - 1 0 1443.79 4426 1013 1352404835 208.169.68.75 ?NT________________! gvemmanuel@candw.ag
+5 hannes - - 0 0 1450.46 11 975 1352404890 95-90-47-47-dynip.superkabel. - helper@tigergammon.com
+5 beginnerBotI - - 1 0 796.60 3184 126 1352404986 95-90-47-47-dynip.superkabel. - -
+5 beginnerBotII - - 1 0 816.61 3209 126 1352405000 95-90-47-47-dynip.superkabel. - -
+5 beginnerBotIII - - 1 0 763.02 3379 126 1352405014 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotI - - 1 0 939.70 3491 126 1352405028 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotII - - 1 0 935.66 3262 126 1352405042 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotIII - - 1 0 925.38 3402 126 1352405056 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotI - - 1 0 1113.66 2921 126 1352405070 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotII - - 1 0 1094.75 3165 126 1352405084 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotIII - - 1 0 1106.64 3184 126 1352405099 95-90-47-47-dynip.superkabel. - -
+5 advancedBotI - - 1 0 1828.57 3621 126 1352405113 95-90-47-47-dynip.superkabel. - -
+5 advancedBotII tigergammon_bot_II - 1 0 1850.88 3165 1 1352405127 95-90-47-47-dynip.superkabel. - -
+5 advancedBotIII - - 1 0 1857.53 3307 126 1352405141 95-90-47-47-dynip.superkabel. - -
+5 expertBotI - - 1 0 2110.43 3348 126 1352405155 95-90-47-47-dynip.superkabel. - -
+5 expertBotII - - 1 0 2099.76 2975 126 1352405169 95-90-47-47-dynip.superkabel. - -
+5 expertBotIII - - 1 0 2104.85 3171 126 1352405183 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotI - - 1 0 2130.43 3425 126 1352405197 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotII - - 1 0 2115.90 3256 126 1352405211 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotIII - - 1 0 2087.11 3240 126 1352405225 95-90-47-47-dynip.superkabel. - -
+5 tigergammon_bot_II advancedBotII - 1 0 1896.09 57941 1 1352405618 95-90-47-47-dynip.superkabel. 3DFiBs2.2.39 -
+5 meowbg_joe - - 1 0 1493.33 1 0 1352406579 93.132.251.129 meowBG -
+6
+
+Value of 'boardstyle' set to 3.
+
+** There's no saved match with expertBotII. Please give a match length.
+
+** There's no saved match with expertBotIII. Please give a match length.
+
+** You invited expertBotIII to a 3 point match.
+** Player expertBotIII has joined you for a 3 point match.
+meowbg_joe and expertBotIII start a 3 point match..
+Starting a new game with expertBotIII.
+You rolled 1, expertBotIII rolled 5
+expertBotIII makes the first move.
+board:You:expertBotIII:3:0:0:0:-2:0:0:0:0:5:0:3:0:0:0:-5:5:0:0:0:-3:0:-5:0:0:0:0:2:0:-1:0:0:1:5:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+5 expertBotIII meowbg_joe - 1 0 2104.85 3171 0 1352405183 95-90-47-47-dynip.superkabel. - -
+6
+5 meowbg_joe expertBotIII - 1 0 1493.33 1 0 1352406579 frbg-5d84fb81.pool.mediaWays. meowBG -
+6
+12 expertBotIII Hello! Enjoy this match. Good luck.
+
+expertBotIII moves 1-2 12-17 .
+board:You:expertBotIII:3:0:0:0:-1:-1:0:0:0:5:0:3:0:0:0:-4:5:0:0:0:-4:0:-5:0:0:0:0:2:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+It's your turn. Please roll or double
+
+Establishing connection to tigergammon.com:4321
+** Warning: You are already logged in.
+login: login: 
+login: 
+meowbg_joe has left the game with expertBotIII.
+5 meowbg_joe - - 1 0 1493.33 1 7 1352406579 frbg-5d84fb81.pool.mediaWays. meowBG -
+6
+5 expertBotIII - - 1 0 2104.85 3171 109 1352405183 95-90-47-47-dynip.superkabel. - -
+6
+
+Establishing connection to tigergammon.com:4321
+
+1 meowbg_joe 1352406579 frbg-5d84fb81.pool.mediaWays.net
+2 meowbg_joe 1 1 0 0 0 0 1 1 1 0 0 0 1 1493.33 0 1 0 1 0 UTC
+3
++--------------------------------------------------------------------+
+|                ___.           __                                   |
+|                \_ |__   _____/  |______                            |
+|                 | __ \_/ __ \   __\__  \                           |
+|                 | \_\ \  ___/|  |  / __ \_                         |
+|                 |___  /\___  >__| (____  /                         |
+|                     \/     \/          \/                          |
+|                                                                    |
+|                                                                    |
+|                  WELCOME TO OUR NEW HOME!!                         |
+|                                                                    |
+|         WATCH ANNOUNCEMENTS ON http://tigergammon.com              |
+|           Also see http://twitter.com/tigergammon                  |
+|                                                                    |
+|         Enjoy the bots. Their name denotes their playing           |
+|         skill according to gnubg naming conventions.               |
+|                                                                    |
+|           New version 0.8.6 released on Nov. 3 2012                |
+|           -----------------------------------------                |
+|         Don't forget to check the news (command 'news')            |
+|                                                                    |
++--------------------------------------------------------------------+
+4
+
+5 SinnerSaint - - 1 0 1443.79 4426 1155 1352404835 208.169.68.75 ?NT________________! gvemmanuel@candw.ag
+5 hannes - - 0 0 1450.46 11 1117 1352404890 95-90-47-47-dynip.superkabel. - helper@tigergammon.com
+5 beginnerBotI - - 1 0 796.60 3184 268 1352404986 95-90-47-47-dynip.superkabel. - -
+5 beginnerBotII - - 1 0 816.61 3209 268 1352405000 95-90-47-47-dynip.superkabel. - -
+5 beginnerBotIII - - 1 0 763.02 3379 268 1352405014 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotI - - 1 0 939.70 3491 268 1352405028 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotII - - 1 0 935.66 3262 268 1352405042 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotIII - - 1 0 925.38 3402 268 1352405056 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotI - - 1 0 1113.66 2921 268 1352405070 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotII - - 1 0 1094.75 3165 268 1352405084 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotIII - - 1 0 1106.64 3184 268 1352405099 95-90-47-47-dynip.superkabel. - -
+5 advancedBotI - - 1 0 1828.57 3621 268 1352405113 95-90-47-47-dynip.superkabel. - -
+5 advancedBotII tigergammon_bot_II - 1 0 1850.88 3165 3 1352405127 95-90-47-47-dynip.superkabel. - -
+5 advancedBotIII - - 1 0 1857.53 3307 268 1352405141 95-90-47-47-dynip.superkabel. - -
+5 expertBotI - - 1 0 2110.43 3348 268 1352405155 95-90-47-47-dynip.superkabel. - -
+5 expertBotII - - 1 0 2099.76 2975 268 1352405169 95-90-47-47-dynip.superkabel. - -
+5 expertBotIII - - 1 0 2104.85 3171 121 1352405183 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotI - - 1 0 2130.43 3425 268 1352405197 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotII - - 1 0 2115.90 3256 268 1352405211 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotIII - - 1 0 2087.11 3240 268 1352405225 95-90-47-47-dynip.superkabel. - -
+5 tigergammon_bot_II advancedBotII - 1 0 1896.09 57941 59 1352405618 95-90-47-47-dynip.superkabel. 3DFiBs2.2.39 -
+5 meowbg_joe - - 1 0 1493.33 1 0 1352406721 93.132.251.129 meowBG -
+6
+
+Value of 'boardstyle' set to 3.
+
+** You invited expertBotIII to resume a saved match.
+
+expertBotIII has joined you. Your running match was loaded.
+meowbg_joe and expertBotIII are resuming their 3 point match..
+turn: meowbg_joe.
+match length: 3
+points for meowbg_joe: 0
+points for expertBotIII: 0
+It's your turn. Please roll or double
+5 expertBotIII meowbg_joe - 1 0 2104.85 3171 0 1352405183 95-90-47-47-dynip.superkabel. - -
+6
+5 meowbg_joe expertBotIII - 1 0 1493.33 1 0 1352406721 frbg-5d84fb81.pool.mediaWays. meowBG -
+6
+12 expertBotIII Hello! Enjoy this match. Good luck.
+
+tigergammon_bot_II wins a 9 point match against advancedBotII  9-5 .
+5 tigergammon_bot_II - - 1 0 1901.62 57950 18 1352405618 95-90-47-47-dynip.superkabel. 3DFiBs2.2.39 -
+6
+5 advancedBotII - - 1 0 1845.35 3174 4 1352405127 95-90-47-47-dynip.superkabel. - -
+6
+
+tigergammon_bot_II and casualPlayerBotIII start a 7 point match..
+5 casualPlayerBotIII tigergammon_bot_II - 1 0 925.38 3402 0 1352405056 95-90-47-47-dynip.superkabel. - -
+6
+5 tigergammon_bot_II casualPlayerBotIII - 1 0 1901.62 57950 0 1352405618 95-90-47-47-dynip.superkabel. 3DFiBs2.2.39 -
+6
+
+board:You:expertBotIII:3:0:0:0:-1:-1:0:0:0:5:0:3:0:0:0:-4:5:0:0:0:-4:0:-5:0:0:0:0:2:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+Establishing connection to tigergammon.com:4321
+** You are disconnected.
+meowbg_joe has left the game with expertBotIII.
+5 meowbg_joe - - 1 0 1493.33 1 138 1352406721 frbg-5d84fb81.pool.mediaWays. meowBG -
+6
+5 expertBotIII - - 1 0 2104.85 3171 160 1352405183 95-90-47-47-dynip.superkabel. - -
+6
+
+** Warning: You are already logged in.
+
+1 meowbg_joe 1352406721 frbg-5d84fb81.pool.mediaWays.net
+2 meowbg_joe 1 1 0 0 0 0 1 1 1 0 0 0 1 1493.33 0 1 0 1 0 UTC
+3
++--------------------------------------------------------------------+
+|                ___.           __                                   |
+|                \_ |__   _____/  |______                            |
+|                 | __ \_/ __ \   __\__  \                           |
+|                 | \_\ \  ___/|  |  / __ \_                         |
+|                 |___  /\___  >__| (____  /                         |
+|                     \/     \/          \/                          |
+|                                                                    |
+|                                                                    |
+|                  WELCOME TO OUR NEW HOME!!                         |
+|                                                                    |
+|         WATCH ANNOUNCEMENTS ON http://tigergammon.com              |
+|           Also see http://twitter.com/tigergammon                  |
+|                                                                    |
+|         Enjoy the bots. Their name denotes their playing           |
+|         skill according to gnubg naming conventions.               |
+|                                                                    |
+|           New version 0.8.6 released on Nov. 3 2012                |
+|           -----------------------------------------                |
+|         Don't forget to check the news (command 'news')            |
+|                                                                    |
++--------------------------------------------------------------------+
+4
+
+5 SinnerSaint - - 1 0 1443.79 4426 1320 1352404835 208.169.68.75 ?NT________________! gvemmanuel@candw.ag
+5 hannes - - 0 0 1450.46 11 1282 1352404890 95-90-47-47-dynip.superkabel. - helper@tigergammon.com
+5 beginnerBotI - - 1 0 796.60 3184 433 1352404986 95-90-47-47-dynip.superkabel. - -
+5 beginnerBotII - - 1 0 816.61 3209 433 1352405000 95-90-47-47-dynip.superkabel. - -
+5 beginnerBotIII - - 1 0 763.02 3379 433 1352405014 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotI - - 1 0 939.70 3491 433 1352405028 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotII - - 1 0 935.66 3262 433 1352405042 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotIII tigergammon_bot_II - 1 0 925.38 3402 1 1352405056 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotI - - 1 0 1113.66 2921 433 1352405070 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotII - - 1 0 1094.75 3165 433 1352405084 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotIII - - 1 0 1106.64 3184 433 1352405099 95-90-47-47-dynip.superkabel. - -
+5 advancedBotI - - 1 0 1828.57 3621 433 1352405113 95-90-47-47-dynip.superkabel. - -
+5 advancedBotII - - 1 0 1845.35 3174 144 1352405127 95-90-47-47-dynip.superkabel. - -
+5 advancedBotIII - - 1 0 1857.53 3307 433 1352405141 95-90-47-47-dynip.superkabel. - -
+5 expertBotI - - 1 0 2110.43 3348 433 1352405155 95-90-47-47-dynip.superkabel. - -
+5 expertBotII - - 1 0 2099.76 2975 433 1352405169 95-90-47-47-dynip.superkabel. - -
+5 expertBotIII - - 1 0 2104.85 3171 160 1352405183 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotI - - 1 0 2130.43 3425 433 1352405197 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotII - - 1 0 2115.90 3256 433 1352405211 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotIII - - 1 0 2087.11 3240 433 1352405225 95-90-47-47-dynip.superkabel. - -
+5 tigergammon_bot_II casualPlayerBotIII - 1 0 1901.62 57950 1 1352405618 95-90-47-47-dynip.superkabel. 3DFiBs2.2.39 -
+5 meowbg_joe - - 1 0 1493.33 1 0 1352406886 93.132.251.129 meowBG -
+6
+
+Value of 'boardstyle' set to 3.
+
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+** You invited expertBotIII to resume a saved match.
+expertBotIII has joined you. Your running match was loaded.
+meowbg_joe and expertBotIII are resuming their 3 point match..
+turn: meowbg_joe.
+match length: 3
+points for meowbg_joe: 0
+points for expertBotIII: 0
+It's your turn. Please roll or double
+5 expertBotIII meowbg_joe - 1 0 2104.85 3171 0 1352405183 95-90-47-47-dynip.superkabel. - -
+6
+5 meowbg_joe expertBotIII - 1 0 1493.33 1 0 1352406886 frbg-5d84fb81.pool.mediaWays. meowBG -
+6
+12 expertBotIII Hello! Enjoy this match. Good luck.
+
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+board:You:expertBotIII:3:0:0:0:-1:-1:0:0:0:5:0:3:0:0:0:-4:5:0:0:0:-4:0:-5:0:0:0:0:2:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+board:You:expertBotIII:3:0:0:0:-1:-1:0:0:0:5:0:3:0:0:0:-4:5:0:0:0:-4:0:-5:0:0:0:0:2:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+board:You:expertBotIII:3:0:0:0:-1:-1:0:0:0:5:0:3:0:0:0:-4:5:0:0:0:-4:0:-5:0:0:0:0:2:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+Read response failed: telnet connection closed
+tigergammon_bot_II wins a 7 point match against casualPlayerBotIII  10-0 .
+5 tigergammon_bot_II - - 1 0 1902.13 57957 3 1352405618 95-90-47-47-dynip.superkabel. 3DFiBs2.2.39 -
+6
+5 casualPlayerBotIII - - 1 0 924.87 3409 1 1352405056 95-90-47-47-dynip.superkabel. - -
+6
+
+Establishing connection to tigergammon.com:4321
+
+1 meowbg_joe 1352406886 frbg-5d84fb81.pool.mediaWays.net
+2 meowbg_joe 1 1 0 0 0 0 1 1 1 0 0 0 1 1493.33 0 1 0 1 0 UTC
+3
++--------------------------------------------------------------------+
+|                ___.           __                                   |
+|                \_ |__   _____/  |______                            |
+|                 | __ \_/ __ \   __\__  \                           |
+|                 | \_\ \  ___/|  |  / __ \_                         |
+|                 |___  /\___  >__| (____  /                         |
+|                     \/     \/          \/                          |
+|                                                                    |
+|                                                                    |
+|                  WELCOME TO OUR NEW HOME!!                         |
+|                                                                    |
+|         WATCH ANNOUNCEMENTS ON http://tigergammon.com              |
+|           Also see http://twitter.com/tigergammon                  |
+|                                                                    |
+|         Enjoy the bots. Their name denotes their playing           |
+|         skill according to gnubg naming conventions.               |
+|                                                                    |
+|           New version 0.8.6 released on Nov. 3 2012                |
+|           -----------------------------------------                |
+|         Don't forget to check the news (command 'news')            |
+|                                                                    |
++--------------------------------------------------------------------+
+4
+
+5 SinnerSaint - - 1 0 1443.79 4426 1497 1352404835 208.169.68.75 ?NT________________! gvemmanuel@candw.ag
+5 hannes - - 0 0 1450.46 11 1459 1352404890 95-90-47-47-dynip.superkabel. - helper@tigergammon.com
+5 beginnerBotI - - 1 0 796.60 3184 610 1352404986 95-90-47-47-dynip.superkabel. - -
+5 beginnerBotII - - 1 0 816.61 3209 610 1352405000 95-90-47-47-dynip.superkabel. - -
+5 beginnerBotIII - - 1 0 763.02 3379 610 1352405014 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotI - - 1 0 939.70 3491 610 1352405028 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotII - - 1 0 935.66 3262 610 1352405042 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotIII - - 1 0 924.87 3409 89 1352405056 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotI - - 1 0 1113.66 2921 610 1352405070 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotII - - 1 0 1094.75 3165 610 1352405084 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotIII - - 1 0 1106.64 3184 610 1352405099 95-90-47-47-dynip.superkabel. - -
+5 advancedBotI - - 1 0 1828.57 3621 610 1352405113 95-90-47-47-dynip.superkabel. - -
+5 advancedBotII - - 1 0 1845.35 3174 321 1352405127 95-90-47-47-dynip.superkabel. - -
+5 advancedBotIII - - 1 0 1857.53 3307 610 1352405141 95-90-47-47-dynip.superkabel. - -
+5 expertBotI - - 1 0 2110.43 3348 610 1352405155 95-90-47-47-dynip.superkabel. - -
+5 expertBotII - - 1 0 2099.76 2975 610 1352405169 95-90-47-47-dynip.superkabel. - -
+5 expertBotIII - - 1 0 2104.85 3171 173 1352405183 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotI - - 1 0 2130.43 3425 610 1352405197 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotII tigergammon_bot_II - 1 0 2115.90 3256 1 1352405211 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotIII - - 1 0 2087.11 3240 610 1352405225 95-90-47-47-dynip.superkabel. - -
+5 tigergammon_bot_II worldclassBotII - 1 0 1902.13 57957 9 1352405618 95-90-47-47-dynip.superkabel. 3DFiBs2.2.39 -
+5 meowbg_joe - - 1 0 1493.33 1 0 1352407064 93.132.251.129 meowBG -
+6
+
+Value of 'boardstyle' set to 3.
+
+** You invited expertBotIII to resume a saved match.
+expertBotIII has joined you. Your running match was loaded.
+meowbg_joe and expertBotIII are resuming their 3 point match..
+turn: meowbg_joe.
+match length: 3
+points for meowbg_joe: 0
+points for expertBotIII: 0
+It's your turn. Please roll or double
+5 expertBotIII meowbg_joe - 1 0 2104.85 3171 0 1352405183 95-90-47-47-dynip.superkabel. - -
+6
+5 meowbg_joe expertBotIII - 1 0 1493.33 1 0 1352407064 frbg-5d84fb81.pool.mediaWays. meowBG -
+6
+12 expertBotIII Hello! Enjoy this match. Good luck.
+
+board:You:expertBotIII:3:0:0:0:-1:-1:0:0:0:5:0:3:0:0:0:-4:5:0:0:0:-4:0:-5:0:0:0:0:2:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+** Unknown command: 'pass'
+
+** You have to roll the dice before moving.
+
+You roll 5 and 3.
+board:You:expertBotIII:3:0:0:0:-1:-1:0:0:0:5:0:3:0:0:0:-4:5:0:0:0:-4:0:-5:0:0:0:0:2:0:1:5:3:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+Please move 2 pieces.
+
+board:You:expertBotIII:3:0:0:0:-1:-1:2:0:0:4:0:2:0:0:0:-4:5:0:0:0:-4:0:-5:0:0:0:0:2:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+expertBotIII rolls 2 and 2.
+board:You:expertBotIII:3:0:0:0:-1:-1:2:0:0:4:0:2:0:0:0:-4:5:0:0:0:-4:0:-5:0:0:0:0:2:0:-1:0:0:2:2:1:1:1:0:1:-1:0:25:0:0:0:0:4:0:0:0
+
+** It's not your turn to move.
+expertBotIII moves 12-14 12-14 19-21 19-21 .
+board:You:expertBotIII:3:0:0:0:-1:-1:2:0:0:4:0:2:0:0:0:-2:5:-2:0:0:-4:0:-3:0:-2:0:0:2:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:4:0:0:0
+It's your turn. Please roll or double
+
+You roll 3 and 4.
+board:You:expertBotIII:3:0:0:0:-1:-1:2:0:0:4:0:2:0:0:0:-2:5:-2:0:0:-4:0:-3:0:-2:0:0:2:0:1:3:4:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+Please move 2 pieces.
+
+board:You:expertBotIII:3:0:0:0:-1:-1:3:0:0:3:0:2:0:0:0:-2:5:-2:0:0:-4:0:-3:1:-2:0:0:1:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+expertBotIII rolls 2 and 2.
+board:You:expertBotIII:3:0:0:0:-1:-1:3:0:0:3:0:2:0:0:0:-2:5:-2:0:0:-4:0:-3:1:-2:0:0:1:0:-1:0:0:2:2:1:1:1:0:1:-1:0:25:0:0:0:0:4:0:0:0
+
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotIII moves 14-16 14-16 16-18 16-18 .
+board:You:expertBotIII:3:0:0:0:-1:-1:3:0:0:3:0:2:0:0:0:-2:5:0:0:0:-4:-2:-3:1:-2:0:0:1:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:4:0:0:0
+It's your turn. Please roll or double
+
+You roll 3 and 2.
+board:You:expertBotIII:3:0:0:0:-1:-1:3:0:0:3:0:2:0:0:0:-2:5:0:0:0:-4:-2:-3:1:-2:0:0:1:0:1:3:2:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+Please move 2 pieces.
+
+board:You:expertBotIII:3:0:0:0:-1:-1:3:0:0:3:0:3:0:0:0:-2:4:0:0:0:-4:-2:-3:1:-2:0:0:1:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+expertBotIII doubles. Type 'accept' or 'reject'.
+** expertBotIII has doubled you. Type 'accept' or 'reject'.
+** expertBotIII has doubled you. Type 'accept' or 'reject'.
+** expertBotIII has doubled you. Type 'accept' or 'reject'.
+** expertBotIII has doubled you. Type 'accept' or 'reject'.
+** expertBotIII has doubled you. Type 'accept' or 'reject'.
+** expertBotIII has doubled you. Type 'accept' or 'reject'.
+** expertBotIII has doubled you. Type 'accept' or 'reject'.
+** expertBotIII has doubled you. Type 'accept' or 'reject'.
+** expertBotIII has doubled you. Type 'accept' or 'reject'.
+
+You accept the double. The cube shows 2.
+expertBotIII rolls 6 and 5.
+board:You:expertBotIII:3:0:0:0:-1:-1:3:0:0:3:0:3:0:0:0:-2:4:0:0:0:-4:-2:-3:1:-2:0:0:1:0:-1:0:0:6:5:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+expertBotIII moves 1-7 2-7 .
+board:You:expertBotIII:3:0:0:0:0:0:3:0:0:3:-2:3:0:0:0:-2:4:0:0:0:-4:-2:-3:1:-2:0:0:1:0:1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+It's your turn. Please roll or double
+
+You roll 2 and 4.
+board:You:expertBotIII:3:0:0:0:0:0:3:0:0:3:-2:3:0:0:0:-2:4:0:0:0:-4:-2:-3:1:-2:0:0:1:0:1:2:4:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+Please move 2 pieces.
+
+board:You:expertBotIII:3:0:0:0:0:0:3:1:0:2:-2:3:0:0:0:-2:4:0:0:0:-4:-2:-3:2:-2:0:0:0:0:-1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+expertBotIII rolls 3 and 2.
+board:You:expertBotIII:3:0:0:0:0:0:3:1:0:2:-2:3:0:0:0:-2:4:0:0:0:-4:-2:-3:2:-2:0:0:0:0:-1:0:0:3:2:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotIII moves 17-19 19-22 .
+board:You:expertBotIII:3:0:0:0:0:0:3:1:0:2:-2:3:0:0:0:-2:4:0:0:0:-3:-2:-3:2:-2:-1:0:0:0:1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+It's your turn. Please roll or double
+
+Establishing connection to tigergammon.com:4321
+
+1 meowbg_joe 1352407064 frbg-5d84fb81.pool.mediaWays.net
+2 meowbg_joe 1 1 0 0 0 0 1 1 1 0 0 0 1 1493.33 0 1 0 1 0 UTC
+3
++--------------------------------------------------------------------+
+|                ___.           __                                   |
+|                \_ |__   _____/  |______                            |
+|                 | __ \_/ __ \   __\__  \                           |
+|                 | \_\ \  ___/|  |  / __ \_                         |
+|                 |___  /\___  >__| (____  /                         |
+|                     \/     \/          \/                          |
+|                                                                    |
+|                                                                    |
+|                  WELCOME TO OUR NEW HOME!!                         |
+|                                                                    |
+|         WATCH ANNOUNCEMENTS ON http://tigergammon.com              |
+|           Also see http://twitter.com/tigergammon                  |
+|                                                                    |
+|         Enjoy the bots. Their name denotes their playing           |
+|         skill according to gnubg naming conventions.               |
+|                                                                    |
+|           New version 0.8.6 released on Nov. 3 2012                |
+|           -----------------------------------------                |
+|         Don't forget to check the news (command 'news')            |
+|                                                                    |
++--------------------------------------------------------------------+
+4
+
+5 SinnerSaint - - 1 0 1443.79 4426 4840 1352404835 208.169.68.75 ?NT________________! gvemmanuel@candw.ag
+5 hannes - - 0 0 1450.46 11 4803 1352404890 95-90-47-47-dynip.superkabel. - helper@tigergammon.com
+5 beginnerBotI - - 1 0 801.85 3197 267 1352404986 95-90-47-47-dynip.superkabel. - -
+5 beginnerBotII - - 1 0 815.65 3221 242 1352405000 95-90-47-47-dynip.superkabel. - -
+5 beginnerBotIII - - 1 0 762.79 3388 267 1352405014 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotI - - 1 0 939.70 3491 267 1352405028 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotII - - 1 0 935.66 3262 267 1352405042 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotIII - - 1 0 924.87 3409 267 1352405056 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotI - - 1 0 1112.95 2930 267 1352405070 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotII - - 1 0 1094.75 3165 267 1352405084 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotIII tigergammon_bot_II - 1 0 1106.64 3184 1 1352405099 95-90-47-47-dynip.superkabel. - -
+5 advancedBotI - - 1 0 1828.57 3621 267 1352405113 95-90-47-47-dynip.superkabel. - -
+5 advancedBotII - - 1 0 1845.35 3174 267 1352405127 95-90-47-47-dynip.superkabel. - -
+5 advancedBotIII - - 1 0 1852.08 3316 267 1352405141 95-90-47-47-dynip.superkabel. - -
+5 expertBotI - - 1 0 2110.43 3348 267 1352405155 95-90-47-47-dynip.superkabel. - -
+5 expertBotII - - 1 0 2091.91 2984 267 1352405169 95-90-47-47-dynip.superkabel. - -
+5 expertBotIII - - 1 0 2106.63 3172 267 1352405183 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotI - - 1 0 2130.43 3425 267 1352405197 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotII - - 1 0 2111.71 3259 267 1352405211 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotIII - - 1 0 2083.03 3243 267 1352405225 95-90-47-47-dynip.superkabel. - -
+5 tigergammon_bot_II intermediateBotIII - 1 0 1918.56 58025 3 1352405618 95-90-47-47-dynip.superkabel. 3DFiBs2.2.39 -
+5 meowbg_joe - - 1 0 1493.33 1 0 1352410407 93.132.251.129 meowBG -
+6
+
+Value of 'boardstyle' set to 3.
+
+** You invited expertBotIII to resume a saved match.
+expertBotIII has joined you. Your running match was loaded.
+meowbg_joe and expertBotIII are resuming their 3 point match..
+turn: meowbg_joe.
+match length: 3
+points for meowbg_joe: 0
+points for expertBotIII: 0
+It's your turn. Please roll or double
+5 expertBotIII meowbg_joe - 1 0 2106.63 3172 0 1352405183 95-90-47-47-dynip.superkabel. - -
+6
+5 meowbg_joe expertBotIII - 1 0 1493.33 1 0 1352410407 frbg-5d84fb81.pool.mediaWays. meowBG -
+6
+12 expertBotIII Hello! Enjoy this match. Good luck.
+
+board:You:expertBotIII:3:0:0:0:0:0:3:1:0:2:-2:3:0:0:0:-2:4:0:0:0:-3:-2:-3:2:-2:-1:0:0:0:1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+Establishing connection to tigergammon.com:4321
+
+1 meowbg_joe 1352410407 frbg-5d84fb81.pool.mediaWays.net
+2 meowbg_joe 1 1 0 0 0 0 1 1 1 0 0 0 1 1493.33 0 1 0 1 0 UTC
+3
++--------------------------------------------------------------------+
+|                ___.           __                                   |
+|                \_ |__   _____/  |______                            |
+|                 | __ \_/ __ \   __\__  \                           |
+|                 | \_\ \  ___/|  |  / __ \_                         |
+|                 |___  /\___  >__| (____  /                         |
+|                     \/     \/          \/                          |
+|                                                                    |
+|                                                                    |
+|                  WELCOME TO OUR NEW HOME!!                         |
+|                                                                    |
+|         WATCH ANNOUNCEMENTS ON http://tigergammon.com              |
+|           Also see http://twitter.com/tigergammon                  |
+|                                                                    |
+|         Enjoy the bots. Their name denotes their playing           |
+|         skill according to gnubg naming conventions.               |
+|                                                                    |
+|           New version 0.8.6 released on Nov. 3 2012                |
+|           -----------------------------------------                |
+|         Don't forget to check the news (command 'news')            |
+|                                                                    |
++--------------------------------------------------------------------+
+4
+
+5 SinnerSaint - - 1 0 1443.79 4426 4870 1352404835 208.169.68.75 ?NT________________! gvemmanuel@candw.ag
+5 hannes - - 0 0 1450.46 11 4833 1352404890 95-90-47-47-dynip.superkabel. - helper@tigergammon.com
+5 beginnerBotI - - 1 0 801.85 3197 297 1352404986 95-90-47-47-dynip.superkabel. - -
+5 beginnerBotII - - 1 0 815.65 3221 272 1352405000 95-90-47-47-dynip.superkabel. - -
+5 beginnerBotIII - - 1 0 762.79 3388 297 1352405014 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotI - - 1 0 939.70 3491 297 1352405028 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotII - - 1 0 935.66 3262 297 1352405042 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotIII - - 1 0 924.87 3409 297 1352405056 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotI - - 1 0 1112.95 2930 297 1352405070 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotII - - 1 0 1094.75 3165 297 1352405084 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotIII tigergammon_bot_II - 1 0 1106.64 3184 1 1352405099 95-90-47-47-dynip.superkabel. - -
+5 advancedBotI - - 1 0 1828.57 3621 297 1352405113 95-90-47-47-dynip.superkabel. - -
+5 advancedBotII - - 1 0 1845.35 3174 297 1352405127 95-90-47-47-dynip.superkabel. - -
+5 advancedBotIII - - 1 0 1852.08 3316 297 1352405141 95-90-47-47-dynip.superkabel. - -
+5 expertBotI - - 1 0 2110.43 3348 297 1352405155 95-90-47-47-dynip.superkabel. - -
+5 expertBotII - - 1 0 2091.91 2984 297 1352405169 95-90-47-47-dynip.superkabel. - -
+5 expertBotIII - - 1 0 2106.63 3172 27 1352405183 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotI - - 1 0 2130.43 3425 297 1352405197 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotII - - 1 0 2111.71 3259 297 1352405211 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotIII - - 1 0 2083.03 3243 297 1352405225 95-90-47-47-dynip.superkabel. - -
+5 tigergammon_bot_II intermediateBotIII - 1 0 1918.56 58025 2 1352405618 95-90-47-47-dynip.superkabel. 3DFiBs2.2.39 -
+5 meowbg_joe - - 1 0 1493.33 1 0 1352410437 93.132.251.129 meowBG -
+6
+
+Value of 'boardstyle' set to 3.
+
+** You invited expertBotIII to resume a saved match.
+expertBotIII has joined you. Your running match was loaded.
+meowbg_joe and expertBotIII are resuming their 3 point match..
+turn: meowbg_joe.
+match length: 3
+points for meowbg_joe: 0
+points for expertBotIII: 0
+It's your turn. Please roll or double
+5 expertBotIII meowbg_joe - 1 0 2106.63 3172 0 1352405183 95-90-47-47-dynip.superkabel. - -
+6
+5 meowbg_joe expertBotIII - 1 0 1493.33 1 0 1352410437 frbg-5d84fb81.pool.mediaWays. meowBG -
+6
+12 expertBotIII Hello! Enjoy this match. Good luck.
+
+board:You:expertBotIII:3:0:0:0:0:0:3:1:0:2:-2:3:0:0:0:-2:4:0:0:0:-3:-2:-3:2:-2:-1:0:0:0:1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+Establishing connection to tigergammon.com:4321
+
+1 meowbg_joe 1352410437 frbg-5d84fb81.pool.mediaWays.net
+2 meowbg_joe 1 1 0 0 0 0 1 1 1 0 0 0 1 1493.33 0 1 0 1 0 UTC
+3
++--------------------------------------------------------------------+
+|                ___.           __                                   |
+|                \_ |__   _____/  |______                            |
+|                 | __ \_/ __ \   __\__  \                           |
+|                 | \_\ \  ___/|  |  / __ \_                         |
+|                 |___  /\___  >__| (____  /                         |
+|                     \/     \/          \/                          |
+|                                                                    |
+|                                                                    |
+|                  WELCOME TO OUR NEW HOME!!                         |
+|                                                                    |
+|         WATCH ANNOUNCEMENTS ON http://tigergammon.com              |
+|           Also see http://twitter.com/tigergammon                  |
+|                                                                    |
+|         Enjoy the bots. Their name denotes their playing           |
+|         skill according to gnubg naming conventions.               |
+|                                                                    |
+|           New version 0.8.6 released on Nov. 3 2012                |
+|           -----------------------------------------                |
+|         Don't forget to check the news (command 'news')            |
+|                                                                    |
++--------------------------------------------------------------------+
+4
+
+5 SinnerSaint - - 1 0 1443.79 4426 4950 1352404835 208.169.68.75 ?NT________________! gvemmanuel@candw.ag
+5 hannes - - 0 0 1450.46 11 4912 1352404890 95-90-47-47-dynip.superkabel. - helper@tigergammon.com
+5 beginnerBotI - - 1 0 801.85 3197 377 1352404986 95-90-47-47-dynip.superkabel. - -
+5 beginnerBotII - - 1 0 815.65 3221 352 1352405000 95-90-47-47-dynip.superkabel. - -
+5 beginnerBotIII - - 1 0 762.79 3388 377 1352405014 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotI - - 1 0 939.70 3491 377 1352405028 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotII - - 1 0 935.66 3262 377 1352405042 95-90-47-47-dynip.superkabel. - -
+5 casualPlayerBotIII - - 1 0 924.87 3409 377 1352405056 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotI - - 1 0 1112.95 2930 377 1352405070 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotII - - 1 0 1094.75 3165 377 1352405084 95-90-47-47-dynip.superkabel. - -
+5 intermediateBotIII - - 1 0 1105.66 3189 13 1352405099 95-90-47-47-dynip.superkabel. - -
+5 advancedBotI - - 1 0 1828.57 3621 377 1352405113 95-90-47-47-dynip.superkabel. - -
+5 advancedBotII - - 1 0 1845.35 3174 377 1352405127 95-90-47-47-dynip.superkabel. - -
+5 advancedBotIII - - 1 0 1852.08 3316 377 1352405141 95-90-47-47-dynip.superkabel. - -
+5 expertBotI - - 1 0 2110.43 3348 377 1352405155 95-90-47-47-dynip.superkabel. - -
+5 expertBotII - - 1 0 2091.91 2984 377 1352405169 95-90-47-47-dynip.superkabel. - -
+5 expertBotIII - - 1 0 2106.63 3172 76 1352405183 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotI tigergammon_bot_II - 1 0 2130.43 3425 0 1352405197 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotII - - 1 0 2111.71 3259 377 1352405211 95-90-47-47-dynip.superkabel. - -
+5 worldclassBotIII - - 1 0 2083.03 3243 377 1352405225 95-90-47-47-dynip.superkabel. - -
+5 tigergammon_bot_II worldclassBotI - 1 0 1919.55 58030 2 1352405618 95-90-47-47-dynip.superkabel. 3DFiBs2.2.39 -
+5 meowbg_joe - - 1 0 1493.33 1 0 1352410517 93.132.251.129 meowBG -
+6
+
+Value of 'boardstyle' set to 3.
+
+** You invited expertBotIII to resume a saved match.
+expertBotIII has joined you. Your running match was loaded.
+meowbg_joe and expertBotIII are resuming their 3 point match..
+turn: meowbg_joe.
+match length: 3
+points for meowbg_joe: 0
+points for expertBotIII: 0
+It's your turn. Please roll or double
+5 expertBotIII meowbg_joe - 1 0 2106.63 3172 0 1352405183 95-90-47-47-dynip.superkabel. - -
+6
+5 meowbg_joe expertBotIII - 1 0 1493.33 1 0 1352410517 frbg-5d84fb81.pool.mediaWays. meowBG -
+6
+12 expertBotIII Hello! Enjoy this match. Good luck.
+
+board:You:expertBotIII:3:0:0:0:0:0:3:1:0:2:-2:3:0:0:0:-2:4:0:0:0:-3:-2:-3:2:-2:-1:0:0:0:1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+You roll 5 and 1.
+board:You:expertBotIII:3:0:0:0:0:0:3:1:0:2:-2:3:0:0:0:-2:4:0:0:0:-3:-2:-3:2:-2:-1:0:0:0:1:5:1:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+Please move 2 pieces.
+
+board:You:expertBotIII:3:0:0:0:0:1:2:1:0:2:-2:4:0:0:0:-2:3:0:0:0:-3:-2:-3:2:-2:-1:0:0:0:-1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+expertBotIII rolls 2 and 6.
+board:You:expertBotIII:3:0:0:0:0:1:2:1:0:2:-2:4:0:0:0:-2:3:0:0:0:-3:-2:-3:2:-2:-1:0:0:0:-1:0:0:2:6:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+** It's not your turn to move.
+
+expertBotIII moves 12-14 12-18 .
+board:You:expertBotIII:3:0:0:0:0:1:2:1:0:2:-2:4:0:0:0:0:3:-1:0:0:-3:-3:-3:2:-2:-1:0:0:0:1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+It's your turn. Please roll or double
+
+You roll 4 and 6.
+board:You:expertBotIII:3:0:0:0:0:1:2:1:0:2:-2:4:0:0:0:0:3:-1:0:0:-3:-3:-3:2:-2:-1:0:0:0:1:4:6:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+Please move 2 pieces.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+
+board:You:expertBotIII:3:0:0:-1:0:1:2:2:0:2:-2:3:0:0:0:0:3:1:0:0:-3:-3:-3:1:-2:-1:0:0:0:-1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:0:1:2:0:0:0
+expertBotIII rolls 4 and 4.
+board:You:expertBotIII:3:0:0:-1:0:1:2:2:0:2:-2:3:0:0:0:0:3:1:0:0:-3:-3:-3:1:-2:-1:0:0:0:-1:0:0:4:4:2:1:0:0:1:-1:0:25:0:0:0:1:0:0:0:0
+
+expertBotIII can't move.
+board:You:expertBotIII:3:0:0:-1:0:1:2:2:0:2:-2:3:0:0:0:0:3:1:0:0:-3:-3:-3:1:-2:-1:0:0:0:1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:0:1:0:0:0:0
+It's your turn. Please roll or double
+
+You roll 5 and 4.
+board:You:expertBotIII:3:0:0:-1:0:1:2:2:0:2:-2:3:0:0:0:0:3:1:0:0:-3:-3:-3:1:-2:-1:0:0:0:1:5:4:0:0:2:1:0:0:1:-1:0:25:0:0:0:1:2:0:0:0
+
+Please move 2 pieces.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+
+board:You:expertBotIII:3:0:0:-1:0:1:2:2:0:2:-2:3:2:0:0:0:2:0:0:0:-3:-3:-3:1:-2:-1:0:0:0:-1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:0:1:2:0:0:0
+expertBotIII rolls 4 and 1.
+board:You:expertBotIII:3:0:0:-1:0:1:2:2:0:2:-2:3:2:0:0:0:2:0:0:0:-3:-3:-3:1:-2:-1:0:0:0:-1:0:0:4:1:2:1:0:0:1:-1:0:25:0:0:0:1:2:0:0:0
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotIII moves 0-1 18-22 .
+board:You:expertBotIII:3:0:0:0:-1:1:2:2:0:2:-2:3:2:0:0:0:2:0:0:0:-3:-2:-3:1:-2:-2:0:0:0:1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+It's your turn. Please roll or double
+
+You roll 4 and 6.
+board:You:expertBotIII:3:0:0:0:-1:1:2:2:0:2:-2:3:2:0:0:0:2:0:0:0:-3:-2:-3:1:-2:-2:0:0:0:1:4:6:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+Please move 2 pieces.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+
+tigergammon_bot_II wins a 1 point match against worldclassBotI  2-0 .
+5 tigergammon_bot_II - - 1 0 1921.79 58031 9 1352405618 95-90-47-47-dynip.superkabel. 3DFiBs2.2.39 -
+6
+5 worldclassBotI - - 1 0 2128.19 3426 1 1352405197 95-90-47-47-dynip.superkabel. - -
+6
+
+board:You:expertBotIII:3:0:0:0:-1:2:2:2:0:2:-2:2:2:0:0:0:2:0:0:1:-3:-2:-3:0:-2:-2:0:0:0:-1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+expertBotIII rolls 3 and 1.
+board:You:expertBotIII:3:0:0:0:-1:2:2:2:0:2:-2:2:2:0:0:0:2:0:0:1:-3:-2:-3:0:-2:-2:0:0:0:-1:0:0:3:1:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotIII moves 17-20 19-20 .
+board:You:expertBotIII:3:0:0:0:-1:2:2:2:0:2:-2:2:2:0:0:0:2:0:0:1:-2:-2:-2:-2:-2:-2:0:0:0:1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+It's your turn. Please roll or double
+
+tigergammon_bot_II and intermediateBotI start a 1 point match..
+5 intermediateBotI tigergammon_bot_II - 1 0 1112.95 2930 0 1352405070 95-90-47-47-dynip.superkabel. - -
+6
+5 tigergammon_bot_II intermediateBotI - 1 0 1921.79 58031 0 1352405618 95-90-47-47-dynip.superkabel. 3DFiBs2.2.39 -
+6
+
+You roll 4 and 2.
+board:You:expertBotIII:3:0:0:0:-1:2:2:2:0:2:-2:2:2:0:0:0:2:0:0:1:-2:-2:-2:-2:-2:-2:0:0:0:1:4:2:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+Please move 2 pieces.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+
+board:You:expertBotIII:3:0:0:0:-1:2:2:3:0:3:-2:0:2:0:0:0:2:0:0:1:-2:-2:-2:-2:-2:-2:0:0:0:-1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+expertBotIII rolls 2 and 1.
+board:You:expertBotIII:3:0:0:0:-1:2:2:3:0:3:-2:0:2:0:0:0:2:0:0:1:-2:-2:-2:-2:-2:-2:0:0:0:-1:0:0:2:1:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotIII moves 17-19 19-20 .
+board:You:expertBotIII:3:0:0:0:-1:2:2:3:0:3:-2:0:2:0:0:0:2:0:0:1:-1:-2:-2:-3:-2:-2:0:0:0:1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+It's your turn. Please roll or double
+
+You roll 1 and 4.
+board:You:expertBotIII:3:0:0:0:-1:2:2:3:0:3:-2:0:2:0:0:0:2:0:0:1:-1:-2:-2:-3:-2:-2:0:0:0:1:1:4:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+Please move 2 pieces.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+
+board:You:expertBotIII:3:0:0:0:-1:3:3:2:0:2:-2:0:2:0:0:0:2:0:0:1:-1:-2:-2:-3:-2:-2:0:0:0:-1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+expertBotIII rolls 1 and 4.
+board:You:expertBotIII:3:0:0:0:-1:3:3:2:0:2:-2:0:2:0:0:0:2:0:0:1:-1:-2:-2:-3:-2:-2:0:0:0:-1:0:0:1:4:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+
+expertBotIII moves 1-5 17-18 .
+board:You:expertBotIII:3:0:0:0:0:3:3:2:-1:2:-2:0:2:0:0:0:2:0:0:1:0:-3:-2:-3:-2:-2:0:0:0:1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+It's your turn. Please roll or double
+
+You roll 1 and 3.
+board:You:expertBotIII:3:0:0:0:0:3:3:2:-1:2:-2:0:2:0:0:0:2:0:0:1:0:-3:-2:-3:-2:-2:0:0:0:1:1:3:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+Please move 2 pieces.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+
+board:You:expertBotIII:3:0:0:-1:0:3:3:2:1:2:-2:0:1:0:0:0:2:0:0:1:0:-3:-2:-3:-2:-2:0:0:0:-1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:0:1:2:0:0:0
+expertBotIII rolls 5 and 1.
+board:You:expertBotIII:3:0:0:-1:0:3:3:2:1:2:-2:0:1:0:0:0:2:0:0:1:0:-3:-2:-3:-2:-2:0:0:0:-1:0:0:5:1:2:1:0:0:1:-1:0:25:0:0:0:1:2:0:0:0
+
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotIII moves 0-5 18-19 .
+board:You:expertBotIII:3:0:0:0:0:3:3:2:-1:2:-2:0:1:0:0:0:2:0:0:1:0:-2:-3:-3:-2:-2:0:0:1:1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:1:0:2:0:0:0
+It's your turn. Please roll or double
+
+You roll 5 and 3.
+board:You:expertBotIII:3:0:0:0:0:3:3:2:-1:2:-2:0:1:0:0:0:2:0:0:1:0:-2:-3:-3:-2:-2:0:0:1:1:5:3:0:0:2:1:0:0:1:-1:0:25:0:0:1:0:0:0:0:0
+
+You can't move.
+board:You:expertBotIII:3:0:0:0:0:3:3:2:-1:2:-2:0:1:0:0:0:2:0:0:1:0:-2:-3:-3:-2:-2:0:0:1:-1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:1:0:0:0:0:0
+expertBotIII rolls 5 and 5.
+board:You:expertBotIII:3:0:0:0:0:3:3:2:-1:2:-2:0:1:0:0:0:2:0:0:1:0:-2:-3:-3:-2:-2:0:0:1:-1:0:0:5:5:2:1:0:0:1:-1:0:25:0:0:1:0:4:0:0:0
+expertBotIII moves 5-10 10-15 18-23 18-23 .
+board:You:expertBotIII:3:0:0:0:0:3:3:2:0:2:-2:0:1:0:0:0:2:0:-1:1:0:0:-3:-3:-2:-2:-2:0:1:1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:1:0:4:0:0:0
+It's your turn. Please roll or double
+
+You roll 3 and 4.
+board:You:expertBotIII:3:0:0:0:0:3:3:2:0:2:-2:0:1:0:0:0:2:0:-1:1:0:0:-3:-3:-2:-2:-2:0:1:1:3:4:0:0:2:1:0:0:1:-1:0:25:0:0:1:0:0:0:0:0
+
+You can't move.
+board:You:expertBotIII:3:0:0:0:0:3:3:2:0:2:-2:0:1:0:0:0:2:0:-1:1:0:0:-3:-3:-2:-2:-2:0:1:-1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:1:0:0:0:0:0
+expertBotIII rolls 2 and 4.
+board:You:expertBotIII:3:0:0:0:0:3:3:2:0:2:-2:0:1:0:0:0:2:0:-1:1:0:0:-3:-3:-2:-2:-2:0:1:-1:0:0:2:4:2:1:0:0:1:-1:0:25:0:0:1:0:2:0:0:0
+expertBotIII moves 7-9 7-11 .
+board:You:expertBotIII:3:0:0:0:0:3:3:2:0:2:0:0:-1:0:-1:0:2:0:-1:1:0:0:-3:-3:-2:-2:-2:0:2:1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:2:0:2:0:0:0
+It's your turn. Please roll or double
+
+You roll 1 and 2.
+board:You:expertBotIII:3:0:0:0:0:3:3:2:0:2:0:0:-1:0:-1:0:2:0:-1:1:0:0:-3:-3:-2:-2:-2:0:2:1:1:2:0:0:2:1:0:0:1:-1:0:25:0:0:2:0:1:0:0:0
+
+The only possible move is 25-24 .
+board:You:expertBotIII:3:0:0:0:0:3:3:2:0:2:0:0:-1:0:-1:0:2:0:-1:1:0:0:-3:-3:-2:-2:-2:1:1:-1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:1:0:1:0:0:0
+expertBotIII rolls 2 and 1.
+board:You:expertBotIII:3:0:0:0:0:3:3:2:0:2:0:0:-1:0:-1:0:2:0:-1:1:0:0:-3:-3:-2:-2:-2:1:1:-1:0:0:2:1:2:1:0:0:1:-1:0:25:0:0:1:0:2:0:0:0
+expertBotIII moves 9-11 15-16 .
+board:You:expertBotIII:3:0:0:0:0:3:3:2:0:2:0:0:0:0:-2:0:2:0:0:-1:0:0:-3:-3:-2:-2:-2:1:2:1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:2:0:2:0:0:0
+It's your turn. Please roll or double
+
+You roll 4 and 2.
+board:You:expertBotIII:3:0:0:0:0:3:3:2:0:2:0:0:0:0:-2:0:2:0:0:-1:0:0:-3:-3:-2:-2:-2:1:2:1:4:2:0:0:2:1:0:0:1:-1:0:25:0:0:2:0:0:0:0:0
+
+You can't move.
+board:You:expertBotIII:3:0:0:0:0:3:3:2:0:2:0:0:0:0:-2:0:2:0:0:-1:0:0:-3:-3:-2:-2:-2:1:2:-1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:2:0:0:0:0:0
+expertBotIII rolls 2 and 4.
+board:You:expertBotIII:3:0:0:0:0:3:3:2:0:2:0:0:0:0:-2:0:2:0:0:-1:0:0:-3:-3:-2:-2:-2:1:2:-1:0:0:2:4:2:1:0:0:1:-1:0:25:0:0:2:0:2:0:0:0
+expertBotIII moves 16-18 20-24 .
+board:You:expertBotIII:3:0:0:0:0:3:3:2:0:2:0:0:0:0:-2:0:2:0:0:0:0:-1:-3:-2:-2:-2:-2:-1:3:1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:3:0:2:0:0:0
+It's your turn. Please roll or double
+
+You roll 1 and 1.
+board:You:expertBotIII:3:0:0:0:0:3:3:2:0:2:0:0:0:0:-2:0:2:0:0:0:0:-1:-3:-2:-2:-2:-2:-1:3:1:1:1:0:0:2:1:0:0:1:-1:0:25:0:0:3:0:4:0:0:0
+
+Please move 4 pieces.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+
+board:You:expertBotIII:3:0:0:-1:1:2:3:2:0:2:0:0:0:0:-2:0:2:0:0:0:0:-1:-3:-2:-2:-2:-2:3:0:-1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:0:1:4:0:0:0
+expertBotIII rolls 3 and 5.
+board:You:expertBotIII:3:0:0:-1:1:2:3:2:0:2:0:0:0:0:-2:0:2:0:0:0:0:-1:-3:-2:-2:-2:-2:3:0:-1:0:0:3:5:2:1:0:0:1:-1:0:25:0:0:0:1:2:0:0:0
+
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotIII moves 0-5 18-21 .
+board:You:expertBotIII:3:0:0:0:1:2:3:2:-1:2:0:0:0:0:-2:0:2:0:0:0:0:0:-3:-2:-3:-2:-2:3:0:1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+It's your turn. Please roll or double
+
+You roll 1 and 5.
+board:You:expertBotIII:3:0:0:0:1:2:3:2:-1:2:0:0:0:0:-2:0:2:0:0:0:0:0:-3:-2:-3:-2:-2:3:0:1:1:5:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+Please move 2 pieces.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+
+board:You:expertBotIII:3:0:0:-1:2:2:3:2:1:0:0:0:0:0:-2:0:2:0:0:0:0:0:-3:-2:-3:-2:-2:3:0:-1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:0:1:2:0:0:0
+expertBotIII rolls 6 and 6.
+board:You:expertBotIII:3:0:0:-1:2:2:3:2:1:0:0:0:0:0:-2:0:2:0:0:0:0:0:-3:-2:-3:-2:-2:3:0:-1:0:0:6:6:2:1:0:0:1:-1:0:25:0:0:0:1:4:0:0:0
+
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+
+expertBotIII moves 0-6 11-17 11-17 17-23 .
+board:You:expertBotIII:3:0:0:0:2:2:3:2:1:-1:0:0:0:0:0:0:2:0:0:0:-1:0:-3:-2:-3:-2:-3:3:0:1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:4:0:0:0
+It's your turn. Please roll or double
+
+tigergammon_bot_II wins a 1 point match against intermediateBotI  1-0 .
+5 tigergammon_bot_II - - 1 0 1922.92 58032 15 1352405618 95-90-47-47-dynip.superkabel. 3DFiBs2.2.39 -
+6
+5 intermediateBotI - - 1 0 1111.82 2931 4 1352405070 95-90-47-47-dynip.superkabel. - -
+6
+
+You roll 1 and 5.
+board:You:expertBotIII:3:0:0:0:2:2:3:2:1:-1:0:0:0:0:0:0:2:0:0:0:-1:0:-3:-2:-3:-2:-3:3:0:1:1:5:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+Please move 2 pieces.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+
+tigergammon_bot_II and expertBotII start a 5 point match..
+5 expertBotII tigergammon_bot_II - 1 0 2091.91 2984 0 1352405169 95-90-47-47-dynip.superkabel. - -
+6
+5 tigergammon_bot_II expertBotII - 1 0 1922.92 58032 0 1352405618 95-90-47-47-dynip.superkabel. 3DFiBs2.2.39 -
+6
+
+board:You:expertBotIII:3:0:0:0:2:2:3:2:1:-1:0:1:0:0:0:1:0:0:0:0:-1:0:-3:-2:-3:-2:-3:3:0:-1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+expertBotIII rolls 1 and 6.
+board:You:expertBotIII:3:0:0:0:2:2:3:2:1:-1:0:1:0:0:0:1:0:0:0:0:-1:0:-3:-2:-3:-2:-3:3:0:-1:0:0:1:6:2:1:0:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotIII moves 6-12 12-13 .
+board:You:expertBotIII:3:0:0:0:2:2:3:2:1:0:0:1:0:0:0:0:-1:0:0:0:-1:0:-3:-2:-3:-2:-3:3:1:1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:1:0:2:0:0:0
+It's your turn. Please roll or double
+
+You roll 3 and 2.
+board:You:expertBotIII:3:0:0:0:2:2:3:2:1:0:0:1:0:0:0:0:-1:0:0:0:-1:0:-3:-2:-3:-2:-3:3:1:1:3:2:0:0:2:1:0:0:1:-1:0:25:0:0:1:0:0:0:0:0
+
+You can't move.
+board:You:expertBotIII:3:0:0:0:2:2:3:2:1:0:0:1:0:0:0:0:-1:0:0:0:-1:0:-3:-2:-3:-2:-3:3:1:-1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:1:0:0:0:0:0
+expertBotIII rolls 5 and 1.
+board:You:expertBotIII:3:0:0:0:2:2:3:2:1:0:0:1:0:0:0:0:-1:0:0:0:-1:0:-3:-2:-3:-2:-3:3:1:-1:0:0:5:1:2:1:0:0:1:-1:0:25:0:0:1:0:2:0:0:0
+
+expertBotIII moves 13-18 17-18 .
+board:You:expertBotIII:3:0:0:0:2:2:3:2:1:0:0:1:0:0:0:0:0:0:0:0:0:-2:-3:-2:-3:-2:-3:3:1:1:0:0:0:0:2:1:0:0:1:-1:0:25:0:0:1:0:2:0:0:0
+It's your turn. Please roll or double
+
