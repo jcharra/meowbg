@@ -1,7 +1,7 @@
 import logging
 from meowbg.core.board import Board, WHITE, BLACK, COLOR_NAMES, OPPONENT
 from meowbg.core.dice import Dice
-from meowbg.core.events import MatchEndEvent, GameEndEvent, RolloutEvent, MatchEvent, SingleMoveEvent, DiceEvent, CommitEvent, RollRequest
+from meowbg.core.events import MatchEndEvent, GameEndEvent, RolloutEvent, MatchEvent, SingleMoveEvent, DiceEvent, CommitEvent, RollRequest, CubeEvent
 from meowbg.core.messaging import broadcast
 from meowbg.gui.guievents import HitEvent, UnhitEvent
 from move import PartialMove
@@ -90,17 +90,19 @@ class Match(object):
 
             winner, points = self.board.get_winner()
             if winner:
-                broadcast(GameEndEvent(winner, points))
-                self.score[winner] += points * self.cube
-                if self.score[winner] >= self.length:
-                    broadcast(MatchEndEvent(winner, self.score))
-                else:
-                    self.new_game()
+                self.end_game(winner, points)
             else:
                 self.switch_turn()
         else:
             raise ValueError("Invalid commit attempted")
 
+    def end_game(self, winner, points):
+        broadcast(GameEndEvent(winner, points))
+        self.score[winner] += points * self.cube
+        if self.score[winner] >= self.length:
+            broadcast(MatchEndEvent(winner, self.score))
+        else:
+            self.new_game()
 
     def is_crawford(self):
         return self.score[WHITE] != self.score[BLACK] and self.length - 1 in self.score.values()
@@ -126,6 +128,20 @@ class Match(object):
         self.board.store_initial_possibilities(self.initial_dice, self.color_to_move_next)
 
         broadcast(MatchEvent(self))
+
+    def double(self, color):
+        if self.doubling_possible(color):
+            # TODO: make someone listen to this
+            broadcast(CubeEvent(color, self.cube * 2))
+
+    def double_accepted(self, by_color):
+        self.may_double[by_color] = True
+        self.may_double[OPPONENT[by_color]] = False
+        self.cube *= 2
+
+    def on_player_resign(self, players_color, resign_points=1):
+        # TODO
+        pass
 
     def doubling_possible(self, color):
         return (self.remaining_dice == self.initial_dice

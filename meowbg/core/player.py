@@ -1,5 +1,5 @@
-from meowbg.core.events import MatchEvent, SingleMoveEvent, CommitAttemptEvent, UndoEvent, MoveEvent, ConnectionRequest, CommitEvent, RollRequest
-from meowbg.core.messaging import register, unregister, broadcast
+from meowbg.core.events import MatchEvent, MoveEvent, CommitEvent, RollRequest, DoubleAttemptEvent
+from meowbg.core.messaging import register, unregister
 from meowbg.network.connectionpool import get_connection
 
 class AbstractPlayer(object):
@@ -30,7 +30,8 @@ class OnlinePlayerProxy(object):
         self.connection = None
 
         register(self.on_commit, CommitEvent)
-        register(self.on_roll, RollRequest)
+        register(self.on_default, RollRequest)
+        register(self.on_default, DoubleAttemptEvent)
 
         self.connection = get_connection("Tigergammon")
 
@@ -38,6 +39,6 @@ class OnlinePlayerProxy(object):
         fibs_full_move = self.event_translator.encode(MoveEvent(ce.moves))
         self.connection.send(fibs_full_move)
 
-    def on_roll(self, r):
+    def on_default(self, r):
         cmd = self.event_translator.encode(r)
         self.connection.send(cmd)

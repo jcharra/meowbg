@@ -1,17 +1,7 @@
 
-BUGS:
------
-
-high:
-checkers move below some spikes
-
-low:
-
-
 TODOs:
-------
 
-Buttons for user input and fake events
-Refactor Bot to replace AIEventHandler instead of depending on it
-Checkout "settings panel" for global settings
-Include popups
+ - Improve cube looks
+ - Make doubling button operational
+ - Implement accept and reject buttons
+ - Make lobby respond to status events

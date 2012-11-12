@@ -21,8 +21,8 @@ class DiceEvent(object):
         return "DiceEvent: %s" % self.dice
 
 class CubeEvent(object):
-    def __init__(self, cube_number):
-        self.cube_number = cube_number
+    def __init__(self, color, cube_number):
+        self.color, self.cube_number = color, cube_number
 
 class RolloutEvent(object):
     def __init__(self, d1, d2):
