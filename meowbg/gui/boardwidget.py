@@ -146,7 +146,7 @@ class BoardWidget(GridLayout):
         self.match = match
         Logger.info("Sync with %s" % self.match)
 
-        self.clear_board() # ugly, causes flickering
+        self.clear_board()
 
         on_field = match.board.checkers_on_field
 

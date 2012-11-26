@@ -202,7 +202,8 @@ class MatchWidget(FloatLayout):
         elif isinstance(event, DiceEvent):
             self.show_dice_roll(event.dice)
         elif isinstance(event, RollAttemptEvent):
-            self.match.roll()
+            if self.match:
+                self.match.roll()
         elif isinstance(event, NewMatchEvent):
             self.initialize_new_match(event.match)
         elif isinstance(event, CommitAttemptEvent):
@@ -260,6 +261,8 @@ class NetworkWidget(GridLayout):
         self.raw_text_input.bind(on_text_validate=self.send_command)
         self.add_widget(self.raw_text_input)
         self.connection = None
+
+        register(self.handle, PlayerStatusEvent)
 
     def handle(self, event):
         if isinstance(event, PlayerStatusEvent):
