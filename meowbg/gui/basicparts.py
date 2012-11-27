@@ -6,9 +6,11 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.image import Image
 from kivy.uix.widget import Widget
 from meowbg.core.board import WHITE, BLACK
+from meowbg.core.bot import Bot
 from meowbg.core.match import Match
 from meowbg.core.events import MatchEvent, CommitAttemptEvent, UndoEvent, RollAttemptEvent, DoubleAttemptEvent
 from meowbg.core.messaging import broadcast
+from meowbg.core.player import HumanPlayer
 from meowbg.gui.guievents import NewMatchEvent
 
 class Checker(Widget):
@@ -116,10 +118,12 @@ class ButtonPanel(BoxLayout):
     def __init__(self, **kwargs):
         BoxLayout.__init__(self, **kwargs)
 
-    def fire_new_game_event(self):
+    def start_new_ai_game(self):
         match = Match()
         match.length = 1
-        broadcast(NewMatchEvent(match))
+        match.register_player(HumanPlayer("Johannes", WHITE), WHITE)
+        match.register_player(Bot("Annette", BLACK), BLACK)
+        match.new_game()
 
     def commit_move(self):
         broadcast(CommitAttemptEvent())

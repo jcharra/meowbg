@@ -30,9 +30,6 @@ class Match(object):
         self.dice = None
 
     def roll(self):
-        """
-        Must be called only if
-        """
         if self.dice:
             self.initial_dice = self.dice.roll()
             self.remaining_dice = self.initial_dice[:]
@@ -114,8 +111,6 @@ class Match(object):
 
         self.may_double = {WHITE: not self.is_crawford(), BLACK: not self.is_crawford()}
 
-        broadcast(MatchEvent(self))
-
         d1, d2 = self.dice.rollout()
         self.color_to_move_next = WHITE if d1 > d2 else BLACK
 
@@ -124,12 +119,10 @@ class Match(object):
         self.remaining_dice = [d1, d2]
         self.initial_dice = [d1, d2]
 
-        broadcast(DiceEvent(self.remaining_dice))
-
         self.board.initialize_board()
         self.board.store_initial_possibilities(self.initial_dice, self.color_to_move_next)
 
-        #broadcast(MatchEvent(self))
+        broadcast(MatchEvent(self))
 
     def double(self, color):
         if self.doubling_possible(color):
@@ -157,6 +150,8 @@ class Match(object):
             self.color_to_move_next = WHITE
         else:
             raise ValueError("Noone's turn ... cannot switch")
+
+        self.roll()
 
         broadcast(MatchEvent(self))
 

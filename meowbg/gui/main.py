@@ -169,14 +169,6 @@ class MatchWidget(FloatLayout):
     def show_dice_roll(self, dice):
         self.board.show_dice(dice)
 
-    def initialize_new_match(self, match):
-        self.match = match
-        #self.match.register_player(Bot("Morten", BLACK), BLACK)
-        #self.match.register_player(Bot("Hille", WHITE), WHITE)
-        self.match.register_player(HumanPlayer("Johannes", WHITE), WHITE)
-        self.match.register_player(HumanPlayer("Annette", BLACK), BLACK)
-        self.match.new_game()
-
     def attempt_move(self, origin, target):
         try:
             self.match.make_temporary_move(origin, target, self.match.color_to_move_next)
@@ -190,7 +182,7 @@ class MatchWidget(FloatLayout):
         try:
             self.match.commit()
         except ValueError, msg:
-            Logger.warn(msg)
+            Logger.warn(str(msg))
 
     def _interpret_event(self, event):
         if isinstance(event, MatchEvent):
@@ -204,8 +196,6 @@ class MatchWidget(FloatLayout):
         elif isinstance(event, RollAttemptEvent):
             if self.match:
                 self.match.roll()
-        elif isinstance(event, NewMatchEvent):
-            self.initialize_new_match(event.match)
         elif isinstance(event, CommitAttemptEvent):
             self.attempt_commit()
         elif isinstance(event, UndoEvent):
