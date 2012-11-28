@@ -92,7 +92,7 @@ class Board(object):
                      % (partial_move, candidate_move_stack, self.possible_full_moves_with_initial_dice))
         return False
 
-    def commit_possible(self):
+    def early_commit_possible(self):
         """
         Checks whether the temporary moves stored in the board
         would already be a legal move (even though there may be

@@ -23,7 +23,7 @@ from meowbg.core.player import HumanPlayer
 from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel, BarPanel, BearoffPanel, Checker
 from meowbg.gui.boardwidget import BoardWidget
 from meowbg.gui.guievents import NewMatchEvent, MoveAttempt, AnimationFinishedEvent, AnimationStartedEvent, HitEvent, PauseEvent, UnhitEvent, MatchFocusEvent
-from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, DiceEvent, CommitAttemptEvent, UndoEvent, RollAttemptEvent, DoubleAttemptEvent
+from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, DiceEvent, CommitAttemptEvent, UndoEvent, RollAttemptEvent, DoubleAttemptEvent, CubeEvent
 from meowbg.core.messaging import register, broadcast
 from meowbg.network.connectionpool import share_connection
 from meowbg.network.telnetconn import TelnetConnection
@@ -97,6 +97,7 @@ class MatchWidget(FloatLayout):
         register(self.handle, PauseEvent)
         register(self.handle, RollAttemptEvent)
         register(self.handle, DoubleAttemptEvent)
+        register(self.show_cube_challenge, CubeEvent)
 
         register(self.release, AnimationFinishedEvent)
         register(self.animate_move, AnimationStartedEvent)
@@ -168,6 +169,9 @@ class MatchWidget(FloatLayout):
 
     def show_dice_roll(self, dice):
         self.board.show_dice(dice)
+
+    def show_cube_challenge(self, e):
+        self.board.cube_challenge(self.match.color_to_move_next, e.cube_number)
 
     def attempt_move(self, origin, target):
         try:

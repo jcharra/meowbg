@@ -82,7 +82,9 @@ class Match(object):
                          % (origin, target, self.remaining_dice))
 
     def commit(self):
-        if not self.remaining_dice or self.board.commit_possible():
+        if self.initial_dice and (not self.remaining_dice or self.board.early_commit_possible()):
+            self.initial_dice = self.remaining_dice = []
+
             broadcast(CommitEvent([m[0] for m in self.board.move_stack]))
 
             winner, points = self.board.get_winner()
@@ -127,7 +129,7 @@ class Match(object):
     def double(self, color):
         if self.doubling_possible(color):
             # TODO: make someone listen to this
-            broadcast(CubeEvent(color, self.cube * 2))
+            broadcast(CubeEvent(self.cube * 2))
 
     def double_accepted(self, by_color):
         self.may_double[by_color] = True
@@ -139,7 +141,7 @@ class Match(object):
         pass
 
     def doubling_possible(self, color):
-        return (self.remaining_dice == self.initial_dice
+        return (self.remaining_dice == self.initial_dice == []
                 and self.may_double[color]
                 and self.color_to_move_next == color)
 
@@ -150,8 +152,6 @@ class Match(object):
             self.color_to_move_next = WHITE
         else:
             raise ValueError("Noone's turn ... cannot switch")
-
-        self.roll()
 
         broadcast(MatchEvent(self))
 

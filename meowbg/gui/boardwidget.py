@@ -4,6 +4,7 @@ from kivy.graphics.vertex_instructions import Rectangle
 from kivy.logger import Logger
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.gridlayout import GridLayout
+from kivy.uix.image import Image
 from kivy.uix.label import Label
 from kivy.uix.widget import Widget
 from kivy.vector import Vector
@@ -11,7 +12,7 @@ from meowbg.core.board import WHITE, BLACK, BAR_INDEX, OFF_INDEX
 from meowbg.core.match import Match
 from meowbg.core.messaging import broadcast
 from meowbg.core.move import PartialMove
-from meowbg.gui.basicparts import IndexRow, SpikePanel, DicePanel, BarPanel, BearoffPanel
+from meowbg.gui.basicparts import IndexRow, SpikePanel, DicePanel, BarPanel, BearoffPanel, Cube
 from meowbg.gui.guievents import MoveAttempt, AnimationFinishedEvent, AnimationStartedEvent, HitEvent
 
 
@@ -93,6 +94,8 @@ class BoardWidget(GridLayout):
         for s in self.spikes():
             self.spike_for_target_index[s.board_idx] = s
 
+        self.cube = Cube()
+
     def on_touch_down(self, touch):
         if self.busy:
             return
@@ -173,18 +176,26 @@ class BoardWidget(GridLayout):
             self.show_dice(dice)
 
         if self.match.may_double[WHITE] and not self.match.may_double[BLACK]:
-            self.draw_cube(self.upper_cube_container, 1)
+            self.set_cube(self.upper_cube_container.center, 1)
         elif self.match.may_double[BLACK] and not self.match.may_double[WHITE]:
-            self.draw_cube(self.lower_cube_container, 1)
+            self.set_cube(self.lower_cube_container.center, 1)
         else:
-            self.draw_cube(self.middle_cube_container, 1)
+            self.set_cube(self.middle_cube_container.center, 1)
 
+    def move_cube(self, target_pos):
+        # TODO
+        pass
 
-    def draw_cube(self, target, cube):
-        with self.canvas:
-            Color(0, 1, 0)
-            Rectangle(pos=target.pos, size=target.size)
-            Label(text=str(cube), center=target.center)
+    def set_cube(self, target_pos, cube):
+        self.cube.center = target_pos
+        self.cube.number = cube
+
+    def cube_challenge(self, challenging_color, number):
+        if challenging_color == WHITE:
+            target = self.blacks_dice_area
+        else:
+            target = self.whites_dice_area
+        self.set_cube(target, number)
 
     def show_dice(self, dice):
         self.blacks_dice_area.clear_widgets()

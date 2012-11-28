@@ -1,9 +1,12 @@
+from kivy.graphics.context_instructions import Color
+from kivy.graphics.vertex_instructions import Rectangle
 from kivy.logger import Logger
 from kivy.properties import ListProperty, NumericProperty, BooleanProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.image import Image
+from kivy.uix.label import Label
 from kivy.uix.widget import Widget
 from meowbg.core.board import WHITE, BLACK
 from meowbg.core.bot import Bot
@@ -113,6 +116,12 @@ class SpikePanel(BoxLayout):
         for i in range(6):
             self.add_widget(Spike(board_idx=start_index + i * self.index_direction,
                                   direction=-self.index_direction))
+
+class Cube(Widget):
+    def __init__(self, **kwargs):
+        Widget.__init__(self, **kwargs)
+        self.number = 1
+        self.add_widget(Label(text=str(self.number)))
 
 class ButtonPanel(BoxLayout):
     def __init__(self, **kwargs):

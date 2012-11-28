@@ -9,6 +9,16 @@ class Bot(AbstractPlayer):
         match = match_event.match
         if match.color_to_move_next == self.color:
             print "MY TURN"
+
+            if match.doubling_possible(self.color):
+                print "Considering doubling ..."
+                if random.random() > 0.01:
+                    print "YES, I double"
+                    match.double(self.color)
+                    return
+
+            match.roll()
+
             moves = match.board.find_possible_moves(match.remaining_dice,
                                                    self.color)
 
