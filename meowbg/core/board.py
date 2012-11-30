@@ -106,6 +106,14 @@ class Board(object):
         moves_from_stack = [m[0] for m in self.move_stack]
         return moves_from_stack in self.possible_full_moves_with_initial_dice
 
+    def flush_move_stack(self):
+        """
+        Returns a copy of the move stack and empties the stack.
+        """
+        flushed = self.move_stack[:]
+        self.move_stack = []
+        return flushed
+
     def _check_possibility(self, move, dice):
         for full_move in self.find_possible_moves(dice, move.color):
             if move in full_move:

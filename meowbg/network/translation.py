@@ -4,8 +4,9 @@ import logging
 from meowbg.core.board import Board, BLACK, WHITE
 from meowbg.core.match import Match
 from meowbg.core.move import PartialMove
-from meowbg.core.events import InvitationEvent, MoveEvent, MatchEvent, PlayerStatusEvent, DiceEvent, RollRequest, DoubleAttemptEvent
+from meowbg.core.events import InvitationEvent, MoveEvent, MatchEvent, PlayerStatusEvent, DiceEvent, RollRequest
 from meowbg.core.player import HumanPlayer, OnlinePlayerProxy
+from meowbg.gui.guievents import DoubleAttemptEvent
 
 logger = logging.getLogger("EventParser")
 logger.addHandler(logging.StreamHandler())
@@ -208,7 +209,6 @@ class FIBSTranslator(object):
 
         match.cube = parts[37]
         match.may_double = {BLACK: parts[38], WHITE: parts[39]}
-        match.was_doubled = parts[40]
 
         on_field, on_bar = self.parse_board_str(board_str)
         match.board = Board(on_field=on_field, on_bar=on_bar)

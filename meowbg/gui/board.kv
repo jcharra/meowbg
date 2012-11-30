@@ -13,6 +13,14 @@
         on_press: self.parent.double_attempted()
 
     Button:
+        text: 'Accept'
+        on_press: self.parent.accept()
+
+    Button:
+        text: 'Reject'
+        on_press: self.parent.reject()
+
+    Button:
         text: 'New AI game'
         on_press: self.parent.start_new_ai_game()
 

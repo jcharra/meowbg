@@ -11,10 +11,10 @@ from kivy.uix.widget import Widget
 from meowbg.core.board import WHITE, BLACK
 from meowbg.core.bot import Bot
 from meowbg.core.match import Match
-from meowbg.core.events import MatchEvent, CommitAttemptEvent, UndoEvent, RollAttemptEvent, DoubleAttemptEvent
+from meowbg.core.events import AcceptEvent, RejectEvent
 from meowbg.core.messaging import broadcast
 from meowbg.core.player import HumanPlayer
-from meowbg.gui.guievents import NewMatchEvent
+from meowbg.gui.guievents import CommitAttemptEvent, UndoAttemptEvent, RollAttemptEvent, DoubleAttemptEvent
 
 class Checker(Widget):
     COLOR_MAP = {BLACK: (.3, .1, 0), WHITE: (.8, .6, .4)}
@@ -138,7 +138,13 @@ class ButtonPanel(BoxLayout):
         broadcast(CommitAttemptEvent())
 
     def undo_move(self):
-        broadcast(UndoEvent())
+        broadcast(UndoAttemptEvent())
+
+    def accept(self):
+        broadcast(AcceptEvent())
+
+    def reject(self):
+        broadcast(RejectEvent())
 
     def roll_attempted(self):
         broadcast(RollAttemptEvent())

@@ -1,5 +1,7 @@
-from meowbg.core.events import MatchEvent, MoveEvent, CommitEvent, RollRequest, DoubleAttemptEvent
+
+from meowbg.core.events import MatchEvent, MoveEvent, CommitEvent, RollRequest
 from meowbg.core.messaging import register, unregister
+from meowbg.gui.guievents import DoubleAttemptEvent
 from meowbg.network.connectionpool import get_connection
 
 class AbstractPlayer(object):

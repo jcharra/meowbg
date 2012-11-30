@@ -21,7 +21,12 @@ class Match(object):
         self.cube = 1
         self.may_double = {WHITE: True, BLACK: True}
         self.players = {WHITE: "", BLACK: ""}
-        self.was_doubled = 0
+
+        # This can be either None, BLACK, or WHITE
+        self.open_cube_challenge_from_color = None
+
+        # This can either be an empty tuple or a tuple (color, points), e.g. (WHITE, 2)
+        self.resignation_points_offered = ()
         self.move_possibilities = []
 
         self.board = Board()
@@ -29,12 +34,19 @@ class Match(object):
         # they are defined by the server
         self.dice = None
 
-    def roll(self):
+    def roll(self, color):
+        if color != self.color_to_move_next:
+            logger.warn("Not the turn of color %s, roll denied")
+            return
+
         if self.dice:
-            self.initial_dice = self.dice.roll()
-            self.remaining_dice = self.initial_dice[:]
-            self.board.store_initial_possibilities(self.initial_dice, self.color_to_move_next)
-            broadcast(DiceEvent(self.remaining_dice))
+            if not self.initial_dice:
+                self.initial_dice = self.dice.roll()
+                self.remaining_dice = self.initial_dice[:]
+                self.board.store_initial_possibilities(self.initial_dice, self.color_to_move_next)
+                broadcast(DiceEvent(self.remaining_dice))
+            else:
+                logger.warn("Cannot roll")
         else:
             broadcast(RollRequest())
 
@@ -57,7 +69,11 @@ class Match(object):
         if hit_event:
             broadcast(hit_event)
 
-    def undo(self):
+    def undo(self, color):
+        if color != self.color_to_move_next:
+            logger.warn("Not your turn, you cannot undo!")
+            return
+
         try:
             move, hit_checker = self.board.undo_partial_move()
         except Exception, msg:
@@ -85,7 +101,8 @@ class Match(object):
         if self.initial_dice and (not self.remaining_dice or self.board.early_commit_possible()):
             self.initial_dice = self.remaining_dice = []
 
-            broadcast(CommitEvent([m[0] for m in self.board.move_stack]))
+            pending_moves = [m[0] for m in self.board.flush_move_stack()]
+            broadcast(CommitEvent(pending_moves))
 
             winner, points = self.board.get_winner()
             if winner:
@@ -128,17 +145,46 @@ class Match(object):
 
     def double(self, color):
         if self.doubling_possible(color):
-            # TODO: make someone listen to this
+            self.open_cube_challenge_from_color = color
             broadcast(CubeEvent(self.cube * 2))
+        else:
+            logger.info("Doubling not allowed")
 
     def double_accepted(self, by_color):
+        self.open_cube_challenge_from_color = None
         self.may_double[by_color] = True
         self.may_double[OPPONENT[by_color]] = False
         self.cube *= 2
+        broadcast(MatchEvent(self))
 
-    def on_player_resign(self, players_color, resign_points=1):
-        # TODO
-        pass
+    def accept_open_offer(self, color):
+        if color == self.color_to_move_next:
+            logger.warn("You cannot accept your own offer")
+            return
+
+        if self.open_cube_challenge_from_color:
+            self.double_accepted(OPPONENT[self.open_cube_challenge_from_color])
+            self.open_cube_challenge_from_color = None
+        elif self.resignation_points_offered:
+            color, points = self.resignation_points_offered
+            self.end_game(color, points)
+        else:
+            logger.info("No open offers")
+
+    def reject_open_offer(self, color):
+        if color == self.color_to_move_next:
+            logger.warn("You cannot accept your own offer")
+            return
+
+        if self.open_cube_challenge_from_color:
+            self.end_game(self.open_cube_challenge_from_color, 1)
+            self.open_cube_challenge_from_color = None
+        elif self.resignation_points_offered:
+            # fire a rejection event here
+            self.resignation_points_offered = ()
+            broadcast(MatchEvent(self))
+        else:
+            logger.info("No open offers")
 
     def doubling_possible(self, color):
         return (self.remaining_dice == self.initial_dice == []

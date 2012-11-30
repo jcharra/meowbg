@@ -16,14 +16,15 @@ from kivy.factory import Factory
 from kivy.logger import Logger
 from kivy.resources import resource_add_path
 from kivy.vector import Vector
-from meowbg.core.board import BLACK, WHITE
+from meowbg.core.board import WHITE
 from meowbg.core.exceptions import MoveNotPossible
 from meowbg.core.move import PartialMove
-from meowbg.core.player import HumanPlayer
 from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel, BarPanel, BearoffPanel, Checker
 from meowbg.gui.boardwidget import BoardWidget
-from meowbg.gui.guievents import NewMatchEvent, MoveAttempt, AnimationFinishedEvent, AnimationStartedEvent, HitEvent, PauseEvent, UnhitEvent, MatchFocusEvent
-from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, DiceEvent, CommitAttemptEvent, UndoEvent, RollAttemptEvent, DoubleAttemptEvent, CubeEvent
+from meowbg.gui.guievents import (NewMatchEvent, MoveAttemptEvent, AnimationFinishedEvent, AnimationStartedEvent,
+                                  HitEvent, PauseEvent, UnhitEvent, MatchFocusEvent, CommitAttemptEvent,
+                                  UndoAttemptEvent, RollAttemptEvent, DoubleAttemptEvent)
+from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, DiceEvent, CubeEvent, RejectEvent, AcceptEvent
 from meowbg.core.messaging import register, broadcast
 from meowbg.network.connectionpool import share_connection
 from meowbg.network.telnetconn import TelnetConnection
@@ -79,41 +80,28 @@ class MatchWidget(FloatLayout):
         self.board = BoardWidget(pos_hint={'x': 0, 'y': 0})
         self.add_widget(self.board)
         self.match = None
+        self.represented_color = WHITE
+
         self.blocking_events = []
         self.event_queue = Queue.Queue()
         Clock.schedule_interval(self.process_queue, .1)
 
-        # TODO: implement bulk registration
-        register(self.handle, NewMatchEvent)
-        register(self.handle, MatchEvent)
-        register(self.handle, MoveAttempt)
-        register(self.handle, DiceEvent)
-        register(self.handle, SingleMoveEvent)
-        register(self.handle, MoveEvent)
-        register(self.handle, CommitAttemptEvent)
-        register(self.handle, UndoEvent)
-        register(self.handle, HitEvent)
-        register(self.handle, UnhitEvent)
-        register(self.handle, PauseEvent)
-        register(self.handle, RollAttemptEvent)
-        register(self.handle, DoubleAttemptEvent)
-        register(self.show_cube_challenge, CubeEvent)
+        # Register a lot of events to be queued
+        for e in (NewMatchEvent, MatchEvent, MoveAttemptEvent, DiceEvent, SingleMoveEvent,
+            MoveEvent, CommitAttemptEvent, UndoAttemptEvent, HitEvent, UnhitEvent, PauseEvent,
+            RollAttemptEvent, DoubleAttemptEvent, AcceptEvent, RejectEvent):
+            register(self._insert_into_queue, e)
 
+        register(self.show_cube_challenge, CubeEvent)
         register(self.release, AnimationFinishedEvent)
         register(self.animate_move, AnimationStartedEvent)
 
-
-    def process_queue(self, dt):
-        if not self.event_queue.empty() and not self.blocking_events:
-            event = self.event_queue.get()
-            Logger.info("============= Processing event %s" % event)
-            self._interpret_event(event)
-            self.event_queue.task_done()
-        elif not self.event_queue.empty():
-            #Logger.info("Blocking events: %s" % self.blocking_events)
-            pass
-
-    def handle(self, event):
+    def _insert_into_queue(self, event):
+        """
+        Basically this just puts the event into the process queue,
+        waiting to be dispatched. There may be special treatment
+        for certain kinds of events.
+        """
         if isinstance(event, MoveEvent):
             # A full move event is first split into several single move events
             for m in event.moves:
@@ -127,6 +115,54 @@ class MatchWidget(FloatLayout):
             self.event_queue.put(PauseEvent(30))
 
         self.event_queue.put(event)
+
+    def _interpret_event(self, event):
+        if isinstance(event, MatchEvent):
+            self.match = event.match
+            self.board.synchronize(event.match)
+            broadcast(MatchFocusEvent())
+        elif isinstance(event, SingleMoveEvent):
+            self.execute_move(event.move)
+        elif isinstance(event, DiceEvent):
+            self.show_dice_roll(event.dice)
+        elif isinstance(event, RollAttemptEvent):
+            if self.match:
+                self.match.roll(self.represented_color)
+        elif isinstance(event, CommitAttemptEvent):
+            if self.match:
+                self.attempt_commit()
+        elif isinstance(event, DoubleAttemptEvent):
+            if self.match:
+                self.match.double(self.represented_color)
+        elif isinstance(event, UndoAttemptEvent):
+            if self.match:
+                self.match.undo(self.represented_color)
+        elif isinstance(event, AcceptEvent):
+            if self.match:
+                self.match.accept_open_offer(self.represented_color)
+        elif isinstance(event, MoveAttemptEvent):
+            self.attempt_move(event.origin, event.target)
+        elif isinstance(event, RejectEvent):
+            if self.match:
+                self.match.reject_open_offer(self.represented_color)
+        elif isinstance(event, HitEvent):
+            self.board.animate_hit(event.field_idx, event.hitting_color)
+        elif isinstance(event, UnhitEvent):
+            self.board.animate_unhit(event.field_idx, event.hit_color)
+        elif isinstance(event, PauseEvent):
+            self.pause(event)
+        else:
+            Logger.error("Cannot interpret event %s" % event)
+
+    def process_queue(self, dt):
+        if not self.event_queue.empty() and not self.blocking_events:
+            event = self.event_queue.get()
+            Logger.info("============= Processing event %s" % event)
+            self._interpret_event(event)
+            self.event_queue.task_done()
+        elif not self.event_queue.empty():
+            #Logger.info("Blocking events: %s" % self.blocking_events)
+            pass
 
     def pause(self, pe):
         self.block(pe)
@@ -180,41 +216,10 @@ class MatchWidget(FloatLayout):
             Logger.error("Not possible: %s" % msg)
 
     def attempt_commit(self):
-        if not self.match:
-            return
-
         try:
             self.match.commit()
         except ValueError, msg:
             Logger.warn(str(msg))
-
-    def _interpret_event(self, event):
-        if isinstance(event, MatchEvent):
-            self.match = event.match
-            self.board.synchronize(event.match)
-            broadcast(MatchFocusEvent())
-        elif isinstance(event, SingleMoveEvent):
-            self.execute_move(event.move)
-        elif isinstance(event, DiceEvent):
-            self.show_dice_roll(event.dice)
-        elif isinstance(event, RollAttemptEvent):
-            if self.match:
-                self.match.roll()
-        elif isinstance(event, CommitAttemptEvent):
-            self.attempt_commit()
-        elif isinstance(event, UndoEvent):
-            if self.match:
-                self.match.undo()
-        elif isinstance(event, MoveAttempt):
-            self.attempt_move(event.origin, event.target)
-        elif isinstance(event, HitEvent):
-            self.board.animate_hit(event.field_idx, event.hitting_color)
-        elif isinstance(event, UnhitEvent):
-            self.board.animate_unhit(event.field_idx, event.hit_color)
-        elif isinstance(event, PauseEvent):
-            self.pause(event)
-        else:
-            Logger.error("Cannot interpret event %s" % event)
 
 
 class PlayerListWidget(ScrollView):

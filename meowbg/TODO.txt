@@ -4,4 +4,3 @@ TODOs:
  - Improve cube looks
  - Make doubling button operational
  - Implement accept and reject buttons
- - Make lobby respond to status events

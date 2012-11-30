@@ -13,7 +13,7 @@ from meowbg.core.match import Match
 from meowbg.core.messaging import broadcast
 from meowbg.core.move import PartialMove
 from meowbg.gui.basicparts import IndexRow, SpikePanel, DicePanel, BarPanel, BearoffPanel, Cube
-from meowbg.gui.guievents import MoveAttempt, AnimationFinishedEvent, AnimationStartedEvent, HitEvent
+from meowbg.gui.guievents import MoveAttemptEvent, AnimationFinishedEvent, AnimationStartedEvent, HitEvent
 
 
 class BoardWidget(GridLayout):
@@ -121,7 +121,7 @@ class BoardWidget(GridLayout):
 
             if len(target_indexes) == 1:
                 # only one possibility => move immediately
-                broadcast(MoveAttempt(spike.board_idx, target_indexes[0]))
+                broadcast(MoveAttemptEvent(spike.board_idx, target_indexes[0]))
             elif len(target_indexes) > 0:
                 # highlight clicked spike and show possibilities
                 self.active_spike = spike
@@ -130,7 +130,7 @@ class BoardWidget(GridLayout):
             else:
                 Logger.info("No possible moves from %s" % spike.board_idx)
         else:
-            broadcast(MoveAttempt(self.active_spike.board_idx, spike.board_idx))
+            broadcast(MoveAttemptEvent(self.active_spike.board_idx, spike.board_idx))
             self.active_spike.activated = False
             self.active_spike = None
 

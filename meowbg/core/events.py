@@ -4,13 +4,7 @@ class MatchEvent(object):
     def __init__(self, match):
         self.match = match
 
-class RollAttemptEvent(object):
-    pass
-
 class RollRequest(object):
-    pass
-
-class DoubleAttemptEvent(object):
     pass
 
 class DiceEvent(object):
@@ -42,15 +36,9 @@ class SingleMoveEvent(object):
     def __init__(self, move):
         self.move = move
 
-class CommitAttemptEvent(object):
-    pass
-
 class CommitEvent(object):
     def __init__(self, moves):
         self.moves = moves
-
-class UndoEvent(object):
-    pass
 
 class ResignEvent(object):
     def __init__(self, points):

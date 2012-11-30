@@ -1,8 +1,8 @@
 import random
-from meowbg.core.events import MatchEvent, CommitAttemptEvent
-from meowbg.core.messaging import register, broadcast, unregister
+
+from meowbg.core.messaging import broadcast
 from meowbg.core.player import AbstractPlayer
-from meowbg.gui.guievents import MoveAttempt
+from meowbg.gui.guievents import MoveAttemptEvent, CommitAttemptEvent
 
 class Bot(AbstractPlayer):
     def react(self, match_event):
@@ -17,7 +17,7 @@ class Bot(AbstractPlayer):
                     match.double(self.color)
                     return
 
-            match.roll()
+            match.roll(self.color)
 
             moves = match.board.find_possible_moves(match.remaining_dice,
                                                    self.color)
@@ -26,7 +26,7 @@ class Bot(AbstractPlayer):
             if moves:
                 mymove = random.choice(moves)
                 for m in mymove:
-                    broadcast(MoveAttempt(m.origin, m.target))
+                    broadcast(MoveAttemptEvent(m.origin, m.target))
 
             broadcast(CommitAttemptEvent())
         else:

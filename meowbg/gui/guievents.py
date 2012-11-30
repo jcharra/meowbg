@@ -1,13 +1,39 @@
-class NewMatchEvent(object):
-    def __init__(self, match):
-        self.match = match
 
-class MoveAttempt(object):
+"""
+Event classes that will be triggered by GUI interaction
+and classes that are mostly GUI-related and hardly model-related.
+"""
+
+
+
+# A collection of 'attempt' events that result from a clicked
+# button, not necessarily having an effect on the game.
+
+class MoveAttemptEvent(object):
     def __init__(self, origin, target):
         self.origin, self.target = origin, target
 
     def __repr__(self):
         return "MoveEvent: %s->%s" % (self.origin, self.target)
+
+class RollAttemptEvent(object):
+    pass
+
+class DoubleAttemptEvent(object):
+    pass
+
+class CommitAttemptEvent(object):
+    pass
+
+class UndoAttemptEvent(object):
+    pass
+
+class NewMatchEvent(object):
+    def __init__(self, match):
+        self.match = match
+
+
+# Several animation-related events
 
 class AnimationStartedEvent(object):
     def __init__(self, moving_checker, target_spike, speedup=1):
@@ -26,9 +52,13 @@ class UnhitEvent(object):
     def __init__(self, field_idx, hit_color):
         self.field_idx, self.hit_color = field_idx, hit_color
 
+# A pause event to insert breaks, e.g. in between subsequent animations
+
 class PauseEvent(object):
     def __init__(self, ms):
         self.ms = ms
+
+# Bring the match window into the foreground, i.e. focus it
 
 class MatchFocusEvent(object):
     pass

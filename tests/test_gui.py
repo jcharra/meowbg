@@ -7,7 +7,7 @@ from meowbg.core.match import Match
 from meowbg.core.messaging import broadcast
 from meowbg.core.move import PartialMove
 from meowbg.core.player import HumanPlayer
-from meowbg.gui.guievents import NewMatchEvent, MoveAttempt
+from meowbg.gui.guievents import NewMatchEvent, MoveAttemptEvent
 from meowbg.gui.main import BoardApp
 from meowbg.network.connectionpool import DummyConnection, share_connection
 from meowbg.network.translation import FIBSTranslator
@@ -30,16 +30,16 @@ def test_hit():
     )
     broadcast(MatchEvent(match))
     broadcast(DiceEvent(match.initial_dice))
-    broadcast(MoveAttempt(17, 11))
-    broadcast(MoveAttempt(11, 9))
+    broadcast(MoveAttemptEvent(17, 11))
+    broadcast(MoveAttemptEvent(11, 9))
     match.dice = FakeDice()
     match.dice.set_next_dice(4, 3)
     broadcast(CommitAttemptEvent())
 
     time.sleep(3)
     broadcast(DiceEvent(match.initial_dice))
-    broadcast(MoveAttempt(-1, 3))
-    broadcast(MoveAttempt(-1, 2))
+    broadcast(MoveAttemptEvent(-1, 3))
+    broadcast(MoveAttemptEvent(-1, 2))
     broadcast(CommitAttemptEvent())
 
 def execute_script():
