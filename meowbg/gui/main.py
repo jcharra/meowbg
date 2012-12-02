@@ -24,7 +24,7 @@ from meowbg.gui.boardwidget import BoardWidget
 from meowbg.gui.guievents import (NewMatchEvent, MoveAttemptEvent, AnimationFinishedEvent, AnimationStartedEvent,
                                   HitEvent, PauseEvent, UnhitEvent, MatchFocusEvent, CommitAttemptEvent,
                                   UndoAttemptEvent, RollAttemptEvent, DoubleAttemptEvent)
-from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, DiceEvent, CubeEvent, RejectEvent, AcceptEvent
+from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, DiceEvent, CubeEvent, RejectEvent, AcceptEvent, UndoMoveEvent
 from meowbg.core.messaging import register, broadcast
 from meowbg.network.connectionpool import share_connection
 from meowbg.network.telnetconn import TelnetConnection
@@ -88,8 +88,8 @@ class MatchWidget(FloatLayout):
 
         # Register a lot of events to be queued
         for e in (NewMatchEvent, MatchEvent, MoveAttemptEvent, DiceEvent, SingleMoveEvent,
-            MoveEvent, CommitAttemptEvent, UndoAttemptEvent, HitEvent, UnhitEvent, PauseEvent,
-            RollAttemptEvent, DoubleAttemptEvent, AcceptEvent, RejectEvent):
+            MoveEvent, CommitAttemptEvent, UndoAttemptEvent, UndoMoveEvent, HitEvent, UnhitEvent,
+            PauseEvent, RollAttemptEvent, DoubleAttemptEvent, AcceptEvent, RejectEvent):
             register(self._insert_into_queue, e)
 
         register(self.show_cube_challenge, CubeEvent)
@@ -123,6 +123,8 @@ class MatchWidget(FloatLayout):
             broadcast(MatchFocusEvent())
         elif isinstance(event, SingleMoveEvent):
             self.execute_move(event.move)
+        elif isinstance(event, UndoMoveEvent):
+            self.execute_undo_move(event.move)
         elif isinstance(event, DiceEvent):
             self.show_dice_roll(event.dice)
         elif isinstance(event, RollAttemptEvent):
@@ -177,6 +179,9 @@ class MatchWidget(FloatLayout):
 
     def execute_move(self, move):
         self.board.move_by_indexes(move.origin, move.target)
+
+    def execute_undo_move(self, move):
+        self.board.move_by_indexes(move.origin, move.target, is_undo=True)
 
     def animate_move(self, ae):
         """

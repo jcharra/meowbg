@@ -239,18 +239,38 @@ class BoardWidget(GridLayout):
         moving_checker.pos_hint = {} # needed to make animation work ... ?
         broadcast(AnimationStartedEvent(moving_checker, spike_target))
 
-    def move_by_indexes(self, origin_idx, target_idx):
+    def move_by_indexes(self, origin_idx, target_idx, is_undo=False):
         """
         Performs a move from origin index to target index, potentially
         hitting a checker on the target field.
+        The parameter `is_undo` indicates whether this is a backwards
+        move, i.e. a previous move being undone.
         """
         move_direction = target_idx - origin_idx
         origin = target = None
 
         if origin_idx in BAR_INDEX.values():
-            origin = self.lower_bar if move_direction > 0 else self.upper_bar
+            if move_direction > 0:
+                if is_undo:
+                    origin = self.lower_bearoff
+                else:
+                    origin = self.lower_bar
+            else:
+                if is_undo:
+                    origin = self.upper_bearoff
+                else:
+                    origin = self.upper_bar
         elif target_idx in OFF_INDEX.values():
-            target = self.upper_bearoff if move_direction > 0 else self.lower_bearoff
+            if move_direction > 0:
+                if is_undo:
+                    target = self.lower_bar
+                else:
+                    target = self.upper_bearoff
+            else:
+                if is_undo:
+                    target = self.upper_bar
+                else:
+                    target = self.lower_bearoff
 
         origin = origin or self._get_spike_by_index(origin_idx)
         target = target or self._get_spike_by_index(target_idx)

@@ -36,6 +36,10 @@ class SingleMoveEvent(object):
     def __init__(self, move):
         self.move = move
 
+class UndoMoveEvent(object):
+    def __init__(self, move):
+        self.move = move
+
 class CommitEvent(object):
     def __init__(self, moves):
         self.moves = moves

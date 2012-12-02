@@ -1,7 +1,7 @@
 import logging
 from meowbg.core.board import Board, WHITE, BLACK, COLOR_NAMES, OPPONENT
 from meowbg.core.dice import Dice
-from meowbg.core.events import MatchEndEvent, GameEndEvent, RolloutEvent, MatchEvent, SingleMoveEvent, DiceEvent, CommitEvent, RollRequest, CubeEvent
+from meowbg.core.events import MatchEndEvent, GameEndEvent, RolloutEvent, MatchEvent, SingleMoveEvent, DiceEvent, CommitEvent, RollRequest, CubeEvent, UndoMoveEvent
 from meowbg.core.messaging import broadcast
 from meowbg.gui.guievents import HitEvent, UnhitEvent
 from move import PartialMove
@@ -83,7 +83,7 @@ class Match(object):
         die = self.get_die_for_move(move.origin, move.target, undo=True)
         self.remaining_dice.append(die)
 
-        broadcast(SingleMoveEvent(PartialMove(move.target, move.origin)))
+        broadcast(UndoMoveEvent(PartialMove(move.target, move.origin)))
 
         if hit_checker:
             broadcast(UnhitEvent(move.target, hit_checker))
