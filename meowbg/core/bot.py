@@ -1,4 +1,5 @@
 import random
+from meowbg.core.events import AcceptEvent
 
 from meowbg.core.messaging import broadcast
 from meowbg.core.player import AbstractPlayer
@@ -32,4 +33,5 @@ class Bot(AbstractPlayer):
         else:
             print "Not my turn!"
 
-
+    def on_cube(self, cube_event):
+        broadcast(AcceptEvent(self.color))

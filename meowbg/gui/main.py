@@ -19,7 +19,7 @@ from kivy.vector import Vector
 from meowbg.core.board import WHITE
 from meowbg.core.exceptions import MoveNotPossible
 from meowbg.core.move import PartialMove
-from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel, BarPanel, BearoffPanel, Checker
+from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel, BarPanel, BearoffPanel, Checker, Cube
 from meowbg.gui.boardwidget import BoardWidget
 from meowbg.gui.guievents import (NewMatchEvent, MoveAttemptEvent, AnimationFinishedEvent, AnimationStartedEvent,
                                   HitEvent, PauseEvent, UnhitEvent, MatchFocusEvent, CommitAttemptEvent,
@@ -141,12 +141,12 @@ class MatchWidget(FloatLayout):
                 self.match.undo(self.represented_color)
         elif isinstance(event, AcceptEvent):
             if self.match:
-                self.match.accept_open_offer(self.represented_color)
+                self.match.accept_open_offer(event.color)
         elif isinstance(event, MoveAttemptEvent):
             self.attempt_move(event.origin, event.target)
         elif isinstance(event, RejectEvent):
             if self.match:
-                self.match.reject_open_offer(self.represented_color)
+                self.match.reject_open_offer(event.color)
         elif isinstance(event, HitEvent):
             self.board.animate_hit(event.field_idx, event.hitting_color)
         elif isinstance(event, UnhitEvent):
@@ -312,6 +312,7 @@ Factory.register("BarPanel", BarPanel)
 Factory.register("BearoffPanel", BearoffPanel)
 Factory.register("SpikePanel", SpikePanel)
 Factory.register("IndexRow", IndexRow)
+Factory.register("Cube", Cube)
 
 if __name__ == '__main__':
     app = BoardApp()

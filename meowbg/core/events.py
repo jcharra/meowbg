@@ -49,10 +49,12 @@ class ResignEvent(object):
         self.points = points
 
 class AcceptEvent(object):
-    pass
+    def __init__(self, color):
+        self.color = color
 
 class RejectEvent(object):
-    pass
+    def __init__(self, color):
+        self.color = color
 
 class GameEndEvent(object):
     def __init__(self, winner, points):

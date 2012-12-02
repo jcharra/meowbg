@@ -118,14 +118,12 @@ class SpikePanel(BoxLayout):
                                   direction=-self.index_direction))
 
 class Cube(Widget):
-    def __init__(self, **kwargs):
-        Widget.__init__(self, **kwargs)
-        self.number = 1
-        self.add_widget(Label(text=str(self.number)))
+    number = NumericProperty(1)
 
 class ButtonPanel(BoxLayout):
     def __init__(self, **kwargs):
         BoxLayout.__init__(self, **kwargs)
+        self.represented_color = WHITE
 
     def start_new_ai_game(self):
         match = Match()
@@ -141,10 +139,10 @@ class ButtonPanel(BoxLayout):
         broadcast(UndoAttemptEvent())
 
     def accept(self):
-        broadcast(AcceptEvent())
+        broadcast(AcceptEvent(self.represented_color))
 
     def reject(self):
-        broadcast(RejectEvent())
+        broadcast(RejectEvent(self.represented_color))
 
     def roll_attempted(self):
         broadcast(RollAttemptEvent())

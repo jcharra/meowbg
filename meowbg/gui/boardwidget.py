@@ -2,6 +2,7 @@ from kivy.animation import Animation
 from kivy.graphics.context_instructions import Color
 from kivy.graphics.vertex_instructions import Rectangle
 from kivy.logger import Logger
+from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.image import Image
@@ -25,7 +26,7 @@ class BoardWidget(GridLayout):
         self.match = None
 
         # plug together all that shit ...
-        self.upper_cube_container = Widget(size_hint=(1/17.5, 1))
+        self.upper_cube_container = BoxLayout(size_hint=(1/17.5, 1), orientation='vertical')
         self.add_widget(self.upper_cube_container)
         self.add_widget(IndexRow(idx_start=13, size_hint=(5/17.5, 1)))
         self.add_widget(Widget(size_hint=(1/17.5, 1))) # border at bar
@@ -47,7 +48,7 @@ class BoardWidget(GridLayout):
         self.add_widget(self.upper_bearoff)
         self.add_widget(Widget(size_hint=(1/17.5, 5)))
 
-        self.middle_cube_container = Widget(size_hint=(1/17.5, 1))
+        self.middle_cube_container = BoxLayout(size_hint=(1/17.5, 1), orientation='vertical')
         self.add_widget(self.middle_cube_container)
         self.blacks_dice_area = DicePanel(size_hint=(5/17.5, 1))
         self.add_widget(self.blacks_dice_area)
@@ -74,7 +75,7 @@ class BoardWidget(GridLayout):
         self.add_widget(self.lower_bearoff)
         self.add_widget(Widget(size_hint=(1/17.5, 1)))
 
-        self.lower_cube_container = Widget(size_hint=(1/17.5, 1))
+        self.lower_cube_container = BoxLayout(size_hint=(1/17.5, 1), orientation='vertical')
         self.add_widget(self.lower_cube_container)
         self.add_widget(IndexRow(idx_start=12, idx_direction=-1, size_hint=(5/17.5, 1)))
         self.add_widget(Widget(size_hint=(1/17.5, 1)))
@@ -95,6 +96,7 @@ class BoardWidget(GridLayout):
             self.spike_for_target_index[s.board_idx] = s
 
         self.cube = Cube()
+        self.middle_cube_container.add_widget(self.cube)
 
     def on_touch_down(self, touch):
         if self.busy:
@@ -172,15 +174,19 @@ class BoardWidget(GridLayout):
                 target.add_checkers(col, col_borne_off)
 
         dice = self.match.remaining_dice
-        if dice:
-            self.show_dice(dice)
+        self.show_dice(dice)
 
+        if not match.open_cube_challenge_from_color:
+            self.set_cube_to_owning_color()
+
+    def set_cube_to_owning_color(self):
         if self.match.may_double[WHITE] and not self.match.may_double[BLACK]:
-            self.set_cube(self.upper_cube_container.center, 1)
+            target = self.lower_cube_container.center
         elif self.match.may_double[BLACK] and not self.match.may_double[WHITE]:
-            self.set_cube(self.lower_cube_container.center, 1)
+            target = self.upper_cube_container.center
         else:
-            self.set_cube(self.middle_cube_container.center, 1)
+            target = self.middle_cube_container.center
+        self.set_cube(target, self.match.cube)
 
     def move_cube(self, target_pos):
         # TODO
@@ -192,14 +198,17 @@ class BoardWidget(GridLayout):
 
     def cube_challenge(self, challenging_color, number):
         if challenging_color == WHITE:
-            target = self.blacks_dice_area
+            target = self.blacks_dice_area.center
         else:
-            target = self.whites_dice_area
+            target = self.whites_dice_area.center
         self.set_cube(target, number)
 
     def show_dice(self, dice):
         self.blacks_dice_area.clear_widgets()
         self.whites_dice_area.clear_widgets()
+
+        if not dice:
+            return
 
         color = self.match.color_to_move_next
         if color == BLACK:

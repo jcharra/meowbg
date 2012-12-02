@@ -1,5 +1,5 @@
 
-from meowbg.core.events import MatchEvent, MoveEvent, CommitEvent, RollRequest
+from meowbg.core.events import MatchEvent, MoveEvent, CommitEvent, RollRequest, CubeEvent
 from meowbg.core.messaging import register, unregister
 from meowbg.gui.guievents import DoubleAttemptEvent
 from meowbg.network.connectionpool import get_connection
@@ -8,6 +8,7 @@ class AbstractPlayer(object):
     def __init__(self, name, color):
         self.name, self.color = name, color
         register(self.react, MatchEvent)
+        register(self.on_cube, CubeEvent)
 
     def exit(self):
         unregister(self.react, MatchEvent)
@@ -15,6 +16,8 @@ class AbstractPlayer(object):
     def react(self, match_event):
         raise NotImplemented
 
+    def on_cube(self, cube_event):
+        raise NotImplemented
 
 class HumanPlayer(AbstractPlayer):
     def react(self, match_event):
@@ -23,6 +26,11 @@ class HumanPlayer(AbstractPlayer):
         human interaction here.
         """
         pass
+
+    def on_cube(self, cube_event):
+        """
+        Same as in react
+        """
 
 
 class OnlinePlayerProxy(object):

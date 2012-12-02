@@ -46,6 +46,20 @@
     Label:
         text: str(self.parent.idx_start + self.parent.idx_direction * 5)
 
+<Cube>:
+    pos: self.pos
+    size: self.size
+
+    canvas:
+        Color:
+            rgb: (0, 1, 0)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    Label:
+        text: "1"
+
 <Spike>:
     pos: self.pos
     size: self.size
