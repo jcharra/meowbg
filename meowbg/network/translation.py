@@ -168,15 +168,17 @@ class FIBSTranslator(object):
 
         parts = match_str.split(":")
         if len(parts) != 53:
-            self.logger.error("Illegal board state: %s" % match_str)
+            logger.error("Illegal board state: %s" % match_str)
             return
 
+        your_color, opponents_color = (WHITE, BLACK) if parts[41] == 1 else (BLACK, WHITE)
+        # TODO: simplify
         if parts[1].lower() == "you":
-            match.register_player(HumanPlayer(parts[1], BLACK), BLACK)
-            match.register_player(OnlinePlayerProxy(parts[2], WHITE, self), WHITE)
+            match.register_player(HumanPlayer(parts[1], your_color), your_color)
+            match.register_player(OnlinePlayerProxy(parts[2], opponents_color, self), opponents_color)
         else:
-            match.register_player(HumanPlayer(parts[2], BLACK), BLACK)
-            match.register_player(OnlinePlayerProxy(parts[1], WHITE, self), WHITE)
+            match.register_player(HumanPlayer(parts[2], your_color), your_color)
+            match.register_player(OnlinePlayerProxy(parts[1], opponents_color, self), opponents_color)
 
         parts[3:] = map(int, parts[3:])
 

@@ -1,18 +1,15 @@
-from kivy.graphics.context_instructions import Color
-from kivy.graphics.vertex_instructions import Rectangle
 from kivy.logger import Logger
-from kivy.properties import ListProperty, NumericProperty, BooleanProperty
+from kivy.properties import NumericProperty, BooleanProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.image import Image
-from kivy.uix.label import Label
 from kivy.uix.widget import Widget
 from meowbg.core.board import WHITE, BLACK
 from meowbg.core.bot import Bot
 from meowbg.core.match import Match
-from meowbg.core.events import AcceptEvent, RejectEvent
-from meowbg.core.messaging import broadcast
+from meowbg.core.events import AcceptEvent, RejectEvent, MatchEvent
+from meowbg.core.messaging import broadcast, register
 from meowbg.core.player import HumanPlayer
 from meowbg.gui.guievents import CommitAttemptEvent, UndoAttemptEvent, RollAttemptEvent, DoubleAttemptEvent
 
@@ -117,12 +114,28 @@ class SpikePanel(BoxLayout):
             self.add_widget(Spike(board_idx=start_index + i * self.index_direction,
                                   direction=-self.index_direction))
 
-class Cube(Widget):
-    number = NumericProperty(1)
+class Cube(BoxLayout):
+    def __init__(self, **kwargs):
+        BoxLayout.__init__(self, **kwargs)
+        self.add_widget(Image(source="cube1.png"))
+
+    def set_number(self, num):
+        self.clear_widgets()
+        self.add_widget(Image(source="cube%i.png" % num))
 
 class ButtonPanel(BoxLayout):
     def __init__(self, **kwargs):
         BoxLayout.__init__(self, **kwargs)
+        self.represented_color = WHITE
+        register(self.adjust_color, MatchEvent)
+
+    def adjust_color(self, me):
+        match = me.match
+        for color, player in match.players.items():
+            if isinstance(player, HumanPlayer):
+                self.represented_color = color
+                return
+        Logger.warn("No human player found among %s .. defaulting control to color WHITE" % match.players.items())
         self.represented_color = WHITE
 
     def start_new_ai_game(self):
@@ -133,10 +146,10 @@ class ButtonPanel(BoxLayout):
         match.new_game()
 
     def commit_move(self):
-        broadcast(CommitAttemptEvent())
+        broadcast(CommitAttemptEvent(self.represented_color))
 
     def undo_move(self):
-        broadcast(UndoAttemptEvent())
+        broadcast(UndoAttemptEvent(self.represented_color))
 
     def accept(self):
         broadcast(AcceptEvent(self.represented_color))
@@ -145,10 +158,10 @@ class ButtonPanel(BoxLayout):
         broadcast(RejectEvent(self.represented_color))
 
     def roll_attempted(self):
-        broadcast(RollAttemptEvent())
+        broadcast(RollAttemptEvent(self.represented_color))
 
     def double_attempted(self):
-        broadcast(DoubleAttemptEvent())
+        broadcast(DoubleAttemptEvent(self.represented_color))
 
 class DicePanel(GridLayout):
     def __init__(self, **kwargs):

@@ -29,9 +29,10 @@ class Bot(AbstractPlayer):
                 for m in mymove:
                     broadcast(MoveAttemptEvent(m.origin, m.target))
 
-            broadcast(CommitAttemptEvent())
+            broadcast(CommitAttemptEvent(self.color))
         else:
             print "Not my turn!"
 
     def on_cube(self, cube_event):
-        broadcast(AcceptEvent(self.color))
+        if cube_event.color != self.color:
+            broadcast(AcceptEvent(self.color))

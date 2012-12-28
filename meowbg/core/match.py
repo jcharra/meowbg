@@ -5,7 +5,6 @@ from meowbg.core.events import MatchEndEvent, GameEndEvent, RolloutEvent, MatchE
 from meowbg.core.messaging import broadcast
 from meowbg.gui.guievents import HitEvent, UnhitEvent
 from move import PartialMove
-from board import DIRECTION
 
 logger = logging.getLogger("Match")
 logger.addHandler(logging.StreamHandler())
@@ -36,7 +35,7 @@ class Match(object):
 
     def roll(self, color):
         if color != self.color_to_move_next:
-            logger.warn("Not the turn of color %s, roll denied")
+            logger.warn("It is the turn of color %s, not %s, roll denied" % (self.color_to_move_next, color))
             return
 
         if self.dice:
@@ -138,7 +137,7 @@ class Match(object):
         self.remaining_dice = [d1, d2]
         self.initial_dice = [d1, d2]
 
-        self.board.initialize_board()
+        self.board.setup_initial_position()
         self.board.store_initial_possibilities(self.initial_dice, self.color_to_move_next)
 
         broadcast(MatchEvent(self))
@@ -146,7 +145,7 @@ class Match(object):
     def double(self, color):
         if self.doubling_possible(color):
             self.open_cube_challenge_from_color = color
-            broadcast(CubeEvent(self.cube * 2))
+            broadcast(CubeEvent(color, self.cube * 2))
         else:
             logger.info("Doubling not allowed")
 
@@ -173,7 +172,7 @@ class Match(object):
 
     def reject_open_offer(self, color):
         if color == self.color_to_move_next:
-            logger.warn("You cannot accept your own offer")
+            logger.warn("You cannot reject your own offer")
             return
 
         if self.open_cube_challenge_from_color:

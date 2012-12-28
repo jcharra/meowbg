@@ -15670,3 +15670,1470 @@ board:You:expertBotI:1:0:0:0:5:5:3:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1:-3:-2:-2:-4:-3
 ** It's not your turn to roll the dice.
 ** It's not your turn to roll the dice.
 
+Establishing connection to tigergammon.com:4321
+
+1 meowbg_joe 1354487643 frbg-5f731967.pool.mediaWays.net
+2 meowbg_joe 1 1 0 0 0 0 1 1 4 0 0 0 1 1485.33 0 1 0 1 0 UTC
+3
++--------------------------------------------------------------------+
+|                ___.           __                                   |
+|                \_ |__   _____/  |______                            |
+|                 | __ \_/ __ \   __\__  \                           |
+|                 | \_\ \  ___/|  |  / __ \_                         |
+|                 |___  /\___  >__| (____  /                         |
+|                     \/     \/          \/                          |
+|                                                                    |
+|                                                                    |
+|              !! PLAY TOURNAMENTS IF YOU LIKE !!                    |
+|                                                                    |
+|         WATCH ANNOUNCEMENTS ON http://tigergammon.com              |
+|           Also see http://twitter.com/tigergammon                  |
+|                                                                    |
+|         Enjoy the bots. Their name denotes their playing           |
+|         skill according to gnubg naming conventions.               |
+|                                                                    |
+|           New version 0.9.1 released on Nov.25 2012                |
+|           -----------------------------------------                |
+|         Don't forget to check the news (command 'news')            |
+|                                                                    |
+|              !! PLAY TOURNAMENTS IF YOU LIKE !!                    |
+|                                                                    |
++--------------------------------------------------------------------+
+4
+
+5 socksey - - 0 0 1781.51 1980 23432 1356445552 68-235-130-135.dynsouth.hsi.p >US________________! -
+5 beginnerBotI - - 1 0 756.36 3366 22306 1356447258 p57AE2ADB.dip.t-dialin.net - -
+5 beginnerBotII - - 1 0 788.46 3378 22386 1356447268 p57AE2ADB.dip.t-dialin.net - -
+5 beginnerBotIII - - 1 0 736.62 3513 22376 1356447278 p57AE2ADB.dip.t-dialin.net - -
+5 casualPlayerBotI - - 1 0 899.86 3600 22275 1356447379 p57AE2ADB.dip.t-dialin.net - -
+5 casualPlayerBotII - - 1 0 910.46 3399 22265 1356447389 p57AE2ADB.dip.t-dialin.net - -
+5 casualPlayerBotIII - - 1 0 896.64 3547 22255 1356447399 p57AE2ADB.dip.t-dialin.net - -
+5 intermediateBotI - - 1 0 1074.35 3135 22245 1356447409 p57AE2ADB.dip.t-dialin.net - -
+5 intermediateBotIII - - 1 0 1073.42 3416 22225 1356447429 p57AE2ADB.dip.t-dialin.net - -
+5 advancedBotI - - 1 0 1716.05 4545 22215 1356447439 p57AE2ADB.dip.t-dialin.net - -
+5 advancedBotII - - 1 0 1724.75 4284 16666 1356447449 p57AE2ADB.dip.t-dialin.net - -
+5 advancedBotIII - - 1 0 1719.11 4238 19317 1356447459 p57AE2ADB.dip.t-dialin.net - -
+5 expertBotI - - 1 0 2040.21 4079 22185 1356447469 p57AE2ADB.dip.t-dialin.net - -
+5 expertBotII - - 1 0 2041.50 3978 22174 1356447480 p57AE2ADB.dip.t-dialin.net - -
+5 expertBotIII zbilbo - 1 0 2052.64 3840 2 1356447490 p57AE2ADB.dip.t-dialin.net - -
+5 worldclassBotI - - 1 0 2036.91 4630 3863 1356447500 p57AE2ADB.dip.t-dialin.net - -
+5 worldclassBotII - - 1 0 2046.12 4403 4325 1356447510 p57AE2ADB.dip.t-dialin.net - -
+5 worldclassBotIII - - 1 0 2065.25 4159 4125 1356447520 p57AE2ADB.dip.t-dialin.net - -
+5 yes - - 0 0 1628.66 10 9301 1356460329 raskin.torservers.net ?NT________________! -
+5 rebbeler - - 1 0 1500.00 0 8715 1356460938 pool-108-33-59-123.tampfl.fio ?NT________________! -
+5 SinnerSaint - - 1 0 1510.50 4998 3863 1356464903 208.169.72.31 ?NT________________! gvemmanuel@candw.ag
+5 zbilbo expertBotIII - 1 0 1620.37 3391 2 1356468751 81.79-160-151.customer.lyse.n ?NT________________! -
+5 meowbg_joe - - 1 0 1485.33 4 0 1356469655 89.204.154.75 meowBG -
+6
+
+Value of 'boardstyle' set to 3.
+
+** You invited expertBotI to resume a saved match.
+
+expertBotI has joined you. Your running match was loaded.
+meowbg_joe and expertBotI are resuming their 1 point match..
+turn: expertBotI.
+match length: 1
+points for meowbg_joe: 0
+points for expertBotI: 0
+board:You:expertBotI:1:0:0:0:5:5:3:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1:-3:-2:-2:-4:-3:2:0:-1:0:0:3:5:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+5 expertBotI meowbg_joe - 1 0 2040.21 4079 0 1356447469 p57AE2ADB.dip.t-dialin.net - -
+6
+5 meowbg_joe expertBotI - 1 0 1485.33 4 0 1356469655 89.204.154.75 meowBG -
+6
+12 expertBotI Hello! Enjoy this match. Good luck.
+expertBotI moves 18-23 22-off .
+board:You:expertBotI:1:0:0:0:5:5:3:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-3:-2:-2:-3:-4:2:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:1:0:0:2:0:0:0
+You roll 6 and 6.
+board:You:expertBotI:1:0:0:0:5:5:3:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-3:-2:-2:-3:-4:2:0:1:6:6:0:0:1:1:1:0:1:-1:0:25:0:1:0:0:4:0:0:0
+
+Please move 4 pieces.
+
+8 SinnerSaint SinnerSaint drops connection
+
+board:You:expertBotI:1:0:0:0:5:5:3:0:0:0:0:0:0:0:0:2:0:0:0:0:0:0:-3:-2:-2:-3:-4:0:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:0:1:0:0:4:0:0:0
+expertBotI rolls 4 and 6.
+board:You:expertBotI:1:0:0:0:5:5:3:0:0:0:0:0:0:0:0:2:0:0:0:0:0:0:-3:-2:-2:-3:-4:0:0:-1:0:0:4:6:1:1:1:0:1:-1:0:25:0:1:0:0:2:0:0:0
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotI moves 19-off 21-off .
+board:You:expertBotI:1:0:0:0:5:5:3:0:0:0:0:0:0:0:0:2:0:0:0:0:0:0:-2:-2:-1:-3:-4:0:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:3:0:0:2:0:0:0
+You roll 2 and 1.
+board:You:expertBotI:1:0:0:0:5:5:3:0:0:0:0:0:0:0:0:2:0:0:0:0:0:0:-2:-2:-1:-3:-4:0:0:1:2:1:0:0:1:1:1:0:1:-1:0:25:0:3:0:0:2:0:0:0
+
+Please move 2 pieces.
+
+board:You:expertBotI:1:0:0:0:5:5:3:0:0:0:0:0:0:1:1:0:0:0:0:0:0:0:-2:-2:-1:-3:-4:0:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:0:3:0:0:2:0:0:0
+expertBotI rolls 3 and 6.
+board:You:expertBotI:1:0:0:0:5:5:3:0:0:0:0:0:0:1:1:0:0:0:0:0:0:0:-2:-2:-1:-3:-4:0:0:-1:0:0:3:6:1:1:1:0:1:-1:0:25:0:3:0:0:2:0:0:0
+
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotI moves 19-off 22-off .
+board:You:expertBotI:1:0:0:0:5:5:3:0:0:0:0:0:0:1:1:0:0:0:0:0:0:0:-1:-2:-1:-2:-4:0:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:5:0:0:2:0:0:0
+You roll 2 and 6.
+board:You:expertBotI:1:0:0:0:5:5:3:0:0:0:0:0:0:1:1:0:0:0:0:0:0:0:-1:-2:-1:-2:-4:0:0:1:2:6:0:0:1:1:1:0:1:-1:0:25:0:5:0:0:2:0:0:0
+Please move 2 pieces.
+
+board:You:expertBotI:1:0:0:0:5:5:3:0:1:0:0:1:0:0:0:0:0:0:0:0:0:0:-1:-2:-1:-2:-4:0:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:0:5:0:0:2:0:0:0
+expertBotI rolls 5 and 3.
+board:You:expertBotI:1:0:0:0:5:5:3:0:1:0:0:1:0:0:0:0:0:0:0:0:0:0:-1:-2:-1:-2:-4:0:0:-1:0:0:5:3:1:1:1:0:1:-1:0:25:0:5:0:0:2:0:0:0
+
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotI moves 20-off 22-off .
+board:You:expertBotI:1:0:0:0:5:5:3:0:1:0:0:1:0:0:0:0:0:0:0:0:0:0:-1:-1:-1:-1:-4:0:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:7:0:0:2:0:0:0
+You roll 4 and 6.
+board:You:expertBotI:1:0:0:0:5:5:3:0:1:0:0:1:0:0:0:0:0:0:0:0:0:0:-1:-1:-1:-1:-4:0:0:1:4:6:0:0:1:1:1:0:1:-1:0:25:0:7:0:0:2:0:0:0
+
+Please move 2 pieces.
+
+board:You:expertBotI:1:0:0:0:5:5:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1:-1:-1:-1:-4:0:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:1:7:0:0:2:0:0:0
+expertBotI rolls 4 and 6.
+board:You:expertBotI:1:0:0:0:5:5:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1:-1:-1:-1:-4:0:0:-1:0:0:4:6:1:1:1:0:1:-1:0:25:1:7:0:0:2:0:0:0
+
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotI moves 19-off 21-off .
+board:You:expertBotI:1:0:0:0:5:5:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1:0:-1:-4:0:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:1:9:0:0:2:0:0:0
+You roll 5 and 6.
+board:You:expertBotI:1:0:0:0:5:5:3:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1:0:-1:-4:0:0:1:5:6:0:0:1:1:1:0:1:-1:0:25:1:9:0:0:2:0:0:0
+
+Please move 2 pieces.
+
+board:You:expertBotI:1:0:0:0:5:5:2:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1:0:-1:-4:0:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:3:9:0:0:2:0:0:0
+expertBotI rolls 2 and 3.
+board:You:expertBotI:1:0:0:0:5:5:2:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1:0:-1:-4:0:0:-1:0:0:2:3:1:1:1:0:1:-1:0:25:3:9:0:0:2:0:0:0
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotI moves 22-off 23-off .
+board:You:expertBotI:1:0:0:0:5:5:2:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1:0:0:-3:0:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:3:11:0:0:2:0:0:0
+You roll 3 and 4.
+board:You:expertBotI:1:0:0:0:5:5:2:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1:0:0:-3:0:0:1:3:4:0:0:1:1:1:0:1:-1:0:25:3:11:0:0:2:0:0:0
+
+Please move 2 pieces.
+
+board:You:expertBotI:1:0:0:0:5:5:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1:0:0:-3:0:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:5:11:0:0:2:0:0:0
+expertBotI rolls 3 and 2.
+board:You:expertBotI:1:0:0:0:5:5:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1:0:0:-3:0:0:-1:0:0:3:2:1:1:1:0:1:-1:0:25:5:11:0:0:2:0:0:0
+
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotI moves 20-23 23-off .
+board:You:expertBotI:1:0:0:0:5:5:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-3:0:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:5:12:0:0:2:0:0:0
+You roll 6 and 4.
+board:You:expertBotI:1:0:0:0:5:5:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-3:0:0:1:6:4:0:0:1:1:1:0:1:-1:0:25:5:12:0:0:2:0:0:0
+Please move 2 pieces.
+
+board:You:expertBotI:1:0:0:0:5:3:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-3:0:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:7:12:0:0:2:0:0:0
+expertBotI rolls 1 and 2.
+board:You:expertBotI:1:0:0:0:5:3:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-3:0:0:-1:0:0:1:2:1:1:1:0:1:-1:0:25:7:12:0:0:2:0:0:0
+
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotI moves 23-24 23-off .
+board:You:expertBotI:1:0:0:0:5:3:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1:-1:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:7:13:0:0:2:0:0:0
+You roll 2 and 3.
+board:You:expertBotI:1:0:0:0:5:3:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1:-1:0:1:2:3:0:0:1:1:1:0:1:-1:0:25:7:13:0:0:2:0:0:0
+
+Please move 2 pieces.
+
+board:You:expertBotI:1:0:0:0:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1:-1:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:9:13:0:0:2:0:0:0
+expertBotI rolls 6 and 4.
+board:You:expertBotI:1:0:0:0:5:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1:-1:0:-1:0:0:6:4:1:1:1:0:1:-1:0:25:9:13:0:0:2:0:0:0
+
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotI moves 23-off 24-off .
+expertBotI wins the game and gets 1 point. Sorry.
+expertBotI wins the 1 point match 1-0 .
+expertBotI wins a 1 point match against meowbg_joe  1-0 .
+5 meowbg_joe - - 1 0 1478.49 5 0 1356469655 89.204.154.75 meowBG -
+6
+5 expertBotI - - 1 0 2041.60 4080 0 1356447469 p57AE2ADB.dip.t-dialin.net - -
+6
+12 expertBotI Thanks for playing this match :).
+
+** You invited expertBotII to a 3 point match.
+** Player expertBotII has joined you for a 3 point match.
+meowbg_joe and expertBotII start a 3 point match..
+Starting a new game with expertBotII.
+You rolled 5, expertBotII rolled 4
+It's your turn to move.
+board:You:expertBotII:3:0:0:0:-2:0:0:0:0:5:0:3:0:0:0:-5:5:0:0:0:-3:0:-5:0:0:0:0:2:0:1:5:4:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+5 expertBotII meowbg_joe - 1 0 2041.50 3978 0 1356447480 p57AE2ADB.dip.t-dialin.net - -
+6
+5 meowbg_joe expertBotII - 1 0 1478.49 5 0 1356469655 89.204.154.75 meowBG -
+6
+12 expertBotII Hello! Enjoy this match. Good luck.
+
+Please move 2 pieces.
+
+board:You:expertBotII:3:0:0:0:-2:0:0:0:0:5:0:4:0:0:0:-5:4:0:0:0:-3:0:-5:1:0:0:0:1:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+expertBotII rolls 1 and 1.
+board:You:expertBotII:3:0:0:0:-2:0:0:0:0:5:0:4:0:0:0:-5:4:0:0:0:-3:0:-5:1:0:0:0:1:0:-1:0:0:1:1:1:1:1:0:1:-1:0:25:0:0:0:0:4:0:0:0
+expertBotII moves 1-2 2-3 19-20 19-20 .
+board:You:expertBotII:3:0:0:0:-1:0:-1:0:0:5:0:4:0:0:0:-5:4:0:0:0:-3:0:-3:-2:0:0:0:1:1:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:1:0:4:0:0:0
+It's your turn. Please roll or double
+
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+** You have to roll the dice before moving.
+
+You double. Please wait for expertBotII to accept or reject.
+
+expertBotII accepts the double. The cube shows 2.
+You roll 4 and 1.
+board:You:expertBotII:3:0:0:0:-1:0:-1:0:0:5:0:4:0:0:0:-5:4:0:0:0:-3:0:-3:-2:0:0:0:1:1:1:4:1:0:0:2:0:1:0:1:-1:0:25:0:0:1:0:2:0:0:0
+Please move 2 pieces.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+
+board:You:expertBotII:3:0:0:0:-1:0:-1:0:0:5:0:4:1:0:0:-5:3:0:0:0:-3:0:-3:-2:0:0:0:2:0:-1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+expertBotII rolls 2 and 6.
+board:You:expertBotII:3:0:0:0:-1:0:-1:0:0:5:0:4:1:0:0:-5:3:0:0:0:-3:0:-3:-2:0:0:0:2:0:-1:0:0:2:6:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotII moves 3-9 12-14 .
+board:You:expertBotII:3:0:0:0:-1:0:0:0:0:5:0:4:-1:0:0:-4:3:-1:0:0:-3:0:-3:-2:0:0:0:2:1:1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:1:0:2:0:0:0
+You roll 4 and 1.
+board:You:expertBotII:3:0:0:0:-1:0:0:0:0:5:0:4:-1:0:0:-4:3:-1:0:0:-3:0:-3:-2:0:0:0:2:1:1:4:1:0:0:2:0:1:0:1:-1:0:25:0:0:1:0:2:0:0:0
+Please move 2 pieces.
+
+board:You:expertBotII:3:0:0:-1:-1:0:0:0:0:5:0:4:1:0:0:-4:2:-1:0:0:-3:0:-3:-2:0:0:0:3:0:-1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:0:1:2:0:0:0
+
+expertBotII rolls 5 and 4.
+board:You:expertBotII:3:0:0:-1:-1:0:0:0:0:5:0:4:1:0:0:-4:2:-1:0:0:-3:0:-3:-2:0:0:0:3:0:-1:0:0:5:4:2:0:1:0:1:-1:0:25:0:0:0:1:2:0:0:0
+expertBotII moves bar-5 5-9 .
+board:You:expertBotII:3:0:0:0:-1:0:0:0:0:5:0:4:-1:0:0:-4:2:-1:0:0:-3:0:-3:-2:0:0:0:3:1:1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:1:0:2:0:0:0
+You roll 1 and 2.
+board:You:expertBotII:3:0:0:0:-1:0:0:0:0:5:0:4:-1:0:0:-4:2:-1:0:0:-3:0:-3:-2:0:0:0:3:1:1:1:2:0:0:2:0:1:0:1:-1:0:25:0:0:1:0:2:0:0:0
+Please move 2 pieces.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+** You can't move 4 points in your second move.
+
+board:You:expertBotII:3:0:0:0:-1:0:0:0:0:5:0:4:-1:0:0:-4:2:-1:0:0:-3:0:-3:-2:0:1:0:3:0:-1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+expertBotII doubles. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+** expertBotII has doubled you. Type 'accept' or 'reject'.
+
+Establishing connection to tigergammon.com:4321
+
+1 meowbg_joe 1356469655 89.204.154.75
+2 meowbg_joe 1 1 0 0 0 0 1 1 5 0 0 0 1 1478.49 0 1 0 1 0 UTC
+3
++--------------------------------------------------------------------+
+|                ___.           __                                   |
+|                \_ |__   _____/  |______                            |
+|                 | __ \_/ __ \   __\__  \                           |
+|                 | \_\ \  ___/|  |  / __ \_                         |
+|                 |___  /\___  >__| (____  /                         |
+|                     \/     \/          \/                          |
+|                                                                    |
+|                                                                    |
+|              !! PLAY TOURNAMENTS IF YOU LIKE !!                    |
+|                                                                    |
+|         WATCH ANNOUNCEMENTS ON http://tigergammon.com              |
+|           Also see http://twitter.com/tigergammon                  |
+|                                                                    |
+|         Enjoy the bots. Their name denotes their playing           |
+|         skill according to gnubg naming conventions.               |
+|                                                                    |
+|           New version 0.9.1 released on Nov.25 2012                |
+|           -----------------------------------------                |
+|         Don't forget to check the news (command 'news')            |
+|                                                                    |
+|              !! PLAY TOURNAMENTS IF YOU LIKE !!                    |
+|                                                                    |
++--------------------------------------------------------------------+
+4
+
+5 socksey - - 0 0 1781.51 1980 24573 1356445552 68-235-130-135.dynsouth.hsi.p >US________________! -
+5 beginnerBotI - - 1 0 756.36 3366 23446 1356447258 p57AE2ADB.dip.t-dialin.net - -
+5 beginnerBotII - - 1 0 788.46 3378 23526 1356447268 p57AE2ADB.dip.t-dialin.net - -
+5 beginnerBotIII - - 1 0 736.62 3513 23516 1356447278 p57AE2ADB.dip.t-dialin.net - -
+5 casualPlayerBotI - - 1 0 899.86 3600 23415 1356447379 p57AE2ADB.dip.t-dialin.net - -
+5 casualPlayerBotII - - 1 0 910.46 3399 23406 1356447389 p57AE2ADB.dip.t-dialin.net - -
+5 casualPlayerBotIII - - 1 0 896.64 3547 23395 1356447399 p57AE2ADB.dip.t-dialin.net - -
+5 intermediateBotI - - 1 0 1074.35 3135 23385 1356447409 p57AE2ADB.dip.t-dialin.net - -
+5 intermediateBotIII - - 1 0 1073.42 3416 23365 1356447429 p57AE2ADB.dip.t-dialin.net - -
+5 advancedBotI - - 1 0 1716.05 4545 23355 1356447439 p57AE2ADB.dip.t-dialin.net - -
+5 advancedBotII - - 1 0 1724.75 4284 17807 1356447449 p57AE2ADB.dip.t-dialin.net - -
+5 advancedBotIII - - 1 0 1719.11 4238 20457 1356447459 p57AE2ADB.dip.t-dialin.net - -
+5 expertBotI - - 1 0 2041.60 4080 1065 1356447469 p57AE2ADB.dip.t-dialin.net - -
+5 expertBotII - - 1 0 2041.50 3978 960 1356447480 p57AE2ADB.dip.t-dialin.net - -
+5 expertBotIII zbilbo - 1 0 2052.64 3840 105 1356447490 p57AE2ADB.dip.t-dialin.net - -
+5 worldclassBotI - - 1 0 2036.91 4630 5003 1356447500 p57AE2ADB.dip.t-dialin.net - -
+5 worldclassBotII - - 1 0 2046.12 4403 5466 1356447510 p57AE2ADB.dip.t-dialin.net - -
+5 worldclassBotIII - - 1 0 2065.25 4159 5265 1356447520 p57AE2ADB.dip.t-dialin.net - -
+5 yes - - 0 0 1628.66 10 10442 1356460329 raskin.torservers.net ?NT________________! -
+5 rebbeler - - 1 0 1500.00 0 9855 1356460938 pool-108-33-59-123.tampfl.fio ?NT________________! -
+5 zbilbo expertBotIII - 1 0 1620.37 3391 103 1356468751 81.79-160-151.customer.lyse.n ?NT________________! -
+5 meowbg_joe - - 1 0 1478.49 5 0 1356470795 89.204.154.75 meowBG -
+6
+
+Value of 'boardstyle' set to 3.
+
+** expertBotIII is already playing with someone else.
+
+** You invited expertBotII to a 3 point match.
+** Player expertBotII has joined you for a 3 point match.
+meowbg_joe and expertBotII start a 3 point match..
+Starting a new game with expertBotII.
+You rolled 1, expertBotII rolled 4
+expertBotII makes the first move.
+board:You:expertBotII:3:0:0:0:-2:0:0:0:0:5:0:3:0:0:0:-5:5:0:0:0:-3:0:-5:0:0:0:0:2:0:-1:0:0:1:4:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+5 expertBotII meowbg_joe - 1 0 2041.50 3978 0 1356447480 p57AE2ADB.dip.t-dialin.net - -
+6
+5 meowbg_joe expertBotII - 1 0 1478.49 5 0 1356470795 89.204.154.75 meowBG -
+6
+12 expertBotII Hello! Enjoy this match. Good luck.
+
+expertBotII moves 1-2 12-16 .
+board:You:expertBotII:3:0:0:0:-1:-1:0:0:0:5:0:3:0:0:0:-4:5:0:0:-1:-3:0:-5:0:0:0:0:2:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+It's your turn. Please roll or double
+
+Establishing connection to tigergammon.com:4321
+
+1 meowbg_joe 1356470795 89.204.154.75
+2 meowbg_joe 1 1 0 0 0 0 1 1 5 0 0 0 1 1478.49 0 1 0 1 0 UTC
+3
++--------------------------------------------------------------------+
+|                ___.           __                                   |
+|                \_ |__   _____/  |______                            |
+|                 | __ \_/ __ \   __\__  \                           |
+|                 | \_\ \  ___/|  |  / __ \_                         |
+|                 |___  /\___  >__| (____  /                         |
+|                     \/     \/          \/                          |
+|                                                                    |
+|                                                                    |
+|              !! PLAY TOURNAMENTS IF YOU LIKE !!                    |
+|                                                                    |
+|         WATCH ANNOUNCEMENTS ON http://tigergammon.com              |
+|           Also see http://twitter.com/tigergammon                  |
+|                                                                    |
+|         Enjoy the bots. Their name denotes their playing           |
+|         skill according to gnubg naming conventions.               |
+|                                                                    |
+|           New version 0.9.1 released on Nov.25 2012                |
+|           -----------------------------------------                |
+|         Don't forget to check the news (command 'news')            |
+|                                                                    |
+|              !! PLAY TOURNAMENTS IF YOU LIKE !!                    |
+|                                                                    |
++--------------------------------------------------------------------+
+4
+
+5 socksey - - 0 0 1781.51 1980 25203 1356445552 68-235-130-135.dynsouth.hsi.p >US________________! -
+5 beginnerBotI - - 1 0 756.36 3366 24076 1356447258 p57AE2ADB.dip.t-dialin.net - -
+5 beginnerBotII - - 1 0 788.46 3378 24157 1356447268 p57AE2ADB.dip.t-dialin.net - -
+5 beginnerBotIII - - 1 0 736.62 3513 24146 1356447278 p57AE2ADB.dip.t-dialin.net - -
+5 casualPlayerBotI - - 1 0 899.86 3600 24046 1356447379 p57AE2ADB.dip.t-dialin.net - -
+5 casualPlayerBotII - - 1 0 910.46 3399 24036 1356447389 p57AE2ADB.dip.t-dialin.net - -
+5 casualPlayerBotIII - - 1 0 896.64 3547 24026 1356447399 p57AE2ADB.dip.t-dialin.net - -
+5 intermediateBotI - - 1 0 1074.35 3135 24016 1356447409 p57AE2ADB.dip.t-dialin.net - -
+5 intermediateBotIII - - 1 0 1073.42 3416 23996 1356447429 p57AE2ADB.dip.t-dialin.net - -
+5 advancedBotI - - 1 0 1716.05 4545 23986 1356447439 p57AE2ADB.dip.t-dialin.net - -
+5 advancedBotII - - 1 0 1724.75 4284 18437 1356447449 p57AE2ADB.dip.t-dialin.net - -
+5 advancedBotIII - - 1 0 1719.11 4238 21088 1356447459 p57AE2ADB.dip.t-dialin.net - -
+5 expertBotI - - 1 0 2041.60 4080 1695 1356447469 p57AE2ADB.dip.t-dialin.net - -
+5 expertBotII - - 1 0 2041.50 3978 619 1356447480 p57AE2ADB.dip.t-dialin.net - -
+5 expertBotIII zbilbo - 1 0 2052.64 3840 736 1356447490 p57AE2ADB.dip.t-dialin.net - -
+5 worldclassBotI - - 1 0 2036.91 4630 5633 1356447500 p57AE2ADB.dip.t-dialin.net - -
+5 worldclassBotII - - 1 0 2046.12 4403 6096 1356447510 p57AE2ADB.dip.t-dialin.net - -
+5 worldclassBotIII - - 1 0 2065.25 4159 5896 1356447520 p57AE2ADB.dip.t-dialin.net - -
+5 yes - - 0 0 1628.66 10 11072 1356460329 raskin.torservers.net ?NT________________! -
+5 rebbeler - - 1 0 1500.00 0 10485 1356460938 pool-108-33-59-123.tampfl.fio ?NT________________! -
+5 zbilbo expertBotIII - 1 0 1620.37 3391 733 1356468751 81.79-160-151.customer.lyse.n ?NT________________! -
+5 meowbg_joe - - 1 0 1478.49 5 0 1356471425 89.204.154.75 meowBG -
+6
+
+Value of 'boardstyle' set to 3.
+
+** There's no saved match with expertBotI. Please give a match length.
+
+** You invited expertBotI to a 3 point match.
+** Player expertBotI has joined you for a 3 point match.
+meowbg_joe and expertBotI start a 3 point match..
+Starting a new game with expertBotI.
+You rolled 1, expertBotI rolled 5
+expertBotI makes the first move.
+board:You:expertBotI:3:0:0:0:-2:0:0:0:0:5:0:3:0:0:0:-5:5:0:0:0:-3:0:-5:0:0:0:0:2:0:-1:0:0:1:5:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+5 expertBotI meowbg_joe - 1 0 2041.60 4080 0 1356447469 p57AE2ADB.dip.t-dialin.net - -
+6
+5 meowbg_joe expertBotI - 1 0 1478.49 5 0 1356471425 89.204.154.75 meowBG -
+6
+12 expertBotI Hello! Enjoy this match. Good luck.
+
+expertBotI moves 1-2 12-17 .
+board:You:expertBotI:3:0:0:0:-1:-1:0:0:0:5:0:3:0:0:0:-4:5:0:0:0:-4:0:-5:0:0:0:0:2:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+It's your turn. Please roll or double
+
+Establishing connection to tigergammon.com:4321
+** Warning: You are already logged in.
+login: login: 
+login: 
+login: 
+meowbg_joe has left the game with expertBotI.
+5 meowbg_joe - - 1 0 1478.49 5 6 1356471425 89.204.154.75 meowBG -
+6
+5 expertBotI - - 1 0 2041.60 4080 55 1356447469 p57AE2ADB.dip.t-dialin.net - -
+6
+
+Establishing connection to tigergammon.com:4321
+
+1 meowbg_joe 1356471425 89.204.154.75
+2 meowbg_joe 1 1 0 0 0 0 1 1 5 0 0 0 1 1478.49 0 1 0 1 0 UTC
+3
++--------------------------------------------------------------------+
+|                ___.           __                                   |
+|                \_ |__   _____/  |______                            |
+|                 | __ \_/ __ \   __\__  \                           |
+|                 | \_\ \  ___/|  |  / __ \_                         |
+|                 |___  /\___  >__| (____  /                         |
+|                     \/     \/          \/                          |
+|                                                                    |
+|                                                                    |
+|              !! PLAY TOURNAMENTS IF YOU LIKE !!                    |
+|                                                                    |
+|         WATCH ANNOUNCEMENTS ON http://tigergammon.com              |
+|           Also see http://twitter.com/tigergammon                  |
+|                                                                    |
+|         Enjoy the bots. Their name denotes their playing           |
+|         skill according to gnubg naming conventions.               |
+|                                                                    |
+|           New version 0.9.1 released on Nov.25 2012                |
+|           -----------------------------------------                |
+|         Don't forget to check the news (command 'news')            |
+|                                                                    |
+|              !! PLAY TOURNAMENTS IF YOU LIKE !!                    |
+|                                                                    |
++--------------------------------------------------------------------+
+4
+
+5 socksey - - 0 0 1781.51 1980 25272 1356445552 68-235-130-135.dynsouth.hsi.p >US________________! -
+5 beginnerBotI - - 1 0 756.36 3366 24145 1356447258 p57AE2ADB.dip.t-dialin.net - -
+5 beginnerBotII - - 1 0 788.46 3378 24225 1356447268 p57AE2ADB.dip.t-dialin.net - -
+5 beginnerBotIII - - 1 0 736.62 3513 24215 1356447278 p57AE2ADB.dip.t-dialin.net - -
+5 casualPlayerBotI - - 1 0 899.86 3600 24115 1356447379 p57AE2ADB.dip.t-dialin.net - -
+5 casualPlayerBotII - - 1 0 910.46 3399 24105 1356447389 p57AE2ADB.dip.t-dialin.net - -
+5 casualPlayerBotIII - - 1 0 896.64 3547 24094 1356447399 p57AE2ADB.dip.t-dialin.net - -
+5 intermediateBotI - - 1 0 1074.35 3135 24084 1356447409 p57AE2ADB.dip.t-dialin.net - -
+5 intermediateBotIII - - 1 0 1073.42 3416 24064 1356447429 p57AE2ADB.dip.t-dialin.net - -
+5 advancedBotI - - 1 0 1716.05 4545 24054 1356447439 p57AE2ADB.dip.t-dialin.net - -
+5 advancedBotII - - 1 0 1724.75 4284 18506 1356447449 p57AE2ADB.dip.t-dialin.net - -
+5 advancedBotIII - - 1 0 1719.11 4238 21156 1356447459 p57AE2ADB.dip.t-dialin.net - -
+5 expertBotI - - 1 0 2041.60 4080 61 1356447469 p57AE2ADB.dip.t-dialin.net - -
+5 expertBotII - - 1 0 2041.50 3978 688 1356447480 p57AE2ADB.dip.t-dialin.net - -
+5 expertBotIII zbilbo - 1 0 2052.64 3840 804 1356447490 p57AE2ADB.dip.t-dialin.net - -
+5 worldclassBotI - - 1 0 2036.91 4630 5702 1356447500 p57AE2ADB.dip.t-dialin.net - -
+5 worldclassBotII - - 1 0 2046.12 4403 6165 1356447510 p57AE2ADB.dip.t-dialin.net - -
+5 worldclassBotIII - - 1 0 2065.25 4159 5965 1356447520 p57AE2ADB.dip.t-dialin.net - -
+5 yes - - 0 0 1628.66 10 11141 1356460329 raskin.torservers.net ?NT________________! -
+5 rebbeler - - 1 0 1500.00 0 10554 1356460938 pool-108-33-59-123.tampfl.fio ?NT________________! -
+5 zbilbo expertBotIII - 1 0 1620.37 3391 802 1356468751 81.79-160-151.customer.lyse.n ?NT________________! -
+5 meowbg_joe - - 1 0 1478.49 5 0 1356471494 89.204.154.75 meowBG -
+6
+
+Value of 'boardstyle' set to 3.
+
+** You invited expertBotI to resume a saved match.
+expertBotI has joined you. Your running match was loaded.
+meowbg_joe and expertBotI are resuming their 3 point match..
+turn: meowbg_joe.
+match length: 3
+points for meowbg_joe: 0
+points for expertBotI: 0
+It's your turn. Please roll or double
+5 expertBotI meowbg_joe - 1 0 2041.60 4080 0 1356447469 p57AE2ADB.dip.t-dialin.net - -
+6
+5 meowbg_joe expertBotI - 1 0 1478.49 5 0 1356471494 89.204.154.75 meowBG -
+6
+12 expertBotI Hello! Enjoy this match. Good luck.
+
+board:You:expertBotI:3:0:0:0:-1:-1:0:0:0:5:0:3:0:0:0:-4:5:0:0:0:-4:0:-5:0:0:0:0:2:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+Establishing connection to tigergammon.com:4321
+** Warning: You are already logged in.
+login: 
+login: 
+login: 
+meowbg_joe has left the game with expertBotI.
+5 meowbg_joe - - 1 0 1478.49 5 5 1356471494 89.204.154.75 meowBG -
+6
+5 expertBotI - - 1 0 2041.60 4080 105 1356447469 p57AE2ADB.dip.t-dialin.net - -
+6
+
+Establishing connection to tigergammon.com:4321
+
+1 meowbg_joe 1356471494 89.204.154.75
+2 meowbg_joe 1 1 0 0 0 0 1 1 5 0 0 0 1 1478.49 0 1 0 1 0 UTC
+3
++--------------------------------------------------------------------+
+|                ___.           __                                   |
+|                \_ |__   _____/  |______                            |
+|                 | __ \_/ __ \   __\__  \                           |
+|                 | \_\ \  ___/|  |  / __ \_                         |
+|                 |___  /\___  >__| (____  /                         |
+|                     \/     \/          \/                          |
+|                                                                    |
+|                                                                    |
+|              !! PLAY TOURNAMENTS IF YOU LIKE !!                    |
+|                                                                    |
+|         WATCH ANNOUNCEMENTS ON http://tigergammon.com              |
+|           Also see http://twitter.com/tigergammon                  |
+|                                                                    |
+|         Enjoy the bots. Their name denotes their playing           |
+|         skill according to gnubg naming conventions.               |
+|                                                                    |
+|           New version 0.9.1 released on Nov.25 2012                |
+|           -----------------------------------------                |
+|         Don't forget to check the news (command 'news')            |
+|                                                                    |
+|              !! PLAY TOURNAMENTS IF YOU LIKE !!                    |
+|                                                                    |
++--------------------------------------------------------------------+
+4
+
+5 socksey - - 0 0 1781.51 1980 25389 1356445552 68-235-130-135.dynsouth.hsi.p >US________________! -
+5 beginnerBotI - - 1 0 756.36 3366 24262 1356447258 p57AE2ADB.dip.t-dialin.net - -
+5 beginnerBotII - - 1 0 788.46 3378 24343 1356447268 p57AE2ADB.dip.t-dialin.net - -
+5 beginnerBotIII - - 1 0 736.62 3513 24332 1356447278 p57AE2ADB.dip.t-dialin.net - -
+5 casualPlayerBotI - - 1 0 899.86 3600 24232 1356447379 p57AE2ADB.dip.t-dialin.net - -
+5 casualPlayerBotII - - 1 0 910.46 3399 24222 1356447389 p57AE2ADB.dip.t-dialin.net - -
+5 casualPlayerBotIII - - 1 0 896.64 3547 24212 1356447399 p57AE2ADB.dip.t-dialin.net - -
+5 intermediateBotI - - 1 0 1074.35 3135 24201 1356447409 p57AE2ADB.dip.t-dialin.net - -
+5 intermediateBotIII - - 1 0 1073.42 3416 24181 1356447429 p57AE2ADB.dip.t-dialin.net - -
+5 advancedBotI - - 1 0 1716.05 4545 24171 1356447439 p57AE2ADB.dip.t-dialin.net - -
+5 advancedBotII - - 1 0 1724.75 4284 18623 1356447449 p57AE2ADB.dip.t-dialin.net - -
+5 advancedBotIII - - 1 0 1719.11 4238 21274 1356447459 p57AE2ADB.dip.t-dialin.net - -
+5 expertBotI - - 1 0 2041.60 4080 114 1356447469 p57AE2ADB.dip.t-dialin.net - -
+5 expertBotII - - 1 0 2041.50 3978 805 1356447480 p57AE2ADB.dip.t-dialin.net - -
+5 expertBotIII zbilbo - 1 0 2052.64 3840 921 1356447490 p57AE2ADB.dip.t-dialin.net - -
+5 worldclassBotI - - 1 0 2036.91 4630 5819 1356447500 p57AE2ADB.dip.t-dialin.net - -
+5 worldclassBotII - - 1 0 2046.12 4403 6282 1356447510 p57AE2ADB.dip.t-dialin.net - -
+5 worldclassBotIII - - 1 0 2065.25 4159 6082 1356447520 p57AE2ADB.dip.t-dialin.net - -
+5 yes - - 0 0 1628.66 10 11258 1356460329 raskin.torservers.net ?NT________________! -
+5 rebbeler - - 1 0 1500.00 0 10671 1356460938 pool-108-33-59-123.tampfl.fio ?NT________________! -
+5 zbilbo expertBotIII - 1 0 1620.37 3391 919 1356468751 81.79-160-151.customer.lyse.n ?NT________________! -
+5 meowbg_joe - - 1 0 1478.49 5 0 1356471611 89.204.154.75 meowBG -
+6
+
+Value of 'boardstyle' set to 3.
+
+** You invited expertBotI to resume a saved match.
+expertBotI has joined you. Your running match was loaded.
+meowbg_joe and expertBotI are resuming their 3 point match..
+turn: meowbg_joe.
+match length: 3
+points for meowbg_joe: 0
+points for expertBotI: 0
+It's your turn. Please roll or double
+5 expertBotI meowbg_joe - 1 0 2041.60 4080 0 1356447469 p57AE2ADB.dip.t-dialin.net - -
+6
+5 meowbg_joe expertBotI - 1 0 1478.49 5 0 1356471611 89.204.154.75 meowBG -
+6
+12 expertBotI Hello! Enjoy this match. Good luck.
+
+board:You:expertBotI:3:0:0:0:-1:-1:0:0:0:5:0:3:0:0:0:-4:5:0:0:0:-4:0:-5:0:0:0:0:2:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+Establishing connection to tigergammon.com:4321
+
+1 meowbg_joe 1356471611 89.204.154.75
+2 meowbg_joe 1 1 0 0 0 0 1 1 5 0 0 0 1 1478.49 0 1 0 1 0 UTC
+3
++--------------------------------------------------------------------+
+|                ___.           __                                   |
+|                \_ |__   _____/  |______                            |
+|                 | __ \_/ __ \   __\__  \                           |
+|                 | \_\ \  ___/|  |  / __ \_                         |
+|                 |___  /\___  >__| (____  /                         |
+|                     \/     \/          \/                          |
+|                                                                    |
+|                                                                    |
+|              !! PLAY TOURNAMENTS IF YOU LIKE !!                    |
+|                                                                    |
+|         WATCH ANNOUNCEMENTS ON http://tigergammon.com              |
+|           Also see http://twitter.com/tigergammon                  |
+|                                                                    |
+|         Enjoy the bots. Their name denotes their playing           |
+|         skill according to gnubg naming conventions.               |
+|                                                                    |
+|           New version 0.9.1 released on Nov.25 2012                |
+|           -----------------------------------------                |
+|         Don't forget to check the news (command 'news')            |
+|                                                                    |
+|              !! PLAY TOURNAMENTS IF YOU LIKE !!                    |
+|                                                                    |
++--------------------------------------------------------------------+
+4
+
+5 socksey - - 0 0 1781.51 1980 25655 1356445552 68-235-130-135.dynsouth.hsi.p >US________________! -
+5 beginnerBotI - - 1 0 756.36 3366 24528 1356447258 p57AE2ADB.dip.t-dialin.net - -
+5 beginnerBotII - - 1 0 788.46 3378 24609 1356447268 p57AE2ADB.dip.t-dialin.net - -
+5 beginnerBotIII - - 1 0 736.62 3513 24599 1356447278 p57AE2ADB.dip.t-dialin.net - -
+5 casualPlayerBotI - - 1 0 899.86 3600 24498 1356447379 p57AE2ADB.dip.t-dialin.net - -
+5 casualPlayerBotII - - 1 0 910.46 3399 24488 1356447389 p57AE2ADB.dip.t-dialin.net - -
+5 casualPlayerBotIII - - 1 0 896.64 3547 24478 1356447399 p57AE2ADB.dip.t-dialin.net - -
+5 intermediateBotI - - 1 0 1074.35 3135 24468 1356447409 p57AE2ADB.dip.t-dialin.net - -
+5 intermediateBotIII - - 1 0 1073.42 3416 24448 1356447429 p57AE2ADB.dip.t-dialin.net - -
+5 advancedBotI - - 1 0 1716.05 4545 24438 1356447439 p57AE2ADB.dip.t-dialin.net - -
+5 advancedBotII - - 1 0 1724.75 4284 18889 1356447449 p57AE2ADB.dip.t-dialin.net - -
+5 advancedBotIII - - 1 0 1719.11 4238 21540 1356447459 p57AE2ADB.dip.t-dialin.net - -
+5 expertBotI - - 1 0 2041.60 4080 263 1356447469 p57AE2ADB.dip.t-dialin.net - -
+5 expertBotII - - 1 0 2041.50 3978 1071 1356447480 p57AE2ADB.dip.t-dialin.net - -
+5 expertBotIII zbilbo - 1 0 2052.64 3840 1188 1356447490 p57AE2ADB.dip.t-dialin.net - -
+5 worldclassBotI - - 1 0 2036.91 4630 6085 1356447500 p57AE2ADB.dip.t-dialin.net - -
+5 worldclassBotII - - 1 0 2046.12 4403 6548 1356447510 p57AE2ADB.dip.t-dialin.net - -
+5 worldclassBotIII - - 1 0 2065.25 4159 6348 1356447520 p57AE2ADB.dip.t-dialin.net - -
+5 yes - - 0 0 1628.66 10 11524 1356460329 raskin.torservers.net ?NT________________! -
+5 rebbeler - - 1 0 1500.00 0 10937 1356460938 pool-108-33-59-123.tampfl.fio ?NT________________! -
+5 zbilbo expertBotIII - 1 0 1620.37 3391 1185 1356468751 81.79-160-151.customer.lyse.n ?NT________________! -
+5 meowbg_joe - - 1 0 1478.49 5 0 1356471878 89.204.154.75 meowBG -
+6
+
+Value of 'boardstyle' set to 3.
+
+** You invited expertBotI to resume a saved match.
+expertBotI has joined you. Your running match was loaded.
+meowbg_joe and expertBotI are resuming their 3 point match..
+turn: meowbg_joe.
+match length: 3
+points for meowbg_joe: 0
+points for expertBotI: 0
+It's your turn. Please roll or double
+5 expertBotI meowbg_joe - 1 0 2041.60 4080 0 1356447469 p57AE2ADB.dip.t-dialin.net - -
+6
+5 meowbg_joe expertBotI - 1 0 1478.49 5 0 1356471878 89.204.154.75 meowBG -
+6
+12 expertBotI Hello! Enjoy this match. Good luck.
+
+board:You:expertBotI:3:0:0:0:-1:-1:0:0:0:5:0:3:0:0:0:-4:5:0:0:0:-4:0:-5:0:0:0:0:2:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+Establishing connection to tigergammon.com:4321
+** Warning: You are already logged in.
+login: login: 
+meowbg_joe has left the game with expertBotI.
+5 meowbg_joe - - 1 0 1478.49 5 5 1356471878 89.204.154.75 meowBG -
+6
+5 expertBotI - - 1 0 2041.60 4080 80 1356447469 p57AE2ADB.dip.t-dialin.net - -
+6
+
+Establishing connection to tigergammon.com:4321
+
+1 meowbg_joe 1356471878 89.204.154.75
+2 meowbg_joe 1 1 0 0 0 0 1 1 5 0 0 0 1 1478.49 0 1 0 1 0 UTC
+3
++--------------------------------------------------------------------+
+|                ___.           __                                   |
+|                \_ |__   _____/  |______                            |
+|                 | __ \_/ __ \   __\__  \                           |
+|                 | \_\ \  ___/|  |  / __ \_                         |
+|                 |___  /\___  >__| (____  /                         |
+|                     \/     \/          \/                          |
+|                                                                    |
+|                                                                    |
+|              !! PLAY TOURNAMENTS IF YOU LIKE !!                    |
+|                                                                    |
+|         WATCH ANNOUNCEMENTS ON http://tigergammon.com              |
+|           Also see http://twitter.com/tigergammon                  |
+|                                                                    |
+|         Enjoy the bots. Their name denotes their playing           |
+|         skill according to gnubg naming conventions.               |
+|                                                                    |
+|           New version 0.9.1 released on Nov.25 2012                |
+|           -----------------------------------------                |
+|         Don't forget to check the news (command 'news')            |
+|                                                                    |
+|              !! PLAY TOURNAMENTS IF YOU LIKE !!                    |
+|                                                                    |
++--------------------------------------------------------------------+
+4
+
+5 socksey - - 0 0 1781.51 1980 25748 1356445552 68-235-130-135.dynsouth.hsi.p >US________________! -
+5 beginnerBotI - - 1 0 756.36 3366 24621 1356447258 p57AE2ADB.dip.t-dialin.net - -
+5 beginnerBotII - - 1 0 788.46 3378 24702 1356447268 p57AE2ADB.dip.t-dialin.net - -
+5 beginnerBotIII - - 1 0 736.62 3513 24691 1356447278 p57AE2ADB.dip.t-dialin.net - -
+5 casualPlayerBotI - - 1 0 899.86 3600 24591 1356447379 p57AE2ADB.dip.t-dialin.net - -
+5 casualPlayerBotII - - 1 0 910.46 3399 24581 1356447389 p57AE2ADB.dip.t-dialin.net - -
+5 casualPlayerBotIII - - 1 0 896.64 3547 24570 1356447399 p57AE2ADB.dip.t-dialin.net - -
+5 intermediateBotI - - 1 0 1074.35 3135 24560 1356447409 p57AE2ADB.dip.t-dialin.net - -
+5 intermediateBotIII - - 1 0 1073.42 3416 24540 1356447429 p57AE2ADB.dip.t-dialin.net - -
+5 advancedBotI - - 1 0 1716.05 4545 24530 1356447439 p57AE2ADB.dip.t-dialin.net - -
+5 advancedBotII - - 1 0 1724.75 4284 18982 1356447449 p57AE2ADB.dip.t-dialin.net - -
+5 advancedBotIII - - 1 0 1719.11 4238 21633 1356447459 p57AE2ADB.dip.t-dialin.net - -
+5 expertBotI - - 1 0 2041.60 4080 90 1356447469 p57AE2ADB.dip.t-dialin.net - -
+5 expertBotII - - 1 0 2041.50 3978 1164 1356447480 p57AE2ADB.dip.t-dialin.net - -
+5 expertBotIII zbilbo - 1 0 2052.64 3840 1280 1356447490 p57AE2ADB.dip.t-dialin.net - -
+5 worldclassBotI - - 1 0 2036.91 4630 6178 1356447500 p57AE2ADB.dip.t-dialin.net - -
+5 worldclassBotII - - 1 0 2046.12 4403 6641 1356447510 p57AE2ADB.dip.t-dialin.net - -
+5 worldclassBotIII - - 1 0 2065.25 4159 6441 1356447520 p57AE2ADB.dip.t-dialin.net - -
+5 yes - - 0 0 1628.66 10 11617 1356460329 raskin.torservers.net ?NT________________! -
+5 rebbeler - - 1 0 1500.00 0 11030 1356460938 pool-108-33-59-123.tampfl.fio ?NT________________! -
+5 zbilbo expertBotIII - 1 0 1620.37 3391 1278 1356468751 81.79-160-151.customer.lyse.n ?NT________________! -
+5 meowbg_joe - - 1 0 1478.49 5 0 1356471970 89.204.154.75 meowBG -
+6
+
+Value of 'boardstyle' set to 3.
+
+** You invited expertBotI to resume a saved match.
+expertBotI has joined you. Your running match was loaded.
+meowbg_joe and expertBotI are resuming their 3 point match..
+turn: meowbg_joe.
+match length: 3
+points for meowbg_joe: 0
+points for expertBotI: 0
+It's your turn. Please roll or double
+5 expertBotI meowbg_joe - 1 0 2041.60 4080 0 1356447469 p57AE2ADB.dip.t-dialin.net - -
+6
+5 meowbg_joe expertBotI - 1 0 1478.49 5 0 1356471970 89.204.154.75 meowBG -
+6
+12 expertBotI Hello! Enjoy this match. Good luck.
+
+board:You:expertBotI:3:0:0:0:-1:-1:0:0:0:5:0:3:0:0:0:-4:5:0:0:0:-4:0:-5:0:0:0:0:2:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+You roll 1 and 6.
+board:You:expertBotI:3:0:0:0:-1:-1:0:0:0:5:0:3:0:0:0:-4:5:0:0:0:-4:0:-5:0:0:0:0:2:0:1:1:6:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+Please move 2 pieces.
+
+** You can't move from 17 in your second move.
+
+** You can't move from 17 in your second move.
+
+Establishing connection to tigergammon.com:4321
+
+1 meowbg_joe 1356471970 89.204.154.75
+2 meowbg_joe 1 1 0 0 0 0 1 1 5 0 0 0 1 1478.49 0 1 0 1 0 UTC
+3
++--------------------------------------------------------------------+
+|                ___.           __                                   |
+|                \_ |__   _____/  |______                            |
+|                 | __ \_/ __ \   __\__  \                           |
+|                 | \_\ \  ___/|  |  / __ \_                         |
+|                 |___  /\___  >__| (____  /                         |
+|                     \/     \/          \/                          |
+|                                                                    |
+|                                                                    |
+|              !! PLAY TOURNAMENTS IF YOU LIKE !!                    |
+|                                                                    |
+|         WATCH ANNOUNCEMENTS ON http://tigergammon.com              |
+|           Also see http://twitter.com/tigergammon                  |
+|                                                                    |
+|         Enjoy the bots. Their name denotes their playing           |
+|         skill according to gnubg naming conventions.               |
+|                                                                    |
+|           New version 0.9.1 released on Nov.25 2012                |
+|           -----------------------------------------                |
+|         Don't forget to check the news (command 'news')            |
+|                                                                    |
+|              !! PLAY TOURNAMENTS IF YOU LIKE !!                    |
+|                                                                    |
++--------------------------------------------------------------------+
+4
+
+5 socksey - - 0 0 1781.51 1980 25807 1356445552 68-235-130-135.dynsouth.hsi.p >US________________! -
+5 beginnerBotI - - 1 0 756.36 3366 24680 1356447258 p57AE2ADB.dip.t-dialin.net - -
+5 beginnerBotII - - 1 0 788.46 3378 24761 1356447268 p57AE2ADB.dip.t-dialin.net - -
+5 beginnerBotIII - - 1 0 736.62 3513 24750 1356447278 p57AE2ADB.dip.t-dialin.net - -
+5 casualPlayerBotI - - 1 0 899.86 3600 24650 1356447379 p57AE2ADB.dip.t-dialin.net - -
+5 casualPlayerBotII - - 1 0 910.46 3399 24640 1356447389 p57AE2ADB.dip.t-dialin.net - -
+5 casualPlayerBotIII - - 1 0 896.64 3547 24630 1356447399 p57AE2ADB.dip.t-dialin.net - -
+5 intermediateBotI - - 1 0 1074.35 3135 24620 1356447409 p57AE2ADB.dip.t-dialin.net - -
+5 intermediateBotIII - - 1 0 1073.42 3416 24600 1356447429 p57AE2ADB.dip.t-dialin.net - -
+5 advancedBotI - - 1 0 1716.05 4545 24589 1356447439 p57AE2ADB.dip.t-dialin.net - -
+5 advancedBotII - - 1 0 1724.75 4284 19041 1356447449 p57AE2ADB.dip.t-dialin.net - -
+5 advancedBotIII - - 1 0 1719.11 4238 21692 1356447459 p57AE2ADB.dip.t-dialin.net - -
+5 expertBotI - - 1 0 2041.60 4080 56 1356447469 p57AE2ADB.dip.t-dialin.net - -
+5 expertBotII - - 1 0 2041.50 3978 1223 1356447480 p57AE2ADB.dip.t-dialin.net - -
+5 expertBotIII zbilbo - 1 0 2052.64 3840 1340 1356447490 p57AE2ADB.dip.t-dialin.net - -
+5 worldclassBotI - - 1 0 2036.91 4630 6237 1356447500 p57AE2ADB.dip.t-dialin.net - -
+5 worldclassBotII - - 1 0 2046.12 4403 6700 1356447510 p57AE2ADB.dip.t-dialin.net - -
+5 worldclassBotIII - - 1 0 2065.25 4159 6500 1356447520 p57AE2ADB.dip.t-dialin.net - -
+5 yes - - 0 0 1628.66 10 11676 1356460329 raskin.torservers.net ?NT________________! -
+5 rebbeler - - 1 0 1500.00 0 11089 1356460938 pool-108-33-59-123.tampfl.fio ?NT________________! -
+5 zbilbo expertBotIII - 1 0 1620.37 3391 1337 1356468751 81.79-160-151.customer.lyse.n ?NT________________! -
+5 meowbg_joe - - 1 0 1478.49 5 0 1356472029 89.204.154.75 meowBG -
+6
+
+Value of 'boardstyle' set to 3.
+
+** You invited expertBotI to resume a saved match.
+expertBotI has joined you. Your running match was loaded.
+meowbg_joe and expertBotI are resuming their 3 point match..
+turn: meowbg_joe.
+match length: 3
+points for meowbg_joe: 0
+points for expertBotI: 0
+board:You:expertBotI:3:0:0:0:-1:-1:0:0:0:5:0:3:0:0:0:-4:5:0:0:0:-4:0:-5:0:0:0:0:2:0:1:1:6:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+5 expertBotI meowbg_joe - 1 0 2041.60 4080 0 1356447469 p57AE2ADB.dip.t-dialin.net - -
+6
+5 meowbg_joe expertBotI - 1 0 1478.49 5 0 1356472029 89.204.154.75 meowBG -
+6
+12 expertBotI Hello! Enjoy this match. Good luck.
+
+Please move 2 pieces.
+
+board:You:expertBotI:3:0:0:0:-1:-1:0:0:0:5:2:2:0:0:0:-4:4:0:0:0:-4:0:-5:0:0:0:0:2:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+expertBotI rolls 6 and 4.
+board:You:expertBotI:3:0:0:0:-1:-1:0:0:0:5:2:2:0:0:0:-4:4:0:0:0:-4:0:-5:0:0:0:0:2:0:-1:0:0:6:4:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+expertBotI moves 17-23 19-23 .
+board:You:expertBotI:3:0:0:0:-1:-1:0:0:0:5:2:2:0:0:0:-4:4:0:0:0:-3:0:-4:0:0:0:-2:2:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+It's your turn. Please roll or double
+
+You double. Please wait for expertBotI to accept or reject.
+
+expertBotI accepts the double. The cube shows 2.
+You roll 5 and 6.
+board:You:expertBotI:3:0:0:0:-1:-1:0:0:0:5:2:2:0:0:0:-4:4:0:0:0:-3:0:-4:0:0:0:-2:2:0:1:5:6:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+Please move 2 pieces.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+
+board:You:expertBotI:3:0:0:-1:-1:1:0:0:0:5:2:2:0:0:0:-4:3:0:0:0:-3:0:-4:0:0:0:-2:2:0:-1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:0:1:2:0:0:0
+
+expertBotI rolls 5 and 2.
+board:You:expertBotI:3:0:0:-1:-1:1:0:0:0:5:2:2:0:0:0:-4:3:0:0:0:-3:0:-4:0:0:0:-2:2:0:-1:0:0:5:2:2:0:1:0:1:-1:0:25:0:0:0:1:2:0:0:0
+expertBotI moves bar-2 12-17 .
+board:You:expertBotI:3:0:0:0:-1:-1:0:0:0:5:2:2:0:0:0:-3:3:0:0:0:-4:0:-4:0:0:0:-2:2:1:1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:1:0:2:0:0:0
+You roll 1 and 5.
+board:You:expertBotI:3:0:0:0:-1:-1:0:0:0:5:2:2:0:0:0:-3:3:0:0:0:-4:0:-4:0:0:0:-2:2:1:1:1:5:0:0:2:0:1:0:1:-1:0:25:0:0:1:0:2:0:0:0
+Please move 2 pieces.
+
+** You have to remove pieces from the bar in your first move.
+** You have to remove pieces from the bar in your first move.
+** You have to remove pieces from the bar in your first move.
+** You have to remove pieces from the bar in your first move.
+
+board:You:expertBotI:3:0:0:0:-1:-1:0:0:0:5:2:3:0:0:0:-3:2:0:0:0:-4:0:-4:0:0:0:-2:3:0:-1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+expertBotI rolls 3 and 3.
+board:You:expertBotI:3:0:0:0:-1:-1:0:0:0:5:2:3:0:0:0:-3:2:0:0:0:-4:0:-4:0:0:0:-2:3:0:-1:0:0:3:3:2:0:1:0:1:-1:0:25:0:0:0:0:4:0:0:0
+expertBotI moves 17-20 17-20 19-22 19-22 .
+board:You:expertBotI:3:0:0:0:-1:-1:0:0:0:5:2:3:0:0:0:-3:2:0:0:0:-2:0:-2:-2:0:-2:-2:3:0:1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:4:0:0:0
+You roll 6 and 4.
+board:You:expertBotI:3:0:0:0:-1:-1:0:0:0:5:2:3:0:0:0:-3:2:0:0:0:-2:0:-2:-2:0:-2:-2:3:0:1:6:4:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+Please move 2 pieces.
+
+** You can't move from bar in your first move.
+** You can't move from bar in your first move.
+** You can't move from bar in your first move.
+** You can't move from bar in your first move.
+** You can't move from bar in your first move.
+** You can't move from bar in your first move.
+** You can't move from bar in your first move.
+** You can't move from bar in your first move.
+
+board:You:expertBotI:3:0:0:-1:-1:2:0:0:0:4:2:2:0:0:0:-3:2:0:0:0:-2:0:-2:-2:0:-2:-2:3:0:-1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:0:1:2:0:0:0
+
+expertBotI doubles. Type 'accept' or 'reject'.
+
+** expertBotI has doubled you. Type 'accept' or 'reject'.
+** expertBotI has doubled you. Type 'accept' or 'reject'.
+** expertBotI has doubled you. Type 'accept' or 'reject'.
+** expertBotI has doubled you. Type 'accept' or 'reject'.
+** expertBotI has doubled you. Type 'accept' or 'reject'.
+** expertBotI has doubled you. Type 'accept' or 'reject'.
+** expertBotI has doubled you. Type 'accept' or 'reject'.
+** expertBotI has doubled you. Type 'accept' or 'reject'.
+** expertBotI has doubled you. Type 'accept' or 'reject'.
+** expertBotI has doubled you. Type 'accept' or 'reject'.
+** expertBotI has doubled you. Type 'accept' or 'reject'.
+** expertBotI has doubled you. Type 'accept' or 'reject'.
+
+Establishing connection to tigergammon.com:4321
+
+1 meowbg_joe 1356472029 89.204.154.75
+2 meowbg_joe 1 1 0 0 0 0 1 1 5 0 0 0 1 1478.49 0 1 0 1 0 UTC
+3
++--------------------------------------------------------------------+
+|                ___.           __                                   |
+|                \_ |__   _____/  |______                            |
+|                 | __ \_/ __ \   __\__  \                           |
+|                 | \_\ \  ___/|  |  / __ \_                         |
+|                 |___  /\___  >__| (____  /                         |
+|                     \/     \/          \/                          |
+|                                                                    |
+|                                                                    |
+|              !! PLAY TOURNAMENTS IF YOU LIKE !!                    |
+|                                                                    |
+|         WATCH ANNOUNCEMENTS ON http://tigergammon.com              |
+|           Also see http://twitter.com/tigergammon                  |
+|                                                                    |
+|         Enjoy the bots. Their name denotes their playing           |
+|         skill according to gnubg naming conventions.               |
+|                                                                    |
+|           New version 0.9.1 released on Nov.25 2012                |
+|           -----------------------------------------                |
+|         Don't forget to check the news (command 'news')            |
+|                                                                    |
+|              !! PLAY TOURNAMENTS IF YOU LIKE !!                    |
+|                                                                    |
++--------------------------------------------------------------------+
+4
+
+5 beginnerBotI - - 1 0 754.49 3368 41858 1356516231 p57AE2C53.dip.t-dialin.net - -
+5 beginnerBotII - - 1 0 785.99 3385 16722 1356516241 p57AE2C53.dip.t-dialin.net - -
+5 beginnerBotIII - - 1 0 731.08 3537 13013 1356516255 p57AE2C53.dip.t-dialin.net - -
+5 casualPlayerBotI - - 1 0 897.31 3611 17682 1356516269 p57AE2C53.dip.t-dialin.net - -
+5 casualPlayerBotII - - 1 0 906.51 3422 13102 1356516284 p57AE2C53.dip.t-dialin.net - -
+5 casualPlayerBotIII - - 1 0 894.53 3549 41791 1356516298 p57AE2C53.dip.t-dialin.net - -
+5 intermediateBotI - - 1 0 1072.68 3136 6130 1356516312 p57AE2C53.dip.t-dialin.net - -
+5 intermediateBotII - - 1 0 1086.09 3378 11844 1356516326 p57AE2C53.dip.t-dialin.net - -
+5 intermediateBotIII - - 1 0 1076.10 3436 11483 1356516340 p57AE2C53.dip.t-dialin.net - -
+5 advancedBotI - - 1 0 1729.13 4574 11054 1356516354 p57AE2C53.dip.t-dialin.net - -
+5 advancedBotII - - 1 0 1734.44 4304 12077 1356516368 p57AE2C53.dip.t-dialin.net - -
+5 advancedBotIII - - 1 0 1707.14 4265 13836 1356516382 p57AE2C53.dip.t-dialin.net - -
+5 expertBotI - - 1 0 2042.26 4204 1835 1356516396 p57AE2C53.dip.t-dialin.net - -
+5 expertBotII - - 1 0 2026.13 4070 10906 1356516410 p57AE2C53.dip.t-dialin.net - -
+5 expertBotIII - - 1 0 2027.88 3972 17498 1356516424 p57AE2C53.dip.t-dialin.net - -
+5 worldclassBotI - - 1 0 2036.23 4638 18841 1356516438 p57AE2C53.dip.t-dialin.net - -
+5 worldclassBotII - - 1 0 2049.01 4409 786 1356516452 p57AE2C53.dip.t-dialin.net - -
+5 worldclassBotIII - - 1 0 2071.22 4204 6402 1356516467 p57AE2C53.dip.t-dialin.net - -
+5 yes - - 0 0 1680.81 16 26706 1356521552 anon.xmission.com ?NT________________! -
+5 rebbeler - - 1 0 1500.00 0 25946 1356532142 pool-108-33-59-123.tampfl.fio ?NT________________! -
+5 socksey - - 0 0 1794.63 2003 6062 1356532875 68-235-130-135.dynsouth.hsi.p >US________________! -
+5 zbilbo - - 1 0 1662.23 3683 1835 1356544337 81.79-160-151.customer.lyse.n ?NT________________! -
+5 meowbg_joe - - 1 0 1478.49 5 0 1356558089 82.113.121.220 meowBG -
+6
+
+Value of 'boardstyle' set to 3.
+
+** You invited expertBotI to resume a saved match.
+expertBotI has joined you. Your running match was loaded.
+meowbg_joe and expertBotI are resuming their 3 point match..
+turn: expertBotI.
+match length: 3
+points for meowbg_joe: 0
+points for expertBotI: 0
+expertBotI doubles. Type 'accept' or 'reject'.
+5 expertBotI meowbg_joe - 1 0 2042.26 4204 0 1356516396 p57AE2C53.dip.t-dialin.net - -
+6
+5 meowbg_joe expertBotI - 1 0 1478.49 5 0 1356558089 82.113.121.220 meowBG -
+6
+12 expertBotI Hello! Enjoy this match. Good luck.
+
+board:You:expertBotI:3:0:0:-1:-1:2:0:0:0:4:2:2:0:0:0:-3:2:0:0:0:-2:0:-2:-2:0:-2:-2:3:0:-1:0:0:0:0:2:0:0:1:1:-1:0:25:0:0:0:1:2:0:0:0
+
+Establishing connection to tigergammon.com:4321
+
+1 meowbg_joe 1356558089 82.113.121.220
+2 meowbg_joe 1 1 0 0 0 0 1 1 5 0 0 0 1 1478.49 0 1 0 1 0 UTC
+3
++--------------------------------------------------------------------+
+|                ___.           __                                   |
+|                \_ |__   _____/  |______                            |
+|                 | __ \_/ __ \   __\__  \                           |
+|                 | \_\ \  ___/|  |  / __ \_                         |
+|                 |___  /\___  >__| (____  /                         |
+|                     \/     \/          \/                          |
+|                                                                    |
+|                                                                    |
+|              !! PLAY TOURNAMENTS IF YOU LIKE !!                    |
+|                                                                    |
+|         WATCH ANNOUNCEMENTS ON http://tigergammon.com              |
+|           Also see http://twitter.com/tigergammon                  |
+|                                                                    |
+|         Enjoy the bots. Their name denotes their playing           |
+|         skill according to gnubg naming conventions.               |
+|                                                                    |
+|           New version 0.9.1 released on Nov.25 2012                |
+|           -----------------------------------------                |
+|         Don't forget to check the news (command 'news')            |
+|                                                                    |
+|              !! PLAY TOURNAMENTS IF YOU LIKE !!                    |
+|                                                                    |
++--------------------------------------------------------------------+
+4
+
+5 beginnerBotI - - 1 0 754.49 3368 42033 1356516231 p57AE2C53.dip.t-dialin.net - -
+5 beginnerBotII - - 1 0 785.99 3385 16897 1356516241 p57AE2C53.dip.t-dialin.net - -
+5 beginnerBotIII - - 1 0 731.08 3537 13188 1356516255 p57AE2C53.dip.t-dialin.net - -
+5 casualPlayerBotI - - 1 0 897.31 3611 17857 1356516269 p57AE2C53.dip.t-dialin.net - -
+5 casualPlayerBotII - - 1 0 906.51 3422 13277 1356516284 p57AE2C53.dip.t-dialin.net - -
+5 casualPlayerBotIII - - 1 0 894.53 3549 41967 1356516298 p57AE2C53.dip.t-dialin.net - -
+5 intermediateBotI - - 1 0 1072.68 3136 6305 1356516312 p57AE2C53.dip.t-dialin.net - -
+5 intermediateBotII - - 1 0 1086.09 3378 12020 1356516326 p57AE2C53.dip.t-dialin.net - -
+5 intermediateBotIII - - 1 0 1076.10 3436 11658 1356516340 p57AE2C53.dip.t-dialin.net - -
+5 advancedBotI - - 1 0 1729.13 4574 11229 1356516354 p57AE2C53.dip.t-dialin.net - -
+5 advancedBotII - - 1 0 1734.44 4304 12252 1356516368 p57AE2C53.dip.t-dialin.net - -
+5 advancedBotIII - - 1 0 1707.14 4265 14011 1356516382 p57AE2C53.dip.t-dialin.net - -
+5 expertBotI - - 1 0 2042.26 4204 172 1356516396 p57AE2C53.dip.t-dialin.net - -
+5 expertBotII - - 1 0 2026.13 4070 11082 1356516410 p57AE2C53.dip.t-dialin.net - -
+5 expertBotIII - - 1 0 2027.88 3972 17673 1356516424 p57AE2C53.dip.t-dialin.net - -
+5 worldclassBotI - - 1 0 2036.23 4638 19016 1356516438 p57AE2C53.dip.t-dialin.net - -
+5 worldclassBotII - - 1 0 2049.01 4409 962 1356516452 p57AE2C53.dip.t-dialin.net - -
+5 worldclassBotIII - - 1 0 2071.22 4204 6577 1356516467 p57AE2C53.dip.t-dialin.net - -
+5 yes - - 0 0 1680.81 16 26881 1356521552 anon.xmission.com ?NT________________! -
+5 rebbeler - - 1 0 1500.00 0 26121 1356532142 pool-108-33-59-123.tampfl.fio ?NT________________! -
+5 socksey - - 0 0 1794.63 2003 6237 1356532875 68-235-130-135.dynsouth.hsi.p >US________________! -
+5 zbilbo - - 1 0 1662.23 3683 2011 1356544337 81.79-160-151.customer.lyse.n ?NT________________! -
+5 meowbg_joe - - 1 0 1478.49 5 0 1356558265 82.113.121.220 meowBG -
+6
+
+Value of 'boardstyle' set to 3.
+
+** You invited expertBotI to resume a saved match.
+expertBotI has joined you. Your running match was loaded.
+meowbg_joe and expertBotI are resuming their 3 point match..
+turn: expertBotI.
+match length: 3
+points for meowbg_joe: 0
+points for expertBotI: 0
+expertBotI doubles. Type 'accept' or 'reject'.
+5 expertBotI meowbg_joe - 1 0 2042.26 4204 0 1356516396 p57AE2C53.dip.t-dialin.net - -
+6
+5 meowbg_joe expertBotI - 1 0 1478.49 5 0 1356558265 82.113.121.220 meowBG -
+6
+12 expertBotI Hello! Enjoy this match. Good luck.
+
+board:You:expertBotI:3:0:0:-1:-1:2:0:0:0:4:2:2:0:0:0:-3:2:0:0:0:-2:0:-2:-2:0:-2:-2:3:0:-1:0:0:0:0:2:0:0:1:1:-1:0:25:0:0:0:1:2:0:0:0
+
+Establishing connection to tigergammon.com:4321
+
+1 meowbg_joe 1356558265 82.113.121.220
+2 meowbg_joe 1 1 0 0 0 0 1 1 5 0 0 0 1 1478.49 0 1 0 1 0 UTC
+3
++--------------------------------------------------------------------+
+|                ___.           __                                   |
+|                \_ |__   _____/  |______                            |
+|                 | __ \_/ __ \   __\__  \                           |
+|                 | \_\ \  ___/|  |  / __ \_                         |
+|                 |___  /\___  >__| (____  /                         |
+|                     \/     \/          \/                          |
+|                                                                    |
+|                                                                    |
+|              !! PLAY TOURNAMENTS IF YOU LIKE !!                    |
+|                                                                    |
+|         WATCH ANNOUNCEMENTS ON http://tigergammon.com              |
+|           Also see http://twitter.com/tigergammon                  |
+|                                                                    |
+|         Enjoy the bots. Their name denotes their playing           |
+|         skill according to gnubg naming conventions.               |
+|                                                                    |
+|           New version 0.9.1 released on Nov.25 2012                |
+|           -----------------------------------------                |
+|         Don't forget to check the news (command 'news')            |
+|                                                                    |
+|              !! PLAY TOURNAMENTS IF YOU LIKE !!                    |
+|                                                                    |
++--------------------------------------------------------------------+
+4
+
+5 beginnerBotI - - 1 0 754.49 3368 42086 1356516231 p57AE2C53.dip.t-dialin.net - -
+5 beginnerBotII - - 1 0 785.99 3385 16949 1356516241 p57AE2C53.dip.t-dialin.net - -
+5 beginnerBotIII - - 1 0 731.08 3537 13241 1356516255 p57AE2C53.dip.t-dialin.net - -
+5 casualPlayerBotI - - 1 0 897.31 3611 17910 1356516269 p57AE2C53.dip.t-dialin.net - -
+5 casualPlayerBotII - - 1 0 906.51 3422 13330 1356516284 p57AE2C53.dip.t-dialin.net - -
+5 casualPlayerBotIII - - 1 0 894.53 3549 42019 1356516298 p57AE2C53.dip.t-dialin.net - -
+5 intermediateBotI - - 1 0 1072.68 3136 6357 1356516312 p57AE2C53.dip.t-dialin.net - -
+5 intermediateBotII - - 1 0 1086.09 3378 12072 1356516326 p57AE2C53.dip.t-dialin.net - -
+5 intermediateBotIII - - 1 0 1076.10 3436 11711 1356516340 p57AE2C53.dip.t-dialin.net - -
+5 advancedBotI - - 1 0 1729.13 4574 11282 1356516354 p57AE2C53.dip.t-dialin.net - -
+5 advancedBotII - - 1 0 1734.44 4304 12305 1356516368 p57AE2C53.dip.t-dialin.net - -
+5 advancedBotIII - - 1 0 1707.14 4265 14064 1356516382 p57AE2C53.dip.t-dialin.net - -
+5 expertBotI - - 1 0 2042.26 4204 50 1356516396 p57AE2C53.dip.t-dialin.net - -
+5 expertBotII - - 1 0 2026.13 4070 11134 1356516410 p57AE2C53.dip.t-dialin.net - -
+5 expertBotIII - - 1 0 2027.88 3972 17726 1356516424 p57AE2C53.dip.t-dialin.net - -
+5 worldclassBotI - - 1 0 2036.23 4638 19069 1356516438 p57AE2C53.dip.t-dialin.net - -
+5 worldclassBotII - - 1 0 2049.01 4409 1014 1356516452 p57AE2C53.dip.t-dialin.net - -
+5 worldclassBotIII - - 1 0 2071.22 4204 6630 1356516467 p57AE2C53.dip.t-dialin.net - -
+5 yes - - 0 0 1680.81 16 26934 1356521552 anon.xmission.com ?NT________________! -
+5 rebbeler - - 1 0 1500.00 0 26174 1356532142 pool-108-33-59-123.tampfl.fio ?NT________________! -
+5 socksey - - 0 0 1794.63 2003 6290 1356532875 68-235-130-135.dynsouth.hsi.p >US________________! -
+5 zbilbo - - 1 0 1662.23 3683 2063 1356544337 81.79-160-151.customer.lyse.n ?NT________________! -
+5 meowbg_joe - - 1 0 1478.49 5 0 1356558317 82.113.121.220 meowBG -
+6
+
+Value of 'boardstyle' set to 3.
+
+** You invited expertBotI to resume a saved match.
+expertBotI has joined you. Your running match was loaded.
+meowbg_joe and expertBotI are resuming their 3 point match..
+turn: expertBotI.
+match length: 3
+points for meowbg_joe: 0
+points for expertBotI: 0
+expertBotI doubles. Type 'accept' or 'reject'.
+5 expertBotI meowbg_joe - 1 0 2042.26 4204 0 1356516396 p57AE2C53.dip.t-dialin.net - -
+6
+5 meowbg_joe expertBotI - 1 0 1478.49 5 0 1356558317 82.113.121.220 meowBG -
+6
+12 expertBotI Hello! Enjoy this match. Good luck.
+
+board:You:expertBotI:3:0:0:-1:-1:2:0:0:0:4:2:2:0:0:0:-3:2:0:0:0:-2:0:-2:-2:0:-2:-2:3:0:-1:0:0:0:0:2:0:0:1:1:-1:0:25:0:0:0:1:2:0:0:0
+
+** expertBotI has doubled you. Type 'accept' or 'reject'.
+
+Establishing connection to tigergammon.com:4321
+
+1 meowbg_joe 1356558317 82.113.121.220
+2 meowbg_joe 1 1 0 0 0 0 1 1 5 0 0 0 1 1478.49 0 1 0 1 0 UTC
+3
++--------------------------------------------------------------------+
+|                ___.           __                                   |
+|                \_ |__   _____/  |______                            |
+|                 | __ \_/ __ \   __\__  \                           |
+|                 | \_\ \  ___/|  |  / __ \_                         |
+|                 |___  /\___  >__| (____  /                         |
+|                     \/     \/          \/                          |
+|                                                                    |
+|                                                                    |
+|              !! PLAY TOURNAMENTS IF YOU LIKE !!                    |
+|                                                                    |
+|         WATCH ANNOUNCEMENTS ON http://tigergammon.com              |
+|           Also see http://twitter.com/tigergammon                  |
+|                                                                    |
+|         Enjoy the bots. Their name denotes their playing           |
+|         skill according to gnubg naming conventions.               |
+|                                                                    |
+|           New version 0.9.1 released on Nov.25 2012                |
+|           -----------------------------------------                |
+|         Don't forget to check the news (command 'news')            |
+|                                                                    |
+|              !! PLAY TOURNAMENTS IF YOU LIKE !!                    |
+|                                                                    |
++--------------------------------------------------------------------+
+4
+
+5 beginnerBotI - - 1 0 752.01 3372 70773 1356575272 HSI-KBW-046-005-000-025.hsi8. - -
+5 beginnerBotII - - 1 0 783.40 3389 70585 1356575282 HSI-KBW-046-005-000-025.hsi8. - -
+5 beginnerBotIII - - 1 0 728.27 3541 148905 1356575292 HSI-KBW-046-005-000-025.hsi8. - -
+5 casualPlayerBotI - - 1 0 896.16 3616 47958 1356575302 HSI-KBW-046-005-000-025.hsi8. - -
+5 casualPlayerBotII - - 1 0 905.34 3427 48312 1356575312 HSI-KBW-046-005-000-025.hsi8. - -
+5 casualPlayerBotIII - - 1 0 895.46 3552 48136 1356575322 HSI-KBW-046-005-000-025.hsi8. - -
+5 intermediateBotI socksey - 1 0 1055.01 3162 3 1356575332 HSI-KBW-046-005-000-025.hsi8. - -
+5 intermediateBotII ladylinda - 1 0 1075.56 3406 5 1356575342 HSI-KBW-046-005-000-025.hsi8. - -
+5 intermediateBotIII - - 1 0 1063.57 3466 67 1356575352 HSI-KBW-046-005-000-025.hsi8. - -
+5 advancedBotI - - 1 0 1757.47 4713 8023 1356575362 HSI-KBW-046-005-000-025.hsi8. - -
+5 advancedBotII - - 1 0 1731.46 4341 6466 1356575372 HSI-KBW-046-005-000-025.hsi8. - -
+5 advancedBotIII - - 1 0 1694.58 4360 6210 1356575382 HSI-KBW-046-005-000-025.hsi8. - -
+5 expertBotI - - 1 0 2050.15 4331 9203 1356575392 HSI-KBW-046-005-000-025.hsi8. - -
+5 expertBotII - - 1 0 2030.01 4078 5748 1356575402 HSI-KBW-046-005-000-025.hsi8. - -
+5 expertBotIII - - 1 0 2029.79 3975 104994 1356575413 HSI-KBW-046-005-000-025.hsi8. - -
+5 worldclassBotI - - 1 0 2029.99 4651 12945 1356575423 HSI-KBW-046-005-000-025.hsi8. - -
+5 worldclassBotII - - 1 0 2047.56 4421 92918 1356575432 HSI-KBW-046-005-000-025.hsi8. - -
+5 worldclassBotIII - - 1 0 2067.72 4317 8916 1356575442 HSI-KBW-046-005-000-025.hsi8. - -
+5 yes - - 0 0 1680.81 16 24787 1356677719 exit-01c.noisetor.net ?NT________________! -
+5 socksey intermediateBotI - 1 0 1828.51 2105 2 1356705775 68-235-130-135.dynsouth.hsi.p >US________________! -
+5 zbilbo - - 1 0 1661.73 3761 10428 1356711170 81.79-160-151.customer.lyse.n ?NT________________! -
+5 rebbeler - - 1 0 1500.00 0 9171 1356716775 pool-108-33-59-123.tampfl.fio ?NT________________! -
+5 ladylinda intermediateBotII - 1 0 1379.87 410 6 1356725827 mobile-166-137-149-167.mycing >US________________! -
+5 meowbg_joe - - 1 0 1478.49 5 0 1356726615 89.204.139.248 meowBG -
+6
+
+Value of 'boardstyle' set to 3.
+
+** You invited expertBotI to a 3 point match.
+
+** Player expertBotI has joined you for a 3 point match.
+meowbg_joe and expertBotI start a 3 point match..
+Starting a new game with expertBotI.
+You rolled 2, expertBotI rolled 5
+expertBotI makes the first move.
+board:You:expertBotI:3:0:0:0:-2:0:0:0:0:5:0:3:0:0:0:-5:5:0:0:0:-3:0:-5:0:0:0:0:2:0:-1:0:0:2:5:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+5 expertBotI meowbg_joe - 1 0 2050.15 4331 0 1356575392 HSI-KBW-046-005-000-025.hsi8. - -
+6
+5 meowbg_joe expertBotI - 1 0 1478.49 5 0 1356726615 89.204.139.248 meowBG -
+6
+12 expertBotI Hello! Enjoy this match. Good luck.
+expertBotI moves 1-3 12-17 .
+board:You:expertBotI:3:0:0:0:-1:0:-1:0:0:5:0:3:0:0:0:-4:5:0:0:0:-4:0:-5:0:0:0:0:2:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+It's your turn. Please roll or double
+

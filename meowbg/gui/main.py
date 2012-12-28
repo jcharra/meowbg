@@ -16,7 +16,6 @@ from kivy.factory import Factory
 from kivy.logger import Logger
 from kivy.resources import resource_add_path
 from kivy.vector import Vector
-from meowbg.core.board import WHITE
 from meowbg.core.exceptions import MoveNotPossible
 from meowbg.core.move import PartialMove
 from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel, BarPanel, BearoffPanel, Checker, Cube
@@ -80,7 +79,6 @@ class MatchWidget(FloatLayout):
         self.board = BoardWidget(pos_hint={'x': 0, 'y': 0})
         self.add_widget(self.board)
         self.match = None
-        self.represented_color = WHITE
 
         self.blocking_events = []
         self.event_queue = Queue.Queue()
@@ -129,16 +127,16 @@ class MatchWidget(FloatLayout):
             self.show_dice_roll(event.dice)
         elif isinstance(event, RollAttemptEvent):
             if self.match:
-                self.match.roll(self.represented_color)
+                self.match.roll(event.color)
         elif isinstance(event, CommitAttemptEvent):
             if self.match:
                 self.attempt_commit()
         elif isinstance(event, DoubleAttemptEvent):
             if self.match:
-                self.match.double(self.represented_color)
+                self.match.double(event.color)
         elif isinstance(event, UndoAttemptEvent):
             if self.match:
-                self.match.undo(self.represented_color)
+                self.match.undo(event.color)
         elif isinstance(event, AcceptEvent):
             if self.match:
                 self.match.accept_open_offer(event.color)

@@ -32,14 +32,17 @@ logger.setLevel(logging.DEBUG)
 
 class Board(object):
 
-    # TODO introduce position class and make function accept a single argument
-    def __init__(self, on_field=None, on_bar=None, borne_off=None):
-        self.init_empty(on_field, on_bar, borne_off)
+    def __init__(self, on_field=None, on_bar=None):
+        self.set_board(on_field, on_bar)
 
-    def init_empty(self, on_field=None, on_bar=None, borne_off=None):
+    def set_board(self, on_field=None, on_bar=None):
         self.checkers_on_field = on_field or defaultdict(list)
         self.checkers_on_bar = on_bar or []
-        self.borne_off = borne_off or []
+
+        # Fill homes according to checkers in play
+        num_white = self.count_checkers_in_play(WHITE)
+        num_black = self.count_checkers_in_play(BLACK)
+        self.borne_off = [WHITE] * (15 - num_white) + [BLACK] * (15 - num_black)
 
         # temporary moves already made but not yet committed
         self.move_stack = []
@@ -120,20 +123,17 @@ class Board(object):
                 return True
         return False
 
-    def initialize_board(self):
-        self.init_empty()
-        self.initialize_checkers(BLACK)
-        self.initialize_checkers(WHITE)
-
-    def initialize_checkers(self, color):
-        idx_1 = 0 if color == WHITE else 23
-        self.checkers_on_field[idx_1] = [color] * 2
-        idx_2 = 11 if color == WHITE else 12
-        self.checkers_on_field[idx_2] = [color] * 5
-        idx_3 = 16 if color == WHITE else 7
-        self.checkers_on_field[idx_3] = [color] * 3
-        idx_4 = 18 if color == WHITE else 5
-        self.checkers_on_field[idx_4] = [color] * 5
+    def setup_initial_position(self):
+        checkers = defaultdict(list)
+        checkers[0] = [WHITE] * 2
+        checkers[5] = [BLACK] * 5
+        checkers[7] = [BLACK] * 3
+        checkers[11] = [WHITE] * 5
+        checkers[12] = [BLACK] * 5
+        checkers[16] = [WHITE] * 3
+        checkers[18] = [WHITE] * 5
+        checkers[23] = [BLACK] * 2
+        self.set_board(on_field=checkers)
 
     def find_possible_moves(self, initial_dice, color):
         """

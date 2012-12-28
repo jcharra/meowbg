@@ -16,16 +16,25 @@ class MoveAttemptEvent(object):
     def __repr__(self):
         return "MoveEvent: %s->%s" % (self.origin, self.target)
 
-class RollAttemptEvent(object):
+class Attempt(object):
+    """
+    Abstract class representing an attempt to execute
+    an action (to be defined by subclasses) for a
+    given color.
+    """
+    def __init__(self, color):
+        self.color = color
+
+class RollAttemptEvent(Attempt):
     pass
 
-class DoubleAttemptEvent(object):
+class DoubleAttemptEvent(Attempt):
     pass
 
-class CommitAttemptEvent(object):
+class CommitAttemptEvent(Attempt):
     pass
 
-class UndoAttemptEvent(object):
+class UndoAttemptEvent(Attempt):
     pass
 
 class NewMatchEvent(object):
