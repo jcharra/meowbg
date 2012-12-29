@@ -10,12 +10,14 @@ from kivy.uix.accordion import Accordion, AccordionItem
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
+from kivy.uix.popup import Popup
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.textinput import TextInput
 from kivy.factory import Factory
 from kivy.logger import Logger
 from kivy.resources import resource_add_path
 from kivy.vector import Vector
+from meowbg.core.board import WHITE, BLACK
 from meowbg.core.exceptions import MoveNotPossible
 from meowbg.core.move import PartialMove
 from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel, BarPanel, BearoffPanel, Checker, Cube
@@ -23,7 +25,7 @@ from meowbg.gui.boardwidget import BoardWidget
 from meowbg.gui.guievents import (NewMatchEvent, MoveAttemptEvent, AnimationFinishedEvent, AnimationStartedEvent,
                                   HitEvent, PauseEvent, UnhitEvent, MatchFocusEvent, CommitAttemptEvent,
                                   UndoAttemptEvent, RollAttemptEvent, DoubleAttemptEvent)
-from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, DiceEvent, CubeEvent, RejectEvent, AcceptEvent, UndoMoveEvent
+from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, DiceEvent, CubeEvent, RejectEvent, AcceptEvent, UndoMoveEvent, MatchEndEvent
 from meowbg.core.messaging import register, broadcast
 from meowbg.network.connectionpool import share_connection
 from meowbg.network.telnetconn import TelnetConnection
@@ -39,23 +41,31 @@ class MainWidget(GridLayout):
         GridLayout.__init__(self, cols=1, **kwargs)
         self.accordion = Accordion(orientation='vertical', size_hint=(1, 10))
 
-        self.game_accordion = AccordionItem(title='game')
+        self.game_accordion = AccordionItem(title='Game Window')
         self.game_widget = GameWidget()
         self.game_accordion.add_widget(self.game_widget)
         self.accordion.add_widget(self.game_accordion)
 
-        self.lobby_accordion = AccordionItem(title='network')
+        self.lobby_accordion = AccordionItem(title='Network')
         self.lobby_widget = NetworkWidget()
         self.lobby_accordion.add_widget(self.lobby_widget)
         self.accordion.add_widget(self.lobby_accordion)
 
         self.add_widget(self.accordion)
         register(self.focus_game, MatchFocusEvent)
+        register(self.show_match_data, MatchEvent)
 
     def focus_game(self, e):
         self.game_accordion.collapse = False
         self.accordion.select(self.game_accordion)
 
+    def show_match_data(self, me):
+        match = me.match
+        s = ("%s - %s  %i : %i (%i)"
+            % (match.players[WHITE].name, match.players[BLACK].name,
+               match.score[WHITE], match.score[BLACK],
+               match.length))
+        self.game_accordion.title = s
 
 class GameWidget(FloatLayout):
     def __init__(self, **kwargs):
@@ -68,6 +78,15 @@ class GameWidget(FloatLayout):
 
         self.add_widget(self.match_widget)
         self.add_widget(button_panel)
+        register(self.announce_winner, MatchEndEvent)
+
+    def announce_winner(self, e):
+        points = e.score.values()
+        high, low = max(points), min(points)
+        popup = Popup(title='The match has ended',
+            content=Label(text='%s wins %i : %i' % (e.winner, high, low)),
+            size_hint=(None, None), size=(400, 400))
+        popup.open()
 
 
 class MatchWidget(FloatLayout):
@@ -103,7 +122,7 @@ class MatchWidget(FloatLayout):
         if isinstance(event, MoveEvent):
             # A full move event is first split into several single move events
             for m in event.moves:
-                self.event_queue.put(SingleMoveEvent(PartialMove(m.origin, m.target)))
+                self.event_queue.put(SingleMoveEvent(m))
                 self.event_queue.put(PauseEvent(300))
             return
         elif isinstance(event, SingleMoveEvent):
@@ -210,7 +229,7 @@ class MatchWidget(FloatLayout):
         self.board.show_dice(dice)
 
     def show_cube_challenge(self, e):
-        self.board.cube_challenge(self.match.color_to_move_next, e.cube_number)
+        self.board.cube_challenge(e.cube_number)
 
     def attempt_move(self, origin, target):
         try:

@@ -13,6 +13,7 @@ class Match(object):
 
     def __init__(self):
         self.length = 1
+        self.finished = False
         self.score = {WHITE: 0, BLACK: 0}
         self.color_to_move_next = None
         self.initial_dice = []
@@ -89,8 +90,8 @@ class Match(object):
 
     def get_die_for_move(self, origin, target, undo=False):
         dice = self.remaining_dice if not undo else self.initial_dice
-        die = abs(target - origin)
-        for d in range(die, 7):
+        distance = abs(target - origin)
+        for d in range(distance, 7):
             if d in dice:
                 return d
         raise ValueError("Cannot find a matching die for %s->%s among %s"
@@ -115,7 +116,8 @@ class Match(object):
         broadcast(GameEndEvent(winner, points))
         self.score[winner] += points * self.cube
         if self.score[winner] >= self.length:
-            broadcast(MatchEndEvent(winner, self.score))
+            winner_name = self.players[winner].name
+            broadcast(MatchEndEvent(winner_name, self.score))
         else:
             self.new_game()
 
@@ -174,7 +176,6 @@ class Match(object):
         if color == self.color_to_move_next:
             logger.warn("You cannot reject your own offer")
             return
-
         if self.open_cube_challenge_from_color:
             self.end_game(self.open_cube_challenge_from_color, 1)
             self.open_cube_challenge_from_color = None
@@ -186,7 +187,8 @@ class Match(object):
             logger.info("No open offers")
 
     def doubling_possible(self, color):
-        return (self.remaining_dice == self.initial_dice == []
+        return (self.cube < 64
+                and self.remaining_dice == self.initial_dice == []
                 and self.may_double[color]
                 and self.color_to_move_next == color)
 

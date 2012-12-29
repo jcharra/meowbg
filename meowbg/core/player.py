@@ -1,5 +1,5 @@
 
-from meowbg.core.events import MatchEvent, MoveEvent, CommitEvent, RollRequest, CubeEvent
+from meowbg.core.events import MatchEvent, MoveEvent, CommitEvent, RollRequest, CubeEvent, RejectEvent, AcceptEvent
 from meowbg.core.messaging import register, unregister
 from meowbg.gui.guievents import DoubleAttemptEvent
 from meowbg.network.connectionpool import get_connection
@@ -12,6 +12,7 @@ class AbstractPlayer(object):
 
     def exit(self):
         unregister(self.react, MatchEvent)
+        unregister(self.on_cube, MatchEvent)
 
     def react(self, match_event):
         raise NotImplemented
@@ -42,6 +43,8 @@ class OnlinePlayerProxy(object):
         register(self.on_commit, CommitEvent)
         register(self.on_default, RollRequest)
         register(self.on_default, DoubleAttemptEvent)
+        register(self.on_default, AcceptEvent)
+        register(self.on_default, RejectEvent)
 
         self.connection = get_connection("Tigergammon")
 

@@ -162,7 +162,7 @@ class BoardWidget(GridLayout):
         borne_off = match.board.borne_off
         for col, target in ((WHITE, self.upper_bearoff), (BLACK, self.lower_bearoff)):
             col_borne_off = borne_off.count(col)
-            if col_borne_off :
+            if col_borne_off:
                 target.add_checkers(col, col_borne_off)
 
         dice = self.match.remaining_dice
@@ -190,11 +190,7 @@ class BoardWidget(GridLayout):
         target.add_widget(self.cube)
         self.cube.set_number(cube)
 
-    def cube_challenge(self, challenging_color, number):
-        #if challenging_color == WHITE:
-        #    target = self.blacks_dice_area
-        #else:
-        #    target = self.whites_dice_area
+    def cube_challenge(self, number):
         self.set_cube(self.cube_challenge_container, number)
 
     def show_dice(self, dice):

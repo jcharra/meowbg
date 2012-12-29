@@ -140,7 +140,7 @@ class ButtonPanel(BoxLayout):
 
     def start_new_ai_game(self):
         match = Match()
-        match.length = 1
+        match.length = 5
         match.register_player(HumanPlayer("Johannes", WHITE), WHITE)
         match.register_player(Bot("Annette", BLACK), BLACK)
         match.new_game()
