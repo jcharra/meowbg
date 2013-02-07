@@ -11,7 +11,7 @@ from meowbg.core.match import Match
 from meowbg.core.events import AcceptEvent, RejectEvent, MatchEvent
 from meowbg.core.messaging import broadcast, register
 from meowbg.core.player import HumanPlayer
-from meowbg.gui.guievents import CommitAttemptEvent, UndoAttemptEvent, RollAttemptEvent, DoubleAttemptEvent
+from meowbg.gui.guievents import CommitAttemptEvent, UndoAttemptEvent, RollAttemptEvent, DoubleAttemptEvent, ResignAttemptEvent
 
 class Checker(Widget):
     COLOR_MAP = {BLACK: (.3, .1, 0), WHITE: (.8, .6, .4)}
@@ -140,7 +140,7 @@ class ButtonPanel(BoxLayout):
 
     def start_new_ai_game(self):
         match = Match()
-        match.length = 5
+        match.length = 1
         match.register_player(HumanPlayer("Johannes", WHITE), WHITE)
         match.register_player(Bot("Annette", BLACK), BLACK)
         match.new_game()
@@ -156,6 +156,9 @@ class ButtonPanel(BoxLayout):
 
     def reject(self):
         broadcast(RejectEvent(self.represented_color))
+
+    def resign(self):
+        broadcast(ResignAttemptEvent(self.represented_color))
 
     def roll_attempted(self):
         broadcast(RollAttemptEvent(self.represented_color))

@@ -37,6 +37,9 @@ class CommitAttemptEvent(Attempt):
 class UndoAttemptEvent(Attempt):
     pass
 
+class ResignAttemptEvent(Attempt):
+    pass
+
 class NewMatchEvent(object):
     def __init__(self, match):
         self.match = match

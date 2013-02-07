@@ -24,9 +24,10 @@ from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel, BarP
 from meowbg.gui.boardwidget import BoardWidget
 from meowbg.gui.guievents import (NewMatchEvent, MoveAttemptEvent, AnimationFinishedEvent, AnimationStartedEvent,
                                   HitEvent, PauseEvent, UnhitEvent, MatchFocusEvent, CommitAttemptEvent,
-                                  UndoAttemptEvent, RollAttemptEvent, DoubleAttemptEvent)
+                                  UndoAttemptEvent, RollAttemptEvent, DoubleAttemptEvent, ResignAttemptEvent)
 from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, DiceEvent, CubeEvent, RejectEvent, AcceptEvent, UndoMoveEvent, MatchEndEvent
 from meowbg.core.messaging import register, broadcast
+from meowbg.gui.popups import OKDialog, ResignDialog
 from meowbg.network.connectionpool import share_connection
 from meowbg.network.telnetconn import TelnetConnection
 from meowbg.network.translation import FIBSTranslator
@@ -83,9 +84,13 @@ class GameWidget(FloatLayout):
     def announce_winner(self, e):
         points = e.score.values()
         high, low = max(points), min(points)
+        verb = "wins" if e.winner.lower() != "you" else "win"
+        ok_dialog = OKDialog(text='%s %s %s : %s' % (e.winner, verb, high, low))
         popup = Popup(title='The match has ended',
-            content=Label(text='%s wins %i : %i' % (e.winner, high, low)),
+            content=ok_dialog,
             size_hint=(None, None), size=(400, 400))
+        ok_dialog.ok_button.bind(on_press=popup.dismiss)
+
         popup.open()
 
 
@@ -105,8 +110,8 @@ class MatchWidget(FloatLayout):
 
         # Register a lot of events to be queued
         for e in (NewMatchEvent, MatchEvent, MoveAttemptEvent, DiceEvent, SingleMoveEvent,
-            MoveEvent, CommitAttemptEvent, UndoAttemptEvent, UndoMoveEvent, HitEvent, UnhitEvent,
-            PauseEvent, RollAttemptEvent, DoubleAttemptEvent, AcceptEvent, RejectEvent):
+            MoveEvent, CommitAttemptEvent, UndoAttemptEvent, ResignAttemptEvent, UndoMoveEvent,
+            HitEvent, UnhitEvent, PauseEvent, RollAttemptEvent, DoubleAttemptEvent, AcceptEvent, RejectEvent):
             register(self._insert_into_queue, e)
 
         register(self.show_cube_challenge, CubeEvent)
@@ -156,6 +161,9 @@ class MatchWidget(FloatLayout):
         elif isinstance(event, UndoAttemptEvent):
             if self.match:
                 self.match.undo(event.color)
+        elif isinstance(event, ResignAttemptEvent):
+            if self.match:
+                self.open_resign_dialog(event.color)
         elif isinstance(event, AcceptEvent):
             if self.match:
                 self.match.accept_open_offer(event.color)
@@ -199,6 +207,18 @@ class MatchWidget(FloatLayout):
 
     def execute_undo_move(self, move):
         self.board.move_by_indexes(move.origin, move.target, is_undo=True)
+
+    def open_resign_dialog(self, resigning_color):
+        if self.match.color_to_move_next != resigning_color:
+            Logger.info("Not your turn - cannot resign")
+
+        resign_dialog = ResignDialog()
+        popup = Popup(title='You resign',
+                      content=resign_dialog,
+                      size_hint=(None, None),
+                      size=(400, 400))
+        resign_dialog.on_finish = popup.dismiss
+        popup.open()
 
     def animate_move(self, ae):
         """

@@ -54581,3 +54581,386 @@ Please move 2 pieces.
 ** You did already roll the dice.
 ** You did already roll the dice.
 
+Establishing connection to tigergammon.com:4321
+
+1 meowbg_joe 1356819085 248.106.113.82.net.de.o2.com
+2 meowbg_joe 1 1 0 0 0 0 1 1 12 0 0 0 1 1470.89 0 1 0 1 0 UTC
+3
++--------------------------------------------------------------------+
+|                ___.           __                                   |
+|                \_ |__   _____/  |______                            |
+|                 | __ \_/ __ \   __\__  \                           |
+|                 | \_\ \  ___/|  |  / __ \_                         |
+|                 |___  /\___  >__| (____  /                         |
+|                     \/     \/          \/                          |
+|                                                                    |
+|                                                                    |
+|              !! PLAY TOURNAMENTS IF YOU LIKE !!                    |
+|                                                                    |
+|         WATCH ANNOUNCEMENTS ON http://tigergammon.com              |
+|           Also see http://twitter.com/tigergammon                  |
+|                                                                    |
+|         Enjoy the bots. Their name denotes their playing           |
+|         skill according to gnubg naming conventions.               |
+|                                                                    |
+|           New version 0.9.1 released on Nov.25 2012                |
+|           -----------------------------------------                |
+|         Don't forget to check the news (command 'news')            |
+|                                                                    |
+|              !! PLAY TOURNAMENTS IF YOU LIKE !!                    |
+|                                                                    |
++--------------------------------------------------------------------+
+4
+
+5 beginnerBotI - - 1 0 749.35 3375 40360 1356575272 HSI-KBW-046-005-000-025.hsi8. - -
+5 beginnerBotII - - 1 0 779.11 3397 40234 1356575282 HSI-KBW-046-005-000-025.hsi8. - -
+5 beginnerBotIII - - 1 0 725.15 3548 40108 1356575292 HSI-KBW-046-005-000-025.hsi8. - -
+5 casualPlayerBotI - - 1 0 898.15 3618 39883 1356575302 HSI-KBW-046-005-000-025.hsi8. - -
+5 casualPlayerBotII - - 1 0 903.31 3429 39759 1356575312 HSI-KBW-046-005-000-025.hsi8. - -
+5 casualPlayerBotIII - - 1 0 891.93 3557 30586 1356575322 HSI-KBW-046-005-000-025.hsi8. - -
+5 intermediateBotI - - 1 0 1052.54 3197 7403 1356575332 HSI-KBW-046-005-000-025.hsi8. - -
+5 intermediateBotIII - - 1 0 1050.04 3505 21396 1356575352 HSI-KBW-046-005-000-025.hsi8. - -
+5 advancedBotI - - 1 0 1754.20 4861 21011 1356575362 HSI-KBW-046-005-000-025.hsi8. - -
+5 advancedBotII - - 1 0 1740.18 4360 20858 1356575372 HSI-KBW-046-005-000-025.hsi8. - -
+5 advancedBotIII - - 1 0 1711.04 4520 12240 1356575382 HSI-KBW-046-005-000-025.hsi8. - -
+5 expertBotI - - 1 0 2061.77 4482 4598 1356575392 HSI-KBW-046-005-000-025.hsi8. - -
+5 expertBotII - - 1 0 2030.36 4092 118223 1356575402 HSI-KBW-046-005-000-025.hsi8. - -
+5 expertBotIII - - 1 0 2028.41 3983 107271 1356575413 HSI-KBW-046-005-000-025.hsi8. - -
+5 worldclassBotI - - 1 0 2035.88 4664 11883 1356575423 HSI-KBW-046-005-000-025.hsi8. - -
+5 worldclassBotII - - 1 0 2048.42 4441 9459 1356575432 HSI-KBW-046-005-000-025.hsi8. - -
+5 worldclassBotIII - - 1 0 2057.01 4358 27188 1356575442 HSI-KBW-046-005-000-025.hsi8. - -
+5 socksey - - 0 0 1838.00 2211 2627 1356859998 68-235-130-135.dynsouth.hsi.p >US________________! -
+5 rebbeler - - 1 0 1500.00 0 21896 1356880425 pool-108-33-59-123.tampfl.fio ?NT________________! -
+5 zbilbo - - 1 0 1647.69 3885 4599 1356897188 81.79-160-151.customer.lyse.n ?NT________________! -
+5 meowbg_joe - - 1 0 1470.89 12 0 1356902359 82.113.121.50 meowBG -
+6
+
+8 zbilbo zbilbo drops connection
+Value of 'boardstyle' set to 3.
+
+** You invited expertBotI to a 3 point match.
+** Player expertBotI has joined you for a 3 point match.
+meowbg_joe and expertBotI start a 3 point match..
+Starting a new game with expertBotI.
+You rolled 6, expertBotI rolled 3
+It's your turn to move.
+board:You:expertBotI:3:0:0:0:-2:0:0:0:0:5:0:3:0:0:0:-5:5:0:0:0:-3:0:-5:0:0:0:0:2:0:1:6:3:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+5 expertBotI meowbg_joe - 1 0 2061.77 4482 0 1356575392 HSI-KBW-046-005-000-025.hsi8. - -
+6
+5 meowbg_joe expertBotI - 1 0 1470.89 12 0 1356902359 82.113.121.50 meowBG -
+6
+12 expertBotI Hello! Enjoy this match. Good luck.
+
+Please move 2 pieces.
+
+board:You:expertBotI:3:0:0:0:-2:0:0:0:0:5:0:3:0:0:0:-5:5:0:1:0:-3:0:-5:0:0:0:0:1:0:-1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+expertBotI rolls 6 and 5.
+board:You:expertBotI:3:0:0:0:-2:0:0:0:0:5:0:3:0:0:0:-5:5:0:1:0:-3:0:-5:0:0:0:0:1:0:-1:0:0:6:5:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+expertBotI moves 1-7 7-12 .
+board:You:expertBotI:3:0:0:0:-1:0:0:0:0:5:0:3:0:0:0:-6:5:0:1:0:-3:0:-5:0:0:0:0:1:0:1:0:0:0:0:1:1:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+It's your turn. Please roll or double
+
+You double. Please wait for expertBotI to accept or reject.
+
+expertBotI accepts the double. The cube shows 2.
+You roll 6 and 1.
+board:You:expertBotI:3:0:0:0:-1:0:0:0:0:5:0:3:0:0:0:-6:5:0:1:0:-3:0:-5:0:0:0:0:1:0:1:6:1:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+Please move 2 pieces.
+
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+** You can only double before you roll the dice.
+
+board:You:expertBotI:3:0:0:0:-1:0:0:0:0:5:0:4:0:0:0:-6:5:0:0:0:-3:0:-5:0:0:0:0:1:0:-1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+expertBotI rolls 5 and 2.
+board:You:expertBotI:3:0:0:0:-1:0:0:0:0:5:0:4:0:0:0:-6:5:0:0:0:-3:0:-5:0:0:0:0:1:0:-1:0:0:5:2:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+expertBotI moves 12-17 12-14 .
+board:You:expertBotI:3:0:0:0:-1:0:0:0:0:5:0:4:0:0:0:-4:5:-1:0:0:-4:0:-5:0:0:0:0:1:0:1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+You roll 2 and 2.
+board:You:expertBotI:3:0:0:0:-1:0:0:0:0:5:0:4:0:0:0:-4:5:-1:0:0:-4:0:-5:0:0:0:0:1:0:1:2:2:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:4:0:0:0
+
+Please move 4 pieces.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+
+board:You:expertBotI:3:0:0:0:-1:0:0:2:0:3:0:4:0:0:2:-4:3:-1:0:0:-4:0:-5:0:0:0:0:1:0:-1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:4:0:0:0
+
+expertBotI rolls 4 and 3.
+board:You:expertBotI:3:0:0:0:-1:0:0:2:0:3:0:4:0:0:2:-4:3:-1:0:0:-4:0:-5:0:0:0:0:1:0:-1:0:0:4:3:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+expertBotI moves 12-16 16-19 .
+board:You:expertBotI:3:0:0:0:-1:0:0:2:0:3:0:4:0:0:2:-3:3:-1:0:0:-4:0:-6:0:0:0:0:1:0:1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+You roll 1 and 3.
+board:You:expertBotI:3:0:0:0:-1:0:0:2:0:3:0:4:0:0:2:-3:3:-1:0:0:-4:0:-6:0:0:0:0:1:0:1:1:3:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+Please move 2 pieces.
+
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+
+** You did already roll the dice.
+
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+** You did already roll the dice.
+
+board:You:expertBotI:3:0:0:0:-1:0:0:2:2:2:0:3:0:0:2:-3:3:-1:0:0:-4:0:-6:0:0:0:0:1:0:-1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+expertBotI rolls 6 and 4.
+board:You:expertBotI:3:0:0:0:-1:0:0:2:2:2:0:3:0:0:2:-3:3:-1:0:0:-4:0:-6:0:0:0:0:1:0:-1:0:0:6:4:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+expertBotI moves 12-18 14-18 .
+board:You:expertBotI:3:0:0:0:-1:0:0:2:2:2:0:3:0:0:2:-2:3:0:0:0:-4:-2:-6:0:0:0:0:1:0:1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+You roll 3 and 3.
+board:You:expertBotI:3:0:0:0:-1:0:0:2:2:2:0:3:0:0:2:-2:3:0:0:0:-4:-2:-6:0:0:0:0:1:0:1:3:3:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:4:0:0:0
+Please move 4 pieces.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+
+board:You:expertBotI:3:0:0:0:-1:2:0:2:2:2:0:1:0:0:2:-2:3:0:0:0:-4:-2:-6:0:0:0:0:1:0:-1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:4:0:0:0
+
+expertBotI rolls 3 and 5.
+board:You:expertBotI:3:0:0:0:-1:2:0:2:2:2:0:1:0:0:2:-2:3:0:0:0:-4:-2:-6:0:0:0:0:1:0:-1:0:0:3:5:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+expertBotI moves 17-22 19-22 .
+board:You:expertBotI:3:0:0:0:-1:2:0:2:2:2:0:1:0:0:2:-2:3:0:0:0:-3:-2:-5:0:0:-2:0:1:0:1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+You roll 6 and 4.
+board:You:expertBotI:3:0:0:0:-1:2:0:2:2:2:0:1:0:0:2:-2:3:0:0:0:-3:-2:-5:0:0:-2:0:1:0:1:6:4:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+Please move 2 pieces.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+
+board:You:expertBotI:3:0:0:0:-1:2:0:2:2:2:0:1:0:0:2:-2:3:1:0:0:-3:-2:-5:0:0:-2:0:0:0:-1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+expertBotI rolls 3 and 5.
+board:You:expertBotI:3:0:0:0:-1:2:0:2:2:2:0:1:0:0:2:-2:3:1:0:0:-3:-2:-5:0:0:-2:0:0:0:-1:0:0:3:5:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+expertBotI moves 17-20 19-24 .
+board:You:expertBotI:3:0:0:0:-1:2:0:2:2:2:0:1:0:0:2:-2:3:1:0:0:-2:-2:-4:-1:0:-2:0:-1:0:1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+You roll 2 and 6.
+board:You:expertBotI:3:0:0:0:-1:2:0:2:2:2:0:1:0:0:2:-2:3:1:0:0:-2:-2:-4:-1:0:-2:0:-1:0:1:2:6:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+Please move 2 pieces.
+
+** You can't move from 24 in your first move.
+** You can't move from 24 in your first move.
+** You can't move from 24 in your first move.
+** You can't move from 24 in your first move.
+** You can't move from 24 in your first move.
+** You can't move from 24 in your first move.
+** You can't move from 24 in your first move.
+** You can't move from 24 in your first move.
+** You can't move from 24 in your first move.
+** You can't move from 24 in your first move.
+** You can't move from 24 in your first move.
+** You can't move from 24 in your first move.
+** You can't move from 24 in your first move.
+** You can't move from 24 in your first move.
+** You can't move from 24 in your first move.
+** You can't move from 24 in your first move.
+** You can't move from 24 in your first move.
+** You can't move from 24 in your first move.
+** You can't move from 24 in your first move.
+** You can't move from 24 in your first move.
+
+board:You:expertBotI:3:0:0:0:-1:2:0:2:2:2:0:2:0:0:3:-2:2:0:0:0:-2:-2:-4:-1:0:-2:0:-1:0:-1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+expertBotI rolls 1 and 3.
+board:You:expertBotI:3:0:0:0:-1:2:0:2:2:2:0:2:0:0:3:-2:2:0:0:0:-2:-2:-4:-1:0:-2:0:-1:0:-1:0:0:1:3:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotI moves 17-20 19-20 .
+board:You:expertBotI:3:0:0:0:-1:2:0:2:2:2:0:2:0:0:3:-2:2:0:0:0:-1:-2:-3:-3:0:-2:0:-1:0:1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+You roll 5 and 3.
+board:You:expertBotI:3:0:0:0:-1:2:0:2:2:2:0:2:0:0:3:-2:2:0:0:0:-1:-2:-3:-3:0:-2:0:-1:0:1:5:3:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+Please move 2 pieces.
+
+board:You:expertBotI:3:0:0:0:-1:2:0:2:2:2:0:3:0:1:3:-2:0:0:0:0:-1:-2:-3:-3:0:-2:0:-1:0:-1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+expertBotI rolls 5 and 5.
+board:You:expertBotI:3:0:0:0:-1:2:0:2:2:2:0:3:0:1:3:-2:0:0:0:0:-1:-2:-3:-3:0:-2:0:-1:0:-1:0:0:5:5:2:0:1:0:1:-1:0:25:0:0:0:0:4:0:0:0
+expertBotI moves 12-17 18-23 18-23 19-24 .
+board:You:expertBotI:3:0:0:0:-1:2:0:2:2:2:0:3:0:1:3:-1:0:0:0:0:-2:0:-2:-3:0:-2:-2:-2:0:1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:4:0:0:0
+You roll 3 and 3.
+board:You:expertBotI:3:0:0:0:-1:2:0:2:2:2:0:3:0:1:3:-1:0:0:0:0:-2:0:-2:-3:0:-2:-2:-2:0:1:3:3:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:4:0:0:0
+Please move 4 pieces.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+** You must give 4 moves.
+
+7 klippan klippan logs in.
+5 klippan - - 0 0 1535.23 8 0 1356902497 79.251.78.8 ?NT________________! -
+6
+
+
+board:You:expertBotI:3:0:0:0:-1:2:0:3:3:2:0:3:0:0:2:-1:0:0:0:0:-2:0:-2:-3:0:-2:-2:-2:0:-1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:4:0:0:0
+
+expertBotI rolls 4 and 2.
+board:You:expertBotI:3:0:0:0:-1:2:0:3:3:2:0:3:0:0:2:-1:0:0:0:0:-2:0:-2:-3:0:-2:-2:-2:0:-1:0:0:4:2:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+expertBotI moves 12-16 17-19 .
+board:You:expertBotI:3:0:0:0:-1:2:0:3:3:2:0:3:0:0:2:0:0:0:0:-1:-1:0:-3:-3:0:-2:-2:-2:0:1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+You roll 1 and 2.
+board:You:expertBotI:3:0:0:0:-1:2:0:3:3:2:0:3:0:0:2:0:0:0:0:-1:-1:0:-3:-3:0:-2:-2:-2:0:1:1:2:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+Please move 2 pieces.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+** Please don't give more than 2 moves.
+
+board:You:expertBotI:3:0:0:0:-1:2:2:2:2:2:0:3:0:0:2:0:0:0:0:-1:-1:0:-3:-3:0:-2:-2:-2:0:-1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+
+expertBotI rolls 4 and 1.
+board:You:expertBotI:3:0:0:0:-1:2:2:2:2:2:0:3:0:0:2:0:0:0:0:-1:-1:0:-3:-3:0:-2:-2:-2:0:-1:0:0:4:1:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+** It's not your turn to move.
+expertBotI moves 17-21 20-21 .
+board:You:expertBotI:3:0:0:0:-1:2:2:2:2:2:0:3:0:0:2:0:0:0:0:-1:0:0:-3:-2:-2:-2:-2:-2:0:1:0:0:0:0:2:0:1:0:1:-1:0:25:0:0:0:0:2:0:0:0
+You roll 4 and 1.
+board:You:exp

@@ -226,7 +226,8 @@ class BoardWidget(GridLayout):
 
     def move(self, spike_origin, spike_target):
         if not spike_origin.children:
-            raise ValueError("method 'move' called with empty origin")
+            raise ValueError("method 'move' called with empty origin %s to target %s"
+                             % (spike_origin, spike_target))
 
         moving_checker = spike_origin.children[0]
         self.move_checker(moving_checker, spike_target)

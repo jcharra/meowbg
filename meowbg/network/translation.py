@@ -4,7 +4,7 @@ import logging
 from meowbg.core.board import Board, BLACK, WHITE
 from meowbg.core.match import Match
 from meowbg.core.move import PartialMove
-from meowbg.core.events import InvitationEvent, MoveEvent, MatchEvent, PlayerStatusEvent, DiceEvent, RollRequest, AcceptEvent, RejectEvent
+from meowbg.core.events import InvitationEvent, MoveEvent, MatchEvent, PlayerStatusEvent, DiceEvent, RollRequest, AcceptEvent, RejectEvent, MatchEndEvent
 from meowbg.core.player import HumanPlayer, OnlinePlayerProxy
 from meowbg.gui.guievents import DoubleAttemptEvent
 
@@ -158,9 +158,10 @@ class FIBSTranslator(object):
                 # GameEndEvent
                 pass
 
-            #TODO: elif 'expertBotI wins the 7 point match 7-6 .'
-                #MatchEndEvent ...
-
+            elif re.match("\S+ wins? the \d+ point match \d+-\d+", line):
+                winner, score1, score2 = re.search("(\S+) wins? the \d+ point match (\d+)-(\d+)", line).groups()
+                score = {1: score1, 2: score2}
+                found_events.append(MatchEndEvent(winner, score))
             else:
                 logger.warn("Not parseable: '%s'" % line)
 

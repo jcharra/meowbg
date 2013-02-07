@@ -190,7 +190,10 @@ class Match(object):
         return (self.cube < 64
                 and self.remaining_dice == self.initial_dice == []
                 and self.may_double[color]
-                and self.color_to_move_next == color)
+                and self.color_to_move_next == color
+                # at least one player's score must still be below the match
+                # length if he'd win with the current cube number
+                and not all(x + self.cube >= self.length for x in self.score.values()))
 
     def switch_turn(self):
         if self.color_to_move_next == WHITE:
