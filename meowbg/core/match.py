@@ -1,7 +1,7 @@
 import logging
 from meowbg.core.board import Board, WHITE, BLACK, COLOR_NAMES, OPPONENT
 from meowbg.core.dice import Dice
-from meowbg.core.events import MatchEndEvent, GameEndEvent, RolloutEvent, MatchEvent, SingleMoveEvent, DiceEvent, CommitEvent, RollRequest, CubeEvent, UndoMoveEvent
+from meowbg.core.events import MatchEndEvent, GameEndEvent, RolloutEvent, MatchEvent, SingleMoveEvent, DiceEvent, CommitEvent, RollRequest, CubeEvent, UndoMoveEvent, PendingJoinEvent
 from meowbg.core.messaging import broadcast
 from meowbg.gui.guievents import HitEvent, UnhitEvent
 from move import PartialMove
@@ -21,6 +21,7 @@ class Match(object):
         self.cube = 1
         self.may_double = {WHITE: True, BLACK: True}
         self.players = {WHITE: "", BLACK: ""}
+        self.join_pending = {WHITE: False, BLACK: False}
 
         # This can be either None, BLACK, or WHITE
         self.open_cube_challenge_from_color = None
@@ -113,13 +114,24 @@ class Match(object):
             raise ValueError("Invalid commit attempted")
 
     def end_game(self, winner, points):
-        broadcast(GameEndEvent(winner, points))
-        self.score[winner] += points * self.cube
+        points_gained = points * self.cube
+        self.score[winner] += points_gained
+        winner_name = self.players[winner].name
+
         if self.score[winner] >= self.length:
-            winner_name = self.players[winner].name
             broadcast(MatchEndEvent(winner_name, self.score))
         else:
+            self.join_pending = {WHITE: True, BLACK: True}
+            broadcast(GameEndEvent(winner_name, points_gained, self.get_score()))
+            broadcast(PendingJoinEvent(self))
+
+    def join_next_game(self, color):
+        self.join_pending[color] = False
+        if True not in self.join_pending.values():
             self.new_game()
+
+    def get_score(self):
+        return self.score[WHITE], self.score[BLACK]
 
     def is_crawford(self):
         return self.score[WHITE] != self.score[BLACK] and self.length - 1 in self.score.values()

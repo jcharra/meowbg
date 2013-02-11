@@ -4,7 +4,7 @@ import logging
 from meowbg.core.board import Board, BLACK, WHITE
 from meowbg.core.match import Match
 from meowbg.core.move import PartialMove
-from meowbg.core.events import InvitationEvent, MoveEvent, MatchEvent, PlayerStatusEvent, DiceEvent, RollRequest, AcceptEvent, RejectEvent, MatchEndEvent
+from meowbg.core.events import InvitationEvent, MoveEvent, MatchEvent, PlayerStatusEvent, DiceEvent, RollRequest, AcceptEvent, RejectEvent, MatchEndEvent, PendingJoinEvent, AcceptJoinEvent
 from meowbg.core.player import HumanPlayer, OnlinePlayerProxy
 from meowbg.gui.guievents import DoubleAttemptEvent
 
@@ -63,6 +63,9 @@ class FIBSTranslator(object):
             return "accept"
         elif isinstance(event, RejectEvent):
             return "reject"
+        elif isinstance(event, AcceptJoinEvent):
+            return "join"
+
         logger.error("Cannot encode event type %s" % event)
         return ""
 
@@ -154,8 +157,9 @@ class FIBSTranslator(object):
                 args = re.search("(?P<user>\S+) wants to resume a saved match with you", line).groupdict()
                 found_events.append(InvitationEvent(player_name=args['user']))
             elif line.find("wins the game and gets") != -1:
-                # TODO:
-                # GameEndEvent
+                #[WARNING] [You give up. expertBotI wins 2 points.
+                #    score in 3 point match] expertBotI-2 meowbg_joe-0
+                #    Type 'join' if you want to play the next game, type 'leave' if you don't.
                 pass
 
             elif re.match("\S+ wins? the \d+ point match \d+-\d+", line):

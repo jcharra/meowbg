@@ -42,9 +42,9 @@ def test_hit():
     broadcast(MoveAttemptEvent(-1, 2))
     broadcast(CommitAttemptEvent())
 
-def test_bearoff():
+def test_between_games():
     match = parse("board:player1:player2"
-                  ":1"       # match length
+                  ":3"       # match length
                   ":0:0"     # score
                   ":0"       # bar player 1
                   ":1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1" # board
@@ -75,9 +75,9 @@ def test_double():
 def execute_script():
     time.sleep(1)
     #test_hit()
-    #test_bearoff()
+    test_between_games()
     #test_new_game()
-    test_double()
+    #test_double()
 
 if __name__ == '__main__':
     share_connection("Tigergammon", DummyConnection())

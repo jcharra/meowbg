@@ -1,6 +1,6 @@
 
-from meowbg.core.events import MatchEvent, MoveEvent, CommitEvent, RollRequest, CubeEvent, RejectEvent, AcceptEvent
-from meowbg.core.messaging import register, unregister
+from meowbg.core.events import MatchEvent, MoveEvent, CommitEvent, RollRequest, CubeEvent, RejectEvent, AcceptEvent, PendingJoinEvent, JoinChallengeEvent
+from meowbg.core.messaging import register, unregister, broadcast
 from meowbg.gui.guievents import DoubleAttemptEvent
 from meowbg.network.connectionpool import get_connection
 
@@ -9,15 +9,20 @@ class AbstractPlayer(object):
         self.name, self.color = name, color
         register(self.react, MatchEvent)
         register(self.on_cube, CubeEvent)
+        register(self.on_join, PendingJoinEvent)
 
     def exit(self):
         unregister(self.react, MatchEvent)
         unregister(self.on_cube, MatchEvent)
+        unregister(self.on_join, PendingJoinEvent)
 
     def react(self, match_event):
         raise NotImplemented
 
     def on_cube(self, cube_event):
+        raise NotImplemented
+
+    def on_join(self, join_event):
         raise NotImplemented
 
 class HumanPlayer(AbstractPlayer):
@@ -32,6 +37,12 @@ class HumanPlayer(AbstractPlayer):
         """
         Same as in react
         """
+
+    def on_join(self, join_event):
+        """
+        Indicate that a decision in needed here
+        """
+        broadcast(JoinChallengeEvent(join_event.match, self.color))
 
 
 class OnlinePlayerProxy(object):

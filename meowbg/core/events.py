@@ -57,8 +57,8 @@ class RejectEvent(object):
         self.color = color
 
 class GameEndEvent(object):
-    def __init__(self, winner, points):
-        self.winner, self.points = winner, points
+    def __init__(self, winner, points, score):
+        self.winner, self.points, self.score = winner, points, score
 
 class MatchEndEvent(object):
     def __init__(self, winner, score):
@@ -67,6 +67,17 @@ class MatchEndEvent(object):
 class CommandEvent(object):
     def __init__(self, command):
         self.command = command
+
+class PendingJoinEvent(object):
+    def __init__(self, match):
+        self.match = match
+
+class AcceptJoinEvent(object):
+    pass
+
+class JoinChallengeEvent(object):
+    def __init__(self, match, color):
+        self.match, self.color = match, color
 
 # Events outside a match
 

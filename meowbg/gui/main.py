@@ -25,9 +25,9 @@ from meowbg.gui.boardwidget import BoardWidget
 from meowbg.gui.guievents import (NewMatchEvent, MoveAttemptEvent, AnimationFinishedEvent, AnimationStartedEvent,
                                   HitEvent, PauseEvent, UnhitEvent, MatchFocusEvent, CommitAttemptEvent,
                                   UndoAttemptEvent, RollAttemptEvent, DoubleAttemptEvent, ResignAttemptEvent)
-from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, DiceEvent, CubeEvent, RejectEvent, AcceptEvent, UndoMoveEvent, MatchEndEvent
+from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, DiceEvent, CubeEvent, RejectEvent, AcceptEvent, UndoMoveEvent, MatchEndEvent, GameEndEvent, PendingJoinEvent, JoinChallengeEvent
 from meowbg.core.messaging import register, broadcast
-from meowbg.gui.popups import OKDialog, ResignDialog
+from meowbg.gui.popups import OKDialog, ResignDialog, BetweenGamesDialog
 from meowbg.network.connectionpool import share_connection
 from meowbg.network.telnetconn import TelnetConnection
 from meowbg.network.translation import FIBSTranslator
@@ -79,9 +79,9 @@ class GameWidget(FloatLayout):
 
         self.add_widget(self.match_widget)
         self.add_widget(button_panel)
-        register(self.announce_winner, MatchEndEvent)
+        register(self.announce_match_winner, MatchEndEvent)
 
-    def announce_winner(self, e):
+    def announce_match_winner(self, e):
         points = e.score.values()
         high, low = max(points), min(points)
         verb = "wins" if e.winner.lower() != "you" else "win"
@@ -111,7 +111,8 @@ class MatchWidget(FloatLayout):
         # Register a lot of events to be queued
         for e in (NewMatchEvent, MatchEvent, MoveAttemptEvent, DiceEvent, SingleMoveEvent,
             MoveEvent, CommitAttemptEvent, UndoAttemptEvent, ResignAttemptEvent, UndoMoveEvent,
-            HitEvent, UnhitEvent, PauseEvent, RollAttemptEvent, DoubleAttemptEvent, AcceptEvent, RejectEvent):
+            HitEvent, UnhitEvent, PauseEvent, RollAttemptEvent, DoubleAttemptEvent, AcceptEvent,
+            RejectEvent, GameEndEvent, JoinChallengeEvent):
             register(self._insert_into_queue, e)
 
         register(self.show_cube_challenge, CubeEvent)
@@ -167,6 +168,10 @@ class MatchWidget(FloatLayout):
         elif isinstance(event, AcceptEvent):
             if self.match:
                 self.match.accept_open_offer(event.color)
+        elif isinstance(event, GameEndEvent):
+            self.announce_game_winner(event)
+        elif isinstance(event, JoinChallengeEvent):
+            self.suggest_join(event)
         elif isinstance(event, MoveAttemptEvent):
             self.attempt_move(event.origin, event.target)
         elif isinstance(event, RejectEvent):
@@ -207,6 +212,37 @@ class MatchWidget(FloatLayout):
 
     def execute_undo_move(self, move):
         self.board.move_by_indexes(move.origin, move.target, is_undo=True)
+
+    def announce_game_winner(self, e):
+        self.block(e)
+        verb = "wins" if e.winner.lower() != "you" else "win"
+        point_str = "points" if e.points != 1 else "point"
+        ok_dialog = OKDialog(text='The score is now %s : %s' % e.score)
+        popup = Popup(title='%s %s %s %s' % (e.winner, verb, e.points, point_str),
+            content=ok_dialog,
+            size_hint=(None, None), size=(400, 400))
+
+        def on_close(evt):
+            popup.dismiss()
+            self.release(e)
+
+        ok_dialog.ok_button.bind(on_press=on_close)
+
+        popup.open()
+
+    def suggest_join(self, event):
+        dialog = BetweenGamesDialog()
+        popup = Popup(title='Continue match?',
+            content=dialog,
+            size_hint=(None, None), size=(400, 400))
+
+        def on_join(e):
+            popup.dismiss()
+            event.match.join_next_game(event.color)
+
+        dialog.ok_button.bind(on_press=on_join)
+
+        popup.open()
 
     def open_resign_dialog(self, resigning_color):
         if self.match.color_to_move_next != resigning_color:

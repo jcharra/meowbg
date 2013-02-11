@@ -48,3 +48,6 @@ class Bot(AbstractPlayer):
     def on_cube(self, cube_event):
         if cube_event.color != self.color:
             broadcast(AcceptEvent(self.color))
+
+    def on_join(self, join_event):
+        join_event.match.join_next_game(self.color)
