@@ -128,7 +128,10 @@ class Match(object):
     def join_next_game(self, color):
         self.join_pending[color] = False
         if True not in self.join_pending.values():
+            logger.warn("Game complete")
             self.new_game()
+        else:
+            logger.warn("Still waiting for %s to accept" % OPPONENT[color])
 
     def get_score(self):
         return self.score[WHITE], self.score[BLACK]
@@ -222,6 +225,10 @@ class Match(object):
         Register a player to control the pieces
         of the given color
         """
+        if self.players[color]:
+            self.players[color].exit()
+
+        logger.warn("Registering %s" % player)
         self.players[color] = player
 
     def __str__(self):

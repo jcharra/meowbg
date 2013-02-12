@@ -1,6 +1,7 @@
 import threading
 import time
 from meowbg.core.board import BLACK, WHITE
+from meowbg.core.bot import Bot
 from meowbg.core.dice import FakeDice
 from meowbg.core.events import MatchEvent, SingleMoveEvent, DiceEvent
 from meowbg.core.match import Match
@@ -55,6 +56,7 @@ def test_between_games():
                   ":1:1"     # may double
                   ":0:1:-1:0:25:0:0:0:0:2:0:0:0" # cruft
     )
+    match.register_player(Bot('Bottus', WHITE), WHITE)
     broadcast(MatchEvent(match))
 
 def test_double():

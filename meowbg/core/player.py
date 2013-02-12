@@ -66,3 +66,11 @@ class OnlinePlayerProxy(object):
     def on_default(self, r):
         cmd = self.event_translator.encode(r)
         self.connection.send(cmd)
+
+    def exit(self):
+        unregister(self.on_commit, CommitEvent)
+        unregister(self.on_default, RollRequest)
+        unregister(self.on_default, DoubleAttemptEvent)
+        unregister(self.on_default, AcceptEvent)
+        unregister(self.on_default, RejectEvent)
+        self.connection = None
