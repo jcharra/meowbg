@@ -22,7 +22,7 @@ class Attempt(object):
     an action (to be defined by subclasses) for a
     given color.
     """
-    def __init__(self, color):
+    def __init__(self, color=None):
         self.color = color
 
 class RollAttemptEvent(Attempt):

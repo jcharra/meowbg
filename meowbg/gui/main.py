@@ -25,7 +25,7 @@ from meowbg.gui.boardwidget import BoardWidget
 from meowbg.gui.guievents import (NewMatchEvent, MoveAttemptEvent, AnimationFinishedEvent, AnimationStartedEvent,
                                   HitEvent, PauseEvent, UnhitEvent, MatchFocusEvent, CommitAttemptEvent,
                                   UndoAttemptEvent, RollAttemptEvent, DoubleAttemptEvent, ResignAttemptEvent)
-from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, DiceEvent, CubeEvent, RejectEvent, AcceptEvent, UndoMoveEvent, MatchEndEvent, GameEndEvent, PendingJoinEvent, JoinChallengeEvent
+from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, DiceEvent, CubeEvent, RejectEvent, AcceptEvent, UndoMoveEvent, MatchEndEvent, GameEndEvent, PendingJoinEvent, JoinChallengeEvent, ResignEvent, GlobalShutdownEvent
 from meowbg.core.messaging import register, broadcast
 from meowbg.gui.popups import OKDialog, ResignDialog, BetweenGamesDialog
 from meowbg.network.connectionpool import share_connection
@@ -253,7 +253,14 @@ class MatchWidget(FloatLayout):
                       content=resign_dialog,
                       size_hint=(None, None),
                       size=(400, 400))
-        resign_dialog.on_finish = popup.dismiss
+
+        def on_resign(e):
+            choice = resign_dialog.options.choice
+            popup.dismiss()
+            broadcast(ResignEvent(choice))
+
+        resign_dialog.ok_button.bind(on_press=on_resign)
+        resign_dialog.cancel_button.bind(on_press=popup.dismiss)
         popup.open()
 
     def animate_move(self, ae):
@@ -340,6 +347,7 @@ class NetworkWidget(GridLayout):
         self.connection = None
 
         register(self.handle, PlayerStatusEvent)
+        register(self.tear_down, GlobalShutdownEvent)
 
     def handle(self, event):
         if isinstance(event, PlayerStatusEvent):
@@ -357,6 +365,11 @@ class NetworkWidget(GridLayout):
         else:
             Logger.info("Already connected to %s" % self.connection)
 
+    def tear_down(self, e):
+        Logger.warn("Network shutdown")
+        if self.connection:
+            self.connection.shutdown()
+
     def handle_input(self, data):
         Logger.warn(data)
         events = self.parser.parse_events(data)
@@ -373,7 +386,11 @@ class NetworkWidget(GridLayout):
 class BoardApp(App):
     def build(self):
         parent = MainWidget()
+        self.bind(on_stop=self.notify_shutdown)
         return parent
+
+    def notify_shutdown(self, e):
+        broadcast(GlobalShutdownEvent())
 
 Factory.register("LobbyWidget", NetworkWidget)
 Factory.register("MatchWidget", MatchWidget)

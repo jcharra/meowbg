@@ -56,6 +56,7 @@ class OnlinePlayerProxy(object):
         register(self.on_default, DoubleAttemptEvent)
         register(self.on_default, AcceptEvent)
         register(self.on_default, RejectEvent)
+        register(self.auto_join, PendingJoinEvent)
 
         self.connection = get_connection("Tigergammon")
 
@@ -66,6 +67,9 @@ class OnlinePlayerProxy(object):
     def on_default(self, r):
         cmd = self.event_translator.encode(r)
         self.connection.send(cmd)
+
+    def auto_join(self, pending_join_event):
+        pending_join_event.match.join_next_game(self.color)
 
     def exit(self):
         unregister(self.on_commit, CommitEvent)

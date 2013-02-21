@@ -126,6 +126,9 @@ class Match(object):
             broadcast(PendingJoinEvent(self))
 
     def join_next_game(self, color):
+        """
+        Accepts for color `color`to immediately continue the match.
+        """
         self.join_pending[color] = False
         if True not in self.join_pending.values():
             logger.warn("Game complete")
@@ -160,6 +163,9 @@ class Match(object):
         broadcast(MatchEvent(self))
 
     def double(self, color):
+        if not color:
+            color = self.color_to_move_next
+
         if self.doubling_possible(color):
             self.open_cube_challenge_from_color = color
             broadcast(CubeEvent(color, self.cube * 2))
@@ -230,6 +236,11 @@ class Match(object):
 
         logger.warn("Registering %s" % player)
         self.players[color] = player
+
+    def get_players_color(self, pname):
+        for col, p in self.players.iteritems():
+            if p.name == pname:
+                return col
 
     def __str__(self):
         return ("It is the turn of %s (white: %s, black: %s), dice: %s, board:\n%s"

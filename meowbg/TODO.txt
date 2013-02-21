@@ -14,7 +14,6 @@ TODOs:
  - Popups for
     o Resign accept
     o Invitation (match length?)
-    o Join next game
     o Player dropped connection
  - Chat
  - Improve cube looks

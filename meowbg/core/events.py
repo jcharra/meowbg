@@ -98,6 +98,11 @@ class PlayerStatusEvent(object):
         """
         self.status_dicts = status_dicts
 
+class GlobalShutdownEvent(object):
+    """
+    Indicates that the app is about to be shut down.
+    """
+
 class LoginEvent(object):
     """
     Use this to require a user login - currently unused

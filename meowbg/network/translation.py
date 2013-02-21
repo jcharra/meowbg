@@ -48,6 +48,9 @@ class FIBSTranslator(object):
 
     PLAYER_STATUS_EVENT = 5
 
+    def __init__(self):
+        self.current_match = None
+
     def encode(self, event):
         """
         TODO: Translate the various kinds of events to FIBS messages.
@@ -78,6 +81,7 @@ class FIBSTranslator(object):
             if line.startswith("board:"):
                 match = self.parse_match(line)
                 found_events.append(MatchEvent(match))
+                self.current_match = match
             if line.startswith("5 "):
                 multiline_buffer.append(line)
                 continue
@@ -156,15 +160,23 @@ class FIBSTranslator(object):
                 # user wants to resume a saved match with you.
                 args = re.search("(?P<user>\S+) wants to resume a saved match with you", line).groupdict()
                 found_events.append(InvitationEvent(player_name=args['user']))
+            elif re.match("\S+ has doubled you. Type 'accept' or 'reject'.", line):
+                pname = re.search("(\S)+ has doubled you", line)
+                if not self.current_match:
+                    continue
+                color = self.current_match.get_players_color(pname)
+                found_events.append(DoubleAttemptEvent(color))
             elif line.find("wins the game and gets") != -1:
                 #[WARNING] [You give up. expertBotI wins 2 points.
                 #    score in 3 point match] expertBotI-2 meowbg_joe-0
                 #    Type 'join' if you want to play the next game, type 'leave' if you don't.
                 pass
-
+            elif line.find("Type 'join' if you want to play the next game") != -1:
+                if self.current_match:
+                    found_events.append(PendingJoinEvent(self.current_match))
             elif re.match("\S+ wins? the \d+ point match \d+-\d+", line):
                 winner, score1, score2 = re.search("(\S+) wins? the \d+ point match (\d+)-(\d+)", line).groups()
-                score = {1: score1, 2: score2}
+                score = {BLACK: score1, WHITE: score2}
                 found_events.append(MatchEndEvent(winner, score))
             else:
                 logger.warn("Not parseable: '%s'" % line)

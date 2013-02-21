@@ -23,6 +23,7 @@ class TelnetConnection(object):
         self.username, self.password = 'meowbg_joe', 'qwertz'
         self.tn_conn = None
         self.reading_thread = None
+        self.alive = False
 
     def connect(self, callback_func):
         """
@@ -40,7 +41,8 @@ class TelnetConnection(object):
         self.reading_thread.start()
 
     def read_forever(self):
-        while True:
+        self.alive = True
+        while self.alive:
             data = self.read()
             if data:
                 self.callback(data)
@@ -59,6 +61,10 @@ class TelnetConnection(object):
     def send(self, msg):
         msg = msg.encode('ascii')
         self.tn_conn.write(msg + "\r\n")
+
+    def shutdown(self):
+        self.alive = False
+        self.tn_conn.close()
 
 
 class Autoresponder(object):

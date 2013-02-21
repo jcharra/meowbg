@@ -3,7 +3,7 @@ from meowbg.core.events import AcceptEvent
 
 from meowbg.core.messaging import broadcast
 from meowbg.core.player import AbstractPlayer
-from meowbg.gui.guievents import MoveAttemptEvent, CommitAttemptEvent
+from meowbg.gui.guievents import MoveAttemptEvent, CommitAttemptEvent, DoubleAttemptEvent
 
 class Bot(AbstractPlayer):
     def __init__(self, name, color):
@@ -21,13 +21,9 @@ class Bot(AbstractPlayer):
             return
 
         if match.color_to_move_next == self.color:
-            print "MY TURN"
-
             if match.doubling_possible(self.color):
-                print "Considering doubling ..."
                 if random.random() > 0.01:
-                    print "YES, I double"
-                    match.double(self.color)
+                    broadcast(DoubleAttemptEvent(self.color))
                     return
 
             match.roll(self.color)
