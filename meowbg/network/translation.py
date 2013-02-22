@@ -2,9 +2,10 @@ from collections import defaultdict
 import re
 import logging
 from meowbg.core.board import Board, BLACK, WHITE
-from meowbg.core.match import Match
+from meowbg.core.match import OnlineMatch, OfflineMatch
 from meowbg.core.move import PartialMove
-from meowbg.core.events import InvitationEvent, MoveEvent, MatchEvent, PlayerStatusEvent, DiceEvent, RollRequest, AcceptEvent, RejectEvent, MatchEndEvent, PendingJoinEvent, AcceptJoinEvent
+from meowbg.core.events import (InvitationEvent, MoveEvent, MatchEvent, PlayerStatusEvent, DiceEvent,
+                                RollRequest, AcceptEvent, RejectEvent, MatchEndEvent, AcceptJoinEvent)
 from meowbg.core.player import HumanPlayer, OnlinePlayerProxy
 from meowbg.gui.guievents import DoubleAttemptEvent
 
@@ -186,14 +187,14 @@ class FIBSTranslator(object):
 
         return found_events
 
-    def parse_match(self, match_str):
+    def parse_match(self, match_str, online=True):
         """
         Parse a string which represents a match strictly corresponding to
         the 'boardstyle 3' type described in detail here:
         http://www.fibs.com/fibs_interface.html#board_state
         """
 
-        match = Match()
+        match = OnlineMatch() if online else OfflineMatch()
 
         parts = match_str.split(":")
         if len(parts) != 53:

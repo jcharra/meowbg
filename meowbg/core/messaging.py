@@ -15,5 +15,5 @@ def unregister(callback, event_class):
 def broadcast(event):
     subscribers = SUBSCRIPTIONS.get(event.__class__, [])
     for s in subscribers:
-        #logger.warn("Sending %s to %s" % (event, s))
+        logger.warn("Sending %s to %s" % (event, s))
         s(event)

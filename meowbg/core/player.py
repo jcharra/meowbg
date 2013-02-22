@@ -1,6 +1,6 @@
 
-from meowbg.core.events import MatchEvent, MoveEvent, CommitEvent, RollRequest, CubeEvent, RejectEvent, AcceptEvent, PendingJoinEvent, JoinChallengeEvent
-from meowbg.core.messaging import register, unregister, broadcast
+from meowbg.core.events import MatchEvent, MoveEvent, CommitEvent, RollRequest, CubeEvent, RejectEvent, AcceptEvent, ResignOfferEvent
+from meowbg.core.messaging import register, unregister
 from meowbg.gui.guievents import DoubleAttemptEvent
 from meowbg.network.connectionpool import get_connection
 
@@ -9,12 +9,10 @@ class AbstractPlayer(object):
         self.name, self.color = name, color
         register(self.react, MatchEvent)
         register(self.on_cube, CubeEvent)
-        register(self.on_join, PendingJoinEvent)
 
     def exit(self):
         unregister(self.react, MatchEvent)
         unregister(self.on_cube, MatchEvent)
-        unregister(self.on_join, PendingJoinEvent)
 
     def react(self, match_event):
         raise NotImplemented
@@ -22,8 +20,6 @@ class AbstractPlayer(object):
     def on_cube(self, cube_event):
         raise NotImplemented
 
-    def on_join(self, join_event):
-        raise NotImplemented
 
 class HumanPlayer(AbstractPlayer):
     def react(self, match_event):
@@ -38,12 +34,6 @@ class HumanPlayer(AbstractPlayer):
         Same as in react
         """
 
-    def on_join(self, join_event):
-        """
-        Indicate that a decision in needed here
-        """
-        broadcast(JoinChallengeEvent(join_event.match, self.color))
-
 
 class OnlinePlayerProxy(object):
     def __init__(self, name, color, event_translator):
@@ -56,7 +46,7 @@ class OnlinePlayerProxy(object):
         register(self.on_default, DoubleAttemptEvent)
         register(self.on_default, AcceptEvent)
         register(self.on_default, RejectEvent)
-        register(self.auto_join, PendingJoinEvent)
+        register(self.on_default, ResignOfferEvent)
 
         self.connection = get_connection("Tigergammon")
 
@@ -68,13 +58,11 @@ class OnlinePlayerProxy(object):
         cmd = self.event_translator.encode(r)
         self.connection.send(cmd)
 
-    def auto_join(self, pending_join_event):
-        pending_join_event.match.join_next_game(self.color)
-
     def exit(self):
         unregister(self.on_commit, CommitEvent)
         unregister(self.on_default, RollRequest)
         unregister(self.on_default, DoubleAttemptEvent)
         unregister(self.on_default, AcceptEvent)
         unregister(self.on_default, RejectEvent)
+        unregister(self.on_default, ResignOfferEvent)
         self.connection = None

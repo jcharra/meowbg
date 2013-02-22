@@ -19,13 +19,12 @@ from kivy.resources import resource_add_path
 from kivy.vector import Vector
 from meowbg.core.board import WHITE, BLACK
 from meowbg.core.exceptions import MoveNotPossible
-from meowbg.core.move import PartialMove
 from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel, BarPanel, BearoffPanel, Checker, Cube
 from meowbg.gui.boardwidget import BoardWidget
 from meowbg.gui.guievents import (NewMatchEvent, MoveAttemptEvent, AnimationFinishedEvent, AnimationStartedEvent,
                                   HitEvent, PauseEvent, UnhitEvent, MatchFocusEvent, CommitAttemptEvent,
                                   UndoAttemptEvent, RollAttemptEvent, DoubleAttemptEvent, ResignAttemptEvent)
-from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, DiceEvent, CubeEvent, RejectEvent, AcceptEvent, UndoMoveEvent, MatchEndEvent, GameEndEvent, PendingJoinEvent, JoinChallengeEvent, ResignEvent, GlobalShutdownEvent
+from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, DiceEvent, CubeEvent, RejectEvent, AcceptEvent, UndoMoveEvent, MatchEndEvent, GameEndEvent, JoinChallengeEvent, ResignOfferEvent, GlobalShutdownEvent, AcceptJoinEvent
 from meowbg.core.messaging import register, broadcast
 from meowbg.gui.popups import OKDialog, ResignDialog, BetweenGamesDialog
 from meowbg.network.connectionpool import share_connection
@@ -238,7 +237,7 @@ class MatchWidget(FloatLayout):
 
         def on_join(e):
             popup.dismiss()
-            event.match.join_next_game(event.color)
+            broadcast(AcceptJoinEvent())
 
         dialog.ok_button.bind(on_press=on_join)
 
@@ -256,8 +255,9 @@ class MatchWidget(FloatLayout):
 
         def on_resign(e):
             choice = resign_dialog.options.choice
+            self.match.resignation_points_offered = (resigning_color, choice)
             popup.dismiss()
-            broadcast(ResignEvent(choice))
+            broadcast(ResignOfferEvent(resigning_color, choice))
 
         resign_dialog.ok_button.bind(on_press=on_resign)
         resign_dialog.cancel_button.bind(on_press=popup.dismiss)

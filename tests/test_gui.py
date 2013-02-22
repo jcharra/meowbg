@@ -27,8 +27,8 @@ def test_hit():
                   ":6:2:0:0" # dice
                   ":1"       # cube
                   ":1:1"     # may double
-                  ":0:1:-1:0:25:0:0:0:0:2:0:0:0" # cruft
-    )
+                  ":0:1:-1:0:25:0:0:0:0:2:0:0:0", # cruft
+    online=False)
     broadcast(MatchEvent(match))
     broadcast(DiceEvent(match.initial_dice))
     broadcast(MoveAttemptEvent(17, 11))
@@ -44,7 +44,7 @@ def test_hit():
     broadcast(CommitAttemptEvent())
 
 def test_between_games():
-    match = parse("board:player1:player2"
+    match = parse("board:player1:you"
                   ":3"       # match length
                   ":0:0"     # score
                   ":0"       # bar player 1
@@ -54,8 +54,8 @@ def test_between_games():
                   ":6:2:0:0" # dice
                   ":1"       # cube
                   ":1:1"     # may double
-                  ":0:1:-1:0:25:0:0:0:0:2:0:0:0" # cruft
-    )
+                  ":0:1:-1:0:25:0:0:0:0:2:0:0:0", # cruft
+    online=False)
     match.register_player(Bot('Bottus', WHITE), WHITE)
     broadcast(MatchEvent(match))
 
@@ -70,8 +70,8 @@ def test_double():
                   ":6:2:0:0" # dice
                   ":1"       # cube
                   ":1:1"     # may double
-                  ":0:1:-1:0:25:0:0:0:0:2:0:0:0" # cruft
-    )
+                  ":0:1:-1:0:25:0:0:0:0:2:0:0:0", # cruft
+    online=False)
     broadcast(MatchEvent(match))
 
 def execute_script():

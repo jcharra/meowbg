@@ -7,7 +7,7 @@ from kivy.uix.image import Image
 from kivy.uix.widget import Widget
 from meowbg.core.board import WHITE, BLACK
 from meowbg.core.bot import Bot
-from meowbg.core.match import Match
+from meowbg.core.match import Match, OfflineMatch
 from meowbg.core.events import AcceptEvent, RejectEvent, MatchEvent
 from meowbg.core.messaging import broadcast, register
 from meowbg.core.player import HumanPlayer
@@ -139,7 +139,7 @@ class ButtonPanel(BoxLayout):
         self.represented_color = WHITE
 
     def start_new_ai_game(self):
-        match = Match()
+        match = OfflineMatch()
         match.length = 3
         match.register_player(HumanPlayer("Johannes", WHITE), WHITE)
         match.register_player(Bot("Annette", BLACK), BLACK)

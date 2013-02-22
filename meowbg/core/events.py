@@ -44,9 +44,9 @@ class CommitEvent(object):
     def __init__(self, moves):
         self.moves = moves
 
-class ResignEvent(object):
-    def __init__(self, points):
-        self.points = points
+class ResignOfferEvent(object):
+    def __init__(self, color, points):
+        self.color, self.points = color, points
 
 class AcceptEvent(object):
     def __init__(self, color):
@@ -68,16 +68,12 @@ class CommandEvent(object):
     def __init__(self, command):
         self.command = command
 
-class PendingJoinEvent(object):
-    def __init__(self, match):
-        self.match = match
-
 class AcceptJoinEvent(object):
     pass
 
 class JoinChallengeEvent(object):
-    def __init__(self, match, color):
-        self.match, self.color = match, color
+    def __init__(self, match):
+        self.match = match
 
 # Events outside a match
 
