@@ -3,9 +3,11 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.widget import Widget
 from meowbg.core.board import WHITE, BLACK, BAR_INDEX, OFF_INDEX
-from meowbg.core.messaging import broadcast
+from meowbg.core.eventqueue import GlobalTaskQueue
+from meowbg.core.events import GlobalShutdownEvent, DiceEvent, CubeEvent
+from meowbg.core.messaging import broadcast, register
 from meowbg.gui.basicparts import IndexRow, SpikePanel, DicePanel, BarPanel, BearoffPanel, Cube
-from meowbg.gui.guievents import MoveAttemptEvent, AnimationStartedEvent
+from meowbg.gui.guievents import MoveAttemptEvent, AnimationStartedEvent, HitEvent, UnhitEvent
 
 
 class BoardWidget(GridLayout):
@@ -13,7 +15,6 @@ class BoardWidget(GridLayout):
         kwargs.update({'cols': 7})
         GridLayout.__init__(self, **kwargs)
         self.active_spike = None
-        self.busy = False
         self.match = None
 
         # plug together all that shit ...
@@ -90,10 +91,14 @@ class BoardWidget(GridLayout):
         self.cube = Cube()
         self.middle_cube_container.add_widget(self.cube)
 
-    def on_touch_down(self, touch):
-        if self.busy:
-            return
+        sync_call = GlobalTaskQueue.synced_call
+        register(sync_call(self.show_dice), DiceEvent)
+        register(sync_call(self.cube_challenge), CubeEvent)
+        register(sync_call(self.animate_hit), HitEvent)
+        register(sync_call(self.animate_unhit), UnhitEvent)
 
+
+    def on_touch_down(self, touch):
         for s in self.spikes():
             if s.collide_point(*touch.pos):
                 self.activate_spike(s)
@@ -133,9 +138,6 @@ class BoardWidget(GridLayout):
             spike = self.spike_for_target_index[ti]
             spike.highlighted = True
 
-    def release(self):
-        self.busy = False
-
     def synchronize(self, match):
         """
         Update display according to what's in the given match
@@ -165,8 +167,8 @@ class BoardWidget(GridLayout):
             if col_borne_off:
                 target.add_checkers(col, col_borne_off)
 
-        dice = self.match.remaining_dice
-        self.show_dice(dice)
+        #dice = self.match.remaining_dice
+        #self.show_dice(dice)
 
         if not match.open_cube_challenge_from_color:
             self.set_cube_to_owning_color()
@@ -190,10 +192,11 @@ class BoardWidget(GridLayout):
         target.add_widget(self.cube)
         self.cube.set_number(cube)
 
-    def cube_challenge(self, number):
-        self.set_cube(self.cube_challenge_container, number)
+    def cube_challenge(self, cube_event, on_finish):
+        self.set_cube(self.cube_challenge_container, cube_event.cube_number)
 
-    def show_dice(self, dice):
+    def show_dice(self, dice_event, on_finish):
+        dice = dice_event.dice
         self.blacks_dice_area.clear_widgets()
         self.whites_dice_area.clear_widgets()
 
@@ -205,6 +208,8 @@ class BoardWidget(GridLayout):
             self.blacks_dice_area.show_dice(dice)
         else:
             self.whites_dice_area.show_dice(dice)
+
+        on_finish()
 
     def spikes(self):
         """
@@ -224,15 +229,19 @@ class BoardWidget(GridLayout):
             if s.activated:
                 return s
 
-    def move(self, spike_origin, spike_target):
+    def _move(self, spike_origin, spike_target):
         if not spike_origin.children:
-            raise ValueError("method 'move' called with empty origin %s to target %s"
+            Logger.error("method 'move' called with empty origin %s to target %s"
                              % (spike_origin, spike_target))
+            broadcast(GlobalShutdownEvent())
+            raise ValueError()
 
         moving_checker = spike_origin.children[0]
-        self.move_checker(moving_checker, spike_target)
+        Logger.warn("Moving a checker at pos %s from %s to %s" % (moving_checker.pos, spike_origin, spike_target))
 
-    def move_checker(self, moving_checker, spike_target):
+        self._move_checker(moving_checker, spike_target)
+
+    def _move_checker(self, moving_checker, spike_target):
         """
         Moves a checker from the origin to the target.
         """
@@ -275,7 +284,7 @@ class BoardWidget(GridLayout):
         origin = origin or self._get_spike_by_index(origin_idx)
         target = target or self._get_spike_by_index(target_idx)
 
-        self.move(origin, target)
+        self._move(origin, target)
 
     def _get_spike_by_index(self, idx):
         quadrant = {0: self.lower_right_quad,
@@ -290,29 +299,30 @@ class BoardWidget(GridLayout):
         spike = self._get_spike_by_index(field_idx)
         spike.add_checkers(color, amount)
 
-    def animate_hit(self, field_idx, hitting_color):
+    def animate_hit(self, hit_event, on_finish):
         """
         Animate a checker being hit by another checker
         of color 'hitting_color'.
         """
-        spike = self._get_spike_by_index(field_idx)
+        spike = self._get_spike_by_index(hit_event.field_idx)
         if len(spike.children) != 2:
             raise ValueError("Hit on a spike with %i children" % spike.children)
 
-        target = self.upper_bar if hitting_color == WHITE else self.lower_bar
+        target = self.upper_bar if hit_event.hitting_color == WHITE else self.lower_bar
         for c in spike.children:
-            if c.model_color != hitting_color:
-                self.move_checker(c, target)
+            if c.model_color != hit_event.hitting_color:
+                self._move_checker(c, target)
                 break
+        on_finish()
 
-    def animate_unhit(self, field_idx, hit_color):
+    def animate_unhit(self, unhit_event):
         """
         Animate undoing of a hit at index `field_idx` of color `hit_color`
         """
-        target = self._get_spike_by_index(field_idx)
-        origin = self.lower_bar if hit_color == WHITE else self.upper_bar
+        target = self._get_spike_by_index(unhit_event.field_idx)
+        origin = self.lower_bar if unhit_event.hit_color == WHITE else self.upper_bar
         checker = origin.children[0]
-        self.move_checker(checker, target)
+        self._move_checker(checker, target)
 
     def clear_board(self):
         for spike in self.spikes():

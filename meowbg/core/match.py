@@ -83,7 +83,7 @@ class Match(object):
         raise ValueError("Cannot find a matching die for %s->%s among %s"
                          % (origin, target, self.remaining_dice))
 
-    def commit(self):
+    def commit(self, color=None):
         raise NotImplementedError()
 
     def commit_possible(self):
@@ -170,7 +170,7 @@ class OnlineMatch(Match):
     def roll(self, color):
         broadcast(RollRequest())
 
-    def commit(self):
+    def commit(self, color=None):
         pending_moves = [m[0] for m in self.board.flush_move_stack()]
         broadcast(CommitEvent(pending_moves))
 
@@ -201,7 +201,11 @@ class OfflineMatch(Match):
         else:
             logger.warn("Cannot roll")
 
-    def commit(self):
+    def commit(self, color=None):
+        if color != self.color_to_move_next:
+            logger.warn("Commit not possible for color %s" % color)
+            return
+
         if self.commit_possible():
             self.initial_dice = self.remaining_dice = []
 

@@ -44,7 +44,7 @@ class ResignOptions(GridLayout):
         self.add_widget(cb_backgammon)
         self.add_widget(Label(text='backgammon', size_hint=(0.9, 1)))
 
-        self.choice = None
+        self.choice = self.NORMAL
 
     def set_choice(self, val):
         self.choice = val

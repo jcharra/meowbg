@@ -7,6 +7,8 @@ Online game: Opponent moves from bar
 Starting new AI game after online game causes errors
 => finalize matches correctly, especially online stuff
 
+"New Ai game" registers new players each time ...
+
 TODOs:
 
  - Widget playground

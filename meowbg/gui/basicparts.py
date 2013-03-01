@@ -13,13 +13,12 @@ from meowbg.core.messaging import broadcast, register
 from meowbg.core.player import HumanPlayer
 from meowbg.gui.guievents import CommitAttemptEvent, UndoAttemptEvent, RollAttemptEvent, DoubleAttemptEvent, ResignAttemptEvent
 
-class Checker(Widget):
-    COLOR_MAP = {BLACK: (.3, .1, 0), WHITE: (.8, .6, .4)}
-
+class Checker(Image):
     def __init__(self, model_color, **kwargs):
+        img_source = 'checker.png' if model_color == BLACK else 'checker_white.png'
+        kwargs.update({'source': img_source})
         self.model_color = model_color
-        self.color = self.COLOR_MAP[model_color]
-        Widget.__init__(self, **kwargs)
+        Image.__init__(self, **kwargs)
 
 class IndexRow(BoxLayout):
     idx_start = NumericProperty(0)

@@ -21,18 +21,19 @@ from meowbg.core.board import WHITE, BLACK
 from meowbg.core.exceptions import MoveNotPossible
 from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel, BarPanel, BearoffPanel, Checker, Cube
 from meowbg.gui.boardwidget import BoardWidget
-from meowbg.gui.guievents import (NewMatchEvent, MoveAttemptEvent, AnimationFinishedEvent, AnimationStartedEvent,
-                                  HitEvent, PauseEvent, UnhitEvent, MatchFocusEvent, CommitAttemptEvent,
+from meowbg.gui.guievents import (MoveAttemptEvent, AnimationStartedEvent, PauseEvent, MatchFocusEvent, CommitAttemptEvent,
                                   UndoAttemptEvent, RollAttemptEvent, DoubleAttemptEvent, ResignAttemptEvent)
-from meowbg.core.events import PlayerStatusEvent, MatchEvent, MoveEvent, SingleMoveEvent, DiceEvent, CubeEvent, RejectEvent, AcceptEvent, UndoMoveEvent, MatchEndEvent, GameEndEvent, JoinChallengeEvent, ResignOfferEvent, GlobalShutdownEvent, AcceptJoinEvent
+from meowbg.core.events import (PlayerStatusEvent, MatchEvent, SingleMoveEvent, RejectEvent, AcceptEvent, UndoMoveEvent,
+                                MatchEndEvent, GameEndEvent, JoinChallengeEvent, ResignOfferEvent, GlobalShutdownEvent,
+                                AcceptJoinEvent)
 from meowbg.core.messaging import register, broadcast
 from meowbg.gui.popups import OKDialog, ResignDialog, BetweenGamesDialog
 from meowbg.network.connectionpool import share_connection
 from meowbg.network.telnetconn import TelnetConnection
 from meowbg.network.translation import FIBSTranslator
+from meowbg.core.eventqueue import GlobalTaskQueue
 
 resource_add_path(os.path.dirname(__file__) + "/resources")
-
 
 
 class MainWidget(GridLayout):
@@ -103,117 +104,74 @@ class MatchWidget(FloatLayout):
         self.add_widget(self.board)
         self.match = None
 
-        self.blocking_events = []
-        self.event_queue = Queue.Queue()
-        Clock.schedule_interval(self.process_queue, .1)
+        sync_call = GlobalTaskQueue.synced_call
+        register(sync_call(self.sync_match), MatchEvent)
+        register(sync_call(self.execute_move), SingleMoveEvent)
+        register(sync_call(self.execute_undo_move), UndoMoveEvent)
+        register(sync_call(self.attempt_roll), RollAttemptEvent)
+        register(sync_call(self.attempt_commit), CommitAttemptEvent)
+        register(sync_call(self.attempt_move), MoveAttemptEvent)
+        register(sync_call(self.attempt_double), DoubleAttemptEvent)
+        register(sync_call(self.attempt_undo), UndoAttemptEvent)
+        register(sync_call(self.attempt_resign), ResignAttemptEvent)
 
-        # Register a lot of events to be queued
-        for e in (NewMatchEvent, MatchEvent, MoveAttemptEvent, DiceEvent, SingleMoveEvent,
-            MoveEvent, CommitAttemptEvent, UndoAttemptEvent, ResignAttemptEvent, UndoMoveEvent,
-            HitEvent, UnhitEvent, PauseEvent, RollAttemptEvent, DoubleAttemptEvent, AcceptEvent,
-            RejectEvent, GameEndEvent, JoinChallengeEvent):
-            register(self._insert_into_queue, e)
+        register(sync_call(self.animate_move), AnimationStartedEvent)
+        register(sync_call(self.accept_offer), AcceptEvent)
+        register(sync_call(self.announce_game_winner), GameEndEvent)
+        register(sync_call(self.suggest_join), JoinChallengeEvent)
+        register(sync_call(self.attempt_reject), RejectEvent)
+        register(sync_call(self.pause), PauseEvent)
 
-        register(self.show_cube_challenge, CubeEvent)
-        register(self.release, AnimationFinishedEvent)
-        register(self.animate_move, AnimationStartedEvent)
 
-    def _insert_into_queue(self, event):
-        """
-        Basically this just puts the event into the process queue,
-        waiting to be dispatched. There may be special treatment
-        for certain kinds of events.
-        """
-        if isinstance(event, MoveEvent):
-            # A full move event is first split into several single move events
-            for m in event.moves:
-                self.event_queue.put(SingleMoveEvent(m))
-                self.event_queue.put(PauseEvent(300))
-            return
-        elif isinstance(event, SingleMoveEvent):
-            # A single move event is prepended with a tiny
-            # pause in order to prevent moving further from a
-            # "still empty" field
-            self.event_queue.put(PauseEvent(30))
+    def sync_match(self, event, on_finish):
+        self.match = event.match
+        self.board.synchronize(event.match)
+        broadcast(MatchFocusEvent())
+        on_finish()
 
-        self.event_queue.put(event)
+    def attempt_roll(self, roll_attempt_event, on_finish):
+        if self.match:
+            self.match.roll(roll_attempt_event.color)
+        on_finish()
 
-    def _interpret_event(self, event):
-        if isinstance(event, MatchEvent):
-            self.match = event.match
-            self.board.synchronize(event.match)
-            broadcast(MatchFocusEvent())
-        elif isinstance(event, SingleMoveEvent):
-            self.execute_move(event.move)
-        elif isinstance(event, UndoMoveEvent):
-            self.execute_undo_move(event.move)
-        elif isinstance(event, DiceEvent):
-            self.show_dice_roll(event.dice)
-        elif isinstance(event, RollAttemptEvent):
-            if self.match:
-                self.match.roll(event.color)
-        elif isinstance(event, CommitAttemptEvent):
-            if self.match:
-                self.attempt_commit()
-        elif isinstance(event, DoubleAttemptEvent):
-            if self.match:
-                self.match.double(event.color)
-        elif isinstance(event, UndoAttemptEvent):
-            if self.match:
-                self.match.undo(event.color)
-        elif isinstance(event, ResignAttemptEvent):
-            if self.match:
-                self.open_resign_dialog(event.color)
-        elif isinstance(event, AcceptEvent):
-            if self.match:
-                self.match.accept_open_offer(event.color)
-        elif isinstance(event, GameEndEvent):
-            self.announce_game_winner(event)
-        elif isinstance(event, JoinChallengeEvent):
-            self.suggest_join(event)
-        elif isinstance(event, MoveAttemptEvent):
-            self.attempt_move(event.origin, event.target)
-        elif isinstance(event, RejectEvent):
-            if self.match:
-                self.match.reject_open_offer(event.color)
-        elif isinstance(event, HitEvent):
-            self.board.animate_hit(event.field_idx, event.hitting_color)
-        elif isinstance(event, UnhitEvent):
-            self.board.animate_unhit(event.field_idx, event.hit_color)
-        elif isinstance(event, PauseEvent):
-            self.pause(event)
-        else:
-            Logger.error("Cannot interpret event %s" % event)
+    def attempt_double(self, double_attempt_event, on_finish):
+        if self.match:
+            self.match.double(double_attempt_event.color)
+        on_finish()
 
-    def process_queue(self, dt):
-        if not self.event_queue.empty() and not self.blocking_events:
-            event = self.event_queue.get()
-            Logger.info("============= Processing event %s" % event)
-            self._interpret_event(event)
-            self.event_queue.task_done()
-        elif not self.event_queue.empty():
-            #Logger.info("Blocking events: %s" % self.blocking_events)
-            pass
+    def attempt_resign(self, resign_attempt_event, on_finish):
+        if self.match:
+            self.open_resign_dialog(resign_attempt_event.color)
+        on_finish()
 
-    def pause(self, pe):
-        self.block(pe)
-        Clock.schedule_once(lambda e: self.release(pe), pe.ms/1000.0)
+    def attempt_undo(self, undo_att_event, on_finish):
+        if self.match:
+            self.match.undo(undo_att_event.color)
+        on_finish()
 
-    def release(self, release_event):
-        #Logger.warn("Releasing %s" % release_event)
-        self.blocking_events.remove(release_event)
+    def attempt_reject(self, reject_event, on_finish):
+        if self.match:
+            self.match.reject_open_offer(reject_event.color)
+        on_finish()
 
-    def block(self, block_event):
-        self.blocking_events.append(block_event)
+    def accept_offer(self, accept_event, on_finish):
+        if self.match:
+            self.match.accept_open_offer(accept_event.color)
+        on_finish()
 
-    def execute_move(self, move):
+    def pause(self, pe, on_finish):
+        Clock.schedule_once(lambda e: on_finish(), pe.ms/1000.0)
+
+    def execute_move(self, single_move_event, on_finish):
+        move = single_move_event.move
         self.board.move_by_indexes(move.origin, move.target)
+        on_finish()
 
-    def execute_undo_move(self, move):
+    def execute_undo_move(self, move, on_finish):
         self.board.move_by_indexes(move.origin, move.target, is_undo=True)
+        on_finish()
 
-    def announce_game_winner(self, e):
-        self.block(e)
+    def announce_game_winner(self, e, on_finish):
         verb = "wins" if e.winner.lower() != "you" else "win"
         point_str = "points" if e.points != 1 else "point"
         ok_dialog = OKDialog(text='The score is now %s : %s' % e.score)
@@ -223,13 +181,13 @@ class MatchWidget(FloatLayout):
 
         def on_close(evt):
             popup.dismiss()
-            self.release(e)
+            on_finish()
 
         ok_dialog.ok_button.bind(on_press=on_close)
 
         popup.open()
 
-    def suggest_join(self, event):
+    def suggest_join(self, event, on_finish):
         dialog = BetweenGamesDialog()
         popup = Popup(title='Continue match?',
             content=dialog,
@@ -238,6 +196,7 @@ class MatchWidget(FloatLayout):
         def on_join(e):
             popup.dismiss()
             broadcast(AcceptJoinEvent())
+            on_finish()
 
         dialog.ok_button.bind(on_press=on_join)
 
@@ -263,48 +222,48 @@ class MatchWidget(FloatLayout):
         resign_dialog.cancel_button.bind(on_press=popup.dismiss)
         popup.open()
 
-    def animate_move(self, ae):
+    def animate_move(self, ae, on_finish):
         """
         Interpret an AnimationStartedEvent appropriately
         """
-        self.block(ae)
         origin_checker = ae.moving_checker
         target_spike = ae.target_spike
         target_pos = target_spike.get_next_checker_position(origin_checker.model_color)
         size = origin_checker.size
+
+        Logger.warn("Starting animation at %s" % origin_checker.pos)
+
         new_checker = Checker(origin_checker.model_color,
                               size=size, size_hint=(None, None),
                               pos=origin_checker.pos, pos_hint={})
         origin_checker.parent.remove_widget(origin_checker)
         self.add_widget(new_checker)
 
-        def on_finish(e):
+        def on_animation_complete(e):
             target_spike.add_checker(origin_checker.model_color)
             self.remove_widget(new_checker)
-            self.release(ae)
+            on_finish()
 
-        duration = Vector(origin_checker.pos).distance(target_pos)/(ae.speedup*1000.0)
+        duration = Vector(origin_checker.pos).distance(target_pos)/(ae.speedup*100.0)
         animation = Animation(pos=target_pos, duration=duration)
-        animation.on_complete = on_finish
+        animation.on_complete = on_animation_complete
         animation.start(new_checker)
 
-    def show_dice_roll(self, dice):
-        self.board.show_dice(dice)
-
-    def show_cube_challenge(self, e):
-        self.board.cube_challenge(e.cube_number)
-
-    def attempt_move(self, origin, target):
+    def attempt_move(self, move_attempt_event, on_finish):
         try:
-            self.match.make_temporary_move(origin, target, self.match.color_to_move_next)
+            self.match.make_temporary_move(move_attempt_event.origin,
+                                           move_attempt_event.target,
+                                           self.match.color_to_move_next)
         except MoveNotPossible, msg:
             Logger.error("Not possible: %s" % msg)
+        on_finish()
 
-    def attempt_commit(self):
+    def attempt_commit(self, commit_attempt_event, on_finish):
         try:
-            self.match.commit()
+            self.match.commit(commit_attempt_event.color)
         except ValueError, msg:
             Logger.warn(str(msg))
+        on_finish()
 
 
 class PlayerListWidget(ScrollView):

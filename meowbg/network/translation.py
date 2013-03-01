@@ -5,9 +5,9 @@ from meowbg.core.board import Board, BLACK, WHITE
 from meowbg.core.match import OnlineMatch, OfflineMatch
 from meowbg.core.move import PartialMove
 from meowbg.core.events import (InvitationEvent, MoveEvent, MatchEvent, PlayerStatusEvent, DiceEvent,
-                                RollRequest, AcceptEvent, RejectEvent, MatchEndEvent, AcceptJoinEvent)
+                                RollRequest, AcceptEvent, RejectEvent, MatchEndEvent, AcceptJoinEvent, ResignOfferEvent, CommitEvent)
 from meowbg.core.player import HumanPlayer, OnlinePlayerProxy
-from meowbg.gui.guievents import DoubleAttemptEvent
+from meowbg.gui.guievents import DoubleAttemptEvent, MoveAttemptEvent
 
 logger = logging.getLogger("EventParser")
 logger.addHandler(logging.StreamHandler())
@@ -69,6 +69,9 @@ class FIBSTranslator(object):
             return "reject"
         elif isinstance(event, AcceptJoinEvent):
             return "join"
+        elif isinstance(event, ResignOfferEvent):
+            resign_choice = {1: 'n', 2: 'g', 3: 'b'}
+            return "resign %s" % resign_choice.get(event.points, 'n')
 
         logger.error("Cannot encode event type %s" % event)
         return ""
@@ -140,14 +143,25 @@ class FIBSTranslator(object):
                 found_events.append(DiceEvent([die1, die2]))
             elif re.search("^[a-zA-Z0-9_]+ moves ", line):
 
+                if not self.current_match:
+                    logger.error("Found a move event without having a match in my hands ...")
+                    return
+
                 # move event
+                pname = re.search("^([a-zA-Z0-9_]+) moves ", line).groups()[0]
+                pcol = self.current_match.get_players_color(pname)
+
+                if not pcol:
+                    logger.error("Player %s does not participate in match %s" % (pname, self.current_match))
+                    return
+
                 moves_raw = line.split("moves ")[1]
                 moves = re.findall("\S+-\S+", moves_raw)
-                partial_moves = []
                 for m in moves:
                     origin, target = translate_move_to_indexes(m)
-                    partial_moves.append(PartialMove(origin, target))
-                found_events.append(MoveEvent(partial_moves))
+                    self.current_match.make_temporary_move(origin, target, pcol)
+                    #partial_moves.append(PartialMove(origin, target))
+                    #found_events.append(MoveAttemptEvent(origin, target))
 
             elif line.find(" wants to play ") != -1:
                 if "unlimited match" in line:

@@ -36,7 +36,7 @@ class Bot(AbstractPlayer):
             if moves:
                 mymove = random.choice(moves)
                 for m in mymove:
-                    broadcast(MoveAttemptEvent(m.origin, m.target))
+                    match.make_temporary_move(m.origin, m.target, self.color)
 
             broadcast(CommitAttemptEvent(self.color))
         else:

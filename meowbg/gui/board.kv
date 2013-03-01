@@ -67,24 +67,3 @@
         Triangle:
             points: self.board_idx < 12 and (self.x, self.y, self.x + self.width/2, self.y + self.height, self.x + self.width, self.y) or (self.x, self.y + self.height, self.x + self.width/2, self.y, self.x + self.width, self.y + self.height)
 
-
-<Checker>:
-    size: self.size
-    pos: self.pos
-
-    canvas:
-        Color:
-            rgb: self.color
-        Ellipse:
-            pos: self.center_x - self.height/2, self.y
-            size: self.height, self.height
-        Color:
-            rgb: self.color[0] * 0.6, self.color[1] * 0.6, self.color[2] * 0.6
-        Ellipse:
-            pos: self.center_x - self.height/2 + 2, self.y + 2
-            size: self.height - 4, self.height - 4
-        Color:
-            rgb: self.color
-        Ellipse:
-            pos: self.center_x - self.height/2 + 4, self.y + 4
-            size: self.height - 8, self.height - 8

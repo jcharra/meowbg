@@ -14,7 +14,7 @@ class MoveAttemptEvent(object):
         self.origin, self.target = origin, target
 
     def __repr__(self):
-        return "MoveEvent: %s->%s" % (self.origin, self.target)
+        return "MoveAttemptEvent: %s->%s" % (self.origin, self.target)
 
 class Attempt(object):
     """
