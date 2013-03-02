@@ -1,6 +1,7 @@
 
-from collections import deque
 import logging
+from collections import deque
+from kivy.clock import Clock
 
 logger = logging.getLogger("EventQueue")
 logger.addHandler(logging.StreamHandler())
@@ -8,26 +9,31 @@ logger.addHandler(logging.StreamHandler())
 class SynchronizedTaskQueue(object):
     def __init__(self):
         self.queue = deque([])
-        self.processing = False
+        self.running_func = None
+        self.next_event = None
 
     def synced_call(self, func):
         def func_call(e):
-            if self.processing:
-                logger.warn("Queue is blocked ... deferring the call of %s with event %s"
-                            % (func, e))
-                self.queue.append((func, e))
-            else:
-                logger.warn("Queue is FREE ... immediately calling %s with event %s"
-                            % (func, e))
-                func(e, self.next)
+            self.queue.append((func, e))
+            self.try_next()
+
         return func_call
 
-    def next(self):
-        logger.warn("Queue is now idle")
-        self.processing = False
+    def release_and_proceed(self):
+        self.running_func = None
+        self.try_next()
+
+    def try_next(self):
+        if self.running_func:
+            logger.warn("Queue is currently blocked by %s" % self.running_func)
+            return
+
         if self.queue:
-            func, event = self.queue.popleft()
-            self.processing = True
-            func(event, self.next)
+            self.running_func, self.next_event = self.queue.popleft()
+            Clock.schedule_once(lambda e: self.do_next(), 1000/1000.0)
+
+    def do_next(self):
+        logger.info("Now executing %s" % self.running_func)
+        self.running_func(self.next_event, self.release_and_proceed)
 
 GlobalTaskQueue = SynchronizedTaskQueue()

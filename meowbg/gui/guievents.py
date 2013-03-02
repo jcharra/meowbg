@@ -25,6 +25,9 @@ class Attempt(object):
     def __init__(self, color=None):
         self.color = color
 
+    def __repr__(self):
+        return "%s by %s" % (self.__class__, self.color)
+
 class RollAttemptEvent(Attempt):
     pass
 

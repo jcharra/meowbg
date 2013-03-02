@@ -4,6 +4,9 @@ class MatchEvent(object):
     def __init__(self, match):
         self.match = match
 
+    def __repr__(self):
+        return "MatchEvent %s" % id(self)
+
 class RollRequest(object):
     pass
 
@@ -35,6 +38,9 @@ class MoveEvent(object):
 class SingleMoveEvent(object):
     def __init__(self, move):
         self.move = move
+
+    def __repr__(self):
+        return "SingleMove %s" % self.move
 
 class UndoMoveEvent(object):
     def __init__(self, move):

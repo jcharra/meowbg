@@ -201,6 +201,7 @@ class BoardWidget(GridLayout):
         self.whites_dice_area.clear_widgets()
 
         if not dice:
+            on_finish()
             return
 
         color = self.match.color_to_move_next
@@ -232,12 +233,12 @@ class BoardWidget(GridLayout):
     def _move(self, spike_origin, spike_target):
         if not spike_origin.children:
             Logger.error("method 'move' called with empty origin %s to target %s"
-                             % (spike_origin, spike_target))
+                             % (spike_origin.pos, spike_target.pos))
             broadcast(GlobalShutdownEvent())
             raise ValueError()
 
         moving_checker = spike_origin.children[0]
-        Logger.warn("Moving a checker at pos %s from %s to %s" % (moving_checker.pos, spike_origin, spike_target))
+        Logger.warn("Moving a checker at pos %s from spike at %s to %s" % (moving_checker.pos, spike_origin.pos, spike_target))
 
         self._move_checker(moving_checker, spike_target)
 
@@ -305,8 +306,8 @@ class BoardWidget(GridLayout):
         of color 'hitting_color'.
         """
         spike = self._get_spike_by_index(hit_event.field_idx)
-        if len(spike.children) != 2:
-            raise ValueError("Hit on a spike with %i children" % spike.children)
+        if len(spike.children) != 1:
+            raise ValueError("Hit on a spike with %i children" % len(spike.children))
 
         target = self.upper_bar if hit_event.hitting_color == WHITE else self.lower_bar
         for c in spike.children:

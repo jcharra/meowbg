@@ -23,7 +23,7 @@ class Bot(AbstractPlayer):
 
         if match.color_to_move_next == self.color:
             if match.doubling_possible(self.color):
-                if random.random() > 0.01:
+                if random.random() > 1.01:
                     broadcast(DoubleAttemptEvent(self.color))
                     return
 
@@ -36,7 +36,8 @@ class Bot(AbstractPlayer):
             if moves:
                 mymove = random.choice(moves)
                 for m in mymove:
-                    match.make_temporary_move(m.origin, m.target, self.color)
+                    #match.make_temporary_move(m.origin, m.target, self.color)
+                    broadcast(MoveAttemptEvent(m.origin, m.target))
 
             broadcast(CommitAttemptEvent(self.color))
         else:
@@ -52,3 +53,6 @@ class Bot(AbstractPlayer):
 
     def exit(self):
         unregister(self.on_resign, ResignOfferEvent)
+
+    def __repr__(self):
+        return "Bot '%s'" % self.name

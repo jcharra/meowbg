@@ -231,12 +231,15 @@ class MatchWidget(FloatLayout):
         target_pos = target_spike.get_next_checker_position(origin_checker.model_color)
         size = origin_checker.size
 
-        Logger.warn("Starting animation at %s" % origin_checker.pos)
+        Logger.warn("Starting animation at %s, queue activity is %s" % (origin_checker.pos, GlobalTaskQueue.running_func))
 
         new_checker = Checker(origin_checker.model_color,
                               size=size, size_hint=(None, None),
                               pos=origin_checker.pos, pos_hint={})
-        origin_checker.parent.remove_widget(origin_checker)
+
+        if origin_checker.parent:
+            origin_checker.parent.remove_widget(origin_checker)
+
         self.add_widget(new_checker)
 
         def on_animation_complete(e):
@@ -244,7 +247,7 @@ class MatchWidget(FloatLayout):
             self.remove_widget(new_checker)
             on_finish()
 
-        duration = Vector(origin_checker.pos).distance(target_pos)/(ae.speedup*100.0)
+        duration = Vector(origin_checker.pos).distance(target_pos)/(ae.speedup*1000.0)
         animation = Animation(pos=target_pos, duration=duration)
         animation.on_complete = on_animation_complete
         animation.start(new_checker)
