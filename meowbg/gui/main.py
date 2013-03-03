@@ -164,11 +164,11 @@ class MatchWidget(FloatLayout):
 
     def execute_move(self, single_move_event, on_finish):
         move = single_move_event.move
-        self.board.move_by_indexes(move.origin, move.target)
+        self.board.get_spikes_for_move_indexes(move.origin, move.target)
         on_finish()
 
     def execute_undo_move(self, move, on_finish):
-        self.board.move_by_indexes(move.origin, move.target, is_undo=True)
+        self.board.get_spikes_for_move_indexes(move.origin, move.target, is_undo=True)
         on_finish()
 
     def announce_game_winner(self, e, on_finish):
@@ -222,44 +222,59 @@ class MatchWidget(FloatLayout):
         resign_dialog.cancel_button.bind(on_press=popup.dismiss)
         popup.open()
 
-    def animate_move(self, ae, on_finish):
+    def animate_move(self, moving_checker, target_spike, on_finish):
         """
-        Interpret an AnimationStartedEvent appropriately
+        Animate a move of the given checker to the target spike.
+        Call the given callback "on_finish" when finished.
         """
-        origin_checker = ae.moving_checker
-        target_spike = ae.target_spike
-        target_pos = target_spike.get_next_checker_position(origin_checker.model_color)
-        size = origin_checker.size
+        moving_checker.pos_hint = {}
 
-        Logger.warn("Starting animation at %s, queue activity is %s" % (origin_checker.pos, GlobalTaskQueue.running_func))
+        target_pos = target_spike.get_next_checker_position(moving_checker.model_color)
+        size = moving_checker.size
 
-        new_checker = Checker(origin_checker.model_color,
+        Logger.warn("Starting animation at %s, queue activity is %s" % (moving_checker.pos, GlobalTaskQueue.running_func))
+
+        new_checker = Checker(moving_checker.model_color,
                               size=size, size_hint=(None, None),
-                              pos=origin_checker.pos, pos_hint={})
+                              pos=moving_checker.pos, pos_hint={})
 
-        if origin_checker.parent:
-            origin_checker.parent.remove_widget(origin_checker)
+        if moving_checker.parent:
+            moving_checker.parent.remove_widget(moving_checker)
 
         self.add_widget(new_checker)
 
         def on_animation_complete(e):
-            target_spike.add_checker(origin_checker.model_color)
+            target_spike.add_checker(moving_checker.model_color)
             self.remove_widget(new_checker)
             on_finish()
 
-        duration = Vector(origin_checker.pos).distance(target_pos)/(ae.speedup*1000.0)
+        duration = Vector(moving_checker.pos).distance(target_pos)/1000.0
         animation = Animation(pos=target_pos, duration=duration)
         animation.on_complete = on_animation_complete
         animation.start(new_checker)
 
     def attempt_move(self, move_attempt_event, on_finish):
-        try:
-            self.match.make_temporary_move(move_attempt_event.origin,
-                                           move_attempt_event.target,
-                                           self.match.color_to_move_next)
-        except MoveNotPossible, msg:
-            Logger.error("Not possible: %s" % msg)
-        on_finish()
+        """
+        Attempts to execute a move from origin to target.
+        If the match allows it, an animation is started independently of the
+        event queue. If the move hits a checker, a hit is animated as well.
+        """
+        origin, target = move_attempt_event.origin, move_attempt_event.target
+        if self.match.is_move_possible(origin, target, self.match.color_to_move_next):
+
+            moving_checker, target_spike = self.board.get_animation_data(origin, target)
+
+            if self.match.is_hitting(target):
+                hit_checker, target_bar = self.board.get_hit_animation_data(target)
+                self.animate_move(moving_checker, target_spike,
+                    lambda: self.animate_move(hit_checker, target_bar, on_finish))
+            else:
+                self.animate_move(moving_checker, target_spike, on_finish)
+
+            self.match.execute_move(origin, target)
+        else:
+            Logger.warn("Move from %s to %s not possible" % (origin, target))
+            on_finish()
 
     def attempt_commit(self, commit_attempt_event, on_finish):
         try:

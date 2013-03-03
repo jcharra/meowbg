@@ -159,7 +159,7 @@ class FIBSTranslator(object):
                 moves = re.findall("\S+-\S+", moves_raw)
                 for m in moves:
                     origin, target = translate_move_to_indexes(m)
-                    self.current_match.make_temporary_move(origin, target, pcol)
+                    self.current_match.execute_move(origin, target, pcol)
                     #partial_moves.append(PartialMove(origin, target))
                     #found_events.append(MoveAttemptEvent(origin, target))
 

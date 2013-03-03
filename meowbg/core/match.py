@@ -36,24 +36,26 @@ class Match(object):
     def roll(self, color):
         raise NotImplementedError()
 
-    def make_temporary_move(self, origin, target, color):
+    def is_move_possible(self, origin, target, color):
         if self.color_to_move_next != color:
-            logger.warn("Not the turn of " + color)
-            return
+            return False
+        return self.board.is_legal_partial_move(PartialMove(origin, target))
 
-        hit_event = None
-        if OPPONENT[self.color_to_move_next] in self.board.checkers_on_field[target]:
-            hit_event = HitEvent(target, self.color_to_move_next)
+    def is_hitting(self, target):
+        """
+        Indicates whether a move of the color that is to move
+        would hit a checker on the target field.
+        """
+        logger.warn("Next moving: %s, on target: %s" % (self.color_to_move_next, self.board.checkers_on_field[target]))
+        return OPPONENT[self.color_to_move_next] in self.board.checkers_on_field[target]
 
+    def execute_move(self, origin, target):
         move = PartialMove(origin, target)
         self.board.digest_move(move)
 
+        # Remove used die from remaining dice
         die = self.get_die_for_move(origin, target)
         self.remaining_dice.remove(die)
-
-        broadcast(SingleMoveEvent(move))
-        if hit_event:
-            broadcast(hit_event)
 
     def undo(self, color):
         if color != self.color_to_move_next:

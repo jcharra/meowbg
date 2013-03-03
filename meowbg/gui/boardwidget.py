@@ -94,9 +94,6 @@ class BoardWidget(GridLayout):
         sync_call = GlobalTaskQueue.synced_call
         register(sync_call(self.show_dice), DiceEvent)
         register(sync_call(self.cube_challenge), CubeEvent)
-        register(sync_call(self.animate_hit), HitEvent)
-        register(sync_call(self.animate_unhit), UnhitEvent)
-
 
     def on_touch_down(self, touch):
         for s in self.spikes():
@@ -230,29 +227,20 @@ class BoardWidget(GridLayout):
             if s.activated:
                 return s
 
-    def _move(self, spike_origin, spike_target):
-        if not spike_origin.children:
-            Logger.error("method 'move' called with empty origin %s to target %s"
-                             % (spike_origin.pos, spike_target.pos))
-            broadcast(GlobalShutdownEvent())
-            raise ValueError()
+    def get_animation_data(self, origin_idx, target_idx):
+        origin_spike, target_spike = self.get_spikes_for_move_indexes(origin_idx, target_idx)
+        moving_checker = origin_spike.children[0]
+        return moving_checker, target_spike
 
-        moving_checker = spike_origin.children[0]
-        Logger.warn("Moving a checker at pos %s from spike at %s to %s" % (moving_checker.pos, spike_origin.pos, spike_target))
+    def get_hit_animation_data(self, target):
+        target_spike = self._get_spike_by_index(target)
+        hit_checker = target_spike.children[0]
+        target_bar = self.upper_bar if hit_checker.model_color == BLACK else self.lower_bar
+        return hit_checker, target_bar
 
-        self._move_checker(moving_checker, spike_target)
-
-    def _move_checker(self, moving_checker, spike_target):
+    def get_spikes_for_move_indexes(self, origin_idx, target_idx, is_undo=False):
         """
-        Moves a checker from the origin to the target.
-        """
-        moving_checker.pos_hint = {} # needed to make animation work ... ?
-        broadcast(AnimationStartedEvent(moving_checker, spike_target))
-
-    def move_by_indexes(self, origin_idx, target_idx, is_undo=False):
-        """
-        Performs a move from origin index to target index, potentially
-        hitting a checker on the target field.
+        Returns the spikes corresponding to the given move's indexes.
         The parameter `is_undo` indicates whether this is a backwards
         move, i.e. a previous move being undone.
         """
@@ -285,20 +273,7 @@ class BoardWidget(GridLayout):
         origin = origin or self._get_spike_by_index(origin_idx)
         target = target or self._get_spike_by_index(target_idx)
 
-        self._move(origin, target)
-
-    def _get_spike_by_index(self, idx):
-        quadrant = {0: self.lower_right_quad,
-                    1: self.lower_left_quad,
-                    2: self.upper_left_quad,
-                    3: self.upper_right_quad}
-        spike_panel = quadrant[idx/6]
-        child_idx = idx % 6 if spike_panel.index_direction == -1 else 5 - idx % 6
-        return spike_panel.children[child_idx]
-
-    def add_checkers(self, field_idx, color, amount=1):
-        spike = self._get_spike_by_index(field_idx)
-        spike.add_checkers(color, amount)
+        return origin, target
 
     def animate_hit(self, hit_event, on_finish):
         """
@@ -328,3 +303,16 @@ class BoardWidget(GridLayout):
     def clear_board(self):
         for spike in self.spikes():
             spike.clear_widgets()
+
+    def _get_spike_by_index(self, idx):
+        quadrant = {0: self.lower_right_quad,
+                    1: self.lower_left_quad,
+                    2: self.upper_left_quad,
+                    3: self.upper_right_quad}
+        spike_panel = quadrant[idx/6]
+        child_idx = idx % 6 if spike_panel.index_direction == -1 else 5 - idx % 6
+        return spike_panel.children[child_idx]
+
+    def add_checkers(self, field_idx, color, amount=1):
+        spike = self._get_spike_by_index(field_idx)
+        spike.add_checkers(color, amount)
