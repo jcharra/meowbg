@@ -106,8 +106,6 @@ class MatchWidget(FloatLayout):
 
         sync_call = GlobalTaskQueue.synced_call
         register(sync_call(self.sync_match), MatchEvent)
-        register(sync_call(self.execute_move), SingleMoveEvent)
-        register(sync_call(self.execute_undo_move), UndoMoveEvent)
         register(sync_call(self.attempt_roll), RollAttemptEvent)
         register(sync_call(self.attempt_commit), CommitAttemptEvent)
         register(sync_call(self.attempt_move), MoveAttemptEvent)
@@ -122,11 +120,57 @@ class MatchWidget(FloatLayout):
         register(sync_call(self.attempt_reject), RejectEvent)
         register(sync_call(self.pause), PauseEvent)
 
-
     def sync_match(self, event, on_finish):
         self.match = event.match
         self.board.synchronize(event.match)
         broadcast(MatchFocusEvent())
+        on_finish()
+
+    def attempt_move(self, move_attempt_event, on_finish):
+        """
+        Attempts to execute a move from origin to target.
+        If the match allows it, an animation is started independently of the
+        event queue. If the move hits a checker, a hit is animated as well.
+        """
+        origin, target = move_attempt_event.origin, move_attempt_event.target
+        if self.match.is_move_possible(origin, target, self.match.color_to_move_next):
+
+            moving_checker, target_spike = self.board.get_animation_data(origin, target)
+
+            if self.match.is_hitting(target):
+                hit_checker, target_bar = self.board.get_hit_animation_data(target)
+                self.animate_move(moving_checker, target_spike,
+                                  lambda: self.animate_move(hit_checker, target_bar, on_finish))
+            else:
+                self.animate_move(moving_checker, target_spike, on_finish)
+
+            self.match.execute_move(origin, target)
+        else:
+            Logger.warn("Move from %s to %s not possible" % (origin, target))
+            on_finish()
+
+    def attempt_undo(self, undo_att_event, on_finish):
+        if not self.match or not self.match.undo_possible(undo_att_event.color):
+            Logger.warn("Undo attempt failed - undo not possible")
+            on_finish()
+            return
+
+        move, hit_color = self.match.undo_move()
+        moving_checker, target_spike = self.board.get_animation_data(move.target, move.origin)
+
+        if hit_color:
+            hit_checker = self.board.get_bar_checker(hit_color)
+            hit_at_spike = self.board._get_spike_by_index(move.target)
+            self.animate_move(hit_checker, hit_at_spike,
+                              lambda: self.animate_move(moving_checker, target_spike, on_finish))
+        else:
+            self.animate_move(moving_checker, target_spike, on_finish)
+
+    def attempt_commit(self, commit_attempt_event, on_finish):
+        try:
+            self.match.commit(commit_attempt_event.color)
+        except ValueError, msg:
+            Logger.warn(str(msg))
         on_finish()
 
     def attempt_roll(self, roll_attempt_event, on_finish):
@@ -144,11 +188,6 @@ class MatchWidget(FloatLayout):
             self.open_resign_dialog(resign_attempt_event.color)
         on_finish()
 
-    def attempt_undo(self, undo_att_event, on_finish):
-        if self.match:
-            self.match.undo(undo_att_event.color)
-        on_finish()
-
     def attempt_reject(self, reject_event, on_finish):
         if self.match:
             self.match.reject_open_offer(reject_event.color)
@@ -162,13 +201,11 @@ class MatchWidget(FloatLayout):
     def pause(self, pe, on_finish):
         Clock.schedule_once(lambda e: on_finish(), pe.ms/1000.0)
 
-    def execute_move(self, single_move_event, on_finish):
-        move = single_move_event.move
-        self.board.get_spikes_for_move_indexes(move.origin, move.target)
-        on_finish()
-
-    def execute_undo_move(self, move, on_finish):
-        self.board.get_spikes_for_move_indexes(move.origin, move.target, is_undo=True)
+    def execute_undo_move(self, undo_move_event, on_finish):
+        move = undo_move_event.move
+        self.board.get_spikes_for_move_indexes(move.origin,
+                                               move.target,
+                                               is_undo=True)
         on_finish()
 
     def announce_game_winner(self, e, on_finish):
@@ -176,8 +213,8 @@ class MatchWidget(FloatLayout):
         point_str = "points" if e.points != 1 else "point"
         ok_dialog = OKDialog(text='The score is now %s : %s' % e.score)
         popup = Popup(title='%s %s %s %s' % (e.winner, verb, e.points, point_str),
-            content=ok_dialog,
-            size_hint=(None, None), size=(400, 400))
+                      content=ok_dialog,
+                      size_hint=(None, None), size=(400, 400))
 
         def on_close(evt):
             popup.dismiss()
@@ -232,7 +269,8 @@ class MatchWidget(FloatLayout):
         target_pos = target_spike.get_next_checker_position(moving_checker.model_color)
         size = moving_checker.size
 
-        Logger.warn("Starting animation at %s, queue activity is %s" % (moving_checker.pos, GlobalTaskQueue.running_func))
+        Logger.warn("Starting animation at %s, queue activity is %s"
+                    % (moving_checker.pos, GlobalTaskQueue.running_func))
 
         new_checker = Checker(moving_checker.model_color,
                               size=size, size_hint=(None, None),
@@ -253,35 +291,7 @@ class MatchWidget(FloatLayout):
         animation.on_complete = on_animation_complete
         animation.start(new_checker)
 
-    def attempt_move(self, move_attempt_event, on_finish):
-        """
-        Attempts to execute a move from origin to target.
-        If the match allows it, an animation is started independently of the
-        event queue. If the move hits a checker, a hit is animated as well.
-        """
-        origin, target = move_attempt_event.origin, move_attempt_event.target
-        if self.match.is_move_possible(origin, target, self.match.color_to_move_next):
 
-            moving_checker, target_spike = self.board.get_animation_data(origin, target)
-
-            if self.match.is_hitting(target):
-                hit_checker, target_bar = self.board.get_hit_animation_data(target)
-                self.animate_move(moving_checker, target_spike,
-                    lambda: self.animate_move(hit_checker, target_bar, on_finish))
-            else:
-                self.animate_move(moving_checker, target_spike, on_finish)
-
-            self.match.execute_move(origin, target)
-        else:
-            Logger.warn("Move from %s to %s not possible" % (origin, target))
-            on_finish()
-
-    def attempt_commit(self, commit_attempt_event, on_finish):
-        try:
-            self.match.commit(commit_attempt_event.color)
-        except ValueError, msg:
-            Logger.warn(str(msg))
-        on_finish()
 
 
 class PlayerListWidget(ScrollView):

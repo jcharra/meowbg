@@ -57,24 +57,18 @@ class Match(object):
         die = self.get_die_for_move(origin, target)
         self.remaining_dice.remove(die)
 
-    def undo(self, color):
-        if color != self.color_to_move_next:
-            logger.warn("Not your turn, you cannot undo!")
-            return
+    def undo_possible(self, color):
+        return (color == self.color_to_move_next
+                and self.board.move_stack)
 
-        try:
-            move, hit_checker = self.board.undo_partial_move()
-        except Exception, msg:
-            logger.warn("Undo not possible: %s" % msg)
-            return
+    def undo_move(self):
+        move, hit_checker = self.board.undo_partial_move()
 
+        # Reinsert used die
         die = self.get_die_for_move(move.origin, move.target, undo=True)
         self.remaining_dice.append(die)
 
-        broadcast(UndoMoveEvent(PartialMove(move.target, move.origin)))
-
-        if hit_checker:
-            broadcast(UnhitEvent(move.target, hit_checker))
+        return move, hit_checker
 
     def get_die_for_move(self, origin, target, undo=False):
         dice = self.remaining_dice if not undo else self.initial_dice
@@ -184,6 +178,7 @@ class OnlineMatch(Match):
 
     def reject_open_offer(self, color):
         broadcast(RejectEvent(color))
+
 
 class OfflineMatch(Match):
     def __init__(self):

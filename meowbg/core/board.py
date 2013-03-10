@@ -218,7 +218,6 @@ class Board(object):
                                     moves.append(PartialMove(idx, OFF_INDEX[color]))
         return moves
 
-
     def field_accessible_for_color(self, idx, color):
         """
         A field at index <idx> is accessible for <color> iff
@@ -280,7 +279,8 @@ class Board(object):
         Undoes a move, reinserting a hit piece if necessary.
         """
         if not self.move_stack:
-            raise Exception("No moves to undo")
+            logger.warn("No moves to undo")
+            return
 
         last_move, hit_checker = self.move_stack.pop()
 

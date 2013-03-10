@@ -191,6 +191,7 @@ class BoardWidget(GridLayout):
 
     def cube_challenge(self, cube_event, on_finish):
         self.set_cube(self.cube_challenge_container, cube_event.cube_number)
+        on_finish()
 
     def show_dice(self, dice_event, on_finish):
         dice = dice_event.dice
@@ -232,11 +233,17 @@ class BoardWidget(GridLayout):
         moving_checker = origin_spike.children[0]
         return moving_checker, target_spike
 
-    def get_hit_animation_data(self, target):
-        target_spike = self._get_spike_by_index(target)
+    def get_hit_animation_data(self, target_idx):
+        target_spike = self._get_spike_by_index(target_idx)
         hit_checker = target_spike.children[0]
-        target_bar = self.upper_bar if hit_checker.model_color == BLACK else self.lower_bar
-        return hit_checker, target_bar
+        bar = self.upper_bar if hit_checker.model_color == BLACK else self.lower_bar
+        return hit_checker, bar
+
+    def get_bar_checker(self, hit_color):
+        bar = self.upper_bar if hit_color == BLACK else self.lower_bar
+        if bar.children:
+            return bar.children[0]
+        Logger.error("There's no checker of color %s at bar" % hit_color)
 
     def get_spikes_for_move_indexes(self, origin_idx, target_idx, is_undo=False):
         """
