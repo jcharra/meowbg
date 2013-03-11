@@ -20,8 +20,9 @@ from meowbg.core.board import WHITE, BLACK
 from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel, BarPanel, BearoffPanel, Checker, Cube
 from meowbg.gui.boardwidget import BoardWidget
 from meowbg.gui.guievents import (MoveAttemptEvent, AnimationStartedEvent, PauseEvent, MatchFocusEvent, CommitAttemptEvent,
-                                  UndoAttemptEvent, RollAttemptEvent, DoubleAttemptEvent, ResignAttemptEvent)
-from meowbg.core.events import (PlayerStatusEvent, MatchEvent, RejectEvent, AcceptEvent,
+                                  UndoAttemptEvent, RollAttemptEvent, DoubleAttemptEvent, ResignAttemptEvent,
+                                  AcceptAttemptEvent)
+from meowbg.core.events import (PlayerStatusEvent, MatchEvent, RejectEvent,
                                 MatchEndEvent, GameEndEvent, JoinChallengeEvent, ResignOfferEvent, GlobalShutdownEvent,
                                 AcceptJoinEvent)
 from meowbg.core.messaging import register, broadcast
@@ -110,9 +111,9 @@ class MatchWidget(FloatLayout):
         register(sync_call(self.attempt_double), DoubleAttemptEvent)
         register(sync_call(self.attempt_undo), UndoAttemptEvent)
         register(sync_call(self.attempt_resign), ResignAttemptEvent)
+        register(sync_call(self.attempt_accept), AcceptAttemptEvent)
 
         register(sync_call(self.animate_move), AnimationStartedEvent)
-        register(sync_call(self.accept_offer), AcceptEvent)
         register(sync_call(self.announce_game_winner), GameEndEvent)
         register(sync_call(self.suggest_join), JoinChallengeEvent)
         register(sync_call(self.attempt_reject), RejectEvent)
@@ -192,12 +193,12 @@ class MatchWidget(FloatLayout):
         on_finish()
 
     def attempt_reject(self, reject_event, on_finish):
-        if self.match:
+        if self.match and self.match.reject_possible(reject_event.color):
             self.match.reject_open_offer(reject_event.color)
         on_finish()
 
-    def accept_offer(self, accept_event, on_finish):
-        if self.match:
+    def attempt_accept(self, accept_event, on_finish):
+        if self.match and self.match.accept_possible(accept_event.color):
             self.match.accept_open_offer(accept_event.color)
         on_finish()
 

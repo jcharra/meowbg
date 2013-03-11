@@ -47,6 +47,10 @@ class UndoAttemptEvent(Attempt):
     pass
 
 
+class AcceptAttemptEvent(Attempt):
+    pass
+
+
 class ResignAttemptEvent(Attempt):
     pass
 

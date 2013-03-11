@@ -112,6 +112,16 @@ class Match(object):
         self.cube *= 2
         broadcast(MatchEvent(self))
 
+    def accept_possible(self, color):
+        return color == self.color_to_move_next and (self.open_cube_challenge_from_color
+                                                     or self.resignation_points_offered)
+
+    def reject_possible(self, color):
+        """
+        Same conditions as accept_possible
+        """
+        return self.accept_possible(color)
+
     def accept_open_offer(self, color):
         raise NotImplementedError()
 
@@ -245,10 +255,6 @@ class OfflineMatch(Match):
             self.new_game()
 
     def accept_open_offer(self, color):
-        if color == self.color_to_move_next:
-            logger.warn("You cannot accept your own offer")
-            return
-
         if self.open_cube_challenge_from_color:
             self.double_accepted(OPPONENT[self.open_cube_challenge_from_color])
             self.open_cube_challenge_from_color = None

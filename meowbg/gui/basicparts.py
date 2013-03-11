@@ -11,7 +11,9 @@ from meowbg.core.match import Match, OfflineMatch
 from meowbg.core.events import AcceptEvent, RejectEvent, MatchEvent
 from meowbg.core.messaging import broadcast, register
 from meowbg.core.player import HumanPlayer
-from meowbg.gui.guievents import CommitAttemptEvent, UndoAttemptEvent, RollAttemptEvent, DoubleAttemptEvent, ResignAttemptEvent
+from meowbg.gui.guievents import (CommitAttemptEvent, UndoAttemptEvent,
+                                  RollAttemptEvent, DoubleAttemptEvent,
+                                  ResignAttemptEvent, AcceptAttemptEvent)
 
 
 class Checker(Image):
@@ -157,7 +159,7 @@ class ButtonPanel(BoxLayout):
         broadcast(UndoAttemptEvent(self.represented_color))
 
     def accept(self):
-        broadcast(AcceptEvent(self.represented_color))
+        broadcast(AcceptAttemptEvent(self.represented_color))
 
     def reject(self):
         broadcast(RejectEvent(self.represented_color))

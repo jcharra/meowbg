@@ -199,6 +199,12 @@ class FIBSTranslator(object):
                     found_events.append(JoinChallengeEvent(self.current_match))
             elif re.match("\S+ wins? the \d+ point match \d+-\d+", line):
                 winner, score1, score2 = re.search("(\S+) wins? the \d+ point match (\d+)-(\d+)", line).groups()
+                pcol = self.current_match.get_players_color(winner)
+
+                if not pcol:
+                    logger.info("Player %s does not participate in match %s" % (winner, self.current_match))
+                    return
+
                 score = {BLACK: score1, WHITE: score2}
                 found_events.append(MatchEndEvent(winner, score))
             else:
