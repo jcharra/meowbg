@@ -3,18 +3,17 @@ import time
 from meowbg.core.board import BLACK, WHITE
 from meowbg.core.bot import Bot
 from meowbg.core.dice import FakeDice
-from meowbg.core.events import MatchEvent, SingleMoveEvent, DiceEvent
-from meowbg.core.match import Match
+from meowbg.core.events import MatchEvent, DiceEvent
 from meowbg.core.messaging import broadcast
-from meowbg.core.move import PartialMove
-from meowbg.core.player import HumanPlayer
-from meowbg.gui.guievents import NewMatchEvent, MoveAttemptEvent, CommitAttemptEvent
+from meowbg.gui.guievents import (UndoAttemptEvent, MoveAttemptEvent,
+                                  CommitAttemptEvent, RollAttemptEvent)
 from meowbg.gui.main import BoardApp
 from meowbg.network.connectionpool import DummyConnection, share_connection
 from meowbg.network.translation import FIBSTranslator
 
 APP = BoardApp()
 parse = FIBSTranslator().parse_match
+
 
 def test_hit():
     match = parse("board:player1:player2"
@@ -28,20 +27,53 @@ def test_hit():
                   ":1"       # cube
                   ":1:1"     # may double
                   ":0:1:-1:0:25:0:0:0:0:2:0:0:0", # cruft
-    online=False)
+                  online=False)
     broadcast(MatchEvent(match))
     broadcast(DiceEvent(match.initial_dice))
     broadcast(MoveAttemptEvent(17, 11))
     broadcast(MoveAttemptEvent(11, 9))
     match.dice = FakeDice()
     match.dice.set_next_dice(4, 3)
-    broadcast(CommitAttemptEvent())
+    broadcast(CommitAttemptEvent(BLACK))
 
-    time.sleep(3)
-    broadcast(DiceEvent(match.initial_dice))
+    time.sleep(2)
+    broadcast(RollAttemptEvent(WHITE))
     broadcast(MoveAttemptEvent(-1, 3))
     broadcast(MoveAttemptEvent(-1, 2))
-    broadcast(CommitAttemptEvent())
+    broadcast(CommitAttemptEvent(WHITE))
+
+
+def test_undo_after_hit():
+    match = parse("board:player1:player2"
+                  ":1"       # match length
+                  ":0:0"     # score
+                  ":-1"       # bar player 1
+                  ":0:0:0:0:0:0:0:0:-1:-1:0:0:0:0:0:0:0:2:0:0:0:0:0:0" # board
+                  ":0"       # bar player 2
+                  ":1"       # turn
+                  ":6:2:0:0" # dice
+                  ":1"       # cube
+                  ":1:1"     # may double
+                  ":0:1:-1:0:25:0:0:0:0:2:0:0:0", # cruft
+                  online=False)
+    broadcast(MatchEvent(match))
+    broadcast(DiceEvent(match.initial_dice))
+    broadcast(MoveAttemptEvent(17, 11))
+    broadcast(MoveAttemptEvent(11, 9))
+    match.dice = FakeDice()
+    match.dice.set_next_dice(4, 3)
+    broadcast(CommitAttemptEvent(BLACK))
+
+    time.sleep(2)
+    broadcast(RollAttemptEvent(WHITE))
+    broadcast(MoveAttemptEvent(-1, 3))
+    broadcast(MoveAttemptEvent(-1, 2))
+    broadcast(UndoAttemptEvent(WHITE))
+    broadcast(UndoAttemptEvent(WHITE))
+    broadcast(MoveAttemptEvent(-1, 3))
+    broadcast(MoveAttemptEvent(-1, 2))
+    broadcast(CommitAttemptEvent(WHITE))
+
 
 def test_between_games():
     match = parse("board:player1:you"
@@ -55,9 +87,10 @@ def test_between_games():
                   ":1"       # cube
                   ":1:1"     # may double
                   ":0:1:-1:0:25:0:0:0:0:2:0:0:0", # cruft
-    online=False)
+                  online=False)
     match.register_player(Bot('Bottus', WHITE), WHITE)
     broadcast(MatchEvent(match))
+
 
 def test_double():
     match = parse("board:player1:player2"
@@ -71,13 +104,15 @@ def test_double():
                   ":1"       # cube
                   ":1:1"     # may double
                   ":0:1:-1:0:25:0:0:0:0:2:0:0:0", # cruft
-    online=False)
+                  online=False)
     broadcast(MatchEvent(match))
+
 
 def execute_script():
     time.sleep(1)
     #test_hit()
-    test_between_games()
+    test_undo_after_hit()
+    #test_between_games()
     #test_new_game()
     #test_double()
 

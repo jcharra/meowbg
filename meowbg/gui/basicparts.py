@@ -13,6 +13,7 @@ from meowbg.core.messaging import broadcast, register
 from meowbg.core.player import HumanPlayer
 from meowbg.gui.guievents import CommitAttemptEvent, UndoAttemptEvent, RollAttemptEvent, DoubleAttemptEvent, ResignAttemptEvent
 
+
 class Checker(Image):
     def __init__(self, model_color, **kwargs):
         img_source = 'checker.png' if model_color == BLACK else 'checker_white.png'
@@ -20,9 +21,11 @@ class Checker(Image):
         self.model_color = model_color
         Image.__init__(self, **kwargs)
 
+
 class IndexRow(BoxLayout):
     idx_start = NumericProperty(0)
     idx_direction = NumericProperty(1)
+
 
 class CheckerContainer(FloatLayout):
     CHECKER_PERCENTAGE = 0.19
@@ -100,6 +103,7 @@ class CheckerContainer(FloatLayout):
                 return True
         return False
 
+
 class Spike(CheckerContainer):
     activated = BooleanProperty(False)
     highlighted = BooleanProperty(False)
@@ -113,6 +117,7 @@ class SpikePanel(BoxLayout):
             self.add_widget(Spike(board_idx=start_index + i * self.index_direction,
                                   direction=-self.index_direction))
 
+
 class Cube(BoxLayout):
     def __init__(self, **kwargs):
         BoxLayout.__init__(self, **kwargs)
@@ -121,6 +126,7 @@ class Cube(BoxLayout):
     def set_number(self, num):
         self.clear_widgets()
         self.add_widget(Image(source="cube%i.png" % num))
+
 
 class ButtonPanel(BoxLayout):
     def __init__(self, **kwargs):
@@ -165,6 +171,7 @@ class ButtonPanel(BoxLayout):
     def double_attempted(self):
         broadcast(DoubleAttemptEvent(self.represented_color))
 
+
 class DicePanel(GridLayout):
     def __init__(self, **kwargs):
         kwargs.update({'cols': 8})
@@ -176,10 +183,12 @@ class DicePanel(GridLayout):
             self.add_widget(Image(source="die%s.png" % die))
         self.add_widget(Widget(size_hint=(4-len(dice)/2, 1))) # spacer
 
+
 class BarPanel(CheckerContainer):
     def __init__(self, **kwargs):
         kwargs.update({'cols': 1})
         CheckerContainer.__init__(self, **kwargs)
+
 
 class BearoffPanel(CheckerContainer):
     def __init__(self, **kwargs):

@@ -1,38 +1,21 @@
 
-from meowbg.core.events import MatchEvent, MoveEvent, CommitEvent, RollRequest, CubeEvent, RejectEvent, AcceptEvent, ResignOfferEvent
+from meowbg.core.events import (MoveEvent, CommitEvent, RollRequest,
+                                RejectEvent, AcceptEvent, ResignOfferEvent,
+                                OpponentJoinedEvent)
 from meowbg.core.messaging import register, unregister
 from meowbg.gui.guievents import DoubleAttemptEvent
 from meowbg.network.connectionpool import get_connection
 
-class AbstractPlayer(object):
+
+class Player(object):
     def __init__(self, name, color):
         self.name, self.color = name, color
-        register(self.react, MatchEvent)
-        register(self.on_cube, CubeEvent)
-
-    def exit(self):
-        unregister(self.react, MatchEvent)
-        unregister(self.on_cube, MatchEvent)
-
-    def react(self, match_event):
-        raise NotImplemented
-
-    def on_cube(self, cube_event):
-        raise NotImplemented
 
 
-class HumanPlayer(AbstractPlayer):
-    def react(self, match_event):
-        """
-        Don't to anything automatically, since we expect
-        human interaction here.
-        """
-        pass
-
-    def on_cube(self, cube_event):
-        """
-        Same as in react
-        """
+class HumanPlayer(Player):
+    """
+    Pretty much just a "marker class" yet :)
+    """
 
 
 class OnlinePlayerProxy(object):
@@ -43,10 +26,11 @@ class OnlinePlayerProxy(object):
 
         register(self.on_commit, CommitEvent)
         register(self.on_default, RollRequest)
-        register(self.on_default, DoubleAttemptEvent)
         register(self.on_default, AcceptEvent)
         register(self.on_default, RejectEvent)
         register(self.on_default, ResignOfferEvent)
+        register(self.on_default, OpponentJoinedEvent)
+        register(self.on_default, DoubleAttemptEvent)
 
         self.connection = get_connection("Tigergammon")
 
@@ -55,6 +39,9 @@ class OnlinePlayerProxy(object):
         self.connection.send(fibs_full_move)
 
     def on_default(self, r):
+        if hasattr(r, 'color') and r.color != self.color:
+            return
+
         cmd = self.event_translator.encode(r)
         self.connection.send(cmd)
 
@@ -65,4 +52,5 @@ class OnlinePlayerProxy(object):
         unregister(self.on_default, AcceptEvent)
         unregister(self.on_default, RejectEvent)
         unregister(self.on_default, ResignOfferEvent)
+        unregister(self.on_default, OpponentJoinedEvent)
         self.connection = None

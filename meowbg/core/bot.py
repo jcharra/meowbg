@@ -1,15 +1,18 @@
 import random
-from meowbg.core.events import AcceptEvent, ResignOfferEvent
+from meowbg.core.events import AcceptEvent, ResignOfferEvent, MatchEvent, CubeEvent
 
 from meowbg.core.messaging import broadcast, register, unregister
-from meowbg.core.player import AbstractPlayer
+from meowbg.core.player import Player
 from meowbg.gui.guievents import MoveAttemptEvent, CommitAttemptEvent, DoubleAttemptEvent
 
-class Bot(AbstractPlayer):
+
+class Bot(Player):
     def __init__(self, name, color):
-        AbstractPlayer.__init__(self, name, color)
+        Player.__init__(self, name, color)
         self.match_id = None
         register(self.on_resign, ResignOfferEvent)
+        register(self.react, MatchEvent)
+        register(self.on_cube, CubeEvent)
 
     def react(self, match_event):
         match = match_event.match
@@ -30,7 +33,7 @@ class Bot(AbstractPlayer):
             match.roll(self.color)
 
             moves = match.board.find_possible_moves(match.remaining_dice,
-                                                   self.color)
+                                                    self.color)
 
             # There may be no possible moves
             if moves:
@@ -53,6 +56,8 @@ class Bot(AbstractPlayer):
 
     def exit(self):
         unregister(self.on_resign, ResignOfferEvent)
+        unregister(self.react, MatchEvent)
+        unregister(self.on_cube, CubeEvent)
 
     def __repr__(self):
         return "Bot '%s'" % self.name

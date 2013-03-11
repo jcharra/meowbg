@@ -1,15 +1,16 @@
 import logging
 from meowbg.core.board import Board, WHITE, BLACK, COLOR_NAMES, OPPONENT
 from meowbg.core.dice import Dice
-from meowbg.core.events import (MatchEndEvent, GameEndEvent, RolloutEvent, MatchEvent,
-                                SingleMoveEvent, DiceEvent, CommitEvent, RollRequest,
-                                CubeEvent, UndoMoveEvent, RejectEvent, AcceptEvent)
+from meowbg.core.events import (MatchEndEvent, GameEndEvent, RolloutEvent,
+                                MatchEvent, DiceEvent, CommitEvent,
+                                RollRequest, CubeEvent, RejectEvent,
+                                AcceptEvent)
 from meowbg.core.messaging import broadcast
-from meowbg.gui.guievents import HitEvent, UnhitEvent
 from move import PartialMove
 
 logger = logging.getLogger("Match")
 logger.addHandler(logging.StreamHandler())
+
 
 class Match(object):
 
@@ -196,7 +197,7 @@ class OfflineMatch(Match):
             self.board.store_initial_possibilities(self.initial_dice, self.color_to_move_next)
             broadcast(DiceEvent(self.remaining_dice))
         else:
-            logger.warn("Cannot roll")
+            logger.warn("Cannot roll, I have unused dice %s" % self.initial_dice)
 
     def commit(self, color=None):
         if color != self.color_to_move_next:

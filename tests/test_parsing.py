@@ -17,7 +17,7 @@ class MyTestCase(unittest.TestCase):
         self.parser = FIBSEventHandler(opponent_interface=None)
 
     def test_parse_line_to_args_player_status(self):
-        args = self.parser.parse_line_to_args(TESTLINE_STATUS_1, type=self.parser.PLAYER_STATUS_EVENT)
+        args = self.parser.parse_line_to_args(TESTLINE_STATUS_1, line_type=self.parser.PLAYER_STATUS_EVENT)
         self.assertEquals(args["name"], "someplayer")
         self.assertEquals(args["opponent"], "evil_guy")
         self.assertEquals(args["watching"], "-")

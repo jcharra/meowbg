@@ -3,14 +3,16 @@ import re
 import logging
 from meowbg.core.board import Board, BLACK, WHITE
 from meowbg.core.match import OnlineMatch, OfflineMatch
-from meowbg.core.move import PartialMove
 from meowbg.core.events import (InvitationEvent, MoveEvent, MatchEvent, PlayerStatusEvent, DiceEvent,
-                                RollRequest, AcceptEvent, RejectEvent, MatchEndEvent, AcceptJoinEvent, ResignOfferEvent, CommitEvent)
+                                RollRequest, AcceptEvent, RejectEvent, MatchEndEvent, AcceptJoinEvent,
+                                ResignOfferEvent, JoinChallengeEvent, OpponentJoinedEvent,
+                                GameEndEvent)
 from meowbg.core.player import HumanPlayer, OnlinePlayerProxy
 from meowbg.gui.guievents import DoubleAttemptEvent, MoveAttemptEvent
 
 logger = logging.getLogger("EventParser")
 logger.addHandler(logging.StreamHandler())
+
 
 def translate_move_to_indexes(move_str):
     origin, target = move_str.lower().split("-")
@@ -25,6 +27,7 @@ def translate_move_to_indexes(move_str):
         target_idx = 24 if int(origin) > 18 else -1
 
     return orig_idx, target_idx
+
 
 def translate_indexes_to_move(orig_idx, target_idx):
     if orig_idx not in (-1, 24):
@@ -69,6 +72,9 @@ class FIBSTranslator(object):
             return "reject"
         elif isinstance(event, AcceptJoinEvent):
             return "join"
+        elif isinstance(event, OpponentJoinedEvent):
+            # We need to force a refresh on opponent join
+            return "board"
         elif isinstance(event, ResignOfferEvent):
             resign_choice = {1: 'n', 2: 'g', 3: 'b'}
             return "resign %s" % resign_choice.get(event.points, 'n')
@@ -96,7 +102,7 @@ class FIBSTranslator(object):
 
                 dicts = []
                 for l in multiline_buffer:
-                    dicts.append(self.parse_line_to_args(l, type=self.PLAYER_STATUS_EVENT))
+                    dicts.append(self.parse_line_to_args(l, line_type=self.PLAYER_STATUS_EVENT))
                 multiline_buffer = []
                 found_events.append(PlayerStatusEvent(status_dicts=dicts))
             elif line.startswith("7 "):
@@ -159,9 +165,7 @@ class FIBSTranslator(object):
                 moves = re.findall("\S+-\S+", moves_raw)
                 for m in moves:
                     origin, target = translate_move_to_indexes(m)
-                    self.current_match.execute_move(origin, target, pcol)
-                    #partial_moves.append(PartialMove(origin, target))
-                    #found_events.append(MoveAttemptEvent(origin, target))
+                    found_events.append(MoveAttemptEvent(origin, target))
 
             elif line.find(" wants to play ") != -1:
                 if "unlimited match" in line:
@@ -175,20 +179,24 @@ class FIBSTranslator(object):
                 # user wants to resume a saved match with you.
                 args = re.search("(?P<user>\S+) wants to resume a saved match with you", line).groupdict()
                 found_events.append(InvitationEvent(player_name=args['user']))
-            elif re.match("\S+ has doubled you. Type 'accept' or 'reject'.", line):
-                pname = re.search("(\S)+ has doubled you", line)
+            elif re.search("\S+ has doubled you. Type 'accept' or 'reject'.", line):
                 if not self.current_match:
                     continue
+                pname = re.search("(\S)+ has doubled you", line).groups()[0]
                 color = self.current_match.get_players_color(pname)
                 found_events.append(DoubleAttemptEvent(color))
-            elif line.find("wins the game and gets") != -1:
-                #[WARNING] [You give up. expertBotI wins 2 points.
-                #    score in 3 point match] expertBotI-2 meowbg_joe-0
-                #    Type 'join' if you want to play the next game, type 'leave' if you don't.
+            elif re.search("\S+ wins? \d+ points", line):
+                if not self.current_match:
+                    continue
+                pname, points = re.search("(\S+) wins? (\d+) points", line).groups()
+                found_events.append(GameEndEvent(pname, points, self.current_match.get_score()))
+            elif line.find(" has joined you. Your running match was loaded."):
+                # Caused an infinite loop ... ?!
+                #found_events.append(OpponentJoinedEvent())
                 pass
             elif line.find("Type 'join' if you want to play the next game") != -1:
                 if self.current_match:
-                    found_events.append(PendingJoinEvent(self.current_match))
+                    found_events.append(JoinChallengeEvent(self.current_match))
             elif re.match("\S+ wins? the \d+ point match \d+-\d+", line):
                 winner, score1, score2 = re.search("(\S+) wins? the \d+ point match (\d+)-(\d+)", line).groups()
                 score = {BLACK: score1, WHITE: score2}
@@ -282,12 +290,11 @@ class FIBSTranslator(object):
 
         return checkers_on_field, checkers_on_bar
 
-
-    def parse_line_to_args(self, line, type):
+    def parse_line_to_args(self, line, line_type):
         """
         Universal parsing method, accepting a line and an event type.
         """
-        if type == self.PLAYER_STATUS_EVENT:
+        if line_type == self.PLAYER_STATUS_EVENT:
             match = re.search(("5 (?P<name>\S+) (?P<opponent>\S+) (?P<watching>\S+) (?P<ready>\S+) "
                                "(?P<away>\S+) (?P<rating>\S+) (?P<experience>\S+) (?P<idle>\S+) (?P<login>\S+) "
                                "(?P<hostname>\S+) (?P<client>\S+) (?P<email>\S+)"), line)
@@ -296,7 +303,7 @@ class FIBSTranslator(object):
             else:
                 logger.error("Malformed status event: %s" % line)
         else:
-            logger.error("Cannot parse line of type %s" % type)
+            logger.error("Cannot parse line of type %s" % line_type)
 
         # Indicates failure
         return {}

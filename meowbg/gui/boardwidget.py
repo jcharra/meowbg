@@ -233,6 +233,13 @@ class BoardWidget(GridLayout):
         moving_checker = origin_spike.children[0]
         return moving_checker, target_spike
 
+    def get_undo_animation_data(self, origin_idx, target_idx):
+        origin_spike, target_spike = self.get_spikes_for_move_indexes(origin_idx=target_idx,
+                                                                      target_idx=origin_idx,
+                                                                      is_undo=True)
+        moving_checker = origin_spike.children[0]
+        return moving_checker, target_spike
+
     def get_hit_animation_data(self, target_idx):
         target_spike = self._get_spike_by_index(target_idx)
         hit_checker = target_spike.children[0]
@@ -268,12 +275,12 @@ class BoardWidget(GridLayout):
         elif target_idx in OFF_INDEX.values():
             if move_direction > 0:
                 if is_undo:
-                    target = self.lower_bar
+                    target = self.upper_bar
                 else:
                     target = self.upper_bearoff
             else:
                 if is_undo:
-                    target = self.upper_bar
+                    target = self.lower_bar
                 else:
                     target = self.lower_bearoff
 

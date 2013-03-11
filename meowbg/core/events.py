@@ -7,8 +7,10 @@ class MatchEvent(object):
     def __repr__(self):
         return "MatchEvent %s" % id(self)
 
+
 class RollRequest(object):
     pass
+
 
 class DiceEvent(object):
     def __init__(self, dice):
@@ -17,13 +19,16 @@ class DiceEvent(object):
     def __repr__(self):
         return "DiceEvent: %s" % self.dice
 
+
 class CubeEvent(object):
     def __init__(self, color, cube_number):
         self.color, self.cube_number = color, cube_number
 
+
 class RolloutEvent(object):
     def __init__(self, d1, d2):
         self.d1, self.d2 = d1, d2
+
 
 class MoveEvent(object):
     def __init__(self, moves):
@@ -35,47 +40,54 @@ class MoveEvent(object):
     def __repr__(self):
         return " ".join(str(m) for m in self.moves)
 
-class SingleMoveEvent(object):
-    def __init__(self, move):
-        self.move = move
-
-    def __repr__(self):
-        return "SingleMove %s" % self.move
 
 class UndoMoveEvent(object):
     def __init__(self, move):
         self.move = move
 
+
 class CommitEvent(object):
     def __init__(self, moves):
         self.moves = moves
+
 
 class ResignOfferEvent(object):
     def __init__(self, color, points):
         self.color, self.points = color, points
 
+
 class AcceptEvent(object):
     def __init__(self, color):
         self.color = color
+
 
 class RejectEvent(object):
     def __init__(self, color):
         self.color = color
 
+
 class GameEndEvent(object):
     def __init__(self, winner, points, score):
         self.winner, self.points, self.score = winner, points, score
+
 
 class MatchEndEvent(object):
     def __init__(self, winner, score):
         self.winner, self.score = winner, score
 
+
 class CommandEvent(object):
     def __init__(self, command):
         self.command = command
 
+
 class AcceptJoinEvent(object):
     pass
+
+
+class OpponentJoinedEvent(object):
+    pass
+
 
 class JoinChallengeEvent(object):
     def __init__(self, match):
@@ -83,14 +95,17 @@ class JoinChallengeEvent(object):
 
 # Events outside a match
 
+
 class MessageEvent(object):
     def __init__(self, msg):
         self.msg = msg
+
 
 class InvitationEvent(object):
     def __init__(self, player_name, length=0):
         self.player_name = player_name
         self.length = length
+
 
 class PlayerStatusEvent(object):
     def __init__(self, status_dicts):
@@ -100,15 +115,18 @@ class PlayerStatusEvent(object):
         """
         self.status_dicts = status_dicts
 
+
 class GlobalShutdownEvent(object):
     """
     Indicates that the app is about to be shut down.
     """
 
+
 class LoginEvent(object):
     """
     Use this to require a user login - currently unused
     """
+
 
 class ConnectionRequest(object):
     """

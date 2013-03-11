@@ -1,5 +1,4 @@
 import os
-import Queue
 from kivy.animation import Animation
 
 from kivy.app import App
@@ -18,12 +17,11 @@ from kivy.logger import Logger
 from kivy.resources import resource_add_path
 from kivy.vector import Vector
 from meowbg.core.board import WHITE, BLACK
-from meowbg.core.exceptions import MoveNotPossible
 from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel, BarPanel, BearoffPanel, Checker, Cube
 from meowbg.gui.boardwidget import BoardWidget
 from meowbg.gui.guievents import (MoveAttemptEvent, AnimationStartedEvent, PauseEvent, MatchFocusEvent, CommitAttemptEvent,
                                   UndoAttemptEvent, RollAttemptEvent, DoubleAttemptEvent, ResignAttemptEvent)
-from meowbg.core.events import (PlayerStatusEvent, MatchEvent, SingleMoveEvent, RejectEvent, AcceptEvent, UndoMoveEvent,
+from meowbg.core.events import (PlayerStatusEvent, MatchEvent, RejectEvent, AcceptEvent,
                                 MatchEndEvent, GameEndEvent, JoinChallengeEvent, ResignOfferEvent, GlobalShutdownEvent,
                                 AcceptJoinEvent)
 from meowbg.core.messaging import register, broadcast
@@ -119,11 +117,16 @@ class MatchWidget(FloatLayout):
         register(sync_call(self.suggest_join), JoinChallengeEvent)
         register(sync_call(self.attempt_reject), RejectEvent)
         register(sync_call(self.pause), PauseEvent)
+        register(sync_call(self.end_match), MatchEndEvent)
 
     def sync_match(self, event, on_finish):
         self.match = event.match
         self.board.synchronize(event.match)
         broadcast(MatchFocusEvent())
+        on_finish()
+
+    def end_match(self, e, on_finish):
+        self.match = None
         on_finish()
 
     def attempt_move(self, move_attempt_event, on_finish):
@@ -156,7 +159,7 @@ class MatchWidget(FloatLayout):
             return
 
         move, hit_color = self.match.undo_move()
-        moving_checker, target_spike = self.board.get_animation_data(move.target, move.origin)
+        moving_checker, target_spike = self.board.get_undo_animation_data(move.origin, move.target)
 
         if hit_color:
             hit_checker = self.board.get_bar_checker(hit_color)
@@ -227,8 +230,8 @@ class MatchWidget(FloatLayout):
     def suggest_join(self, event, on_finish):
         dialog = BetweenGamesDialog()
         popup = Popup(title='Continue match?',
-            content=dialog,
-            size_hint=(None, None), size=(400, 400))
+                      content=dialog,
+                      size_hint=(None, None), size=(400, 400))
 
         def on_join(e):
             popup.dismiss()
@@ -292,8 +295,6 @@ class MatchWidget(FloatLayout):
         animation.start(new_checker)
 
 
-
-
 class PlayerListWidget(ScrollView):
     def __init__(self, **kwargs):
         ScrollView.__init__(self, **kwargs)
@@ -307,11 +308,11 @@ class PlayerListWidget(ScrollView):
     def update_display(self, status_dicts):
         for item in status_dicts:
             self.grid.add_widget(Label(text=item['name'],
-                size=(self.width/2, 25),
-                size_hint=(None, None)))
+                                       size=(self.width/2, 25),
+                                       size_hint=(None, None)))
             self.grid.add_widget(Label(text=item['rating'],
-                size=(self.width/2, 25),
-                size_hint=(None, None)))
+                                       size=(self.width/2, 25),
+                                       size_hint=(None, None)))
 
 
 class NetworkWidget(GridLayout):
