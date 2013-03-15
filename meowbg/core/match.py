@@ -113,7 +113,7 @@ class Match(object):
         broadcast(MatchEvent(self))
 
     def accept_possible(self, color):
-        return color == self.color_to_move_next and (self.open_cube_challenge_from_color
+        return color != self.color_to_move_next and (self.open_cube_challenge_from_color
                                                      or self.resignation_points_offered)
 
     def reject_possible(self, color):

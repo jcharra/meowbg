@@ -174,7 +174,8 @@ class MatchWidget(FloatLayout):
         try:
             self.match.commit(commit_attempt_event.color)
         except ValueError, msg:
-            Logger.warn(str(msg))
+            Logger.warn("Commit for color %s FAILED with msg %s"
+                        % (commit_attempt_event.color, msg))
         on_finish()
 
     def attempt_roll(self, roll_attempt_event, on_finish):
@@ -195,11 +196,15 @@ class MatchWidget(FloatLayout):
     def attempt_reject(self, reject_event, on_finish):
         if self.match and self.match.reject_possible(reject_event.color):
             self.match.reject_open_offer(reject_event.color)
+        else:
+            Logger.error("Reject of color %s failed without effect" % reject_event.color)
         on_finish()
 
     def attempt_accept(self, accept_event, on_finish):
         if self.match and self.match.accept_possible(accept_event.color):
             self.match.accept_open_offer(accept_event.color)
+        else:
+            Logger.error("Accept of color %s failed without effect" % accept_event.color)
         on_finish()
 
     def pause(self, pe, on_finish):

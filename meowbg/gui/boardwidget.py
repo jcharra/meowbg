@@ -289,31 +289,6 @@ class BoardWidget(GridLayout):
 
         return origin, target
 
-    def animate_hit(self, hit_event, on_finish):
-        """
-        Animate a checker being hit by another checker
-        of color 'hitting_color'.
-        """
-        spike = self._get_spike_by_index(hit_event.field_idx)
-        if len(spike.children) != 1:
-            raise ValueError("Hit on a spike with %i children" % len(spike.children))
-
-        target = self.upper_bar if hit_event.hitting_color == WHITE else self.lower_bar
-        for c in spike.children:
-            if c.model_color != hit_event.hitting_color:
-                self._move_checker(c, target)
-                break
-        on_finish()
-
-    def animate_unhit(self, unhit_event):
-        """
-        Animate undoing of a hit at index `field_idx` of color `hit_color`
-        """
-        target = self._get_spike_by_index(unhit_event.field_idx)
-        origin = self.lower_bar if unhit_event.hit_color == WHITE else self.upper_bar
-        checker = origin.children[0]
-        self._move_checker(checker, target)
-
     def clear_board(self):
         for spike in self.spikes():
             spike.clear_widgets()

@@ -91,6 +91,22 @@ def test_between_games():
     match.register_player(Bot('Bottus', WHITE), WHITE)
     broadcast(MatchEvent(match))
 
+def test_no_moves_possible():
+    match = parse("board:player1:you"
+                  ":3"       # match length
+                  ":0:0"     # score
+                  ":1"       # bar player 1
+                  ":2:2:2:2:2:2:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1" # board
+                  ":-1"       # bar player 2
+                  ":-1"       # turn
+                  ":6:6:0:0" # dice
+                  ":1"       # cube
+                  ":1:1"     # may double
+                  ":0:1:-1:0:25:0:0:0:0:2:0:0:0", # cruft
+                  online=False)
+    match.register_player(Bot('Bottus', WHITE), WHITE)
+    broadcast(MatchEvent(match))
+
 
 def test_double():
     match = parse("board:player1:player2"
@@ -111,10 +127,11 @@ def test_double():
 def execute_script():
     time.sleep(1)
     #test_hit()
-    test_undo_after_hit()
+    #test_undo_after_hit()
     #test_between_games()
     #test_new_game()
     #test_double()
+    test_no_moves_possible()
 
 if __name__ == '__main__':
     share_connection("Tigergammon", DummyConnection())

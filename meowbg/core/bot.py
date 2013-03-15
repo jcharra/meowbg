@@ -1,9 +1,10 @@
 import random
-from meowbg.core.events import AcceptEvent, ResignOfferEvent, MatchEvent, CubeEvent
+from meowbg.core.events import ResignOfferEvent, MatchEvent, CubeEvent
 
 from meowbg.core.messaging import broadcast, register, unregister
 from meowbg.core.player import Player
-from meowbg.gui.guievents import MoveAttemptEvent, CommitAttemptEvent, DoubleAttemptEvent
+from meowbg.gui.guievents import (MoveAttemptEvent, CommitAttemptEvent,
+                                  DoubleAttemptEvent, AcceptAttemptEvent)
 
 
 class Bot(Player):
@@ -48,11 +49,11 @@ class Bot(Player):
 
     def on_cube(self, cube_event):
         if cube_event.color != self.color:
-            broadcast(AcceptEvent(self.color))
+            broadcast(AcceptAttemptEvent(self.color))
 
     def on_resign(self, event):
         if event.color != self.color:
-            broadcast(AcceptEvent(self.color))
+            broadcast(AcceptAttemptEvent(self.color))
 
     def exit(self):
         unregister(self.on_resign, ResignOfferEvent)
