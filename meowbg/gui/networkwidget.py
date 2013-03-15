@@ -3,7 +3,9 @@ from meowbg.core.messaging import register, broadcast
 from meowbg.network.connectionpool import share_connection
 from meowbg.network.telnetconn import TelnetConnection
 from meowbg.network.translation import FIBSTranslator
-from meowbg.core.events import PlayerStatusEvent, GlobalShutdownEvent
+from meowbg.core.player import OnlinePlayerProxy
+from meowbg.core.events import (PlayerStatusEvent, GlobalShutdownEvent,
+                                OutgoingInvitationEvent, OpponentJoinedEvent)
 
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.boxlayout import BoxLayout
@@ -43,7 +45,7 @@ class PlayerRow(BoxLayout):
 
     def on_touch_down(self, touch):
         if self.collide_point(*touch.pos):
-            Logger.info("Clicked me! I'm player %s" % self.player_info["name"])
+            broadcast(OutgoingInvitationEvent(self.player_info["name"]))
 
 
 class NetworkWidget(GridLayout):
@@ -67,12 +69,23 @@ class NetworkWidget(GridLayout):
 
         register(self.handle, PlayerStatusEvent)
         register(self.tear_down, GlobalShutdownEvent)
+        register(self.on_invite, OutgoingInvitationEvent)
+        register(self.on_join, OpponentJoinedEvent)
 
     def handle(self, event):
         if isinstance(event, PlayerStatusEvent):
             self.player_list.update_display(event.status_dicts)
         else:
             Logger.error("Cannot handle type %s" % event)
+
+    def on_invite(self, oie):
+        if self.connection:
+            self.connection.send("invite %s" % oie.player_name)
+
+    def on_join(self, oje):
+        if self.connection:
+            # just refresh
+            self.connection.send("board")
 
     def connect(self, e):
         if not self.connection:

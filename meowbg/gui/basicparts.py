@@ -7,13 +7,14 @@ from kivy.uix.image import Image
 from kivy.uix.widget import Widget
 from meowbg.core.board import WHITE, BLACK
 from meowbg.core.bot import Bot
-from meowbg.core.match import Match, OfflineMatch
-from meowbg.core.events import AcceptEvent, RejectEvent, MatchEvent
+from meowbg.core.match import OfflineMatch
+from meowbg.core.events import MatchEvent
 from meowbg.core.messaging import broadcast, register
 from meowbg.core.player import HumanPlayer
 from meowbg.gui.guievents import (CommitAttemptEvent, UndoAttemptEvent,
                                   RollAttemptEvent, DoubleAttemptEvent,
-                                  ResignAttemptEvent, AcceptAttemptEvent)
+                                  ResignAttemptEvent, AcceptAttemptEvent,
+                                  RejectAttemptEvent)
 
 
 class Checker(Image):
@@ -162,7 +163,7 @@ class ButtonPanel(BoxLayout):
         broadcast(AcceptAttemptEvent(self.represented_color))
 
     def reject(self):
-        broadcast(RejectEvent(self.represented_color))
+        broadcast(RejectAttemptEvent(self.represented_color))
 
     def resign(self):
         broadcast(ResignAttemptEvent(self.represented_color))

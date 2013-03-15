@@ -23,8 +23,8 @@ from meowbg.gui.boardwidget import BoardWidget
 from meowbg.gui.guievents import (MoveAttemptEvent, PauseEvent,
                                   MatchFocusEvent, CommitAttemptEvent, UndoAttemptEvent,
                                   RollAttemptEvent, DoubleAttemptEvent, ResignAttemptEvent,
-                                  AcceptAttemptEvent)
-from meowbg.core.events import (MatchEvent, RejectEvent, MatchEndEvent, GameEndEvent,
+                                  AcceptAttemptEvent, RejectAttemptEvent)
+from meowbg.core.events import (MatchEvent, MatchEndEvent, GameEndEvent,
                                 JoinChallengeEvent, ResignOfferEvent, GlobalShutdownEvent,
                                 AcceptJoinEvent)
 from meowbg.core.messaging import register, broadcast
@@ -113,10 +113,10 @@ class MatchWidget(FloatLayout):
         register(sync_call(self.attempt_undo), UndoAttemptEvent)
         register(sync_call(self.attempt_resign), ResignAttemptEvent)
         register(sync_call(self.attempt_accept), AcceptAttemptEvent)
+        register(sync_call(self.attempt_reject), RejectAttemptEvent)
 
         register(sync_call(self.announce_game_winner), GameEndEvent)
         register(sync_call(self.suggest_join), JoinChallengeEvent)
-        register(sync_call(self.attempt_reject), RejectEvent)
         register(sync_call(self.pause), PauseEvent)
         register(sync_call(self.end_match), MatchEndEvent)
 

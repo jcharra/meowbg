@@ -3,7 +3,7 @@ import re
 import logging
 from meowbg.core.board import Board, BLACK, WHITE
 from meowbg.core.match import OnlineMatch, OfflineMatch
-from meowbg.core.events import (InvitationEvent, MoveEvent, MatchEvent, PlayerStatusEvent, DiceEvent,
+from meowbg.core.events import (IncomingInvitationEvent, MoveEvent, MatchEvent, PlayerStatusEvent, DiceEvent,
                                 RollRequest, AcceptEvent, RejectEvent, MatchEndEvent, AcceptJoinEvent,
                                 ResignOfferEvent, JoinChallengeEvent, OpponentJoinedEvent,
                                 GameEndEvent)
@@ -72,9 +72,6 @@ class FIBSTranslator(object):
             return "reject"
         elif isinstance(event, AcceptJoinEvent):
             return "join"
-        elif isinstance(event, OpponentJoinedEvent):
-            # We need to force a refresh on opponent join
-            return "board"
         elif isinstance(event, ResignOfferEvent):
             resign_choice = {1: 'n', 2: 'g', 3: 'b'}
             return "resign %s" % resign_choice.get(event.points, 'n')
@@ -170,30 +167,44 @@ class FIBSTranslator(object):
             elif line.find(" wants to play ") != -1:
                 if "unlimited match" in line:
                     args = re.search("(?P<user>\S+) wants to play an unlimited point match with you", line).groupdict()
-                    found_events.append(InvitationEvent(player_name=args['user']))
+                    found_events.append(IncomingInvitationEvent(player_name=args['user']))
                 else:
                     args = re.search("(?P<user>\S+) wants to play a (?P<length>\d+) point match with you", line).groupdict()
-                    found_events.append(InvitationEvent(player_name=args['user'], length=args['length']))
+                    found_events.append(IncomingInvitationEvent(player_name=args['user'], length=args['length']))
                 logger.warn("Invite event: Got args %s" % args)
             elif line.find(" wants to resume ") != -1:
                 # user wants to resume a saved match with you.
                 args = re.search("(?P<user>\S+) wants to resume a saved match with you", line).groupdict()
-                found_events.append(InvitationEvent(player_name=args['user']))
+                found_events.append(IncomingInvitationEvent(player_name=args['user']))
             elif re.search("\S+ has doubled you. Type 'accept' or 'reject'.", line):
                 if not self.current_match:
                     continue
-                pname = re.search("(\S)+ has doubled you", line).groups()[0]
+                pname = re.search("(\S+) has doubled you", line).groups()[0]
                 color = self.current_match.get_players_color(pname)
+
+                if not color:
+                    logger.error("Doubling by player %s found, who does not participate in match" % pname)
+
                 found_events.append(DoubleAttemptEvent(color))
+            elif re.search("\S+ doubles. Type 'accept' or 'reject'.", line):
+                if not self.current_match:
+                    continue
+                pname = re.search("(\S+) doubles. Type", line).groups()[0]
+                color = self.current_match.get_players_color(pname)
+
+                if not color:
+                    logger.error("Doubling by player %s found, who does not participate in match" % pname)
+
+                found_events.append(DoubleAttemptEvent(color))
+            elif re.search("There's no saved match with (\S+). Please give a match length.", line):
+                pass
             elif re.search("\S+ wins? \d+ points", line):
                 if not self.current_match:
                     continue
                 pname, points = re.search("(\S+) wins? (\d+) points", line).groups()
                 found_events.append(GameEndEvent(pname, points, self.current_match.get_score()))
-            elif line.find(" has joined you. Your running match was loaded."):
-                # Caused an infinite loop ... ?!
-                #found_events.append(OpponentJoinedEvent())
-                pass
+            elif line.find(" has joined you. Your running match was loaded.") != -1:
+                found_events.append(OpponentJoinedEvent())
             elif line.find("Type 'join' if you want to play the next game") != -1:
                 if self.current_match:
                     found_events.append(JoinChallengeEvent(self.current_match))
@@ -269,6 +280,10 @@ class FIBSTranslator(object):
 
         match.cube = parts[37]
         match.may_double = {BLACK: parts[38], WHITE: parts[39]}
+
+        just_doubled = parts[40]
+        if just_doubled:
+            match.open_cube_challenge_from_color = opponents_color
 
         on_field, on_bar = self.parse_board_str(board_str)
         match.board = Board(on_field=on_field, on_bar=on_bar)

@@ -51,6 +51,10 @@ class AcceptAttemptEvent(Attempt):
     pass
 
 
+class RejectAttemptEvent(Attempt):
+    pass
+
+
 class ResignAttemptEvent(Attempt):
     pass
 

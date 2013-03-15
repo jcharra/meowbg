@@ -101,10 +101,15 @@ class MessageEvent(object):
         self.msg = msg
 
 
-class InvitationEvent(object):
+class IncomingInvitationEvent(object):
     def __init__(self, player_name, length=0):
         self.player_name = player_name
         self.length = length
+
+
+class OutgoingInvitationEvent(object):
+    def __init__(self, player_name):
+        self.player_name = player_name
 
 
 class PlayerStatusEvent(object):
