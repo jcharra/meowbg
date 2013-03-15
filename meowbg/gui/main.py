@@ -10,27 +10,28 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.popup import Popup
-from kivy.uix.scrollview import ScrollView
 from kivy.uix.textinput import TextInput
 from kivy.factory import Factory
 from kivy.logger import Logger
 from kivy.resources import resource_add_path
 from kivy.vector import Vector
+
 from meowbg.core.board import WHITE, BLACK
-from meowbg.gui.basicparts import Spike, SpikePanel, IndexRow, ButtonPanel, BarPanel, BearoffPanel, Checker, Cube
+from meowbg.gui.basicparts import (Spike, SpikePanel, IndexRow, ButtonPanel, BarPanel,
+                                   BearoffPanel, Checker, Cube)
 from meowbg.gui.boardwidget import BoardWidget
-from meowbg.gui.guievents import (MoveAttemptEvent, AnimationStartedEvent, PauseEvent, MatchFocusEvent, CommitAttemptEvent,
-                                  UndoAttemptEvent, RollAttemptEvent, DoubleAttemptEvent, ResignAttemptEvent,
+from meowbg.gui.guievents import (MoveAttemptEvent, PauseEvent,
+                                  MatchFocusEvent, CommitAttemptEvent, UndoAttemptEvent,
+                                  RollAttemptEvent, DoubleAttemptEvent, ResignAttemptEvent,
                                   AcceptAttemptEvent)
-from meowbg.core.events import (PlayerStatusEvent, MatchEvent, RejectEvent,
-                                MatchEndEvent, GameEndEvent, JoinChallengeEvent, ResignOfferEvent, GlobalShutdownEvent,
+from meowbg.core.events import (MatchEvent, RejectEvent, MatchEndEvent, GameEndEvent,
+                                JoinChallengeEvent, ResignOfferEvent, GlobalShutdownEvent,
                                 AcceptJoinEvent)
 from meowbg.core.messaging import register, broadcast
 from meowbg.gui.popups import OKDialog, ResignDialog, BetweenGamesDialog
-from meowbg.network.connectionpool import share_connection
-from meowbg.network.telnetconn import TelnetConnection
-from meowbg.network.translation import FIBSTranslator
 from meowbg.core.eventqueue import GlobalTaskQueue
+
+from networkwidget import NetworkWidget
 
 resource_add_path(os.path.dirname(__file__) + "/resources")
 
@@ -113,7 +114,6 @@ class MatchWidget(FloatLayout):
         register(sync_call(self.attempt_resign), ResignAttemptEvent)
         register(sync_call(self.attempt_accept), AcceptAttemptEvent)
 
-        register(sync_call(self.animate_move), AnimationStartedEvent)
         register(sync_call(self.announce_game_winner), GameEndEvent)
         register(sync_call(self.suggest_join), JoinChallengeEvent)
         register(sync_call(self.attempt_reject), RejectEvent)
@@ -294,82 +294,6 @@ class MatchWidget(FloatLayout):
         animation = Animation(pos=target_pos, duration=duration)
         animation.on_complete = on_animation_complete
         animation.start(new_checker)
-
-
-class PlayerListWidget(ScrollView):
-    def __init__(self, **kwargs):
-        ScrollView.__init__(self, **kwargs)
-        self.grid = GridLayout(cols=2, spacing=10,
-                               size=(self.width, self.height),
-                               size_hint=(None, None))
-        self.grid.bind(minimum_height=self.grid.setter('height'))
-
-        self.add_widget(self.grid)
-
-    def update_display(self, status_dicts):
-        for item in status_dicts:
-            self.grid.add_widget(Label(text=item['name'],
-                                       size=(self.width/2, 25),
-                                       size_hint=(None, None)))
-            self.grid.add_widget(Label(text=item['rating'],
-                                       size=(self.width/2, 25),
-                                       size_hint=(None, None)))
-
-
-class NetworkWidget(GridLayout):
-    def __init__(self, **kwargs):
-        kwargs.update({"cols": 1})
-        GridLayout.__init__(self, **kwargs)
-
-        self.player_list = PlayerListWidget(size_hint=(1, 15))
-        self.add_widget(self.player_list)
-
-        connect_button = Button(text="Connect", size_hint=(1, 1))
-        connect_button.bind(on_press=self.connect)
-        self.add_widget(connect_button)
-
-        self.raw_text_input = TextInput(text="invite expertBotI",
-                                        multiline=False,
-                                        size_hint=(1, 1))
-        self.raw_text_input.bind(on_text_validate=self.send_command)
-        self.add_widget(self.raw_text_input)
-        self.connection = None
-
-        register(self.handle, PlayerStatusEvent)
-        register(self.tear_down, GlobalShutdownEvent)
-
-    def handle(self, event):
-        if isinstance(event, PlayerStatusEvent):
-            self.player_list.update_display(event.status_dicts)
-        else:
-            Logger.error("Cannot handle type %s" % event)
-
-    def connect(self, e):
-        if not self.connection:
-            self.connection = TelnetConnection("Tigergammon")
-            share_connection("Tigergammon", self.connection)
-
-            self.connection.connect(self.handle_input)
-            self.parser = FIBSTranslator()
-        else:
-            Logger.info("Already connected to %s" % self.connection)
-
-    def tear_down(self, e):
-        Logger.warn("Network shutdown")
-        if self.connection:
-            self.connection.shutdown()
-
-    def handle_input(self, data):
-        Logger.warn(data)
-        events = self.parser.parse_events(data)
-        for e in events:
-            broadcast(e)
-
-    def send_command(self, *args):
-        cmd = self.raw_text_input.text
-        if cmd:
-            Logger.warn("Sending raw command %s" % cmd)
-            self.connection.send(cmd)
 
 
 class BoardApp(App):

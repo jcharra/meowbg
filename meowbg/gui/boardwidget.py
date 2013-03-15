@@ -4,10 +4,10 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.widget import Widget
 from meowbg.core.board import WHITE, BLACK, BAR_INDEX, OFF_INDEX
 from meowbg.core.eventqueue import GlobalTaskQueue
-from meowbg.core.events import GlobalShutdownEvent, DiceEvent, CubeEvent
+from meowbg.core.events import DiceEvent, CubeEvent
 from meowbg.core.messaging import broadcast, register
 from meowbg.gui.basicparts import IndexRow, SpikePanel, DicePanel, BarPanel, BearoffPanel, Cube
-from meowbg.gui.guievents import MoveAttemptEvent, AnimationStartedEvent, HitEvent, UnhitEvent
+from meowbg.gui.guievents import MoveAttemptEvent
 
 
 class BoardWidget(GridLayout):
