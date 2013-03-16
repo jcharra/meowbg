@@ -128,10 +128,10 @@ def execute_script():
     time.sleep(1)
     #test_hit()
     #test_undo_after_hit()
-    #test_between_games()
+    test_between_games()
     #test_new_game()
     #test_double()
-    test_no_moves_possible()
+    #test_no_moves_possible()
 
 if __name__ == '__main__':
     share_connection("Tigergammon", DummyConnection())

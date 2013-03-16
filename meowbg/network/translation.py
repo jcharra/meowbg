@@ -6,7 +6,7 @@ from meowbg.core.match import OnlineMatch, OfflineMatch
 from meowbg.core.events import (IncomingInvitationEvent, MoveEvent, MatchEvent, PlayerStatusEvent, DiceEvent,
                                 RollRequest, AcceptEvent, RejectEvent, MatchEndEvent, AcceptJoinEvent,
                                 ResignOfferEvent, JoinChallengeEvent, OpponentJoinedEvent,
-                                GameEndEvent)
+                                GameEndEvent, IncompleteInvitationEvent)
 from meowbg.core.player import HumanPlayer, OnlinePlayerProxy
 from meowbg.gui.guievents import DoubleAttemptEvent, MoveAttemptEvent
 
@@ -196,13 +196,19 @@ class FIBSTranslator(object):
                     logger.error("Doubling by player %s found, who does not participate in match" % pname)
 
                 found_events.append(DoubleAttemptEvent(color))
-            elif re.search("There's no saved match with (\S+). Please give a match length.", line):
-                pass
-            elif re.search("\S+ wins? \d+ points", line):
+            elif re.search("There's no saved match with \S+. Please give a match length.", line):
+                pname = re.search("There's no saved match with (\S+). Please give a match length.", line).groups()[0]
+                found_events.append(IncompleteInvitationEvent(pname))
+            elif re.search("(\S+) (accepts and)? wins? (\d+) points", line):
                 if not self.current_match:
                     continue
-                pname, points = re.search("(\S+) wins? (\d+) points", line).groups()
-                found_events.append(GameEndEvent(pname, points, self.current_match.get_score()))
+                pname, _, points = re.search("(\S+) (accepts and)? wins? (\d+) points", line).groups()
+
+                if not self.current_match.get_players_color(pname):
+                    logger.info("Dismissing notification about %s" % pname)
+                    continue
+
+                found_events.append(GameEndEvent(pname, points))
             elif line.find(" has joined you. Your running match was loaded.") != -1:
                 found_events.append(OpponentJoinedEvent())
             elif line.find("Type 'join' if you want to play the next game") != -1:
@@ -240,14 +246,15 @@ class FIBSTranslator(object):
             logger.error("Illegal board state: %s" % match_str)
             return
 
-        your_color, opponents_color = (WHITE, BLACK) if parts[41] == 1 else (BLACK, WHITE)
+        your_color, opponents_color = (WHITE, BLACK) if parts[41] == -1 else (BLACK, WHITE)
         # TODO: simplify
         if parts[1].lower() == "you":
             match.register_player(HumanPlayer(parts[1], your_color), your_color)
             match.register_player(OnlinePlayerProxy(parts[2], opponents_color, self), opponents_color)
         else:
-            match.register_player(HumanPlayer(parts[2], your_color), your_color)
-            match.register_player(OnlinePlayerProxy(parts[1], opponents_color, self), opponents_color)
+            logger.error("Kiebitzing not supported yet")
+            match.register_player(HumanPlayer(parts[1], your_color), your_color)
+            match.register_player(HumanPlayer(parts[2], opponents_color), opponents_color)
 
         parts[3:] = map(int, parts[3:])
 

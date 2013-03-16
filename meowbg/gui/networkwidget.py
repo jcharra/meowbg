@@ -3,10 +3,13 @@ from meowbg.core.messaging import register, broadcast
 from meowbg.network.connectionpool import share_connection
 from meowbg.network.telnetconn import TelnetConnection
 from meowbg.network.translation import FIBSTranslator
-from meowbg.core.player import OnlinePlayerProxy
 from meowbg.core.events import (PlayerStatusEvent, GlobalShutdownEvent,
-                                OutgoingInvitationEvent, OpponentJoinedEvent)
+                                OutgoingInvitationEvent, OpponentJoinedEvent,
+                                IncompleteInvitationEvent)
+from popups import ChooseMatchLengthDialog
 
+
+from kivy.graphics import Color, Rectangle
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.scrollview import ScrollView
@@ -14,6 +17,7 @@ from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.logger import Logger
+from kivy.uix.popup import Popup
 
 
 class PlayerListWidget(ScrollView):
@@ -37,7 +41,10 @@ class PlayerRow(BoxLayout):
     def __init__(self, *args, **kwargs):
         BoxLayout.__init__(self, *args, **kwargs)
         self.player_info = kwargs.get("player_info")
+        self.render()
 
+    def render(self):
+        self.clear_widgets()
         self.add_widget(Label(text=self.player_info["name"]))
         self.add_widget(Label(text=self.player_info["rating"]))
         self.add_widget(Label(text=self.player_info["experience"]))
@@ -70,6 +77,7 @@ class NetworkWidget(GridLayout):
         register(self.handle, PlayerStatusEvent)
         register(self.tear_down, GlobalShutdownEvent)
         register(self.on_invite, OutgoingInvitationEvent)
+        register(self.complete_invite, IncompleteInvitationEvent)
         register(self.on_join, OpponentJoinedEvent)
 
     def handle(self, event):
@@ -80,12 +88,30 @@ class NetworkWidget(GridLayout):
 
     def on_invite(self, oie):
         if self.connection:
-            self.connection.send("invite %s" % oie.player_name)
+            length = oie.length or ""
+            self.connection.send("invite %s %s" % (oie.player_name, length))
 
     def on_join(self, oje):
         if self.connection:
             # just refresh
             self.connection.send("board")
+
+    def complete_invite(self, e):
+        pname = e.player_name
+        choice_dialog = ChooseMatchLengthDialog()
+        popup = Popup(title='Invitation',
+                      content=choice_dialog,
+                      size_hint=(None, None),
+                      size=(400, 400))
+
+        def on_choice(e):
+            choice = choice_dialog.choice.text
+            popup.dismiss()
+            broadcast(OutgoingInvitationEvent(pname, int(choice)))
+
+        choice_dialog.ok_button.bind(on_press=on_choice)
+        choice_dialog.cancel_button.bind(on_press=popup.dismiss)
+        popup.open()
 
     def connect(self, e):
         if not self.connection:

@@ -141,6 +141,7 @@ class ButtonPanel(BoxLayout):
         match = me.match
         for color, player in match.players.items():
             if isinstance(player, HumanPlayer):
+                Logger.info("Setting my color to %s" % color)
                 self.represented_color = color
                 return
         Logger.warn("No human player found among %s .. defaulting control to color WHITE" % match.players.items())

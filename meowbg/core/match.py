@@ -251,7 +251,7 @@ class OfflineMatch(Match):
             self.finished = True
             broadcast(MatchEndEvent(winner_name, self.score))
         else:
-            broadcast(GameEndEvent(winner_name, points_gained, self.get_score()))
+            broadcast(GameEndEvent(winner_name, points_gained))
             self.new_game()
 
     def accept_open_offer(self, color):

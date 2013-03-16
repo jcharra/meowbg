@@ -15,6 +15,9 @@ class Player(object):
     def __init__(self, name, color):
         self.name, self.color = name, color
 
+    def exit(self):
+        pass
+
 
 class HumanPlayer(Player):
     """
@@ -41,10 +44,8 @@ class OnlinePlayerProxy(object):
         self.connection.send(fibs_full_move)
 
     def on_default(self, r):
-        logger.warn("Default handler for event %s with color %s" % (r, getattr(r, 'color')))
-
-        if hasattr(r, 'color') and r.color != self.color:
-            logger.error("Not for me to dispatch!")
+        if hasattr(r, 'color') and r.color == self.color:
+            logger.error("This was triggered by me ... ignoring")
             return
 
         cmd = self.event_translator.encode(r)

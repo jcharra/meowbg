@@ -137,7 +137,7 @@ class MatchWidget(FloatLayout):
         event queue. If the move hits a checker, a hit is animated as well.
         """
         origin, target = move_attempt_event.origin, move_attempt_event.target
-        if self.match.is_move_possible(origin, target, self.match.color_to_move_next):
+        if self.match and self.match.is_move_possible(origin, target, self.match.color_to_move_next):
 
             moving_checker, target_spike = self.board.get_animation_data(origin, target)
 
@@ -220,7 +220,8 @@ class MatchWidget(FloatLayout):
     def announce_game_winner(self, e, on_finish):
         verb = "wins" if e.winner.lower() != "you" else "win"
         point_str = "points" if e.points != 1 else "point"
-        ok_dialog = OKDialog(text='The score is now %s : %s' % e.score)
+        score = self.match.get_score()
+        ok_dialog = OKDialog(text='The score is now %s : %s' % score)
         popup = Popup(title='%s %s %s %s' % (e.winner, verb, e.points, point_str),
                       content=ok_dialog,
                       size_hint=(None, None), size=(400, 400))

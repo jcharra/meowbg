@@ -3,6 +3,8 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.uix.checkbox import CheckBox
+from kivy.uix.textinput import TextInput
+
 
 class OKDialog(GridLayout):
     def __init__(self, **kwargs):
@@ -13,6 +15,7 @@ class OKDialog(GridLayout):
         self.ok_button = Button(text="OK", size_hint=(1, 1))
         self.add_widget(self.ok_button)
 
+
 class BetweenGamesDialog(GridLayout):
     def __init__(self, **kwargs):
         kwargs.update({"cols": 1})
@@ -22,6 +25,7 @@ class BetweenGamesDialog(GridLayout):
         self.add_widget(self.ok_button)
         self.cancel_button = Button(text="Leave", size_hint=(1, 1))
         self.add_widget(self.cancel_button)
+
 
 class ResignOptions(GridLayout):
     NORMAL, GAMMON, BACKGAMMON = 1, 2, 3
@@ -57,6 +61,25 @@ class ResignDialog(GridLayout):
         self.add_widget(Label(text="Resign how?", size_hint=(1, 3)))
         self.options = ResignOptions(size_hint=(1, 2))
         self.add_widget(self.options)
+
+        self.ok_button = Button(text="OK", size_hint=(1, 1))
+        self.add_widget(self.ok_button)
+
+        self.cancel_button = Button(text="Cancel", size_hint=(1, 1))
+        self.add_widget(self.cancel_button)
+
+
+class ChooseMatchLengthDialog(GridLayout):
+    def __init__(self, **kwargs):
+        kwargs.update({"rows": 4})
+        GridLayout.__init__(self, **kwargs)
+        self.add_widget(Label(text="Please pick a match length", size_hint=(1, 1)))
+
+        self.choice = TextInput(text="3",
+                                multiline=False,
+                                size_hint=(1, 1))
+
+        self.add_widget(self.choice)
 
         self.ok_button = Button(text="OK", size_hint=(1, 1))
         self.add_widget(self.ok_button)

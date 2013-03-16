@@ -67,8 +67,8 @@ class RejectEvent(object):
 
 
 class GameEndEvent(object):
-    def __init__(self, winner, points, score):
-        self.winner, self.points, self.score = winner, points, score
+    def __init__(self, winner, points):
+        self.winner, self.points = winner, points
 
 
 class MatchEndEvent(object):
@@ -108,6 +108,16 @@ class IncomingInvitationEvent(object):
 
 
 class OutgoingInvitationEvent(object):
+    def __init__(self, player_name, length=0):
+        self.player_name, self.length = player_name, length
+
+
+class IncompleteInvitationEvent(object):
+    """
+    Player X has been invited by you, but there is no
+    saved match against him. So you need to complete your
+    invitation by specifying a match length.
+    """
     def __init__(self, player_name):
         self.player_name = player_name
 
