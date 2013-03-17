@@ -3,7 +3,7 @@ import time
 from meowbg.core.board import BLACK, WHITE
 from meowbg.core.bot import Bot
 from meowbg.core.dice import FakeDice
-from meowbg.core.events import MatchEvent, DiceEvent
+from meowbg.core.events import MatchEvent, DiceEvent, IncompleteInvitationEvent
 from meowbg.core.messaging import broadcast
 from meowbg.gui.guievents import (UndoAttemptEvent, MoveAttemptEvent,
                                   CommitAttemptEvent, RollAttemptEvent)
@@ -124,14 +124,33 @@ def test_double():
     broadcast(MatchEvent(match))
 
 
+def test_incomplete_invitation():
+    match = parse("board:player1:player2"
+                  ":1"       # match length
+                  ":0:0"     # score
+                  ":0"       # bar player 1
+                  ":1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:-1" # board
+                  ":0"       # bar player 2
+                  ":-1"       # turn
+                  ":6:2:0:0" # dice
+                  ":1"       # cube
+                  ":1:1"     # may double
+                  ":0:1:-1:0:25:0:0:0:0:2:0:0:0", # cruft
+                  online=False)
+    broadcast(MatchEvent(match))
+    time.sleep(0.4)
+    broadcast(IncompleteInvitationEvent("someone"))
+
+
 def execute_script():
     time.sleep(1)
     #test_hit()
     #test_undo_after_hit()
-    test_between_games()
+    #test_between_games()
     #test_new_game()
     #test_double()
     #test_no_moves_possible()
+    test_incomplete_invitation()
 
 if __name__ == '__main__':
     share_connection("Tigergammon", DummyConnection())

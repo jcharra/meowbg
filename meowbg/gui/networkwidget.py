@@ -99,13 +99,13 @@ class NetworkWidget(GridLayout):
     def complete_invite(self, e):
         pname = e.player_name
         choice_dialog = ChooseMatchLengthDialog()
-        popup = Popup(title='Invitation',
+        popup = Popup(title='Invite %s to a match' % pname,
                       content=choice_dialog,
                       size_hint=(None, None),
                       size=(400, 400))
 
         def on_choice(e):
-            choice = choice_dialog.choice.text
+            choice = choice_dialog.choice_label.text
             popup.dismiss()
             broadcast(OutgoingInvitationEvent(pname, int(choice)))
 

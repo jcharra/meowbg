@@ -4,7 +4,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.uix.checkbox import CheckBox
 from kivy.uix.textinput import TextInput
-
+from kivy.uix.slider import Slider
 
 class OKDialog(GridLayout):
     def __init__(self, **kwargs):
@@ -70,19 +70,33 @@ class ResignDialog(GridLayout):
 
 
 class ChooseMatchLengthDialog(GridLayout):
+    DEFAULT_CHOICE = 3
+
     def __init__(self, **kwargs):
-        kwargs.update({"rows": 4})
+        kwargs.update({"cols": 1})
         GridLayout.__init__(self, **kwargs)
+        self.choice = self.DEFAULT_CHOICE
         self.add_widget(Label(text="Please pick a match length", size_hint=(1, 1)))
 
-        self.choice = TextInput(text="3",
-                                multiline=False,
-                                size_hint=(1, 1))
+        self.choice_label = Label(text=str(self.choice),
+                                  font_size=20,
+                                  size_hint=(1, 2))
+        self.add_widget(self.choice_label)
 
-        self.add_widget(self.choice)
+        slider = Slider(min=1, max=22, value=self.choice, size_hint=(1, 2))
+        slider.bind(value=self.update_val)
+        self.add_widget(slider)
 
         self.ok_button = Button(text="OK", size_hint=(1, 1))
         self.add_widget(self.ok_button)
 
         self.cancel_button = Button(text="Cancel", size_hint=(1, 1))
         self.add_widget(self.cancel_button)
+
+    def update_val(self, slider, val):
+        self.choice = int(val)
+        text = str(self.choice)
+        if val == 22:
+            text = u"\u221E"
+        self.choice_label.text = text
+
