@@ -33,7 +33,7 @@ class SynchronizedTaskQueue(object):
             Clock.schedule_once(lambda e: self.do_next(), 0.1)
 
     def do_next(self):
-        logger.info("Now executing %s" % self.running_func)
+        logger.warn("Now executing %s" % self.running_func)
         self.running_func(self.next_event, self.release_and_proceed)
 
 GlobalTaskQueue = SynchronizedTaskQueue()

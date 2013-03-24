@@ -150,7 +150,7 @@ class MatchWidget(FloatLayout):
 
             self.match.execute_move(origin, target)
         else:
-            Logger.warn("Move from %s to %s not possible" % (origin, target))
+            Logger.warn("Move from %s to %s not possible in match %s" % (origin, target, self.match))
             on_finish()
 
     def attempt_undo(self, undo_att_event, on_finish):

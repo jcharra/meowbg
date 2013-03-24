@@ -18,6 +18,9 @@ class Player(object):
     def exit(self):
         pass
 
+    def __repr__(self):
+        return "%s '%s'" % (self.__class__, self.name)
+
 
 class HumanPlayer(Player):
     """
@@ -37,7 +40,7 @@ class OnlinePlayerProxy(object):
         register(self.on_default, ResignOfferEvent)
         register(self.on_default, DoubleAttemptEvent)
 
-        self.connection = get_connection("Tigergammon")
+        self.connection = get_connection()
 
     def on_commit(self, ce):
         fibs_full_move = self.event_translator.encode(MoveEvent(ce.moves))
@@ -59,3 +62,6 @@ class OnlinePlayerProxy(object):
         unregister(self.on_default, ResignOfferEvent)
         unregister(self.on_default, DoubleAttemptEvent)
         self.connection = None
+
+    def __repr__(self):
+        return "Proxy for '%s'" % self.name

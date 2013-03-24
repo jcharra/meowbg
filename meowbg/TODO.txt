@@ -2,12 +2,23 @@
 
 BUGS:
 
-Online game: Opponent moves from bar
+On FIBS, match events/dice events do not cause the
+possible moves to be calculated
 
 Starting new AI game after online game causes errors
 => finalize matches correctly, especially online stuff
 
 "New Ai game" registers new players each time ...
+
+Endgame Event shows old score
+
+Dice do not change to other field when dancing
+Dice do not show at dice events
+
+Moves are not animated on FIBS
+
+
+
 
 TODOs:
 

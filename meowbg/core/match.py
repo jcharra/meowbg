@@ -182,7 +182,7 @@ class OnlineMatch(Match):
         broadcast(CommitEvent(pending_moves))
 
     def end_game(self, winner, points):
-        pass
+        broadcast(MatchEvent(self))
 
     def accept_open_offer(self, color):
         broadcast(AcceptEvent(color))

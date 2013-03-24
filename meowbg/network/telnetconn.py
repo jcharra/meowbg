@@ -7,8 +7,9 @@ import threading
 
 logger = logging.getLogger("TelnetClient")
 logger.addHandler(logging.FileHandler('telnet.log'))
-logger.addHandler(logging.StreamHandler())
+#logger.addHandler(logging.StreamHandler())
 logger.setLevel(logging.INFO)
+
 
 class TelnetConnection(object):
     HOSTS = {'Tigergammon': ('tigergammon.com', 4321),
@@ -18,9 +19,7 @@ class TelnetConnection(object):
 
     def __init__(self, host_key=None, username="", password=""):
         self.host, self.port = self.HOSTS[host_key] if host_key else self.HOSTS['Tigergammon']
-        #self.username = (username or u'_joc_').encode('utf-8')
-        #self.password = (password or u'qwertz').encode('utf-8')
-        self.username, self.password = 'meowbg_joe', 'qwertz'
+        self.username, self.password = username or 'meowbg_joe', password or 'qwertz'
         self.tn_conn = None
         self.reading_thread = None
         self.alive = False

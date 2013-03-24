@@ -11,6 +11,7 @@ from meowbg.core.player import HumanPlayer, OnlinePlayerProxy
 from meowbg.gui.guievents import DoubleAttemptEvent, MoveAttemptEvent
 
 logger = logging.getLogger("EventParser")
+logger.addHandler(logging.FileHandler("parsing.log"))
 logger.addHandler(logging.StreamHandler())
 
 
@@ -80,16 +81,17 @@ class FIBSTranslator(object):
         return ""
 
     def parse_events(self, text):
-        lines = filter(bool, [li.strip(" >") for li in text.split("\r\n")])
+        lines = filter(bool, [str(li.strip(" >")) for li in text.split("\r\n")])
         found_events = []
         multiline_buffer = []
 
         for line in lines:
             if line.startswith("board:"):
+            #if re.search("board:\S+:\S+:([-\d]+){50}", line):
                 match = self.parse_match(line)
                 found_events.append(MatchEvent(match))
                 self.current_match = match
-            if line.startswith("5 "):
+            elif line.startswith("5 "):
                 multiline_buffer.append(line)
                 continue
             elif line.startswith("6"):
@@ -225,10 +227,11 @@ class FIBSTranslator(object):
                 score = {BLACK: score1, WHITE: score2}
                 found_events.append(MatchEndEvent(winner, score))
             else:
-                logger.warn("Not parseable: '%s'" % line)
+                logger.warn("Not parseable: %r" % line)
 
         for e in found_events:
-            logger.warn("Found event %s with dict %s" % (e, e.__dict__))
+            pass
+            #logger.warn("Found event %s with dict %s" % (e, e.__dict__))
 
         return found_events
 

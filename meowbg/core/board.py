@@ -69,7 +69,8 @@ class Board(object):
         """
         self.move_stack = []
         self.possible_full_moves_with_initial_dice = self.find_possible_moves(dice, color)
-        logger.warn("Calculated moves for %s with dice %s: %s" % (color, dice, self.possible_full_moves_with_initial_dice))
+        logger.warn("Calculated moves for %s with dice %s: %s"
+                    % (color, dice, self.possible_full_moves_with_initial_dice))
 
     def get_remaining_possible_moves(self):
         already_made = [m[0] for m in self.move_stack]

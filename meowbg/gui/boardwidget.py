@@ -140,7 +140,7 @@ class BoardWidget(GridLayout):
         Update display according to what's in the given match
         """
         self.match = match
-        Logger.info("Sync with %s" % self.match)
+        #Logger.info("Sync with %s" % self.match)
 
         self.clear_board()
 
@@ -172,9 +172,9 @@ class BoardWidget(GridLayout):
 
     def set_cube_to_owning_color(self):
         if self.match.may_double[WHITE] and not self.match.may_double[BLACK]:
-            target = self.lower_cube_container
-        elif self.match.may_double[BLACK] and not self.match.may_double[WHITE]:
             target = self.upper_cube_container
+        elif self.match.may_double[BLACK] and not self.match.may_double[WHITE]:
+            target = self.lower_cube_container
         else:
             target = self.middle_cube_container
         self.set_cube(target, self.match.cube)

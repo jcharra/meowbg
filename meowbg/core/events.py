@@ -5,7 +5,9 @@ class MatchEvent(object):
         self.match = match
 
     def __repr__(self):
-        return "MatchEvent %s" % id(self)
+        return ("MatchEvent: %s (WHITE) vs. %s (BLACK). Turn: %s"
+                % (self.match.players[1], self.match.players[2],
+                   self.match.color_to_move_next))
 
 
 class RollRequest(object):
