@@ -56,6 +56,9 @@ class FIBSTranslator(object):
     def __init__(self):
         self.current_match = None
 
+    def encode_refresh(self):
+        return "board"
+
     def encode(self, event):
         """
         TODO: Translate the various kinds of events to FIBS messages.
@@ -145,7 +148,7 @@ class FIBSTranslator(object):
                 pass
             elif re.search("^\S+ rolls? [1-6] and [1-6]", line):
                 player_name, die1, die2 = re.search("^(\S+) rolls? ([1-6]) and ([1-6])", line).groups()
-                found_events.append(DiceEvent([die1, die2]))
+                found_events.append(DiceEvent(map(int, [die1, die2])))
             elif re.search("^[a-zA-Z0-9_]+ moves ", line):
 
                 if not self.current_match:

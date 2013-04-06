@@ -73,6 +73,7 @@ class NetworkWidget(GridLayout):
         self.raw_text_input.bind(on_text_validate=self.send_command)
         self.add_widget(self.raw_text_input)
         self.connection = None
+        self.active = False
 
         register(self.handle, PlayerStatusEvent)
         register(self.tear_down, GlobalShutdownEvent)
@@ -81,6 +82,10 @@ class NetworkWidget(GridLayout):
         register(self.on_join, OpponentJoinedEvent)
 
     def handle(self, event):
+        if not self.active:
+            Logger.info("Ignoring player status event %s" % event)
+            return
+
         if isinstance(event, PlayerStatusEvent):
             self.player_list.update_display(event.status_dicts)
         else:
@@ -95,6 +100,10 @@ class NetworkWidget(GridLayout):
         if self.connection:
             # just refresh
             self.connection.send("board")
+
+    def on_toggle(self, accordion_item, is_collapsed):
+        Logger.warn("Network widget collapsed: %s" % is_collapsed)
+        self.active = not is_collapsed
 
     def complete_invite(self, e):
         pname = e.player_name
@@ -115,8 +124,8 @@ class NetworkWidget(GridLayout):
 
     def connect(self, e):
         if not self.connection:
-            self.connection = TelnetConnection("Tigergammon")
-            #self.connection = TelnetConnection("FIBS", "_joc_", "qwertz")
+            #self.connection = TelnetConnection("Tigergammon")
+            self.connection = TelnetConnection("FIBS", "_joc_", "qwertz")
             share_connection("Tigergammon", self.connection)
 
             self.connection.connect(self.handle_input)

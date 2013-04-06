@@ -49,8 +49,11 @@ class MainWidget(GridLayout):
 
         self.lobby_accordion = AccordionItem(title='Network')
         self.lobby_widget = NetworkWidget()
+
         self.lobby_accordion.add_widget(self.lobby_widget)
         self.accordion.add_widget(self.lobby_accordion)
+
+        self.lobby_accordion.bind(collapse=self.lobby_widget.on_toggle)
 
         self.add_widget(self.accordion)
         register(self.focus_game, MatchFocusEvent)

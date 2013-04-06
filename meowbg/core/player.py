@@ -2,7 +2,7 @@
 import logging
 from meowbg.core.events import (MoveEvent, CommitEvent, RollRequest,
                                 RejectEvent, AcceptEvent, ResignOfferEvent,
-                                OpponentJoinedEvent)
+                                DiceEvent)
 from meowbg.core.messaging import register, unregister
 from meowbg.gui.guievents import DoubleAttemptEvent
 from meowbg.network.connectionpool import get_connection
@@ -40,6 +40,9 @@ class OnlinePlayerProxy(object):
         register(self.on_default, ResignOfferEvent)
         register(self.on_default, DoubleAttemptEvent)
 
+        # Do not interpret dice events, just refresh the board state
+        register(self.refresh_board, DiceEvent)
+
         self.connection = get_connection()
 
     def on_commit(self, ce):
@@ -53,6 +56,9 @@ class OnlinePlayerProxy(object):
 
         cmd = self.event_translator.encode(r)
         self.connection.send(cmd)
+
+    def refresh_board(self, de):
+        self.connection.send(self.event_translator.encode_refresh())
 
     def exit(self):
         unregister(self.on_commit, CommitEvent)
