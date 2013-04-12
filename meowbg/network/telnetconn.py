@@ -34,6 +34,7 @@ class TelnetConnection(object):
         self.tn_conn.read_until('login: ')
         self.tn_conn.write("login meowBG 1008 %s %s\r\n" % (self.username, self.password))
         self.tn_conn.write("set boardstyle 3\r\n")
+        self.tn_conn.write("toggle moreboards\r\n")
 
         self.callback = callback_func
         self.reading_thread = threading.Thread(target=self.read_forever)

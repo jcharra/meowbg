@@ -92,7 +92,7 @@ class BoardWidget(GridLayout):
         self.middle_cube_container.add_widget(self.cube)
 
         sync_call = GlobalTaskQueue.synced_call
-        register(sync_call(self.show_dice), DiceEvent)
+        register(sync_call(self.on_dice_event), DiceEvent)
         register(sync_call(self.cube_challenge), CubeEvent)
 
     def on_touch_down(self, touch):
@@ -164,8 +164,8 @@ class BoardWidget(GridLayout):
             if col_borne_off:
                 target.add_checkers(col, col_borne_off)
 
-        #dice = self.match.remaining_dice
-        #self.show_dice(dice)
+        dice = self.match.remaining_dice
+        self.show_dice(dice)
 
         if not match.open_cube_challenge_from_color:
             self.set_cube_to_owning_color()
@@ -193,13 +193,16 @@ class BoardWidget(GridLayout):
         self.set_cube(self.cube_challenge_container, cube_event.cube_number)
         on_finish()
 
-    def show_dice(self, dice_event, on_finish):
+    def on_dice_event(self, dice_event, on_finish):
         dice = dice_event.dice
+        self.show_dice(dice)
+        on_finish()
+
+    def show_dice(self, dice):
         self.blacks_dice_area.clear_widgets()
         self.whites_dice_area.clear_widgets()
 
         if not dice:
-            on_finish()
             return
 
         color = self.match.color_to_move_next
@@ -207,8 +210,6 @@ class BoardWidget(GridLayout):
             self.blacks_dice_area.show_dice(dice)
         else:
             self.whites_dice_area.show_dice(dice)
-
-        on_finish()
 
     def spikes(self):
         """

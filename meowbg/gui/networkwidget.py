@@ -32,9 +32,16 @@ class PlayerListWidget(ScrollView):
 
     def update_display(self, status_dicts):
         for item in status_dicts:
-            self.grid.add_widget(PlayerRow(size=(self.width, 25),
-                                           size_hint=(None, None),
-                                           player_info=item))
+            existing_rows = [r for r in self.grid.children
+                             if r.player_info["name"] == item["name"]]
+
+            if existing_rows:
+                existing_rows[0].player_info = item
+                existing_rows[0].render()
+            else:
+                self.grid.add_widget(PlayerRow(size=(self.width, 25),
+                                               size_hint=(None, None),
+                                               player_info=item))
 
 
 class PlayerRow(BoxLayout):
