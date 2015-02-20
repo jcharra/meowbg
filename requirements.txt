@@ -1,0 +1,4 @@
+# requires kivy, which in turn requires cython
+Cython==0.22
+Kivy-Garden==0.1.1
+requests==2.5.1
