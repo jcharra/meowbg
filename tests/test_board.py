@@ -10,8 +10,7 @@ class BoardTestCase(unittest.TestCase):
         self.board = Board()
 
     def test_initial_board(self):
-        self.board.initialize_checkers(BLACK)
-        self.board.initialize_checkers(WHITE)
+        self.board.setup_initial_position()
 
         try:
             self.board.check_board_state()
@@ -54,8 +53,7 @@ class BoardTestCase(unittest.TestCase):
             pass
 
     def test_find_legal_moves_for_die_basic(self):
-        self.board.initialize_checkers(BLACK)
-        self.board.initialize_checkers(WHITE)
+        self.board.setup_initial_position()
 
         legal_moves = self.board._find_legal_moves_for_die(1, BLACK)
         self.assertEquals(len(legal_moves), 3)
@@ -143,8 +141,7 @@ class BoardTestCase(unittest.TestCase):
         self.assertEqual(min(map(len, full_moves)), 1)
 
     def test_find_moves_for_dice_symmetry(self):
-        self.board.initialize_checkers(BLACK)
-        self.board.initialize_checkers(WHITE)
+        self.board.setup_initial_position()
 
         for dice in product(range(1, 7), repeat=2):
             moves_white = self.board._find_moves_for_dice(dice, WHITE)
@@ -153,14 +150,13 @@ class BoardTestCase(unittest.TestCase):
                               "Failure for %s: %s asymmetric to %s" % (dice, moves_white, moves_black))
 
     def test_initial_moves_for_dice(self):
-        self.board.initialize_checkers(BLACK)
-        self.board.initialize_checkers(WHITE)
+        self.board.setup_initial_position()
 
         dice = [5, 6]
         full_moves = self.board._find_moves_for_dice(dice, WHITE)
 
     def test_make_and_undo_partial_move(self):
-        self.board.initialize_checkers(BLACK)
+        self.board.setup_initial_position()
         self.board.checkers_on_field.update({4: [WHITE]})
         move = PartialMove(5, 4)
         self.board.make_partial_move(move)
