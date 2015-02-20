@@ -1,3 +1,5 @@
+.. image:: https://secure.travis-ci.org/jcharra/meowbg
+    :target: https://secure.travis-ci.org/jcharra/meowbg
 
 meowBG
 ======
