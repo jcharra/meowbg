@@ -1,4 +1,4 @@
 # requires kivy, which in turn requires cython
-Cython==0.22
-requests==2.5.1
-Kivy==1.8.0
+#Cython==0.22
+#requests==2.5.1
+#Kivy==1.8.0

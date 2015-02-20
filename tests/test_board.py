@@ -4,6 +4,8 @@ from itertools import product
 from meowbg.core.board import Board, BLACK, WHITE
 from meowbg.core.exceptions import MoveNotPossible
 from meowbg.core.move import PartialMove
+from collections import defaultdict
+
 
 class BoardTestCase(unittest.TestCase):
     def setUp(self):
@@ -173,17 +175,22 @@ class BoardTestCase(unittest.TestCase):
         self.assertEqual(self.board.checkers_on_bar, [])
 
     def test_make_and_undo_move_off_board(self):
-        self.board.checkers_on_field.update({4: [BLACK]})
+        onfield = defaultdict(list)
+        onfield[4] = [BLACK]
+        self.board.set_board(onfield)
+
+        borne_off_before = len(self.board.borne_off)
+
         move = PartialMove(4, -1)
         self.board.make_partial_move(move)
 
         self.assertEqual(self.board.checkers_on_field[4], [])
-        self.assertEqual(self.board.borne_off, [BLACK])
+        self.assertEqual(len(self.board.borne_off), borne_off_before + 1)
 
         self.board.undo_partial_move()
 
         self.assertEqual(self.board.checkers_on_field[4], [BLACK])
-        self.assertEqual(self.board.borne_off, [])
+        self.assertEqual(len(self.board.borne_off), borne_off_before)
 
     def test_make_and_undo_move_off_bar(self):
         self.board.checkers_on_bar = [BLACK]
@@ -200,20 +207,26 @@ class BoardTestCase(unittest.TestCase):
         self.assertEqual(self.board.checkers_on_bar, [BLACK])
 
     def test_get_winner(self):
-        self.board.checkers_on_bar = [WHITE]
+        # Backgammon
+        onfield = defaultdict(list)
+        onfield[1] = [WHITE] * 14
+        self.board.set_board(onfield, on_bar=[WHITE])
         self.assertEqual(self.board.get_winner(), (BLACK, 3))
 
-        self.board.checkers_on_bar = []
-        self.board.checkers_on_field.update({1: [WHITE]})
-        self.assertEqual(self.board.get_winner(), (BLACK, 3))
-
-        self.board.checkers_on_field.update({1: [], 10: [WHITE]})
+        # Gammon
+        onfield = defaultdict(list)
+        onfield[23] = [WHITE] * 15
+        self.board.set_board(onfield, on_bar=[])
         self.assertEqual(self.board.get_winner(), (BLACK, 2))
 
-        self.board.borne_off = [WHITE]
+        # Normal victory (one already borne off)
+        onfield = defaultdict(list)
+        onfield[23] = [WHITE] * 13
+        self.board.set_board(onfield, on_bar=[WHITE])
         self.assertEqual(self.board.get_winner(), (BLACK, 1))
 
-        self.board.checkers_on_field.update({1: [BLACK]})
+        # No winner yet
+        self.board.checkers_on_field.update({1: [BLACK], 23: [WHITE]})
         self.assertEqual(self.board.get_winner(), (0, 0))
 
     def test_try_illegal_moves(self):

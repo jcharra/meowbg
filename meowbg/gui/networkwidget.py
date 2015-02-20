@@ -132,7 +132,8 @@ class NetworkWidget(GridLayout):
     def connect(self, e):
         if not self.connection:
             #self.connection = TelnetConnection("Tigergammon")
-            self.connection = TelnetConnection("FIBS", "_joc_", "qwertz")
+            #self.connection = TelnetConnection("Tigergammon", "_joc_", "qwertz")
+            self.connection = TelnetConnection("Tigergammon", "meowbg_joe", "qwertz")
             share_connection("Tigergammon", self.connection)
 
             self.connection.connect(self.handle_input)

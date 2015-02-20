@@ -1,6 +1,9 @@
 
 import unittest
 from meowbg.network.translation import FIBSTranslator, translate_move_to_indexes, translate_indexes_to_move
+from meowbg.core.match import Match
+from meowbg.core.board import BLACK, WHITE
+from meowbg.core.player import HumanPlayer
 
 TESTLINE_STATUS_1 = ("5 someplayer evil_guy - 0 0 1418.61 23 1914 1041272421 192.168.40.3 "
                      "meowBG someplayer@somewhere.com")
@@ -15,6 +18,11 @@ TESTLINE_MOVE_2 = "opponent moves bar-23"
 class MyTestCase(unittest.TestCase):
     def setUp(self):
         self.parser = FIBSTranslator()
+        m = Match()
+        m.players[WHITE] = HumanPlayer("P1", WHITE)
+        m.players[BLACK] = HumanPlayer("opponent", BLACK)
+        m.color_to_move_next = BLACK
+        self.parser.current_match = m
 
     def test_parse_line_to_args_player_status(self):
         args = self.parser.parse_line_to_args(TESTLINE_STATUS_1, line_type=self.parser.PLAYER_STATUS_EVENT)
@@ -55,18 +63,6 @@ class MyTestCase(unittest.TestCase):
         self.assertEquals(translate_indexes_to_move(19, 24), "20-off")
         self.assertEquals(translate_indexes_to_move(24, 19), "bar-20")
 
-    def test_parse_moves(self):
-        move_event = self.parser.parse_events(TESTLINE_MOVE_1)[0]
-        self.assertEquals(len(move_event.moves), 3)
-        m1, m2, m3 = move_event.moves
-        self.assertEquals((m1.origin, m1.target), (11, 2))
-        self.assertEquals((m2.origin, m2.target), (3, -1))
-        self.assertEquals((m3.origin, m3.target), (2, -1))
-
-        move_event = self.parser.parse_events(TESTLINE_MOVE_2)[0]
-        self.assertEquals(len(move_event.moves), 1)
-        move = move_event.moves[0]
-        self.assertEquals((move.origin, move.target), (24, 22))
 
 if __name__ == '__main__':
     unittest.main()
