@@ -1,7 +1,10 @@
+import os
 import logging
+
 logger = logging.getLogger("Messaging")
-logger.addHandler(logging.StreamHandler())
-logger.addHandler(logging.FileHandler("events.log"))
+log_base = os.path.join(os.environ["MEOWBG_ROOT"], "logs")
+eventlog = os.path.join(log_base, "events.log")
+logger.addHandler(logging.FileHandler(eventlog))
 
 # mapping from object instances to event classes
 SUBSCRIPTIONS = {}

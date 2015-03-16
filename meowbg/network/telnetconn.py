@@ -1,13 +1,16 @@
 #!/usr/bin/env python
 
+import os
 import telnetlib
 import logging
 import time
 import threading
 
 logger = logging.getLogger("TelnetClient")
-logger.addHandler(logging.FileHandler('telnet.log'))
-#logger.addHandler(logging.StreamHandler())
+log_base = os.path.join(os.environ["MEOWBG_ROOT"], "logs")
+networklog = os.path.join(log_base, "network.log")
+logger.addHandler(logging.FileHandler(networklog))
+
 logger.setLevel(logging.INFO)
 
 
