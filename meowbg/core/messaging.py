@@ -12,6 +12,8 @@ SUBSCRIPTIONS = {}
 
 def register(callback, event_class):
     SUBSCRIPTIONS.setdefault(event_class, []).append(callback)
+    #logger.warn("New registration. Now having {} subscriptions: {}".format(len(SUBSCRIPTIONS),
+    #                                                                       "\n\t".join("{}=>{}".format(e, rec) for e, rec in SUBSCRIPTIONS.iteritems())))
 
 
 def unregister(callback, event_class):
@@ -23,5 +25,5 @@ def broadcast(event):
     logger.warn("***** EVENT: %s" % event)
     subscribers = SUBSCRIPTIONS.get(event.__class__, [])
     for s in subscribers:
-        #logger.warn("Sending %s to %s" % (event, s))
+        logger.warn("Sending %s to %s" % (event, s))
         s(event)

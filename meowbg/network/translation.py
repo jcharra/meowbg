@@ -7,7 +7,7 @@ from meowbg.core.events import (IncomingInvitationEvent, MoveEvent, MatchEvent, 
                                 RollRequest, AcceptEvent, RejectEvent, MatchEndEvent, AcceptJoinEvent,
                                 ResignOfferEvent, JoinChallengeEvent, OpponentJoinedEvent,
                                 GameEndEvent, IncompleteInvitationEvent)
-from meowbg.core.player import HumanPlayer, OnlinePlayerProxy
+from meowbg.core.player import HumanPlayer, get_or_create_player_proxy
 from meowbg.gui.guievents import DoubleAttemptEvent, MoveAttemptEvent
 
 logger = logging.getLogger("EventParser")
@@ -256,7 +256,8 @@ class FIBSTranslator(object):
         # TODO: simplify
         if parts[1].lower() == "you":
             match.register_player(HumanPlayer(parts[1], your_color), your_color)
-            match.register_player(OnlinePlayerProxy(parts[2], opponents_color, self), opponents_color)
+            player_proxy = get_or_create_player_proxy(parts[2], opponents_color, self)
+            match.register_player(player_proxy, opponents_color)
         else:
             logger.error("Kiebitzing not supported yet")
             match.register_player(HumanPlayer(parts[1], your_color), your_color)

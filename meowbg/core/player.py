@@ -51,7 +51,7 @@ class OnlinePlayerProxy(object):
 
     def on_default(self, r):
         if hasattr(r, 'color') and r.color == self.color:
-            logger.error("This was triggered by me ... ignoring")
+            logger.error("This was triggered by myself ... ignoring")
             return
 
         cmd = self.event_translator.encode(r)
@@ -71,3 +71,17 @@ class OnlinePlayerProxy(object):
 
     def __repr__(self):
         return "Proxy for '%s'" % self.name
+
+"""
+This dictionary maps player names to existing Player instances, to avoid the repeated
+instatiation of instances (which has the nasty side-effect of registering subscribers
+for events repeatedly).
+"""
+
+KNOWN_PLAYERS = {}
+
+def get_or_create_player_proxy(name, color, translator):
+    if name not in KNOWN_PLAYERS:
+        player = OnlinePlayerProxy(name, color, translator)
+        KNOWN_PLAYERS[name] = player
+    return KNOWN_PLAYERS[name]
