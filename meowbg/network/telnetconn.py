@@ -7,7 +7,7 @@ import time
 import threading
 
 logger = logging.getLogger("TelnetClient")
-log_base = os.path.join(os.environ["MEOWBG_ROOT"], "logs")
+log_base = os.path.join(os.environ.get("MEOWBG_ROOT", "."), "logs")
 networklog = os.path.join(log_base, "network.log")
 logger.addHandler(logging.FileHandler(networklog))
 

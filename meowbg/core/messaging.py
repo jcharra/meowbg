@@ -2,7 +2,7 @@ import os
 import logging
 
 logger = logging.getLogger("Messaging")
-log_base = os.path.join(os.environ["MEOWBG_ROOT"], "logs")
+log_base = os.path.join(os.environ.get("MEOWBG_ROOT", "."), "logs")
 eventlog = os.path.join(log_base, "events.log")
 logger.addHandler(logging.FileHandler(eventlog))
 
