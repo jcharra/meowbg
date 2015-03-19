@@ -98,11 +98,6 @@ class JoinChallengeEvent(object):
 # Events outside a match
 
 
-class MessageEvent(object):
-    def __init__(self, msg):
-        self.msg = msg
-
-
 class IncomingInvitationEvent(object):
     def __init__(self, player_name, length=0):
         self.player_name = player_name
@@ -153,3 +148,11 @@ class ConnectionRequest(object):
     """
     def __init__(self, key, callback):
         self.key, self.callback = key, callback
+
+
+# Chat Events
+
+class MessageEvent(object):
+    def __init__(self, msg):
+        self.msg = msg
+

@@ -6,7 +6,7 @@ from meowbg.core.match import OnlineMatch, OfflineMatch
 from meowbg.core.events import (IncomingInvitationEvent, MoveEvent, MatchEvent, PlayerStatusEvent, DiceEvent,
                                 RollRequest, AcceptEvent, RejectEvent, MatchEndEvent, AcceptJoinEvent,
                                 ResignOfferEvent, JoinChallengeEvent, OpponentJoinedEvent,
-                                GameEndEvent, IncompleteInvitationEvent)
+                                GameEndEvent, IncompleteInvitationEvent, MessageEvent)
 from meowbg.core.player import HumanPlayer, get_or_create_player_proxy
 from meowbg.gui.guievents import DoubleAttemptEvent, MoveAttemptEvent
 
@@ -124,25 +124,25 @@ class FIBSTranslator(object):
                 pass
             elif line.startswith("12 "):
                 # Says
-                pass
+                found_events.append(MessageEvent(line.split(" ", 1)[1]))
             elif line.startswith("13 "):
                 # player shouts
-                pass
+                found_events.append(MessageEvent(line.split(" ", 1)[1]))
             elif line.startswith("14 "):
                 # whispers
-                pass
+                found_events.append(MessageEvent(line.split(" ", 1)[1]))
             elif line.startswith("15 "):
                 # kibitzes
                 pass
             elif line.startswith("16 "):
                 # You say
-                pass
+                found_events.append(MessageEvent("YOU SAY: " + line.split(" ", 1)[1]))
             elif line.startswith("17 "):
-                # you shout
-                pass
+                # You shout
+                found_events.append(MessageEvent("YOU SHOUT: " + line.split(" ", 1)[1]))
             elif line.startswith("18 "):
                 # you whisper
-                pass
+                found_events.append(MessageEvent("You whisper: " + line.split(" ", 1)[1]))
             elif line.startswith("19 "):
                 # you kibitz
                 pass
@@ -342,3 +342,4 @@ class FIBSTranslator(object):
 
         # Indicates failure
         return {}
+

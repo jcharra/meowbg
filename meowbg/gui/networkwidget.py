@@ -5,11 +5,10 @@ from meowbg.network.telnetconn import TelnetConnection
 from meowbg.network.translation import FIBSTranslator
 from meowbg.core.events import (PlayerStatusEvent, GlobalShutdownEvent,
                                 OutgoingInvitationEvent, OpponentJoinedEvent,
-                                IncompleteInvitationEvent)
+                                IncompleteInvitationEvent, MessageEvent)
 from popups import ChooseMatchLengthDialog
 
 
-from kivy.graphics import Color, Rectangle
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.scrollview import ScrollView
@@ -62,27 +61,45 @@ class PlayerRow(BoxLayout):
             broadcast(OutgoingInvitationEvent(self.player_info["name"]))
 
 
-class NetworkWidget(GridLayout):
+class ChatWindow(ScrollView):
     def __init__(self, **kwargs):
         kwargs.update({"cols": 1})
+        ScrollView.__init__(self, **kwargs)
+
+        self.chat_log = TextInput(readonly=True)
+        self.add_widget(self.chat_log)
+
+    def append_text(self, chat_event):
+        self.chat_log.text += chat_event.msg + "\n"
+
+
+class NetworkWidget(GridLayout):
+    def __init__(self, **kwargs):
+        kwargs.update({"rows": 2})
         GridLayout.__init__(self, **kwargs)
 
-        self.player_list = PlayerListWidget(size_hint=(1, 15))
+        self.player_list = PlayerListWidget(size_hint_x=7, size_hint_y=9)
         self.add_widget(self.player_list)
 
-        connect_button = Button(text="Connect", size_hint=(1, 1))
+        self.chat_window = ChatWindow(size_hint=(3, 9))
+        self.add_widget(self.chat_window)
+
+        connect_button = Button(text="Connect", size_hint_x=(7, 1))
         connect_button.bind(on_press=self.connect)
         self.add_widget(connect_button)
 
+
         self.raw_text_input = TextInput(text="invite expertBotI",
                                         multiline=False,
-                                        size_hint=(1, 1))
+                                        size_hint_x=3,
+                                        size_hint_y=1)
         self.raw_text_input.bind(on_text_validate=self.send_command)
         self.add_widget(self.raw_text_input)
         self.connection = None
         self.active = False
 
         register(self.handle, PlayerStatusEvent)
+        register(self.handle, MessageEvent)
         register(self.tear_down, GlobalShutdownEvent)
         register(self.on_invite, OutgoingInvitationEvent)
         register(self.complete_invite, IncompleteInvitationEvent)
@@ -91,6 +108,8 @@ class NetworkWidget(GridLayout):
     def handle(self, event):
         if isinstance(event, PlayerStatusEvent):
             self.player_list.update_display(event.status_dicts)
+        elif isinstance(event, MessageEvent):
+            self.chat_window.append_text(event)
         else:
             Logger.error("Cannot handle type %s" % event)
 

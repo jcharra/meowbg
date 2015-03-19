@@ -67,18 +67,21 @@ class MainWidget(GridLayout):
              % (match.players[WHITE].name, match.players[BLACK].name,
                 match.score[WHITE], match.score[BLACK],
                 match.length))
-        self.game_tab.text = s
+        self.game_widget.set_header_text(s)
 
 
 class GameWidget(FloatLayout):
     def __init__(self, **kwargs):
         FloatLayout.__init__(self, **kwargs)
 
-        self.match_widget = MatchWidget(size_hint_y=.9,
+        self.header = Label(text="Visit the lobby to start a new game or play against the AI",
+                            size_hint_y=0.05, pos_hint={'x': 0, 'y': 0.95})
+        self.match_widget = MatchWidget(size_hint_y=.85,
                                         pos_hint={'x': 0, 'y': 0.1})
         button_panel = ButtonPanel(size_hint_y=.1,
                                    pos_hint={'x': 0, 'y': 0})
 
+        self.add_widget(self.header)
         self.add_widget(self.match_widget)
         self.add_widget(button_panel)
         register(self.announce_match_winner, MatchEndEvent)
@@ -94,6 +97,9 @@ class GameWidget(FloatLayout):
         ok_dialog.ok_button.bind(on_press=popup.dismiss)
 
         popup.open()
+
+    def set_header_text(self, text):
+        self.header.text = text
 
 
 class MatchWidget(FloatLayout):
@@ -175,7 +181,7 @@ class MatchWidget(FloatLayout):
     def attempt_commit(self, commit_attempt_event, on_finish):
         try:
             self.match.commit(commit_attempt_event.color)
-        except ValueError, msg:
+        except (ValueError, AttributeError), msg:
             Logger.warn("Commit for color %s FAILED with msg %s"
                         % (commit_attempt_event.color, msg))
         on_finish()
