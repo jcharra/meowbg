@@ -89,10 +89,6 @@ class NetworkWidget(GridLayout):
         register(self.on_join, OpponentJoinedEvent)
 
     def handle(self, event):
-        if not self.active:
-            Logger.info("Ignoring player status event %s" % event)
-            return
-
         if isinstance(event, PlayerStatusEvent):
             self.player_list.update_display(event.status_dicts)
         else:
@@ -107,10 +103,6 @@ class NetworkWidget(GridLayout):
         if self.connection:
             # just refresh
             self.connection.send("board")
-
-    def on_toggle(self, accordion_item, is_collapsed):
-        Logger.warn("Network widget collapsed: %s" % is_collapsed)
-        self.active = not is_collapsed
 
     def complete_invite(self, e):
         pname = e.player_name

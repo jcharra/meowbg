@@ -15,6 +15,7 @@ from kivy.factory import Factory
 from kivy.logger import Logger
 from kivy.resources import resource_add_path
 from kivy.vector import Vector
+from kivy.uix.tabbedpanel import TabbedPanel, TabbedPanelHeader
 
 from meowbg.core.board import WHITE, BLACK
 from meowbg.gui.basicparts import (Spike, SpikePanel, IndexRow, ButtonPanel, BarPanel,
@@ -37,48 +38,46 @@ resource_add_path(os.path.dirname(__file__) + "/resources")
 
 
 class MainWidget(GridLayout):
-
     def __init__(self, **kwargs):
         GridLayout.__init__(self, cols=1, **kwargs)
-        self.accordion = Accordion(orientation='vertical', size_hint=(1, 10))
 
-        self.game_accordion = AccordionItem(title='Game Window')
+        self.tabbed_panel = TabbedPanel(do_default_tab=False)
+
+        self.game_tab = TabbedPanelHeader(text='Game')
+        self.tabbed_panel.add_widget(self.game_tab)
         self.game_widget = GameWidget()
-        self.game_accordion.add_widget(self.game_widget)
-        self.accordion.add_widget(self.game_accordion)
+        self.game_tab.content = self.game_widget
 
-        self.lobby_accordion = AccordionItem(title='Network')
+        self.lobby_tab = TabbedPanelHeader(text='Lobby')
+        self.tabbed_panel.add_widget(self.lobby_tab)
         self.lobby_widget = NetworkWidget()
+        self.lobby_tab.content = self.lobby_widget
 
-        self.lobby_accordion.add_widget(self.lobby_widget)
-        self.accordion.add_widget(self.lobby_accordion)
+        self.add_widget(self.tabbed_panel)
 
-        self.lobby_accordion.bind(collapse=self.lobby_widget.on_toggle)
-
-        self.add_widget(self.accordion)
         register(self.focus_game, MatchFocusEvent)
         register(self.show_match_data, MatchEvent)
 
     def focus_game(self, e):
-        self.game_accordion.collapse = False
-        self.accordion.select(self.game_accordion)
+        self.tabbed_panel.switch_to(self.game_tab)
 
     def show_match_data(self, me):
         match = me.match
         s = ("%s - %s  %i : %i (%i)"
-            % (match.players[WHITE].name, match.players[BLACK].name,
-               match.score[WHITE], match.score[BLACK],
-               match.length))
-        self.game_accordion.title = s
+             % (match.players[WHITE].name, match.players[BLACK].name,
+                match.score[WHITE], match.score[BLACK],
+                match.length))
+        self.game_tab.text = s
+
 
 class GameWidget(FloatLayout):
     def __init__(self, **kwargs):
         FloatLayout.__init__(self, **kwargs)
 
         self.match_widget = MatchWidget(size_hint_y=.9,
-            pos_hint={'x': 0, 'y': 0.1})
+                                        pos_hint={'x': 0, 'y': 0.1})
         button_panel = ButtonPanel(size_hint_y=.1,
-            pos_hint={'x': 0, 'y': 0})
+                                   pos_hint={'x': 0, 'y': 0})
 
         self.add_widget(self.match_widget)
         self.add_widget(button_panel)
@@ -90,8 +89,8 @@ class GameWidget(FloatLayout):
         verb = "wins" if e.winner.lower() != "you" else "win"
         ok_dialog = OKDialog(text='%s %s %s : %s' % (e.winner, verb, high, low))
         popup = Popup(title='The match has ended',
-            content=ok_dialog,
-            size_hint=(None, None), size=(400, 400))
+                      content=ok_dialog,
+                      size_hint=(None, None), size=(400, 400))
         ok_dialog.ok_button.bind(on_press=popup.dismiss)
 
         popup.open()
@@ -211,7 +210,7 @@ class MatchWidget(FloatLayout):
         on_finish()
 
     def pause(self, pe, on_finish):
-        Clock.schedule_once(lambda e: on_finish(), pe.ms/1000.0)
+        Clock.schedule_once(lambda e: on_finish(), pe.ms / 1000.0)
 
     def execute_undo_move(self, undo_move_event, on_finish):
         move = undo_move_event.move
@@ -299,7 +298,7 @@ class MatchWidget(FloatLayout):
             self.remove_widget(new_checker)
             on_finish()
 
-        duration = Vector(moving_checker.pos).distance(target_pos)/1000.0
+        duration = Vector(moving_checker.pos).distance(target_pos) / 1000.0
         animation = Animation(pos=target_pos, duration=duration)
         animation.on_complete = on_animation_complete
         animation.start(new_checker)
@@ -313,6 +312,7 @@ class BoardApp(App):
 
     def notify_shutdown(self, e):
         broadcast(GlobalShutdownEvent())
+
 
 Factory.register("LobbyWidget", NetworkWidget)
 Factory.register("MatchWidget", MatchWidget)
