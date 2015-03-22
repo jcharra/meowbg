@@ -6,7 +6,7 @@ from meowbg.network.translation import FIBSTranslator
 from meowbg.core.events import (PlayerStatusEvent, GlobalShutdownEvent,
                                 OutgoingInvitationEvent, OpponentJoinedEvent,
                                 IncompleteInvitationEvent, MessageEvent)
-from popups import ChooseMatchLengthDialog
+from popups import ChooseMatchLengthDialog, ConnectionDialog
 
 
 from kivy.uix.gridlayout import GridLayout
@@ -85,7 +85,7 @@ class NetworkWidget(GridLayout):
         self.add_widget(self.chat_window)
 
         connect_button = Button(text="Connect", size_hint_x=(7, 1))
-        connect_button.bind(on_press=self.connect)
+        connect_button.bind(on_press=self.open_login_dialog)
         self.add_widget(connect_button)
 
 
@@ -140,12 +140,30 @@ class NetworkWidget(GridLayout):
         choice_dialog.cancel_button.bind(on_press=popup.dismiss)
         popup.open()
 
-    def connect(self, e):
+    def open_login_dialog(self, e):
+        connection_dialog = ConnectionDialog()
+        popup = Popup(title='Connect to server',
+                      content=connection_dialog,
+                      size_hint=(None, None),
+                      size=(400, 400))
+
+        def on_choice(e):
+            login_data = {"server": connection_dialog.server,
+                          "user": connection_dialog.username.text.strip(),
+                          "password": connection_dialog.password.text.strip()}
+            self.connect(login_data)
+            popup.dismiss()
+
+        connection_dialog.ok_button.bind(on_press=on_choice)
+        connection_dialog.cancel_button.bind(on_press=popup.dismiss)
+        popup.open()
+
+    def connect(self, login_data):
         if not self.connection:
-            #self.connection = TelnetConnection("Tigergammon")
-            #self.connection = TelnetConnection("Tigergammon", "_joc_", "qwertz")
-            self.connection = TelnetConnection("Tigergammon", "meowbg_joe", "qwertz")
-            share_connection("Tigergammon", self.connection)
+            self.connection = TelnetConnection(login_data["server"],
+                                               login_data["user"],
+                                               login_data["password"])
+            share_connection(login_data["server"], self.connection)
 
             self.connection.connect(self.handle_input)
             self.parser = FIBSTranslator()
