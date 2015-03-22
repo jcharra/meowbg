@@ -101,9 +101,6 @@ class ChooseMatchLengthDialog(GridLayout):
         self.choice_label.text = text
 
 class ConnectionDialog(GridLayout):
-    user = "meowbg_joe"
-    password = "qwertz"
-
     def set_server(self, val):
         self.server = val
 
