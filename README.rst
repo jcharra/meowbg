@@ -1,6 +1,3 @@
-.. image:: https://api.travis-ci.org/jcharra/meowbg.png
-    :target: https://secure.travis-ci.org/jcharra/meowbg
-
 meowBG
 ======
 
