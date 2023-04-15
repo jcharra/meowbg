@@ -32,7 +32,7 @@ from meowbg.core.messaging import register, broadcast
 from meowbg.gui.popups import OKDialog, ResignDialog, BetweenGamesDialog
 from meowbg.core.eventqueue import GlobalTaskQueue
 
-from networkwidget import NetworkWidget
+from meowbg.gui.networkwidget import NetworkWidget
 
 resource_add_path(os.path.dirname(__file__) + "/resources")
 
@@ -90,7 +90,8 @@ class GameWidget(FloatLayout):
         points = e.score.values()
         high, low = max(points), min(points)
         verb = "wins" if e.winner.lower() != "you" else "win"
-        ok_dialog = OKDialog(text='%s %s %s : %s' % (e.winner, verb, high, low))
+        ok_dialog = OKDialog(text='%s %s %s : %s' %
+                             (e.winner, verb, high, low))
         popup = Popup(title='The match has ended',
                       content=ok_dialog,
                       size_hint=(None, None), size=(400, 400))
@@ -147,10 +148,12 @@ class MatchWidget(FloatLayout):
         origin, target = move_attempt_event.origin, move_attempt_event.target
         if self.match and self.match.is_move_possible(origin, target, self.match.color_to_move_next):
 
-            moving_checker, target_spike = self.board.get_animation_data(origin, target)
+            moving_checker, target_spike = self.board.get_animation_data(
+                origin, target)
 
             if self.match.is_hitting(target):
-                hit_checker, target_bar = self.board.get_hit_animation_data(target)
+                hit_checker, target_bar = self.board.get_hit_animation_data(
+                    target)
                 self.animate_move(moving_checker, target_spike,
                                   lambda: self.animate_move(hit_checker, target_bar, on_finish))
             else:
@@ -158,7 +161,8 @@ class MatchWidget(FloatLayout):
 
             self.match.execute_move(origin, target)
         else:
-            Logger.warn("Move from %s to %s not possible in match %s" % (origin, target, self.match))
+            Logger.warn("Move from %s to %s not possible in match %s" %
+                        (origin, target, self.match))
             on_finish()
 
     def attempt_undo(self, undo_att_event, on_finish):
@@ -168,7 +172,8 @@ class MatchWidget(FloatLayout):
             return
 
         move, hit_color = self.match.undo_move()
-        moving_checker, target_spike = self.board.get_undo_animation_data(move.origin, move.target)
+        moving_checker, target_spike = self.board.get_undo_animation_data(
+            move.origin, move.target)
 
         if hit_color:
             hit_checker = self.board.get_bar_checker(hit_color)
@@ -181,7 +186,7 @@ class MatchWidget(FloatLayout):
     def attempt_commit(self, commit_attempt_event, on_finish):
         try:
             self.match.commit(commit_attempt_event.color)
-        except (ValueError, AttributeError), msg:
+        except (ValueError, AttributeError) as msg:
             Logger.warn("Commit for color %s FAILED with msg %s"
                         % (commit_attempt_event.color, msg))
         on_finish()
@@ -205,14 +210,16 @@ class MatchWidget(FloatLayout):
         if self.match and self.match.reject_possible(reject_event.color):
             self.match.reject_open_offer(reject_event.color)
         else:
-            Logger.error("Reject of color %s failed without effect" % reject_event.color)
+            Logger.error("Reject of color %s failed without effect" %
+                         reject_event.color)
         on_finish()
 
     def attempt_accept(self, accept_event, on_finish):
         if self.match and self.match.accept_possible(accept_event.color):
             self.match.accept_open_offer(accept_event.color)
         else:
-            Logger.error("Accept of color %s failed without effect" % accept_event.color)
+            Logger.error("Accept of color %s failed without effect" %
+                         accept_event.color)
         on_finish()
 
     def pause(self, pe, on_finish):
@@ -284,7 +291,8 @@ class MatchWidget(FloatLayout):
         """
         moving_checker.pos_hint = {}
 
-        target_pos = target_spike.get_next_checker_position(moving_checker.model_color)
+        target_pos = target_spike.get_next_checker_position(
+            moving_checker.model_color)
         size = moving_checker.size
 
         Logger.warn("Starting animation at %s, queue activity is %s"

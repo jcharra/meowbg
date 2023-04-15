@@ -6,7 +6,7 @@ from meowbg.core.events import (MatchEndEvent, GameEndEvent, RolloutEvent,
                                 RollRequest, CubeEvent, RejectEvent,
                                 AcceptEvent)
 from meowbg.core.messaging import broadcast
-from move import PartialMove
+from meowbg.core.move import PartialMove
 
 logger = logging.getLogger("Match")
 logger.addHandler(logging.StreamHandler())
@@ -47,7 +47,8 @@ class Match(object):
         Indicates whether a move of the color that is to move
         would hit a checker on the target field.
         """
-        logger.warn("Next moving: %s, on target: %s" % (self.color_to_move_next, self.board.checkers_on_field[target]))
+        logger.warn("Next moving: %s, on target: %s" % (
+            self.color_to_move_next, self.board.checkers_on_field[target]))
         return OPPONENT[self.color_to_move_next] in self.board.checkers_on_field[target]
 
     def execute_move(self, origin, target):
@@ -198,16 +199,19 @@ class OfflineMatch(Match):
 
     def roll(self, color):
         if color != self.color_to_move_next:
-            logger.warn("It is the turn of color %s, not %s, roll denied" % (self.color_to_move_next, color))
+            logger.warn("It is the turn of color %s, not %s, roll denied" % (
+                self.color_to_move_next, color))
             return
 
         if not self.initial_dice:
             self.initial_dice = self.dice.roll()
             self.remaining_dice = self.initial_dice[:]
-            self.board.store_initial_possibilities(self.initial_dice, self.color_to_move_next)
+            self.board.store_initial_possibilities(
+                self.initial_dice, self.color_to_move_next)
             broadcast(DiceEvent(self.remaining_dice))
         else:
-            logger.warn("Cannot roll, I have unused dice %s" % self.initial_dice)
+            logger.warn("Cannot roll, I have unused dice %s" %
+                        self.initial_dice)
 
     def commit(self, color=None):
         if color != self.color_to_move_next:
@@ -227,7 +231,8 @@ class OfflineMatch(Match):
 
     def new_game(self):
         self.cube = 1
-        self.may_double = {WHITE: not self.is_crawford(), BLACK: not self.is_crawford()}
+        self.may_double = {
+            WHITE: not self.is_crawford(), BLACK: not self.is_crawford()}
 
         d1, d2 = self.dice.rollout()
         self.color_to_move_next = WHITE if d1 > d2 else BLACK
@@ -238,7 +243,8 @@ class OfflineMatch(Match):
         self.initial_dice = [d1, d2]
 
         self.board.setup_initial_position()
-        self.board.store_initial_possibilities(self.initial_dice, self.color_to_move_next)
+        self.board.store_initial_possibilities(
+            self.initial_dice, self.color_to_move_next)
 
         broadcast(MatchEvent(self))
 
@@ -277,4 +283,3 @@ class OfflineMatch(Match):
             broadcast(MatchEvent(self))
         else:
             logger.warn("No open offers")
-

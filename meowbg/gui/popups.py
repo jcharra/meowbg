@@ -6,11 +6,11 @@ from kivy.uix.checkbox import CheckBox
 from kivy.uix.textinput import TextInput
 from kivy.uix.slider import Slider
 
+
 class OKDialog(GridLayout):
-    def __init__(self, **kwargs):
+    def __init__(self, text, **kwargs):
         kwargs.update({"rows": 3})
         GridLayout.__init__(self, **kwargs)
-        text = kwargs.get("text", "")
         self.add_widget(Label(text=text, size_hint=(1, 3)))
         self.ok_button = Button(text="OK", size_hint=(1, 1))
         self.add_widget(self.ok_button)
@@ -44,7 +44,8 @@ class ResignOptions(GridLayout):
         self.add_widget(Label(text='gammon', size_hint=(0.9, 1)))
 
         cb_backgammon = CheckBox(group='resign', size_hint=(0.1, 1))
-        cb_backgammon.bind(active=lambda cb, v: self.set_choice(self.BACKGAMMON))
+        cb_backgammon.bind(
+            active=lambda cb, v: self.set_choice(self.BACKGAMMON))
         self.add_widget(cb_backgammon)
         self.add_widget(Label(text='backgammon', size_hint=(0.9, 1)))
 
@@ -76,7 +77,8 @@ class ChooseMatchLengthDialog(GridLayout):
         kwargs.update({"cols": 1})
         GridLayout.__init__(self, **kwargs)
         self.choice = self.DEFAULT_CHOICE
-        self.add_widget(Label(text="Please pick a match length", size_hint=(1, 1)))
+        self.add_widget(
+            Label(text="Please pick a match length", size_hint=(1, 1)))
 
         self.choice_label = Label(text=str(self.choice),
                                   font_size=20,
@@ -99,6 +101,7 @@ class ChooseMatchLengthDialog(GridLayout):
         if val == 22:
             text = u"\u221E"
         self.choice_label.text = text
+
 
 class ConnectionDialog(GridLayout):
     def set_server(self, val):

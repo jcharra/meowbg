@@ -1,6 +1,6 @@
 import logging
 from meowbg.core.exceptions import MoveNotPossible
-from move import PartialMove
+from meowbg.core.move import PartialMove
 from collections import defaultdict
 from operator import lt, gt
 
@@ -14,21 +14,25 @@ HOME_INDICES = {WHITE: range(18, 24), BLACK: range(0, 6)}
 OUTSIDE_INDICES = {WHITE: range(0, 18), BLACK: range(6, 24)}
 OPPONENT = {BLACK: WHITE, WHITE: BLACK}
 
+
 def index_from_bar(color, distance):
     if color == BLACK:
         return 24 - distance
     else:
         return distance - 1
 
+
 def home_indices_behind(color, idx):
     cmp_func = gt if color == BLACK else lt
     return [i for i in HOME_INDICES[color] if cmp_func(i, idx)]
+
 
 logger = logging.getLogger("Board")
 handler = logging.StreamHandler()
 handler.setLevel(logging.DEBUG)
 logger.addHandler(handler)
 logger.setLevel(logging.DEBUG)
+
 
 class Board(object):
 
@@ -42,7 +46,8 @@ class Board(object):
         # Fill homes according to checkers in play
         num_white = self.count_checkers_in_play(WHITE)
         num_black = self.count_checkers_in_play(BLACK)
-        self.borne_off = [WHITE] * (15 - num_white) + [BLACK] * (15 - num_black)
+        self.borne_off = [WHITE] * \
+            (15 - num_white) + [BLACK] * (15 - num_black)
 
         # temporary moves already made but not yet committed
         self.move_stack = []
@@ -68,7 +73,8 @@ class Board(object):
         invoked only at the beginning of a move.
         """
         self.move_stack = []
-        self.possible_full_moves_with_initial_dice = self.find_possible_moves(dice, color)
+        self.possible_full_moves_with_initial_dice = self.find_possible_moves(
+            dice, color)
         logger.warn("Calculated moves for %s with dice %s: %s"
                     % (color, dice, self.possible_full_moves_with_initial_dice))
 
@@ -192,9 +198,11 @@ class Board(object):
         if color in self.checkers_on_bar:
             mandatory_target_index = index_from_bar(color, die)
             if self.field_accessible_for_color(mandatory_target_index, color):
-                moves.append(PartialMove(BAR_INDEX[color], mandatory_target_index))
+                moves.append(PartialMove(
+                    BAR_INDEX[color], mandatory_target_index))
         else:
-            for idx, checkers in self.checkers_on_field.items():
+            cof = self.checkers_on_field.copy()
+            for idx, checkers in cof.items():
                 if color in checkers:
                     target_idx = idx + die if color == WHITE else idx - die
                     if -1 < target_idx < 24:
@@ -216,7 +224,8 @@ class Board(object):
                                         move_legal = False
                                         break
                                 if move_legal:
-                                    moves.append(PartialMove(idx, OFF_INDEX[color]))
+                                    moves.append(PartialMove(
+                                        idx, OFF_INDEX[color]))
         return moves
 
     def field_accessible_for_color(self, idx, color):
@@ -262,14 +271,14 @@ class Board(object):
         if move.target == OFF_INDEX[color]:
             self.borne_off.append(color)
         else:
-            enemy_count = self.checkers_on_field[move.target].count(OPPONENT[color])
+            enemy_count = self.checkers_on_field[move.target].count(
+                OPPONENT[color])
             if enemy_count > 1:
                 raise Exception("Move %s is blocked" % move)
             elif enemy_count == 1:
                 # pop the hit checker off the target field and append to bar
                 hit = self.checkers_on_field[move.target].pop()
                 self.checkers_on_bar.append(hit)
-
 
             self.checkers_on_field[move.target].append(color)
 
@@ -320,7 +329,6 @@ class Board(object):
                     return col, 1
         return 0, 0
 
-
     def check_board_state(self):
         """
         Checks the 'sanity' of a board and raises a ValueError
@@ -336,10 +344,12 @@ class Board(object):
 
         black = all_checkers.count(BLACK)
         if black != 15:
-            raise ValueError("There are %s black checkers on the board" % black)
+            raise ValueError(
+                "There are %s black checkers on the board" % black)
         white = all_checkers.count(WHITE)
         if white != 15:
-            raise ValueError("There are %s white checkers on the board" % white)
+            raise ValueError(
+                "There are %s white checkers on the board" % white)
 
     def count_checkers_in_play(self, color):
         """
@@ -367,13 +377,13 @@ class Board(object):
             return [m for m in moves if len(m) == maxlen
                     or len(m) == 1 and m[0].target == OFF_INDEX[color]]
 
-
     def __repr__(self):
         upper_half = []
         for i in range(5):
             line = []
             for j in range(12, 24):
-                ch = self.checkers_on_field[j][0] if len(self.checkers_on_field[j]) > i else "_"
+                ch = self.checkers_on_field[j][0] if len(
+                    self.checkers_on_field[j]) > i else "_"
                 line.append(ch)
             upper_half.append("".join([str(i) for i in line]))
 
@@ -381,7 +391,8 @@ class Board(object):
         for i in range(4, -1, -1):
             line = []
             for j in range(11, -1, -1):
-                ch = self.checkers_on_field[j][0] if len(self.checkers_on_field[j]) > i else "_"
+                ch = self.checkers_on_field[j][0] if len(
+                    self.checkers_on_field[j]) > i else "_"
                 line.append(ch)
             lower_half.append("".join([str(i) for i in line]))
 
@@ -390,4 +401,4 @@ class Board(object):
 
 if __name__ == '__main__':
     b = Board()
-    print b
+    print(b)

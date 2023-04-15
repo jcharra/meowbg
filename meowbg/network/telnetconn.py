@@ -31,11 +31,13 @@ class TelnetConnection(object):
         """
         Being logged in is currently considered part of the connection
         """
-        logger.info("Establishing connection to %s:%s" % (self.host, self.port))
+        logger.info("Establishing connection to %s:%s" %
+                    (self.host, self.port))
         self.tn_conn = telnetlib.Telnet(self.host, self.port, timeout=3)
 
         self.tn_conn.read_until('login: ')
-        self.tn_conn.write("login meowBG 1008 %s %s\r\n" % (self.username, self.password))
+        self.tn_conn.write("login meowBG 1008 %s %s\r\n" %
+                           (self.username, self.password))
         self.tn_conn.write("set boardstyle 3\r\n")
         self.tn_conn.write("toggle moreboards\r\n")
 
@@ -57,7 +59,7 @@ class TelnetConnection(object):
             if text.strip():
                 logger.log(logging.INFO, text)
             return text
-        except Exception, msg:
+        except Exception as msg:
             logger.info("Read response failed: %s" % msg)
             return ""
 
@@ -93,6 +95,7 @@ class Autoresponder(object):
     def send_msg(self, msg):
         pass
 
+
 if __name__ == '__main__':
     tc = TelnetConnection()
 
@@ -102,8 +105,8 @@ if __name__ == '__main__':
     # this shows that I am collecting 'telnet-communication-data'
     time.sleep(10)
 
-    print tc.tn_conn.read_very_eager()
-    print 7, '+'*80
+    print(tc.tn_conn.read_very_eager())
+    print(7, '+'*80)
 
     tc.tn_conn.write('end\r\n')
-    print tc.tn_conn.read_all()
+    print(tc.tn_conn.read_all())

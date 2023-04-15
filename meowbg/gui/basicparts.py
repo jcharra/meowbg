@@ -34,9 +34,9 @@ class CheckerContainer(FloatLayout):
     CHECKER_PERCENTAGE = 0.19
     board_idx = NumericProperty(0)
 
-    def __init__(self, **kwargs):
+    def __init__(self, direction=1, **kwargs):
         FloatLayout.__init__(self, **kwargs)
-        self.direction = kwargs.get('direction', 1)
+        self.direction = direction
 
     def add_checkers(self, color, amount):
         for _ in range(amount):
@@ -55,7 +55,8 @@ class CheckerContainer(FloatLayout):
             else:
                 amount = self._get_y_displacement(len(self.children))
             top_hint = 1 - self.CHECKER_PERCENTAGE * amount
-        c = Checker(color, size_hint_y=self.CHECKER_PERCENTAGE, pos_hint={'center_x': 0.5, 'top': top_hint})
+        c = Checker(color, size_hint_y=self.CHECKER_PERCENTAGE,
+                    pos_hint={'center_x': 0.5, 'top': top_hint})
         self.add_widget(c)
 
     def _get_y_displacement(self, num):
@@ -90,7 +91,8 @@ class CheckerContainer(FloatLayout):
             if self.direction == 1:
                 pos_y = checker_height * self._get_y_displacement(num_children)
             else:
-                pos_y = self.height - checker_height * (self._get_y_displacement(num_children) + 1)
+                pos_y = self.height - checker_height * \
+                    (self._get_y_displacement(num_children) + 1)
 
         return self.pos[0], self.pos[1] + pos_y
 
@@ -110,6 +112,9 @@ class CheckerContainer(FloatLayout):
 class Spike(CheckerContainer):
     activated = BooleanProperty(False)
     highlighted = BooleanProperty(False)
+
+    def __init__(self, direction, **kwargs):
+        CheckerContainer.__init__(self, direction, **kwargs)
 
 
 class SpikePanel(BoxLayout):
@@ -144,7 +149,8 @@ class ButtonPanel(BoxLayout):
                 Logger.info("Setting my color to %s" % color)
                 self.represented_color = color
                 return
-        Logger.warn("No human player found among %s .. defaulting control to color WHITE" % match.players.items())
+        Logger.warn("No human player found among %s .. defaulting control to color WHITE" %
+                    match.players.items())
         self.represented_color = WHITE
 
     def start_new_ai_game(self):
@@ -182,19 +188,19 @@ class DicePanel(GridLayout):
         GridLayout.__init__(self, **kwargs)
 
     def show_dice(self, dice):
-        self.add_widget(Widget(size_hint=(4-len(dice)/2, 1))) # spacer
+        self.add_widget(Widget(size_hint=(4-len(dice)/2, 1)))  # spacer
         for idx, die in enumerate(dice):
             self.add_widget(Image(source="die%s.png" % die))
-        self.add_widget(Widget(size_hint=(4-len(dice)/2, 1))) # spacer
+        self.add_widget(Widget(size_hint=(4-len(dice)/2, 1)))  # spacer
 
 
 class BarPanel(CheckerContainer):
     def __init__(self, **kwargs):
-        kwargs.update({'cols': 1})
+        # kwargs.update({'cols': 1})
         CheckerContainer.__init__(self, **kwargs)
 
 
 class BearoffPanel(CheckerContainer):
     def __init__(self, **kwargs):
-        kwargs.update({'cols': 1})
+        # kwargs.update({'cols': 1})
         CheckerContainer.__init__(self, **kwargs)

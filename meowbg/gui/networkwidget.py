@@ -6,7 +6,7 @@ from meowbg.network.translation import FIBSTranslator
 from meowbg.core.events import (PlayerStatusEvent, GlobalShutdownEvent,
                                 OutgoingInvitationEvent, OpponentJoinedEvent,
                                 IncompleteInvitationEvent, MessageEvent)
-from popups import ChooseMatchLengthDialog, ConnectionDialog
+from meowbg.gui.popups import ChooseMatchLengthDialog, ConnectionDialog
 
 
 from kivy.uix.gridlayout import GridLayout
@@ -63,7 +63,7 @@ class PlayerRow(BoxLayout):
 
 class ChatWindow(ScrollView):
     def __init__(self, **kwargs):
-        kwargs.update({"cols": 1})
+        # kwargs.update({"cols": 1})
         ScrollView.__init__(self, **kwargs)
 
         self.chat_log = TextInput(readonly=True)
@@ -84,10 +84,11 @@ class NetworkWidget(GridLayout):
         self.chat_window = ChatWindow(size_hint=(3, 9))
         self.add_widget(self.chat_window)
 
-        connect_button = Button(text="Connect", size_hint_x=(7, 1))
+        # OLD: connect_button = Button(text="Connect", size_hint_x=(7, 1))
+        connect_button = Button(text="Connect")
+
         connect_button.bind(on_press=self.open_login_dialog)
         self.add_widget(connect_button)
-
 
         self.raw_text_input = TextInput(text="invite expertBotI",
                                         multiline=False,
@@ -186,5 +187,3 @@ class NetworkWidget(GridLayout):
         if cmd and self.connection:
             Logger.warn("Sending raw command %s" % cmd)
             self.connection.send(cmd)
-
-

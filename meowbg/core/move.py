@@ -12,7 +12,7 @@ class PartialMove(object):
         try:
             return (self.origin == obj.origin
                     and self.target == obj.target)
-        except AttributeError, msg:
+        except AttributeError as msg:
             logger.warn("Inappropriate object passed for comparison: %s" % obj)
             return False
 

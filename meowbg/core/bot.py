@@ -45,7 +45,7 @@ class Bot(Player):
 
             broadcast(CommitAttemptEvent(self.color))
         else:
-            print "Not my turn!"
+            print("Not my turn!")
 
     def on_cube(self, cube_event):
         if cube_event.color != self.color:
